@@ -6,6 +6,7 @@
 <p align="center">
   <a href="https://github.com/cpeoples/cudabom/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/cpeoples/cudabom/ci.yml?branch=main&label=CI&style=flat-square&logo=github&logoColor=white" alt="CI" /></a>&nbsp;&nbsp;
   <a href="https://scorecard.dev/viewer/?uri=github.com/cpeoples/cudabom"><img src="https://img.shields.io/ossf-scorecard/github.com/cpeoples/cudabom?style=flat-square&label=OpenSSF%20Scorecard" alt="OpenSSF Scorecard" /></a>&nbsp;&nbsp;
+  <a href="https://www.bestpractices.dev/projects/15337"><img src="https://img.shields.io/cii/level/15337?style=flat-square&label=OpenSSF%20Best%20Practices" alt="OpenSSF Best Practices" /></a>&nbsp;&nbsp;
   <a href="https://github.com/cpeoples/cudabom/security/code-scanning"><img src="https://img.shields.io/github/actions/workflow/status/cpeoples/cudabom/codeql.yml?branch=main&label=CodeQL&style=flat-square&logo=github&logoColor=white" alt="CodeQL" /></a>&nbsp;&nbsp;
   <a href="https://github.com/cpeoples/cudabom/actions/workflows/cargo-audit.yml"><img src="https://img.shields.io/github/actions/workflow/status/cpeoples/cudabom/cargo-audit.yml?branch=main&label=cargo-audit&style=flat-square&logo=rust&logoColor=white" alt="cargo-audit" /></a>&nbsp;&nbsp;
   <a href="https://github.com/cpeoples/cudabom/releases/latest"><img src="https://img.shields.io/badge/SLSA-Level%203-success?style=flat-square&logo=slsa&logoColor=white" alt="SLSA Build Level 3" /></a>&nbsp;&nbsp;
