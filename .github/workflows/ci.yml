@@ -136,3 +136,87 @@ jobs:
 
       - name: cargo machete (unused dependencies)
         run: cargo machete
+
+  # Release rehearsal: validate the artifacts the Release workflow will publish,
+  # on every PR, so a packaging regression is caught long before a tag is cut.
+  # crates.io is append-only; a bad publish burns a version number permanently.
+  package:
+    name: crate packaging (dry run)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        run: rustup show active-toolchain || rustup toolchain install
+
+      - name: Cache cargo registry and build
+        uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca  # v4.2.3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-${{ runner.arch }}-cargo-
+
+      - name: Package the registry-independent crates
+        # The leaf crates (no internal path deps) must package and compile in
+        # isolation exactly as crates.io will see them. Dependent crates cannot
+        # be dry-run packaged here because their internal deps are not on the
+        # registry yet; the release workflow publishes bottom-up so each is
+        # present by the time its dependents upload. This catches the common
+        # publish blockers: missing required manifest fields, files excluded by
+        # .gitignore that the build needs, and non-compiling packaged sources.
+        run: |
+          set -euo pipefail
+          for crate in cudabom-core cudabom-fetch cudabom-fatbin; do
+            echo "::group::cargo package $crate"
+            cargo package -p "$crate" --locked
+            echo "::endgroup::"
+          done
+
+  # Build the binary wheel maturin will publish to PyPI and prove it installs
+  # and runs. Mirrors the Release workflow's build-wheels job on Linux.
+  wheel:
+    name: python wheel (build + install)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        run: rustup toolchain install stable --profile minimal --target x86_64-unknown-linux-gnu
+
+      - name: Build wheel
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b  # v1.51.0
+        with:
+          target: x86_64-unknown-linux-gnu
+          args: --release --out dist --locked
+          manylinux: auto
+
+      - name: Install the built wheel and smoke-test the binary
+        run: |
+          set -euo pipefail
+          python3 -m venv /tmp/wheeltest
+          /tmp/wheeltest/bin/pip install --no-index --find-links dist cudabom
+          /tmp/wheeltest/bin/cudabom version --verbose
+          /tmp/wheeltest/bin/cudabom schema >/dev/null
