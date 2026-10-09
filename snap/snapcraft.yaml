@@ -3,6 +3,7 @@ base: core24
 adopt-info: cudabom
 title: cudabom
 summary: "Prove which NVIDIA CUDA software is inside an artifact"
+icon: snap/gui/icon.svg
 description: |
   cudabom proves which NVIDIA CUDA software is actually inside an artifact
   (Python wheels, shared libraries, executables, and container images) and
