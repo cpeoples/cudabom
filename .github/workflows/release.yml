@@ -89,7 +89,13 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust toolchain
-        run: rustup toolchain install stable --profile minimal --target ${{ matrix.target }}
+        # Honor the rust-toolchain.toml channel pin (as CI does), then add the
+        # cross-compilation target's std to *that* toolchain. Installing into a
+        # bare `stable` instead would leave the pinned toolchain without the
+        # target's std, so cross builds fail with "can't find crate for core".
+        run: |
+          rustup show active-toolchain || rustup toolchain install
+          rustup target add ${{ matrix.target }}
 
       - name: Build
         run: cargo build --release --locked --target ${{ matrix.target }} -p ${{ env.BIN_PACKAGE }}
@@ -235,7 +241,8 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust toolchain
-        run: rustup toolchain install stable --profile minimal
+        # Honor the rust-toolchain.toml channel pin (see CI).
+        run: rustup show active-toolchain || rustup toolchain install
 
       - name: Install cargo-cyclonedx
         run: cargo install --locked cargo-cyclonedx@0.5.9
@@ -299,7 +306,8 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust toolchain
-        run: rustup toolchain install stable --profile minimal
+        # Honor the rust-toolchain.toml channel pin (see CI).
+        run: rustup show active-toolchain || rustup toolchain install
 
       # Package the committed, reviewed data (fingerprint shards + advisory
       # index) into cudabom-data-<tag>.tar.gz plus a .sha256 sidecar. This is the
@@ -350,7 +358,8 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust toolchain
-        run: rustup toolchain install stable --profile minimal
+        # Honor the rust-toolchain.toml channel pin (see CI).
+        run: rustup show active-toolchain || rustup toolchain install
 
       - name: Set crate version from the release tag
         env:
@@ -534,7 +543,12 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust toolchain
-        run: rustup toolchain install stable --profile minimal --target ${{ matrix.target }}
+        # Honor the rust-toolchain.toml channel pin, then add the cross target's
+        # std to that toolchain (installing into bare `stable` would leave the
+        # pinned toolchain without the target std and fail cross builds).
+        run: |
+          rustup show active-toolchain || rustup toolchain install
+          rustup target add ${{ matrix.target }}
 
       - name: Set wheel version
         shell: bash
