@@ -44,13 +44,6 @@ The question it answers:
 > cudabom is an independent project. It is not an NVIDIA product or an official
 > NVIDIA security tool, and is not affiliated with NVIDIA. See [`NOTICE`](NOTICE).
 
-> [!WARNING]
-> Early development. The analyzer is being built out: `scan`, `gate`, `vex`,
-> `enrich`, `reconcile`, `explain`, `db`, `update`, `schema`, and `version` are
-> implemented. Fingerprint coverage spans every published CUDA redistributable
-> release (11.0 through the current 13.x line); identity coverage continues to
-> grow as component profiles are extended.
-
 ## What it does (and what it does not)
 
 cudabom scans **compiled, packaged artifacts**, the things you ship or pull
