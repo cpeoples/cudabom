@@ -1,0 +1,9 @@
+{{- /*
+  Homepage brand-mark hero. Resolves the asset paths through relURL so they
+  respect the site baseURL (the GitHub Pages subpath, e.g. /cudabom/). Raw
+  root-absolute paths like /assets/... would 404 on a project-subpath site.
+*/ -}}
+<p class="brand-hero" align="center">
+  <img class="brand-hero-dark" src="{{ "assets/brand-mark.svg" | relURL }}" alt="CudaBOM" width="480" />
+  <img class="brand-hero-light" src="{{ "assets/brand-mark-light.svg" | relURL }}" alt="CudaBOM" width="480" />
+</p>
