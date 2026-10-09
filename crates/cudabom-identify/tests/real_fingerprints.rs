@@ -102,7 +102,10 @@ fn every_committed_tree_loads_cleanly() {
         "committed shards have version conflicts: {:?}",
         report.conflicts
     );
-    assert!(!db.is_empty(), "expected derived components across the tree");
+    assert!(
+        !db.is_empty(),
+        "expected derived components across the tree"
+    );
 }
 
 #[test]
