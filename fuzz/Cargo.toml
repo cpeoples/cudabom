@@ -1,0 +1,71 @@
+# cargo-fuzz manifest. Standalone crate (excluded from the root workspace) so it
+# can depend on libfuzzer-sys and build under nightly. Each [[bin]] fuzzes one
+# public parser boundary that takes untrusted bytes.
+#
+#   cargo install cargo-fuzz
+#   cargo +nightly fuzz run fuzz_elf -- -runs=100000
+[package]
+name = "cudabom-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+cudabom-elf = { path = "../crates/cudabom-elf" }
+cudabom-pe = { path = "../crates/cudabom-pe" }
+cudabom-fatbin = { path = "../crates/cudabom-fatbin" }
+cudabom-advisory = { path = "../crates/cudabom-advisory" }
+cudabom-sbom = { path = "../crates/cudabom-sbom" }
+cudabom-extract = { path = "../crates/cudabom-extract" }
+
+[[bin]]
+name = "fuzz_elf"
+path = "fuzz_targets/fuzz_elf.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_pe"
+path = "fuzz_targets/fuzz_pe.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_fatbin"
+path = "fuzz_targets/fuzz_fatbin.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_csaf"
+path = "fuzz_targets/fuzz_csaf.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_cyclonedx"
+path = "fuzz_targets/fuzz_cyclonedx.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_detect"
+path = "fuzz_targets/fuzz_detect.rs"
+test = false
+doc = false
+bench = false
+
+# Keep debug assertions and overflow checks on while fuzzing.
+[profile.release]
+debug = 1
+debug-assertions = true
+overflow-checks = true

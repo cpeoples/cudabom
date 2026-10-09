@@ -220,3 +220,49 @@ jobs:
           /tmp/wheeltest/bin/pip install --no-index --find-links dist cudabom
           /tmp/wheeltest/bin/cudabom version --verbose
           /tmp/wheeltest/bin/cudabom schema >/dev/null
+
+  # Short fuzzing smoke run over the parser boundaries that take untrusted
+  # input, to catch a regression that reintroduces a panic. Bounded runs only;
+  # see fuzz/README.md to run targets locally for longer.
+  fuzz:
+    name: fuzz parsers (smoke)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed  # v2.22.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install nightly toolchain
+        # cargo-fuzz requires nightly for -Z sanitizer=address.
+        run: rustup toolchain install nightly --profile minimal --component rust-src
+
+      - name: Cache cargo registry and fuzz build
+        uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca  # v4.2.3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ~/.cargo/bin
+            fuzz/target
+          key: ${{ runner.os }}-fuzz-${{ hashFiles('fuzz/Cargo.toml', 'Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-fuzz-
+
+      - name: Install cargo-fuzz
+        run: cargo install cargo-fuzz --locked
+
+      - name: Smoke-fuzz each target
+        run: |
+          set -euo pipefail
+          for t in fuzz_elf fuzz_pe fuzz_fatbin fuzz_csaf fuzz_cyclonedx fuzz_detect; do
+            echo "::group::$t"
+            cargo +nightly fuzz run "$t" -- -runs=50000 -max_total_time=60
+            echo "::endgroup::"
+          done

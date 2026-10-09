@@ -30,6 +30,8 @@ members = [
     "crates/cudabom-policy",
     "xtask",
 ]
+# cargo-fuzz crate: nightly + libfuzzer-sys, built on its own.
+exclude = ["fuzz"]
 
 # --- Shared package metadata --------------------------------------------------
 # Inherited by each crate with `version.workspace = true`, etc.
