@@ -34,7 +34,7 @@ members = [
 # --- Shared package metadata --------------------------------------------------
 # Inherited by each crate with `version.workspace = true`, etc.
 [workspace.package]
-version = "0.0.0"
+version = "0.1.0"
 edition = "2021"
 rust-version = "1.85"
 license = "Apache-2.0"
@@ -50,17 +50,17 @@ categories = ["command-line-utilities", "development-tools"]
 # `<name>.workspace = true`. Add heavier deps (object, goblin, zip, rayon,
 # insta, ...) here as their milestone lands, each audited via cargo-deny.
 [workspace.dependencies]
-cudabom-core = { path = "crates/cudabom-core", version = "0.0.0" }
-cudabom-fetch = { path = "crates/cudabom-fetch", version = "0.0.0" }
-cudabom-extract = { path = "crates/cudabom-extract", version = "0.0.0" }
-cudabom-elf = { path = "crates/cudabom-elf", version = "0.0.0" }
-cudabom-pe = { path = "crates/cudabom-pe", version = "0.0.0" }
-cudabom-fatbin = { path = "crates/cudabom-fatbin", version = "0.0.0" }
-cudabom-identify = { path = "crates/cudabom-identify", version = "0.0.0" }
-cudabom-advisory = { path = "crates/cudabom-advisory", version = "0.0.0" }
-cudabom-sbom = { path = "crates/cudabom-sbom", version = "0.0.0" }
-cudabom-report = { path = "crates/cudabom-report", version = "0.0.0" }
-cudabom-policy = { path = "crates/cudabom-policy", version = "0.0.0" }
+cudabom-core = { path = "crates/cudabom-core", version = "0.1.0" }
+cudabom-fetch = { path = "crates/cudabom-fetch", version = "0.1.0" }
+cudabom-extract = { path = "crates/cudabom-extract", version = "0.1.0" }
+cudabom-elf = { path = "crates/cudabom-elf", version = "0.1.0" }
+cudabom-pe = { path = "crates/cudabom-pe", version = "0.1.0" }
+cudabom-fatbin = { path = "crates/cudabom-fatbin", version = "0.1.0" }
+cudabom-identify = { path = "crates/cudabom-identify", version = "0.1.0" }
+cudabom-advisory = { path = "crates/cudabom-advisory", version = "0.1.0" }
+cudabom-sbom = { path = "crates/cudabom-sbom", version = "0.1.0" }
+cudabom-report = { path = "crates/cudabom-report", version = "0.1.0" }
+cudabom-policy = { path = "crates/cudabom-policy", version = "0.1.0" }
 
 anyhow = "1"
 clap = { version = "4", features = ["derive"] }

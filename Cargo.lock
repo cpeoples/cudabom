@@ -235,7 +235,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "anyhow",
  "assert_cmd",
@@ -262,7 +262,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-advisory"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "cudabom-core",
  "cudabom-fetch",
@@ -275,7 +275,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-core"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "serde",
  "serde_json",
@@ -284,7 +284,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-elf"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "cudabom-core",
  "object",
@@ -294,7 +294,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-extract"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "cudabom-core",
  "flate2",
@@ -309,7 +309,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-fatbin"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "memchr",
  "serde",
@@ -317,7 +317,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-fetch"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "sha2",
  "ureq",
@@ -325,7 +325,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-identify"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "cudabom-core",
  "cudabom-elf",
@@ -339,7 +339,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-pe"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "cudabom-core",
  "object",
@@ -349,7 +349,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-policy"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "cudabom-core",
  "serde",
@@ -358,7 +358,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-report"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "cudabom-core",
  "serde",
@@ -367,7 +367,7 @@ dependencies = [
 
 [[package]]
 name = "cudabom-sbom"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "cudabom-core",
  "serde",
@@ -1119,7 +1119,7 @@ dependencies = [
 
 [[package]]
 name = "xtask"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "anyhow",
  "cudabom-advisory",

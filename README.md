@@ -217,10 +217,6 @@ or use `gate` for full policy enforcement.
 
 ## See it work end to end
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/cpeoples/cudabom/main/docs/assets/brand-mark-animated.gif" alt="CudaBOM analyzing a CUDA artifact" width="480">
-</p>
-
 The chain, on a real NVIDIA library. cudabom independently fingerprints a
 `.so`, identifies it, correlates it to CVEs, and reconciles it against a
 declared SBOM. From a clone (pointing at the committed data):

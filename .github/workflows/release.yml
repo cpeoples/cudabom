@@ -89,7 +89,13 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust toolchain
-        run: rustup toolchain install stable --profile minimal --target ${{ matrix.target }}
+        # Honor the rust-toolchain.toml channel pin (as CI does), then add the
+        # cross-compilation target's std to *that* toolchain. Installing into a
+        # bare `stable` instead would leave the pinned toolchain without the
+        # target's std, so cross builds fail with "can't find crate for core".
+        run: |
+          rustup show active-toolchain || rustup toolchain install
+          rustup target add ${{ matrix.target }}
 
       - name: Build
         run: cargo build --release --locked --target ${{ matrix.target }} -p ${{ env.BIN_PACKAGE }}
@@ -122,7 +128,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # On a release GITHUB_REF_NAME is the tag (e.g. v0.1.0). On a
+          # workflow_dispatch dry run it is the branch, which may contain a
+          # slash (release/prep-...); sanitize so the archive name is a single
+          # path component the upload glob can match.
           version="${GITHUB_REF_NAME:-dev}"
+          version="${version//\//-}"
           name="${BIN_NAME}-${version}-${{ matrix.target }}"
           mkdir -p "dist/${name}"
           cp README.md LICENSE NOTICE "dist/${name}/"
@@ -235,7 +246,8 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust toolchain
-        run: rustup toolchain install stable --profile minimal
+        # Honor the rust-toolchain.toml channel pin (see CI).
+        run: rustup show active-toolchain || rustup toolchain install
 
       - name: Install cargo-cyclonedx
         run: cargo install --locked cargo-cyclonedx@0.5.9
@@ -299,7 +311,8 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust toolchain
-        run: rustup toolchain install stable --profile minimal
+        # Honor the rust-toolchain.toml channel pin (see CI).
+        run: rustup show active-toolchain || rustup toolchain install
 
       # Package the committed, reviewed data (fingerprint shards + advisory
       # index) into cudabom-data-<tag>.tar.gz plus a .sha256 sidecar. This is the
@@ -350,7 +363,8 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust toolchain
-        run: rustup toolchain install stable --profile minimal
+        # Honor the rust-toolchain.toml channel pin (see CI).
+        run: rustup show active-toolchain || rustup toolchain install
 
       - name: Set crate version from the release tag
         env:
@@ -496,9 +510,11 @@ jobs:
 
   build-wheels:
     name: Build wheel ${{ matrix.target }}
-    needs: sign-and-attest
+    needs: build
     # Build wheels on a release and on a manual dispatch (for TestPyPI dry
     # runs). The downstream publish jobs decide where the wheels actually go.
+    # Depends on `build` (not sign-and-attest) so the dispatch dry-run path is
+    # not pruned when the release-only signing job is skipped.
     if: >-
       vars.PUBLISH_PYPI == 'true' &&
       (github.event_name == 'release' || github.event_name == 'workflow_dispatch')
@@ -532,7 +548,12 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust toolchain
-        run: rustup toolchain install stable --profile minimal --target ${{ matrix.target }}
+        # Honor the rust-toolchain.toml channel pin, then add the cross target's
+        # std to that toolchain (installing into bare `stable` would leave the
+        # pinned toolchain without the target std and fail cross builds).
+        run: |
+          rustup show active-toolchain || rustup toolchain install
+          rustup target add ${{ matrix.target }}
 
       - name: Set wheel version
         shell: bash
@@ -545,10 +566,15 @@ jobs:
             # Real release: version comes from the tag.
             cargo set-version "${RELEASE_TAG#v}"
           else
-            # TestPyPI dry run: append a unique dev suffix so the upload never
-            # collides with an existing version on the index.
+            # TestPyPI dry run: derive a unique version that never collides on
+            # the index. cargo set-version refuses a "downgrade", so a bare
+            # pre-release of the current version (0.1.0-dev.N < 0.1.0) is
+            # rejected; bump the patch first so the dev build sorts *above* the
+            # released version (0.1.1-dev.N > 0.1.0) and the command succeeds.
             base="$(cargo pkgid -p cudabom | sed 's/.*[#@]//')"
-            cargo set-version "${base}-dev.$(date +%Y%m%d%H%M%S)"
+            IFS=. read -r major minor patch <<<"${base%%-*}"
+            next="${major}.${minor}.$((patch + 1))"
+            cargo set-version "${next}-dev.$(date +%Y%m%d%H%M%S)"
           fi
 
       - name: Build wheel
@@ -570,6 +596,7 @@ jobs:
   publish-testpypi:
     name: Publish to TestPyPI
     needs: build-wheels
+    if: needs.build-wheels.result == 'success'
     runs-on: ubuntu-latest
     environment:
       name: testpypi
@@ -602,6 +629,7 @@ jobs:
   smoke-test-testpypi:
     name: Smoke test from TestPyPI
     needs: publish-testpypi
+    if: needs.publish-testpypi.result == 'success'
     runs-on: ${{ matrix.runner }}
     permissions:
       contents: read
@@ -648,8 +676,9 @@ jobs:
     # Only reach production PyPI on a real release, or on a manual dispatch
     # that explicitly opted in. A plain dispatch stops at the TestPyPI dry run.
     if: >-
-      github.event_name == 'release' ||
-      (github.event_name == 'workflow_dispatch' && inputs.publish_pypi == true)
+      needs.smoke-test-testpypi.result == 'success' &&
+      (github.event_name == 'release' ||
+      (github.event_name == 'workflow_dispatch' && inputs.publish_pypi == true))
     runs-on: ubuntu-latest
     environment:
       name: pypi
