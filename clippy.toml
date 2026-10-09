@@ -1,0 +1,13 @@
+# Clippy configuration for cudabom.
+# Project-wide clippy knobs live here so thresholds are tuned in one place
+# rather than via scattered #[allow] attributes. Lint *levels* are set in the
+# root Cargo.toml under [workspace.lints.clippy].
+
+# This is a security tool that parses hostile input; keep functions and types
+# from silently growing unbounded.
+too-many-arguments-threshold = 8
+type-complexity-threshold = 250
+
+# Any literal that looks like a hash/fingerprint should be a named const, not
+# an inline magic value; nudge that with a low tolerance for large literals.
+literal-representation-threshold = 16384

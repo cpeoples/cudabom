@@ -1,0 +1,735 @@
+{
+  "schema_version": 2,
+  "release": {
+    "label": "11.5.1",
+    "date": "2021-11-23"
+  },
+  "provenance": {
+    "manifest_sha256": "c28ceb3efc8ed5856d58c33ba3242ea20196deadfb7b9d8432f0cdcd1e0120ca",
+    "corpus_sha256": [
+      "1ba27f135e2f920bb47e22c05e4ef2e0a75e21d9306f5062e44c3d705150a3a9",
+      "3943941f449e8a9aea465e26a25f3d0315e45a57c5ab993f1d15dac7453dcffc",
+      "46e3adabbf6a3e7920f054b0e16b8555606798453d5abb004cc4f82df20cf093",
+      "4c9e3fec211fa6cc6dd14a7d09237c56f43789e498817cd0839b0e6ef9c498fa",
+      "5c6bcb73d6e2426e7369e5157387e02f70db3e94b2351c447ce559cba57e36f4",
+      "78aa426f8d1bd6a309582268045e92d798dea84ab17b0e41bbf81ed4c6c51c37",
+      "798fa7124d56661d7a211900266f658d4303931936157e863c82cf31aeb27b09",
+      "9dd3bfa212a4c8e58a6869c4992e710409d34c46d5a683cf99670d5ef5b1f8de",
+      "9e768d6278df1b2323e2708bbf53af0bdb2955c0c4688eb69d5e418aea3a9b41",
+      "b4f4321f4fd249a2f4d68b3cf396a9e5891e33d73a297e21eea0ed9417340808",
+      "c01bfcfca22063c99fd50122d39383433f4f789e021c7785cd555f59c2632a2c",
+      "e2e51dc75c9c5b4476624bf683d50afbcc611f88361392625f017bd3efc545b9"
+    ],
+    "tool_version": "0.0.0"
+  },
+  "components": [
+    {
+      "name": "cublas",
+      "description": "CUDA cuBLAS",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcublas.so",
+        "libcublasLt.so"
+      ],
+      "file_hashes": {
+        "061cdbeb437510437b4dfcd053834932e60943be996aea0187f6ba36b7cf614f": [
+          "11.7.4.6"
+        ],
+        "0b8caf412ff4c5553cfd41075c9112cb6c88dab6c61b7fc012a24d53db32c0c6": [
+          "11.7.4.6"
+        ],
+        "1ba27f135e2f920bb47e22c05e4ef2e0a75e21d9306f5062e44c3d705150a3a9": [
+          "11.7.4.6"
+        ],
+        "225d447e265cfcf8eb18ddd7ffbf17ec6829cbd8ee25690a10266f4c99d6eca1": [
+          "11.7.4.6"
+        ],
+        "38d7045310487b6f3dad4c6f8c5f6420b4dcf9dbf0171f3ef5f48f3e2f0024f9": [
+          "11.7.4.6"
+        ],
+        "6281fc518ca38fea915e13b1d5777e836b81b0920b0663490b42fe939cfb1132": [
+          "11.7.4.6"
+        ],
+        "a5b2c090e7b3da7b9823aa71ecf76a07344846daf8d26b13a06dba2d8a572c79": [
+          "11.7.4.6"
+        ],
+        "dda1ae16b9e1730febdb5621e05ebcb243c55c3bd059ff7480fd6f2cfa1be43e": [
+          "11.7.4.6"
+        ]
+      },
+      "build_ids": {
+        "14409e1cda10b8635f46082dde6a29550da86d01": [
+          "11.7.4.6"
+        ],
+        "944e3202f15f8bc5601bcac35a2dd4995417d6cc": [
+          "11.7.4.6"
+        ],
+        "976073990d81e8773cdea6af5ec75812a1ec2922": [
+          "11.7.4.6"
+        ],
+        "cf98e65c5f565944520a7b24e5db1db9438a162d": [
+          "11.7.4.6"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.7.4.6": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "cudart",
+      "description": "CUDA Runtime (cudart)",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcudart.so",
+        "libcudart_static.a"
+      ],
+      "file_hashes": {
+        "02cd427306ada807c9a8a1f16dd34ddeb58f35c7932bcbe13e1ee2afa882332c": [
+          "11.5.117"
+        ],
+        "4554289fcc1df521446129ea77cd67a74ed3a439b121126e2aefa3619ba58f52": [
+          "11.5.117"
+        ],
+        "550f8dfdce3fb6ca723d716abff81e1fd55132a130d284ae2050a0f09f40c93f": [
+          "11.5.117"
+        ],
+        "8f412376f4951df52380d87bb6c22704cb930ac6cef0fe92f2f31604ef744ce7": [
+          "11.5.117"
+        ],
+        "b0608bd14558ef863b39bffc225549299d553d8aa53ceec1454beecb2960a313": [
+          "11.5.117"
+        ],
+        "c01bfcfca22063c99fd50122d39383433f4f789e021c7785cd555f59c2632a2c": [
+          "11.5.117"
+        ]
+      },
+      "build_ids": {
+        "547405b8f729c3369315f8ef16190480b4642ddd": [
+          "11.5.117"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.5.117": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "cufft",
+      "description": "CUDA cuFFT",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcufft.so",
+        "libcufftw.so",
+        "libcufftw_static.a"
+      ],
+      "file_hashes": {
+        "0fd68546c47f5a60dc076773d1c139c82519fe0fc5da8069fad9afde56e69f30": [
+          "10.6.0.107"
+        ],
+        "5e0e004e33a148bf543fd69df8ad7fcd14ae72c60676679908a6cf164a065651": [
+          "10.6.0.107"
+        ],
+        "8358eeaeb8401bebd366a2f9376f9d0602f177716de7448f32381409c2dd7524": [
+          "10.6.0.107"
+        ],
+        "8528d3bbcff22f759034601972d8eb8546c4948432709f2f33e746c4337928bc": [
+          "10.6.0.107"
+        ],
+        "8f0f4ec2e8ca9de0f46f204f0b41e54cbc1438b9040f60e8e18e2c0eda99ecd7": [
+          "10.6.0.107"
+        ],
+        "c21c82a7921b00643b2eb6fa7bef538097c4b4ccf67f3da0c6087cc0b055c310": [
+          "10.6.0.107"
+        ],
+        "e2e51dc75c9c5b4476624bf683d50afbcc611f88361392625f017bd3efc545b9": [
+          "10.6.0.107"
+        ],
+        "e5ea473699697bcfd2a0ab7b807dbc5dd713bfe40221f7356097fb6e2577d73a": [
+          "10.6.0.107"
+        ],
+        "f6b846a79772640585cbfc35746ededa1210e1ba7005e075d678a4d84ffd93ec": [
+          "10.6.0.107"
+        ]
+      },
+      "build_ids": {
+        "0f44ae4502f8aa379d73a6e629c0a1017c9a1c08": [
+          "10.6.0.107"
+        ],
+        "130b4714eb89e4bdade955ea88a34c934e732f94": [
+          "10.6.0.107"
+        ],
+        "c0b1e052b0d498d29058e366554c3058c7f9b1fd": [
+          "10.6.0.107"
+        ],
+        "f88dec99a3574c8bba96eb5ce06671526d95759c": [
+          "10.6.0.107"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "10.6.0.107": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "cufile",
+      "description": "CUDA cuFile",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcufile.so",
+        "libcufile_rdma.so",
+        "libcufile_rdma_static.a"
+      ],
+      "file_hashes": {
+        "00724b01758863410649fb0c8c8112e3d748c073502120bfc35751b8d1ea0b1d": [
+          "1.1.1.25"
+        ],
+        "1c8eb9ec6ec05fc54c60c78afaf79b5470e5500d16efec3bafe953ba16c7c214": [
+          "1.1.1.25"
+        ],
+        "32fa119b8fcdb64e2a5e6dee938dcbf2527e6f2e31c9d2dfb52c4af5a1e0b71a": [
+          "1.1.1.25"
+        ],
+        "46ad6e78f781c6f7b4d44d38e01ce52638f108254296082f3d3f5b6a482da5f4": [
+          "1.1.1.25"
+        ],
+        "b4f4321f4fd249a2f4d68b3cf396a9e5891e33d73a297e21eea0ed9417340808": [
+          "1.1.1.25"
+        ],
+        "c75143af555919766d1e23de72b477efc8042bfb65e0fadafc83652f4355218c": [
+          "1.1.1.25"
+        ],
+        "ee7dbce91254798d1e173f6fc1a875fb5773ad66a2c41a91a8cc5fe7586869cc": [
+          "1.1.1.25"
+        ]
+      },
+      "build_ids": {
+        "1bfbf6dc86ea39d52ec939bc66f895418fbe7ca5": [
+          "1.1.1.25"
+        ],
+        "57fbacbe631ad127211cfc6d608c4c910e99cb7d": [
+          "1.1.1.25"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "1.1.1.25": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "cuobjdump",
+      "description": "cuobjdump",
+      "license": "CUDA Toolkit",
+      "soname_stems": [],
+      "file_hashes": {
+        "04845b4feb728840823b17aadc2fb579bd8be4e04f1cfe25bb78e8724794cdfa": [
+          "11.5.119"
+        ],
+        "1ae185d861f7075046e53e8ec69d4b650eef1bc09fdb0c89adf69e48f9b13d57": [
+          "11.5.119"
+        ],
+        "2b059697dcc5b3df8ca527612893905cfb91f52fef4988388458060d038d86a9": [
+          "11.5.119"
+        ],
+        "798fa7124d56661d7a211900266f658d4303931936157e863c82cf31aeb27b09": [
+          "11.5.119"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "11.5.119": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "cupti",
+      "description": "CUPTI",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcupti.so",
+        "libnvperf_host.so",
+        "libnvperf_target.so",
+        "libcheckpoint.so",
+        "libpcsamplingutil.so"
+      ],
+      "file_hashes": {
+        "05926807291609f643d4b92706a9ab627f4dd32e4f0c5779b58ba5c737453c43": [
+          "11.5.114"
+        ],
+        "1ab09d29571a80f5c26187e78419b424a041ade7c9c108523aad26d6711eb222": [
+          "11.5.114"
+        ],
+        "56948dab7b3d39bc9d8231a277a051e57f95efe73f9f6bfeb9f66df2be3d2208": [
+          "11.5.114"
+        ],
+        "5739768e55551b131fd2bd0ef41806f70400e767cb520c511f11ea33ac940eb6": [
+          "11.5.114"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "11.5.114": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "curand",
+      "description": "CUDA cuRAND",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcurand.so"
+      ],
+      "file_hashes": {
+        "067a6433f2c24e1432b7c002441ec4f9746fc1017bfe9e1b8fb8c93c75552f49": [
+          "10.2.7.107"
+        ],
+        "1aa24514a6e52eaf212b6aa4c19b8a94c7afe5aaf610ae6d52f0a9ca846de112": [
+          "10.2.7.107"
+        ],
+        "67d0759b1252d9df7953932ed58d01c05a4861121c19bafbb544b585113552ab": [
+          "10.2.7.107"
+        ],
+        "9dd3bfa212a4c8e58a6869c4992e710409d34c46d5a683cf99670d5ef5b1f8de": [
+          "10.2.7.107"
+        ],
+        "e8f2cc5e786812cf70bd7bd37a9c78e3341e602c402177d44e7bf07fe7e85142": [
+          "10.2.7.107"
+        ],
+        "fa74020026d1cf81b0a3004c823ae40a4f0a02df34041438b992e6058ff97cd2": [
+          "10.2.7.107"
+        ]
+      },
+      "build_ids": {
+        "9c961aaef9aad19f9fb6ceb9ae2b5924322207b3": [
+          "10.2.7.107"
+        ],
+        "c6af54a024f7e0ac8fcd8d3590da3541ba5c4692": [
+          "10.2.7.107"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "10.2.7.107": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "cusolver",
+      "description": "CUDA cuSOLVER",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcusolver.so",
+        "libcusolverMg.so"
+      ],
+      "file_hashes": {
+        "1f216cdda56463d333ffe4d52cf18283b3a8d917737698f5c8ed5851120f119a": [
+          "11.3.2.107"
+        ],
+        "325684ebefb24f7a47c5868a87f8dc38c88812c12f113bd57029b3a715c95405": [
+          "11.3.2.107"
+        ],
+        "49b268a610b8dfeadfa05031eeccf9d14429fa23d531b0e6985b78f259ff704f": [
+          "11.3.2.107"
+        ],
+        "4c9e3fec211fa6cc6dd14a7d09237c56f43789e498817cd0839b0e6ef9c498fa": [
+          "11.3.2.107"
+        ],
+        "59e5f60f4424a79e9a7fb4c32bb1f00f3fe1b0f93ad2325ea673cc0b629d3b86": [
+          "11.3.2.107"
+        ],
+        "6feba029d8838d17345c38d77b6cd0e7853934106edcc5d5f6ec57646b499d28": [
+          "11.3.2.107"
+        ],
+        "8f1ff0bc983cda92dfbc59c2b2e15307320101dc495837d68630c1da06b4d7cb": [
+          "11.3.2.107"
+        ],
+        "f3c332d10869a39b7a8179a7431370c6a2c0e5fd4ed7715d4b7b408f2df035df": [
+          "11.3.2.107"
+        ]
+      },
+      "build_ids": {
+        "1c5f7732dba47936c07635c04308aa7acbdc51b2": [
+          "11.3.2.107"
+        ],
+        "3c6ccc44af4a9e9eec79f56c6251a7a35ddeccba": [
+          "11.3.2.107"
+        ],
+        "9db0d5fd73d3972851efa006d69bb62c71879709": [
+          "11.3.2.107"
+        ],
+        "c4be2716775c957218cda05504072fd20d44d89b": [
+          "11.3.2.107"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.3.2.107": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "cusparse",
+      "description": "CUDA cuSPARSE",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcusparse.so"
+      ],
+      "file_hashes": {
+        "365a0316da888e0b8cc17b3e958b24b9faefa35e6b5fded7d9083483c1f0c097": [
+          "11.7.0.107"
+        ],
+        "88de7ce848b929439ba1fa1baf487ec56fedc39f8042a862c2f5522fbc1e82a2": [
+          "11.7.0.107"
+        ],
+        "979df680e53415e902060469cba5395e8188d8442dc59a17a35a4892ef1ed3a1": [
+          "11.7.0.107"
+        ],
+        "9e768d6278df1b2323e2708bbf53af0bdb2955c0c4688eb69d5e418aea3a9b41": [
+          "11.7.0.107"
+        ],
+        "a42ff475f8703883829d6dbee4e25d74a152eb8dec093bfc02dc82b28af74fbe": [
+          "11.7.0.107"
+        ],
+        "f01d662635d7b2001ace6122058159c9583c61db3fc5849a8ae025b9963657ec": [
+          "11.7.0.107"
+        ]
+      },
+      "build_ids": {
+        "2b0eaa1fee72a4b0968a5e0779e60e8efc03737f": [
+          "11.7.0.107"
+        ],
+        "739e9a6dc4c002e86b86f412e106bf2797d0e3d8": [
+          "11.7.0.107"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.7.0.107": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "cuxxfilt",
+      "description": "CUDA cuxxfilt (demangler)",
+      "license": "CUDA Toolkit",
+      "soname_stems": [],
+      "file_hashes": {
+        "46e3adabbf6a3e7920f054b0e16b8555606798453d5abb004cc4f82df20cf093": [
+          "11.5.119"
+        ],
+        "7820a76ffced4194ff09a910c70cfd5ab917e67be3a0371da4e25ed000346595": [
+          "11.5.119"
+        ],
+        "7ef895dd76f2222d19344cadf32c84f8963c11a7773ceb73c7d9be4eb286576a": [
+          "11.5.119"
+        ],
+        "f7e3345c3545f72c3ef0020403463a72a21444b2e11f3d5a5e1c1a65e10c6f5b": [
+          "11.5.119"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "11.5.119": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "npp",
+      "description": "CUDA NPP",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libnppc.so",
+        "libnppc_static.a",
+        "libnppial.so",
+        "libnppicc.so",
+        "libnppidei.so",
+        "libnppif.so",
+        "libnppig.so",
+        "libnppim.so",
+        "libnppist.so",
+        "libnppisu.so",
+        "libnppisu_static.a",
+        "libnppitc.so",
+        "libnppitc_static.a",
+        "libnpps.so"
+      ],
+      "file_hashes": {
+        "02021e13c23787c8456ef686a59a59f8c63a2657075ef992fa8b3084086b4a6c": [
+          "11.5.1.107"
+        ],
+        "182c61bb3558bbf22c77379f3aedb6ae3dff81efb2381d06bb8b56aeff8e6e5b": [
+          "11.5.1.107"
+        ],
+        "2d694cd72364ea2323ea3483ecec5a478e9e4f6f30de6c585552f7e719e25a1b": [
+          "11.5.1.107"
+        ],
+        "2f8f0c3e732fd43d1e815eca6fd0665d2b14cf315eab21fab35f497b939ac55f": [
+          "11.5.1.107"
+        ],
+        "3ef847675b5cecdd70ede5216b91530bff152478441dc4b1e0d73bfcdb586a06": [
+          "11.5.1.107"
+        ],
+        "5483ec4efff3c7de72238d2584c578d3d10b18d88d4ccd9980cb596f7d1de9be": [
+          "11.5.1.107"
+        ],
+        "58e2705f0d583372f498f717eba0ab3a39472cc36cf42900d719e6ae254a8a75": [
+          "11.5.1.107"
+        ],
+        "5c6bcb73d6e2426e7369e5157387e02f70db3e94b2351c447ce559cba57e36f4": [
+          "11.5.1.107"
+        ],
+        "5de41aa350420860ed5e581dc76dbb1749571f0efc206bb3b83745dfbe1f46d9": [
+          "11.5.1.107"
+        ],
+        "6df99aa5908566592260d70d227206f2593742a3e3f3781226216ded046a00f3": [
+          "11.5.1.107"
+        ],
+        "712149c75ecb099b8b384a7f44ae5546309e1c5c95f35d45b36bde84ef090e97": [
+          "11.5.1.107"
+        ],
+        "732e4291a7d30f08ee4e1d2a3895c45ae09742eea42acb49911d1de3005ab5b4": [
+          "11.5.1.107"
+        ],
+        "74881abad84050443ed9895f3057467b7fa43530cc4a6c795682451bc68815c3": [
+          "11.5.1.107"
+        ],
+        "7da9b7d14b7117d37a2f196dde82dc63243ae16f01f7bebb50a1cc64d9173c29": [
+          "11.5.1.107"
+        ],
+        "7e90d2fd214a4c3b8eee1bf538a4c144740dc1c6d5d5417c3ddbfafb15ff6bfe": [
+          "11.5.1.107"
+        ],
+        "b0c5a8fe963ab95e58cd3536ab17e7f0b0ac757cdaf1300439faca68bdde2daf": [
+          "11.5.1.107"
+        ],
+        "b13b19e88037de0d259caba29412223e24cd21044a8427c2ae14eaa96577117c": [
+          "11.5.1.107"
+        ],
+        "be680a384382f07b21b44b9a51d69567a805f1b2565171c831fb7a371161efa3": [
+          "11.5.1.107"
+        ],
+        "bf9c62c332b9dd78fc362df8ac9e2dd595428eeeae6428c2839f1a3849ef0a57": [
+          "11.5.1.107"
+        ],
+        "c711249d0e963b3ab54783cb8a01d607f83b0527bd33f1a792e969beef54cfd0": [
+          "11.5.1.107"
+        ],
+        "cbea2a43bfeb9fee7c06463f5c12a31d1978c2d90b7a1dac8825ccadd1734488": [
+          "11.5.1.107"
+        ],
+        "cd86f76d41010e7fd37804ba102ec6896de4e51a2724cf44b9e7b22c1aa86429": [
+          "11.5.1.107"
+        ],
+        "cf2cbc740d9c111d9d266737f62ba4b44cfc84590fe1f9f4bf848b0908296971": [
+          "11.5.1.107"
+        ],
+        "d936cab02de47402d0c8df4620e1dc32b2f0744253201e084db82406a94c5d9d": [
+          "11.5.1.107"
+        ],
+        "d9ff3e049bebfbb5f35c4c69311db2bafba15bd36d9e76a7d5afb8e8ebb3c60b": [
+          "11.5.1.107"
+        ],
+        "dbb25db9e4eeb86455e1b7c836c5d31c08826e35c8eec5cdc965a3a3ea28c3e9": [
+          "11.5.1.107"
+        ],
+        "de548142a3e5d8fda77afbec951d9add11ae79f6879c12c98122579e60dc35fd": [
+          "11.5.1.107"
+        ],
+        "e421f4b9782d4f210725ce498ac11614a6c0d4f15ed3b6024da428e30b9d7eba": [
+          "11.5.1.107"
+        ],
+        "f3d5629881dd8ec164f36860e36be3771f192212d1b892f271ada2e114e3478e": [
+          "11.5.1.107"
+        ],
+        "f4b0760ec0f6228de88091d527acd85a98c0f2621e2fecdf281677ef248fc567": [
+          "11.5.1.107"
+        ],
+        "fe7f091ef3f39be62e0b9825d3209319a2604bac79da1a1b2032eb7cf0dfbd96": [
+          "11.5.1.107"
+        ]
+      },
+      "build_ids": {
+        "0cc286f2bbf4a57430b9a6eee1d3c06f4111530f": [
+          "11.5.1.107"
+        ],
+        "18800ea86ec8a6cde01ca171a31d1aba7a8adb09": [
+          "11.5.1.107"
+        ],
+        "244c45acb780102a14da2580d8051b56ac95e633": [
+          "11.5.1.107"
+        ],
+        "374ae0f897ee5e75048cfadf6983056c74321866": [
+          "11.5.1.107"
+        ],
+        "3bce828585870ca6c006bcd959c621c49e99a279": [
+          "11.5.1.107"
+        ],
+        "44b7c730b6df4989c225d5d59029167fd1cd4769": [
+          "11.5.1.107"
+        ],
+        "52f09114e76ad19b3a0d35599dbbe37c2476257b": [
+          "11.5.1.107"
+        ],
+        "56b30a7457b109c4a6c756e87ba4b14f9f7692d0": [
+          "11.5.1.107"
+        ],
+        "57fd788aaeddd9918c98158a79c84e21ac5e86d7": [
+          "11.5.1.107"
+        ],
+        "6b810229e5cd2b162319ee30f438a0be5249bc43": [
+          "11.5.1.107"
+        ],
+        "6c511a7c5dc9eeab465dd7becec70420f2fa2bb2": [
+          "11.5.1.107"
+        ],
+        "7cc3e0ee0e116e8e84f8a0825363fe2bb472e120": [
+          "11.5.1.107"
+        ],
+        "969f242592878afb027c9746be5093e44e53546a": [
+          "11.5.1.107"
+        ],
+        "9a66e9a119638465979f3f83a425cd5f04b7f02f": [
+          "11.5.1.107"
+        ],
+        "a4ffef909fc7f9fe51bd4154b9a5669340dc3b1a": [
+          "11.5.1.107"
+        ],
+        "a64dd26ddc5572ba32c1ed2a13e5a8271273c0a0": [
+          "11.5.1.107"
+        ],
+        "acf7cfca38d4ff5aa06be5188430bfde5c3bb966": [
+          "11.5.1.107"
+        ],
+        "ad79378a59735bba0731cad059854c8819377061": [
+          "11.5.1.107"
+        ],
+        "af13fee16a531c2f99b50c4cc4e75d4866051bcf": [
+          "11.5.1.107"
+        ],
+        "ee7a9a5812161f19c32be36b22d8f755567cd989": [
+          "11.5.1.107"
+        ],
+        "f4cec80736789db53dc20171e1a0178037ac460c": [
+          "11.5.1.107"
+        ],
+        "f56947f86a8514b2fc76f0dc594f068b52372914": [
+          "11.5.1.107"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.5.1.107": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "nvjpeg",
+      "description": "CUDA nvJPEG",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libnvjpeg.so"
+      ],
+      "file_hashes": {
+        "2f6bd3a80305f8ea4b84012c55222da2d6b0d3cfdd31d5997d5638a1aadcd6dd": [
+          "11.5.4.107"
+        ],
+        "3943941f449e8a9aea465e26a25f3d0315e45a57c5ab993f1d15dac7453dcffc": [
+          "11.5.4.107"
+        ],
+        "4dbc3c0da37ce108faadcaebbe72335984a60ed055b29fa56edfd89aad9d89cc": [
+          "11.5.4.107"
+        ],
+        "50bb7bdd84a8ec74d4b2e2a133d8dd0474aa4224c3e7643ed75a7864cf705df6": [
+          "11.5.4.107"
+        ],
+        "760295c056951752ba7f4a5a56f4e5afe1538eafbc8ea01c21abe9b8bbd3f09e": [
+          "11.5.4.107"
+        ],
+        "f088933f6e9e0795ad8460f21182b4dc51607d7e1d2ef1dc7d131b295c52b678": [
+          "11.5.4.107"
+        ]
+      },
+      "build_ids": {
+        "7ba65a64f52f3359f92dd0bfca7e57402e915b00": [
+          "11.5.4.107"
+        ],
+        "9ff67e579e75e2a431706908eeea3ac1031efe69": [
+          "11.5.4.107"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.5.4.107": [
+          "11.5.1"
+        ]
+      }
+    },
+    {
+      "name": "nvrtc",
+      "description": "CUDA NVRTC",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libnvrtc-builtins.so",
+        "libnvrtc.so"
+      ],
+      "file_hashes": {
+        "65f2c18b70004319654cb2cf9aa7e699185d0466f1000d6714b19c854345b27e": [
+          "11.5.119"
+        ],
+        "78aa426f8d1bd6a309582268045e92d798dea84ab17b0e41bbf81ed4c6c51c37": [
+          "11.5.119"
+        ],
+        "ad9b94b7eb6cd377689176156ae5138af4d7a1baa8b3ee3935b4cc7f41031c02": [
+          "11.5.119"
+        ],
+        "bd10849b493902487660d3216a9b1de2c687d0d013085a7194925ff0a8d0461a": [
+          "11.5.119"
+        ],
+        "c924444459eca0ee5f5748cc80628c0e8759d6cf70c55b5ce2e1b4b37a46d3cd": [
+          "11.5.119"
+        ],
+        "cb6d85e009123e004eb009233e08b088acd2cdf20f7b6ebcf7b221658c74d5a1": [
+          "11.5.119"
+        ],
+        "e6c7312b4b8f678828dca2b2e29bd8a1afee83709885bffe0115743219e092ae": [
+          "11.5.119"
+        ]
+      },
+      "build_ids": {
+        "1d40a088cbc8932d9ecaf20883e48e6baae90899": [
+          "11.5.119"
+        ],
+        "4f46e68b334e5a74a14db5e6dc04c7b7fa0c269c": [
+          "11.5.119"
+        ],
+        "94167b705245a452260fca25d22eddef7caa3c80": [
+          "11.5.119"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.5.119": [
+          "11.5.1"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# yamllint config - https://yamllint.readthedocs.io/
+# Lints the repo's own YAML (workflows, configs). Tune rules here.
+
+extends: default
+
+ignore: |
+  target/
+
+rules:
+  line-length: disable
+  document-start: disable
+  comments-indentation: disable
+  comments:
+    min-spaces-from-content: 1
+  truthy:
+    allowed-values:
+      ['true', 'false', 'True', 'False', 'TRUE', 'FALSE',
+       'yes', 'no', 'Yes', 'No', 'YES', 'NO']
+    check-keys: false
+  trailing-spaces: disable
+  braces:
+    max-spaces-inside: 1

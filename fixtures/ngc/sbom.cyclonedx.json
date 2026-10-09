@@ -1,0 +1,34 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:00000000-0000-0000-0000-000000000000",
+  "version": 1,
+  "metadata": {
+    "component": {
+      "type": "container",
+      "bom-ref": "sha256:example",
+      "name": "example/cuda:12.4.1-runtime"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "comp-cudart",
+      "name": "cuda-cudart",
+      "version": "12.4.127",
+      "purl": "pkg:generic/cuda-cudart@12.4.127"
+    },
+    {
+      "type": "library",
+      "bom-ref": "comp-cublas",
+      "name": "libcublas-12-4",
+      "version": "12.4.5.8"
+    },
+    {
+      "type": "library",
+      "bom-ref": "comp-openssl",
+      "name": "openssl",
+      "version": "3.0.13"
+    }
+  ]
+}

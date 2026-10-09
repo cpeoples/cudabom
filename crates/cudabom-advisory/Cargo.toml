@@ -1,0 +1,28 @@
+[package]
+name = "cudabom-advisory"
+description = "NVIDIA CSAF advisory ingestion, normalization, local index, and version-range matching against identified components."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+cudabom-core.workspace = true
+cudabom-fetch.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+# Network fetch for `db update`: verified download (via cudabom-fetch) + safely
+# unpack the CSAF tarball. Confined to the fetch module.
+flate2.workspace = true
+tar.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

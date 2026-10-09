@@ -1,0 +1,152 @@
+name: cudabom CUDA SBOM Scanner
+description: Prove which NVIDIA CUDA software is inside an artifact and emit SBOM, advisory, and VEX data.
+author: cpeoples
+branding:
+  icon: shield
+  color: green
+
+inputs:
+  target:
+    description: File or directory to scan.
+    required: false
+    default: .
+  version:
+    description: >-
+      cudabom release tag to run (e.g. v0.1.0). Defaults to the tag this action
+      was called at, falling back to the latest release.
+    required: false
+    default: ""
+  format:
+    description: >-
+      Output format when not uploading SARIF: table, json, cyclonedx, sarif,
+      markdown.
+    required: false
+    default: sarif
+  output:
+    description: Path to write the report to. Defaults to cudabom-results.<ext>.
+    required: false
+    default: ""
+  upload-sarif:
+    description: >-
+      Upload the SARIF report to GitHub code scanning so findings appear inline
+      on pull requests. Requires security-events: write.
+    required: false
+    default: "true"
+  fail-on-findings:
+    description: Fail the step when cudabom reports at least one affected finding.
+    required: false
+    default: "true"
+  token:
+    description: Token used to look up the release when version is unset.
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  exit-code:
+    description: cudabom's exit code (0 clean, 1 findings, 2 usage, 3 input, 4 internal).
+    value: ${{ steps.scan.outputs.exit-code }}
+  report:
+    description: Path to the written report.
+    value: ${{ steps.scan.outputs.report }}
+
+runs:
+  using: composite
+  steps:
+    - name: Install cudabom
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        INPUT_VERSION: ${{ inputs.version }}
+        ACTION_REF: ${{ github.action_ref }}
+      run: |
+        set -euo pipefail
+
+        case "$(uname -s)" in
+          Linux)  os=unknown-linux-gnu ;;
+          Darwin) os=apple-darwin ;;
+          *) echo "::error::cudabom action supports Linux and macOS runners only"; exit 1 ;;
+        esac
+        case "$(uname -m)" in
+          x86_64|amd64) arch=x86_64 ;;
+          arm64|aarch64) arch=aarch64 ;;
+          *) echo "::error::unsupported architecture $(uname -m)"; exit 1 ;;
+        esac
+        target="${arch}-${os}"
+
+        version="${INPUT_VERSION:-$ACTION_REF}"
+        case "$version" in
+          v[0-9]*) : ;;
+          *) version=$(gh release view --repo cpeoples/cudabom --json tagName -q .tagName) ;;
+        esac
+
+        name="cudabom-${version}-${target}"
+        dir="${RUNNER_TEMP}/cudabom"
+        mkdir -p "$dir"
+        gh release download "$version" --repo cpeoples/cudabom \
+          --pattern "${name}.tar.gz" --pattern "${name}.tar.gz.sha256" --dir "$dir"
+
+        if command -v sha256sum >/dev/null; then
+          sha_cmd="sha256sum"
+        else
+          sha_cmd="shasum -a 256"
+        fi
+        expected=$(cat "${dir}/${name}.tar.gz.sha256")
+        actual=$($sha_cmd "${dir}/${name}.tar.gz" | awk '{print $1}')
+        if [ "$expected" != "$actual" ]; then
+          echo "::error::checksum mismatch for ${name}.tar.gz"; exit 1
+        fi
+        tar -xzf "${dir}/${name}.tar.gz" -C "$dir"
+        echo "${dir}/${name}" >> "$GITHUB_PATH"
+
+    - name: Scan
+      id: scan
+      shell: bash
+      env:
+        INPUT_TARGET: ${{ inputs.target }}
+        INPUT_FORMAT: ${{ inputs.format }}
+        INPUT_OUTPUT: ${{ inputs.output }}
+        UPLOAD_SARIF: ${{ inputs.upload-sarif }}
+        FAIL_ON_FINDINGS: ${{ inputs.fail-on-findings }}
+      run: |
+        set -uo pipefail
+
+        format="$INPUT_FORMAT"
+        [ "$UPLOAD_SARIF" = "true" ] && format=sarif
+
+        report="$INPUT_OUTPUT"
+        if [ -z "$report" ]; then
+          case "$format" in
+            sarif) ext=sarif ;;
+            cyclonedx) ext=cdx.json ;;
+            markdown) ext=md ;;
+            table) ext=txt ;;
+            *) ext="$format" ;;
+          esac
+          report="cudabom-results.${ext}"
+        fi
+
+        fail_flag=""
+        [ "$FAIL_ON_FINDINGS" = "true" ] && fail_flag="--fail-on affected"
+
+        # shellcheck disable=SC2086
+        cudabom scan "$INPUT_TARGET" --format "$format" --output "$report" $fail_flag
+        code=$?
+
+        echo "exit-code=${code}" >> "$GITHUB_OUTPUT"
+        echo "report=${report}" >> "$GITHUB_OUTPUT"
+
+        if [ "$code" -ge 2 ]; then
+          exit "$code"
+        fi
+        if [ "$FAIL_ON_FINDINGS" = "true" ] && [ "$code" -eq 1 ]; then
+          echo "::error::cudabom reported affected findings; see ${report}"
+          exit 1
+        fi
+        exit 0
+
+    - name: Upload SARIF to code scanning
+      if: always() && inputs.upload-sarif == 'true'
+      uses: github/codeql-action/upload-sarif@1c5b675653bb5c22dbe9b12b556ec555138e09fd  # v4.38.1
+      with:
+        sarif_file: ${{ steps.scan.outputs.report }}
+        category: cudabom

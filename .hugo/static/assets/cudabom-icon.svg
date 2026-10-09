@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="CudaBOM">
+  <title>CudaBOM</title>
+  <defs>
+    <linearGradient id="cb-top" x1="0" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#B6F03A"/><stop offset="1" stop-color="#86CC06"/>
+    </linearGradient>
+    <linearGradient id="cb-left" x1="0" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6FAE00"/><stop offset="1" stop-color="#4E7A00"/>
+    </linearGradient>
+    <radialGradient id="cb-glow" cx="64" cy="64" r="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#76B900" stop-opacity="0.5"/>
+      <stop offset="0.6" stop-color="#76B900" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#76B900" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#14161c"/>
+  <rect x="10" y="10" width="108" height="108" rx="22" fill="url(#cb-glow)"/>
+
+  <!-- Isometric cube: faces are a grid of CUDA cores (the CUDA grid-of-blocks /
+       SM-core lattice). Instantly reads as "GPU compute" to a CUDA engineer. -->
+  <g transform="translate(64 64)">
+    <path d="M0 -40 L40 -17 L0 6 L-40 -17 Z" fill="url(#cb-top)"/>
+    <path d="M-40 -17 L0 6 L0 48 L-40 25 Z" fill="url(#cb-left)"/>
+    <path d="M40 -17 L0 6 L0 48 L40 25 Z" fill="#3C5F00"/>
+
+    <!-- top-face lattice -->
+    <g stroke="#14161c" stroke-width="2.2" opacity="0.9">
+      <path d="M-26.6 -9.7 L13.3 -32.6"/><path d="M-13.3 -2 L26.6 -24.9"/>
+      <path d="M-26.6 -24.9 L13.3 -2"/><path d="M-13.3 -32.6 L26.6 -9.7"/>
+    </g>
+    <!-- left-face lattice -->
+    <g stroke="#14161c" stroke-width="2.2" opacity="0.85">
+      <path d="M-26.6 -9.7 L-26.6 17.3"/><path d="M-13.3 -2 L-13.3 25"/>
+      <path d="M-40 0 L0 23"/><path d="M-40 12.5 L0 35.5"/>
+    </g>
+    <!-- right-face lattice -->
+    <g stroke="#14161c" stroke-width="2.2" opacity="0.85">
+      <path d="M26.6 -9.7 L26.6 17.3"/><path d="M13.3 -2 L13.3 25"/>
+      <path d="M40 0 L0 23"/><path d="M40 12.5 L0 35.5"/>
+    </g>
+    <!-- glowing active cores on the top face -->
+    <g fill="#DFFF8A">
+      <circle cx="0" cy="-17" r="2.6"/><circle cx="-13.3" cy="-9.7" r="2.6"/><circle cx="13.3" cy="-9.7" r="2.6"/>
+      <circle cx="-13.3" cy="-24.9" r="2.6"/><circle cx="13.3" cy="-24.9" r="2.6"/>
+    </g>
+  </g>
+</svg>

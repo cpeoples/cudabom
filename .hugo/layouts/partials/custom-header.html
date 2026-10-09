@@ -1,0 +1,42 @@
+{{- /*
+  Custom header: brand favicon, the brand-color CSS override, and lightweight
+  SEO/social metadata. Mirrors the convention used by the
+  ansible-security-scanner and grackle sites so the Relearn chrome is themed
+  from the generator-managed assets alone.
+*/ -}}
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+
+{{- $customCSS := "css/custom.css" }}
+{{- with (resources.Get (printf "/%s" $customCSS)) }}
+<link href="{{ .RelPermalink }}" rel="stylesheet">
+{{- else }}
+  {{- if (fileExists (printf "/static/%s" $customCSS)) }}
+<link href="{{ $customCSS | relURL }}" rel="stylesheet">
+  {{- end }}
+{{- end }}
+
+{{- $ogImage := printf "%sassets/brand-mark.png" site.BaseURL }}
+<meta property="og:image" content="{{ $ogImage }}" />
+<meta property="og:image:alt" content="CudaBOM: find the CUDA your SBOM missed" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="{{ $ogImage }}" />
+<meta name="twitter:image:alt" content="CudaBOM: find the CUDA your SBOM missed" />
+
+{{- if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CudaBOM",
+  "description": "Evidence-backed CUDA identity for artifacts: proves which NVIDIA CUDA software is inside Python wheels, shared libraries, executables, and container images, and turns it into SBOM, advisory, and VEX data.",
+  "url": "{{ site.BaseURL }}",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "SecurityApplication",
+  "operatingSystem": "Linux, macOS, Windows",
+  "programmingLanguage": "Rust",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "codeRepository": "https://github.com/cpeoples/cudabom",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+{{- end }}

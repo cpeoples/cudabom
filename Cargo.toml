@@ -1,0 +1,124 @@
+# ---------------------------------------------------------------------------
+# cudabom Cargo workspace
+#
+# This is the single source of truth for:
+#   - crate membership                    ([workspace.members])
+#   - shared package metadata             ([workspace.package])
+#   - centrally pinned dependencies       ([workspace.dependencies])
+#   - workspace-wide lints                ([workspace.lints])
+#   - release build tuning                ([profile.release])
+#
+# Every crate inherits from here via `foo.workspace = true`, so versions and
+# lint policy are tuned in ONE place. Do not pin dependency versions inside
+# individual crate manifests; add them here and reference them by name.
+# ---------------------------------------------------------------------------
+
+[workspace]
+resolver = "2"
+members = [
+    "crates/cudabom",
+    "crates/cudabom-core",
+    "crates/cudabom-fetch",
+    "crates/cudabom-extract",
+    "crates/cudabom-elf",
+    "crates/cudabom-pe",
+    "crates/cudabom-fatbin",
+    "crates/cudabom-identify",
+    "crates/cudabom-advisory",
+    "crates/cudabom-sbom",
+    "crates/cudabom-report",
+    "crates/cudabom-policy",
+    "xtask",
+]
+
+# --- Shared package metadata --------------------------------------------------
+# Inherited by each crate with `version.workspace = true`, etc.
+[workspace.package]
+version = "0.0.0"
+edition = "2021"
+rust-version = "1.85"
+license = "Apache-2.0"
+repository = "https://github.com/cpeoples/cudabom"
+homepage = "https://github.com/cpeoples/cudabom"
+authors = ["Chris Peoples"]
+keywords = ["security", "sbom", "cuda", "nvidia", "supply-chain"]
+categories = ["command-line-utilities", "development-tools"]
+
+# --- Centrally pinned dependencies -------------------------------------------
+# Internal crates are path+version so the tree also publishes cleanly later.
+# Third-party crates are pinned here and pulled into a crate with
+# `<name>.workspace = true`. Add heavier deps (object, goblin, zip, rayon,
+# insta, ...) here as their milestone lands, each audited via cargo-deny.
+[workspace.dependencies]
+cudabom-core = { path = "crates/cudabom-core", version = "0.0.0" }
+cudabom-fetch = { path = "crates/cudabom-fetch", version = "0.0.0" }
+cudabom-extract = { path = "crates/cudabom-extract", version = "0.0.0" }
+cudabom-elf = { path = "crates/cudabom-elf", version = "0.0.0" }
+cudabom-pe = { path = "crates/cudabom-pe", version = "0.0.0" }
+cudabom-fatbin = { path = "crates/cudabom-fatbin", version = "0.0.0" }
+cudabom-identify = { path = "crates/cudabom-identify", version = "0.0.0" }
+cudabom-advisory = { path = "crates/cudabom-advisory", version = "0.0.0" }
+cudabom-sbom = { path = "crates/cudabom-sbom", version = "0.0.0" }
+cudabom-report = { path = "crates/cudabom-report", version = "0.0.0" }
+cudabom-policy = { path = "crates/cudabom-policy", version = "0.0.0" }
+
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+
+# Binary parsing and extraction. Pinned centrally; each is audited via
+# cargo-deny. `object` reads ELF (and later PE/Mach-O) without unsafe in our
+# code; `zip`/`tar`/`flate2` handle wheels, tarballs, and container layers;
+# `sha2` hashes containing files; `memchr` scans rodata for strings; `walkdir`
+# walks directories without following symlinks.
+object = { version = "0.40", default-features = false, features = ["read", "std", "elf", "pe", "coff", "archive"] }
+zip = { version = "8", default-features = false, features = ["deflate"] }
+flate2 = "1"
+tar = "0.4"
+sha2 = "0.11"
+memchr = "2"
+walkdir = "2"
+
+# HTTP client for the explicit, network-using `db update` fetch. `ureq` is a
+# small, blocking, pure-Rust client; rustls avoids a system OpenSSL dependency
+# and keeps the static-ish binary self-contained. Network access is confined to
+# `db update`; every other command is offline.
+ureq = { version = "3", default-features = false, features = ["rustls"] }
+
+# Dev-only helpers for CLI integration tests and fixtures.
+assert_cmd = "2"
+predicates = "3"
+tempfile = "3"
+
+# --- Workspace-wide lint policy ----------------------------------------------
+# Tuned once here and inherited by every crate via `[lints] workspace = true`.
+# This is where the "-D warnings" posture and clippy strictness live so CI and
+# local builds agree without scattering #![deny(...)] across crates.
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_debug_implementations = "warn"
+rust_2018_idioms = { level = "warn", priority = -1 }
+unreachable_pub = "warn"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+# Ergonomic opt-outs from pedantic that add noise without value for a CLI.
+module_name_repetitions = "allow"
+must_use_candidate = "allow"
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+# Domain prose is full of proper acronyms (CycloneDX, SARIF, CSAF, PEP 770,
+# NVIDIA, PE/Mach-O). doc_markdown flags them as if they were code items; the
+# false-positive rate is not worth backticking every acronym.
+doc_markdown = "allow"
+
+# --- Release build tuning ----------------------------------------------------
+# Small, fast, single static-ish binary. Matches the project's sibling tools.
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"

@@ -1,0 +1,23 @@
+[package]
+name = "cudabom-pe"
+description = "PE/COFF fact extraction for Windows binaries: machine type, subsystem, imported DLLs, exported symbols, and the VS_VERSIONINFO resource (ProductName/ProductVersion/FileVersion)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+cudabom-core.workspace = true
+object.workspace = true
+serde.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

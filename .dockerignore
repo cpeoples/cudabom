@@ -1,0 +1,11 @@
+# Keep the build context small: these are large or irrelevant to compiling and
+# testing. `target/` especially can be gigabytes and is rebuilt in-image.
+target/
+.git/
+.github/
+.hugo/
+docs/
+eval/
+corpus/
+*.log
+.DS_Store

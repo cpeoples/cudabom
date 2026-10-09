@@ -1,0 +1,19 @@
+[package]
+name = "cudabom-fatbin"
+description = "Parsers for NVIDIA fatbin containers, cubins, and PTX embedded in ELF or standalone GPU code objects."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+memchr.workspace = true
+serde.workspace = true

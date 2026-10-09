@@ -1,0 +1,66 @@
+# cargo-deny configuration for cudabom.
+# https://embarkstudios.github.io/cargo-deny/
+#
+# This is the supply-chain gate: it fails CI on vulnerable dependencies,
+# disallowed licenses, banned crates, and untrusted sources. Tune every policy
+# knob here in one place; `cargo deny check` runs the whole thing.
+
+[graph]
+# Check the dependency graph for the platforms we actually ship.
+targets = [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-unknown-linux-gnu",
+    "x86_64-apple-darwin",
+    "aarch64-apple-darwin",
+    "x86_64-pc-windows-msvc",
+]
+all-features = true
+
+[advisories]
+# RustSec advisory database. Any vulnerability or unmaintained-crate advisory
+# fails the check by default.
+version = 2
+yanked = "deny"
+# Add advisory IDs here only with a written justification and an expiry plan.
+ignore = []
+
+[licenses]
+# Only permissive, business-safe licenses. Anything not listed fails, so a new
+# dependency dragging in a copyleft license is caught at review time.
+version = 2
+allow = [
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "MIT",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unicode-3.0",
+    "Zlib",
+    # Mozilla's trusted-CA root set, shipped as data by `webpki-roots` (pulled in
+    # by ureq's rustls TLS). CDLA-Permissive-2.0 is a permissive, business-safe
+    # data license with no copyleft or attribution-propagation obligations.
+    "CDLA-Permissive-2.0",
+]
+confidence-threshold = 0.9
+# Our own crates are Apache-2.0; no per-crate license clarifications yet.
+exceptions = []
+
+[bans]
+# Fail on multiple versions of the same crate to keep the tree lean and the
+# binary small. Relax to "warn" only if a transitive conflict is unavoidable.
+multiple-versions = "warn"
+wildcards = "deny"
+# Crates we never want pulled in. Populate as needed (e.g. abandoned parsers).
+deny = []
+# Skip duplicate-version checks for specific crates when justified.
+skip = []
+skip-tree = []
+
+[sources]
+# Only crates.io. No git or alternate registries without an explicit allow
+# entry and a recorded decision in DECISIONS.md.
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []

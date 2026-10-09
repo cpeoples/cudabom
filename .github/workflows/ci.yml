@@ -1,0 +1,138 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -D warnings
+
+jobs:
+  # Formatting, lints, and tests across the platforms we ship on. The spec's
+  # acceptance bar is green CI on Linux x86_64 + aarch64 and macOS.
+  test:
+    name: fmt, clippy, test (${{ matrix.name }})
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: linux-x86_64
+            runner: ubuntu-latest
+          - name: linux-aarch64
+            runner: ubuntu-24.04-arm
+          - name: macos-aarch64
+            runner: macos-14
+
+    steps:
+      - name: Harden Runner
+        if: runner.os == 'Linux'
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1  # v2.21.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        # No explicit channel: rustup installs exactly what rust-toolchain.toml
+        # pins (channel + rustfmt/clippy components), so CI, local, pre-commit,
+        # and the .docker/ test image all compile with the same toolchain.
+        run: rustup show active-toolchain || rustup toolchain install
+
+      - name: Cache cargo registry and build
+        uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca  # v4.2.3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-${{ runner.arch }}-cargo-
+
+      - name: Format
+        run: cargo fmt --all --check
+
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets --locked
+
+      - name: Test
+        run: cargo test --workspace --locked
+
+      - name: Smoke-test the CLI
+        run: cargo run --release --locked -p cudabom -- version --verbose
+
+  # Supply-chain and hygiene gates. Split from the test matrix so a policy
+  # failure is easy to read and only needs to run once.
+  hygiene:
+    name: deny, machete
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1  # v2.21.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        # Honor the rust-toolchain.toml pin (see the test job).
+        run: rustup show active-toolchain || rustup toolchain install
+
+      - name: Cache cargo registry and build
+        uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca  # v4.2.3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-${{ runner.arch }}-cargo-
+
+      - name: Product map in sync with component profiles
+        # The CSAF product -> component map is generated from advisory_terms in
+        # crates/cudabom-identify/src/derive.rs. Fail if the committed file has
+        # drifted; regenerate with `cargo xtask product-map --write`.
+        run: cargo run --locked --quiet -p xtask -- product-map --check
+
+      - name: Release version pins agree
+        # Every internal path-dep version pin in Cargo.toml must equal the
+        # workspace package version. Bump them together with
+        # `cargo xtask release-version X.Y.Z` (see RELEASING.md).
+        run: cargo run --locked --quiet -p xtask -- release-version --check
+
+      - name: Docs (rustdoc intra-doc links)
+        # Fail on broken or ambiguous intra-doc links so public API docs stay
+        # navigable. Runs once here rather than per-platform in the test matrix.
+        env:
+          RUSTDOCFLAGS: -D warnings
+        run: cargo doc --workspace --no-deps --locked
+
+      - name: Install cargo-deny and cargo-machete
+        run: |
+          cargo install --locked cargo-deny@0.20.2
+          cargo install --locked cargo-machete@0.9.2
+
+      - name: cargo deny
+        run: cargo deny check
+
+      - name: cargo machete (unused dependencies)
+        run: cargo machete

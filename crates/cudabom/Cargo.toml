@@ -1,0 +1,46 @@
+[package]
+name = "cudabom"
+description = "Find the CUDA your SBOM missed: evidence-backed CUDA identity and security-grade SBOM/VEX for artifacts."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+readme = "../../README.md"
+
+[lints]
+workspace = true
+
+# The crate and its binary are both `cudabom`.
+[[bin]]
+name = "cudabom"
+path = "src/main.rs"
+
+[dependencies]
+cudabom-core.workspace = true
+cudabom-extract.workspace = true
+cudabom-elf.workspace = true
+cudabom-pe.workspace = true
+cudabom-fatbin.workspace = true
+cudabom-identify.workspace = true
+cudabom-advisory.workspace = true
+cudabom-fetch.workspace = true
+cudabom-policy.workspace = true
+cudabom-report.workspace = true
+cudabom-sbom.workspace = true
+anyhow.workspace = true
+clap.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+assert_cmd.workspace = true
+object = { workspace = true, features = ["write"] }
+predicates.workspace = true
+sha2.workspace = true
+tempfile.workspace = true
+zip.workspace = true

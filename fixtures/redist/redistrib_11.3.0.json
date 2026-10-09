@@ -1,0 +1,12 @@
+{
+   "fabricmanager" : {
+      "465.19.01" : {
+         "linux-x86_64" : "fabricmanager/linux-x86_64/fabricmanager-linux-x86_64-465.19.01.tar.gz"
+      }
+   },
+   "libnvidia_nscq" : {
+      "465.19.01" : {
+         "linux-x86_64" : "libnvidia_nscq/linux-x86_64/libnvidia_nscq-linux-x86_64-465.19.01.tar.gz"
+      }
+   }
+}

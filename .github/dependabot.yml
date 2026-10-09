@@ -1,0 +1,34 @@
+# Dependabot config. See the README's "Security" section for context.
+version: 2
+updates:
+  - package-ecosystem: cargo
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: "America/New_York"
+    open-pull-requests-limit: 5
+    labels: [dependencies, rust]
+    commit-message:
+      prefix: deps
+      include: scope
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: "America/New_York"
+    open-pull-requests-limit: 5
+    labels: [dependencies, github-actions]
+    commit-message:
+      prefix: ci
+      include: scope
+    # Bundle every action bump into one PR. The ecosystem releases in
+    # waves, so reviewing one PR with several bumps is cheaper than one
+    # PR per bump.
+    groups:
+      github-actions:
+        patterns: ["*"]

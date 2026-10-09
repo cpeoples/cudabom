@@ -1,0 +1,7 @@
+# rustfmt configuration for cudabom.
+# Stable-only options so `cargo fmt --check` passes on the pinned toolchain
+# without requiring nightly. Tune here; do not add per-file overrides.
+edition = "2021"
+max_width = 100
+use_small_heuristics = "Default"
+newline_style = "Unix"

@@ -1,0 +1,204 @@
+name: fingerprint-refresh
+
+# Keeps the vendored fingerprint database (fingerprints/cuda/*.json) fresh
+# against the CUDA redistributables NVIDIA actually publishes.
+#
+# How it works:
+#   - NVIDIA serves an auto-generated directory index at the redist root, so the
+#     set of releases is discovered first-party (no hardcoded version list) by
+#     `cargo xtask corpus discover`.
+#   - Each run takes a bounded batch of NOT-yet-committed releases (BATCH), locks
+#     them, downloads and verifies their archives, and derives fingerprint shards
+#     in parallel. Coverage fills in progressively across nightly runs rather
+#     than pulling every release (tens of GB) in one job.
+#   - The downloaded corpus (gitignored, large) is removed at the end so the
+#     runner's disk is only ever holding one batch at a time.
+#   - When shards change, a pull request is opened for review. A human checks the
+#     diff (new components, build-ids, version sets) before merging; scans read
+#     the committed, reviewed snapshot offline.
+
+on:
+  schedule:
+    # Nightly at 05:23 UTC. Off the hour, and offset from advisory-refresh
+    # (07:17) so the two data jobs do not contend.
+    - cron: "23 5 * * *"
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: "How many new releases to add this run"
+        required: false
+        default: "4"
+        type: string
+      jobs:
+        description: "Parallel derivation workers"
+        required: false
+        default: "4"
+        type: string
+
+concurrency:
+  group: fingerprint-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  FIXTURES_DIR: fixtures/redist
+  LOCK_DIR: fingerprints
+  # Parent of the per-product shard subdirectories (fingerprints/cuda,
+  # fingerprints/cudnn, ...). `fingerprints build` writes each product's shards
+  # into its own subdir, and the DB loader reads the tree recursively.
+  SHARD_DIR: fingerprints
+  CORPUS_DIR: corpus
+
+jobs:
+  refresh:
+    name: Derive new fingerprint shards and open PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # create the branch that carries the updated shards
+      pull-requests: write # open the review PR
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        run: rustup toolchain install stable --profile minimal
+
+      - name: Cache cargo registry and build
+        uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca # v4.2.3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('Cargo.lock') }}
+
+      - name: Free up runner disk
+        # Hosted runners ship with large preinstalled toolchains we do not need;
+        # removing them frees ~20-30 GB of headroom for a batch of CUDA archives.
+        run: |
+          set -euo pipefail
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/lib/android /opt/hostedtoolcache/CodeQL || true
+          df -h /
+
+      - name: Discover new releases (bounded batch)
+        id: discover
+        env:
+          BATCH: ${{ inputs.batch || '4' }}
+        run: |
+          set -euo pipefail
+          # Fetch NVIDIA's indexes, save manifests + lockfiles for up to BATCH
+          # new releases per tree. --json prints a per-product plan object
+          # ({"cuda":{...},"cudnn":{...},...}) used for the PR body and counts.
+          plan="$(cargo run --locked --quiet -p xtask -- corpus discover --json --dry-run)"
+          echo "plan=$plan" >> "$GITHUB_OUTPUT"
+          # Total new releases across every tree.
+          new_count="$(printf '%s' "$plan" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(sum(len(v["new"]) for v in d.values()))')"
+          echo "new_count=$new_count" >> "$GITHUB_OUTPUT"
+
+          if [ "$new_count" -eq 0 ]; then
+            echo "All redist trees are up to date; nothing to do."
+            exit 0
+          fi
+
+          # Actually save the bounded batch (manifests + per-release lockfiles)
+          # across every tree. --limit is per-tree, so each product advances by
+          # up to BATCH releases per run.
+          # All CUDA Linux platforms are locked (x86_64 + sbsa/aarch64 +
+          # ppc64le) so the derived DB carries exact inner-.so hashes for
+          # non-x86_64 binaries too, not just a structural "likely".
+          cargo run --locked --quiet -p xtask -- corpus discover --limit "$BATCH" \
+            --platform linux-x86_64 --platform linux-sbsa \
+            --platform linux-ppc64le --platform linux-aarch64
+
+      - name: Fetch and derive the batch
+        if: steps.discover.outputs.new_count != '0'
+        env:
+          JOBS: ${{ inputs.jobs || '4' }}
+        run: |
+          set -euo pipefail
+          # Download + verify archives for the locked releases, then derive
+          # shards in parallel. The provenance skip means already-committed
+          # releases are not re-derived.
+          cargo run --locked --quiet -p xtask -- corpus fetch --lock "$LOCK_DIR"
+          cargo run --locked --quiet -p xtask -- fingerprints build \
+            --from "$FIXTURES_DIR" --out "$SHARD_DIR" --corpus "$CORPUS_DIR" --jobs "$JOBS"
+
+      - name: Regenerate product map from component profiles
+        if: steps.discover.outputs.new_count != '0'
+        # The CSAF product -> component map is generated from the reviewed
+        # component profiles (advisory_terms in
+        # crates/cudabom-identify/src/derive.rs). Regenerate so that if a newly
+        # discovered release prompted a profile addition, the map update rides
+        # along in this same review PR rather than drifting until a human
+        # notices. A no-op when nothing changed.
+        run: cargo run --locked --quiet -p xtask -- product-map --write
+
+      - name: Reclaim disk (drop the downloaded corpus)
+        if: always()
+        run: |
+          set -euo pipefail
+          rm -rf "$CORPUS_DIR"
+          df -h /
+
+      - name: Detect changes
+        id: diff
+        if: steps.discover.outputs.new_count != '0'
+        run: |
+          set -euo pipefail
+          # Stage new/changed shards and manifests; ignore the gitignored corpus.
+          git add "$SHARD_DIR" "$FIXTURES_DIR" "$LOCK_DIR" advisories/product-map.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No shard changes; nothing to open."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        with:
+          token: ${{ github.token }}
+          branch: fingerprint-refresh
+          base: main
+          commit-message: "chore(fingerprints): add ${{ steps.discover.outputs.new_count }} new CUDA release(s)"
+          title: "chore(fingerprints): refresh database (+${{ steps.discover.outputs.new_count }} release(s))"
+          add-paths: |
+            ${{ env.SHARD_DIR }}
+            ${{ env.FIXTURES_DIR }}
+            ${{ env.LOCK_DIR }}
+            advisories/product-map.json
+          delete-branch: true
+          sign-commits: true
+          body: |
+            Automated refresh of the vendored fingerprint database.
+
+            New releases were discovered first-party from NVIDIA's redist
+            directory indexes across every product tree (CUDA toolkit + cuDNN,
+            NCCL, cuTENSOR, cuDSS, cuSPARSELt, cuQuantum, nvJPEG2000, nvTIFF,
+            cuBLASMp, NVPL, NVSHMEM) — no hardcoded version list — and derived
+            from the official archives (each verified against NVIDIA's own
+            SHA-256).
+
+            **Discovery plan (this run), per product tree:**
+
+            ```json
+            ${{ steps.discover.outputs.plan }}
+            ```
+
+            Review the diff of `${{ env.SHARD_DIR }}` for new components,
+            build-ids, and version sets before merging. Scans only trust the
+            reviewed, committed snapshot.
+
+            If `advisories/product-map.json` changed, it was regenerated from
+            the component profiles (`advisory_terms` in
+            `crates/cudabom-identify/src/derive.rs`); review it as part of the
+            same change.

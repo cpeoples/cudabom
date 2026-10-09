@@ -1,0 +1,4 @@
+# Cargo configuration for the cudabom workspace.
+# `cargo xtask <task>` runs the workspace automation binary.
+[alias]
+xtask = "run --package xtask --"

@@ -1,0 +1,411 @@
+{
+  "_comment": "In-the-wild CUDA artifacts: the distribution forms real users actually run (PyPI wheels, conda packages, container images, and adversarially stripped/renamed copies). Each entry is content-pinned (sha256 for downloads, image digest for containers) so the eval is reproducible. 'expect' records known ground truth where the package declares it; entries with no version are scored detection-only. Downloads land under the gitignored corpus/distribution dir; nothing large is committed.",
+  "artifacts": [
+    {
+      "expect": [
+        {
+          "component": "cudart",
+          "version": "12.4.127"
+        }
+      ],
+      "id": "wheel-cudart-cu12",
+      "kind": "wheel",
+      "note": "nvidia-cuda-runtime-cu12: official NVIDIA PyPI wheel; declares version in package metadata. Syft's home turf.",
+      "sha256": "64403288fa2136ee8e467cdc9c9427e0434110899d07c779f25b5c068934faa5",
+      "url": "https://files.pythonhosted.org/packages/ea/27/1795d86fe88ef397885f2e580ac37628ed058a92ed2c39dc8eac3adf0619/nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudnn",
+          "version": "9.0.0.312"
+        }
+      ],
+      "id": "wheel-cudnn-cu12",
+      "kind": "wheel",
+      "note": "nvidia-cudnn-cu12 9.0.0.312: bundles libcudnn*.so under nvidia/cudnn/lib.",
+      "sha256": "8d440a94da2f7e729d375d5a03e0f423f2bc03a27ee87d5817c1068f69de9828",
+      "url": "https://files.pythonhosted.org/packages/0b/a3/ca2bd70b6b0e1a08bd17f9b2a467cc254a059a59093173123f74d495df50/nvidia_cudnn_cu12-9.0.0.312-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "nccl",
+          "version": "2.27.7"
+        }
+      ],
+      "id": "wheel-nccl-cu12",
+      "kind": "wheel",
+      "note": "nvidia-nccl-cu12 2.27.7: bundles libnccl.so under nvidia/nccl/lib.",
+      "sha256": "de5ba5562f08029a19cb1cd659404b18411ed0d6c90ac5f52f30bf99ad5809aa",
+      "url": "https://files.pythonhosted.org/packages/c4/cb/2cf5b8e6a669c90ac6410c3a9d86881308492765b6744de5d0ce75089999/nvidia_nccl_cu12-2.27.7-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-cupy-vendored",
+      "kind": "wheel",
+      "note": "cupy-cuda12x 14.2.0: a THIRD-PARTY wheel that vendors CUDA runtime libraries. The package version (14.2.0) is CuPy's, not CUDA's, and the bundled libs carry no PyPI metadata of their own: the adversarial 'vendored, renamed, no metadata' case. Detection-only: we record whether each tool names ANY CUDA component and whether cudabom pins the bundled CUDA versions.",
+      "sha256": "0d3205b1ac1093b6019530ba3b7f7080e2283820f452f0c543a3560d58e0b9bf",
+      "url": "https://files.pythonhosted.org/packages/9e/3a/2935f23741f80a0ea4dc381c58d2178d8b5c4b5a1047c9ecdfff493cefa5/cupy_cuda12x-14.2.0-cp310-cp310-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cublas",
+          "version": "13.4.1.3"
+        }
+      ],
+      "id": "conda-cublas",
+      "kind": "conda",
+      "note": "nvidia channel libcublas 13.4.1.3 (.conda = zip of zstd-compressed tars). Ships the REAL libcublas.so under targets/x86_64-linux/lib (not just the lib/ symlink shims some conda metapackages use).",
+      "sha256": "b6bc4caa63ed93407f84016506905022d019f4628e0b9b4e3ffcb619a9af64be",
+      "url": "https://conda.anaconda.org/nvidia/linux-64/libcublas-13.4.1.3-h4892c30_0.conda"
+    },
+    {
+      "digest": "sha256:517da2300c184c9999ec203c2665244bdebd3578d12fcc7065e83667932643d9",
+      "expect": [
+        {
+          "component": "cudart"
+        }
+      ],
+      "id": "container-cuda-runtime",
+      "image": "nvidia/cuda:12.4.1-runtime-ubuntu22.04",
+      "kind": "container",
+      "note": "nvidia/cuda:12.4.1-runtime-ubuntu22.04, pinned by image digest. The container-scanning home turf for Trivy/Syft. cudabom scans the exported filesystem for CUDA libraries; Trivy/Syft scan the image natively."
+    },
+    {
+      "expect": [
+        {
+          "component": "cudart",
+          "version": "12.4.99"
+        }
+      ],
+      "from_corpus": {
+        "component": "cudart",
+        "match": "libcudart.so",
+        "platform": "linux-x86_64",
+        "version": "12.4.99"
+      },
+      "id": "synthetic-stripped-renamed",
+      "kind": "synthetic",
+      "note": "Generated locally from an already-present corpus library: a COPY that is stripped (symbols/soname removed) and renamed to an innocuous name (e.g. libplugin.so). This defeats name/soname heuristics; only a content hash or build-id survives. Source is resolved from the redist corpus at run time, so nothing is downloaded or committed.",
+      "rename_to": "libplugin.so",
+      "strip": true,
+      "transform": "rename"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudart",
+          "version": "12.4.99"
+        }
+      ],
+      "from_corpus": {
+        "component": "cudart",
+        "match": "cudart64_12.dll",
+        "platform": "windows-x86_64",
+        "version": "12.4.99"
+      },
+      "id": "synthetic-windows-dll-renamed",
+      "kind": "synthetic",
+      "note": "Windows deployment form: a cudart64_12.dll copied and renamed to an innocuous name (plugin.dll). Exercises the PE/DLL identification path on a renamed binary. Source is the Windows redist already in the corpus.",
+      "rename_to": "plugin.dll",
+      "transform": "rename"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudart",
+          "version": "12.4.99"
+        }
+      ],
+      "from_corpus": {
+        "component": "cudart",
+        "match": "libcudart_static.a",
+        "platform": "linux-x86_64",
+        "version": "12.4.99"
+      },
+      "id": "synthetic-static-exe",
+      "kind": "synthetic",
+      "note": "Pure static deployment: the self-contained static runtime libcudart_static.a, which a statically linked app compiles in (no .so at all). cudabom identifies static CUDA by hashing the archive's member objects. The harness links an executable when a matching toolchain exists, else scans the .a directly (the same member-hash path).",
+      "transform": "static-exe"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudart",
+          "version": "12.4.99"
+        }
+      ],
+      "from_corpus": {
+        "component": "cudart",
+        "match": "libcudart.so",
+        "platform": "linux-x86_64",
+        "version": "12.4.99"
+      },
+      "id": "synthetic-upx-packed",
+      "kind": "synthetic",
+      "note": "Adversarial: a CUDA library UPX-compressed. The on-disk bytes change, so a file-hash match is defeated; the finding is whether ANY signal survives (likely a MISS, recorded honestly). Needs upx on PATH; without it the copy is scanned unpacked.",
+      "rename_to": "libpacked.so",
+      "transform": "upx"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudart",
+          "version": "12.4.99"
+        }
+      ],
+      "from_corpus": {
+        "component": "cudart",
+        "match": "libcudart.so",
+        "platform": "linux-x86_64",
+        "version": "12.4.99"
+      },
+      "id": "synthetic-embedded-blob",
+      "kind": "synthetic",
+      "note": "Adversarial: a CUDA library concatenated inside a larger blob at a non-zero offset (as a vendored payload embedded in another file would appear). Tests whether the library is identified when it is not the whole file. Resolved by embedded-ELF offset scanning: the library's build-id/symbols identify it at its byte offset even though the whole-file hash matches nothing.",
+      "rename_to": "payload.bin",
+      "transform": "embed"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudart",
+          "version": "11.8.89"
+        }
+      ],
+      "id": "wheel-cudart-cu11-old",
+      "kind": "wheel",
+      "note": "Version spread (old): nvidia-cuda-runtime-cu11 11.8.89, the CUDA 11.x line. Confirms identification across major generations, not just current 12.x/13.x.",
+      "sha256": "f587bd726eb2f7612cf77ce38a2c1e65cf23251ff49437f6161ce0d647f64f7c",
+      "url": "https://files.pythonhosted.org/packages/45/3e/84db02be49fe6d6df6e42f69fd64501c22d0f9ada9c9877f885612085d20/nvidia_cuda_runtime_cu11-11.8.89-py3-none-manylinux1_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudart",
+          "version": "12.4.127"
+        }
+      ],
+      "id": "wheel-cudart-cu12-aarch64",
+      "kind": "wheel",
+      "note": "Non-x86 platform: nvidia-cuda-runtime-cu12 12.4.127 built for aarch64 (ARM / Grace, Jetson-adjacent). Confirms the identification path is not x86-only.",
+      "sha256": "961fe0e2e716a2a1d967aab7caee97512f71767f852f67432d572e36cb3a11f3",
+      "url": "https://files.pythonhosted.org/packages/a1/aa/b656d755f474e2084971e9a297def515938d56b466ab39624012070cb773/nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_aarch64.whl"
+    },
+    {
+      "digest": "sha256:c8268a92a69bd500f8be0e665b2630ee006dadaf7bfbc24249141b15ff622755",
+      "expect": [
+        {
+          "component": "cudart"
+        }
+      ],
+      "id": "container-pytorch",
+      "image": "pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime",
+      "kind": "container",
+      "note": "Fat ML container: pytorch/pytorch 2.5.1-cuda12.4-cudnn9-runtime, pinned by digest. CUDA arrives via pip wheels vendored into the image's site-packages (nvidia/*), a harder container case than the clean nvidia/cuda base. Trivy/Syft scan the image natively; cudabom scans the exported filesystem."
+    },
+    {
+      "digest": "sha256:ebf7ad13136740adeee241fcfe6b14d646e431c6bc5c151d528e31ddafde4623",
+      "expect": [
+        {
+          "component": "cudart"
+        }
+      ],
+      "id": "container-tensorflow",
+      "image": "tensorflow/tensorflow:2.17.0-gpu",
+      "kind": "container",
+      "note": "Fat ML container: tensorflow/tensorflow 2.17.0-gpu, pinned by digest. TensorFlow bundles its own CUDA libraries; another real-world fat-image case."
+    },
+    {
+      "expect": [],
+      "id": "wheel-cupy-cuda12x-14.1.1",
+      "kind": "wheel",
+      "note": "cupy-cuda12x: third-party CUDA-bundling wheel (detection-only) 14.1.1, discovered from PyPI (132.7 MB).",
+      "sha256": "71b8de628a4a9ab24b6cc2af2162db2898e65a44a50a6d79cbc131c4f36405de",
+      "url": "https://files.pythonhosted.org/packages/7c/79/6a4e1562b3b6b18e93365955adfd4f66a84b60bdacf559becc0e3e0f1012/cupy_cuda12x-14.1.1-cp310-cp310-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cutensor",
+          "version": "2.8.1"
+        }
+      ],
+      "id": "wheel-cutensor-cu12-2.8.1",
+      "kind": "wheel",
+      "note": "cutensor-cu12: official NVIDIA wheel 2.8.1, discovered from PyPI (306.6 MB).",
+      "sha256": "07193cd98a7132ace004c0cc501756a56dcf8a4b1a611c7804816eae3a03eb75",
+      "url": "https://files.pythonhosted.org/packages/dd/c1/4c6556fa75d0b613710021d428f52115401be32c734a189c698828a319e5/cutensor_cu12-2.8.1-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-jax-cuda12-plugin-0.11.2",
+      "kind": "wheel",
+      "note": "jax-cuda12-plugin: third-party CUDA-bundling wheel (detection-only) 0.11.2, discovered from PyPI (8.6 MB).",
+      "sha256": "ae67a4cc49b34c575713a8311f7597f6700ec5a2b6afbdbc3db5550fb022873c",
+      "url": "https://files.pythonhosted.org/packages/77/db/ca022a589ff15628827498dcedeae72fa70396f42b58469a9de4425afc99/jax_cuda12_plugin-0.11.2-cp312-cp312-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cublas",
+          "version": "12.9.2.10"
+        }
+      ],
+      "id": "wheel-nvidia-cublas-cu12-12.9.2.10",
+      "kind": "wheel",
+      "note": "nvidia-cublas-cu12: official NVIDIA wheel 12.9.2.10, discovered from PyPI (581.2 MB).",
+      "sha256": "e4f53a8ca8c5d6e8c492d0d0a3d565ecb59a751b19cfdaa4f6da0ab2104c1702",
+      "url": "https://files.pythonhosted.org/packages/cb/c0/0a517bfe63ccd3b92eb254d264e28fca3c7cab75d07daea315250fb1bf73/nvidia_cublas_cu12-12.9.2.10-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "nvrtc",
+          "version": "12.9.86"
+        }
+      ],
+      "id": "wheel-nvidia-cuda-nvrtc-cu12-12.9.86",
+      "kind": "wheel",
+      "note": "nvidia-cuda-nvrtc-cu12: official NVIDIA wheel 12.9.86, discovered from PyPI (89.6 MB).",
+      "sha256": "210cf05005a447e29214e9ce50851e83fc5f4358df8b453155d5e1918094dcb4",
+      "url": "https://files.pythonhosted.org/packages/b8/85/e4af82cc9202023862090bfca4ea827d533329e925c758f0cde964cb54b7/nvidia_cuda_nvrtc_cu12-12.9.86-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudart",
+          "version": "12.9.79"
+        }
+      ],
+      "id": "wheel-nvidia-cuda-runtime-cu12-12.9.79",
+      "kind": "wheel",
+      "note": "nvidia-cuda-runtime-cu12: official NVIDIA wheel 12.9.79, discovered from PyPI (3.5 MB).",
+      "sha256": "25bba2dfb01d48a9b59ca474a1ac43c6ebf7011f1b0b8cc44f54eb6ac48a96c3",
+      "url": "https://files.pythonhosted.org/packages/bc/46/a92db19b8309581092a3add7e6fceb4c301a3fd233969856a8cbf042cd3c/nvidia_cuda_runtime_cu12-12.9.79-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudnn",
+          "version": "9.27.0.42"
+        }
+      ],
+      "id": "wheel-nvidia-cudnn-cu12-9.27.0.42",
+      "kind": "wheel",
+      "note": "nvidia-cudnn-cu12: official NVIDIA wheel 9.27.0.42, discovered from PyPI (766.2 MB).",
+      "sha256": "0a4aa3a7d2264256506c6857fc41fc0c499982f78d70195b1cfcc9055c1957cd",
+      "url": "https://files.pythonhosted.org/packages/65/e4/c5a205d48ff00ed8b27882bb45d338d8138e976c76385f328a326bbfaeda/nvidia_cudnn_cu12-9.27.0.42-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudnn",
+          "version": "9.27.0.42"
+        }
+      ],
+      "id": "wheel-nvidia-cudnn-cu13-9.27.0.42",
+      "kind": "wheel",
+      "note": "nvidia-cudnn-cu13: official NVIDIA wheel 9.27.0.42, discovered from PyPI (536.8 MB).",
+      "sha256": "9677e76f21862eb5da7ee5ed69d544738b2d8b5c3ce7e5ec125c5592e6cdbdc8",
+      "url": "https://files.pythonhosted.org/packages/af/75/96ea5c5368eb595c39d629cde08a66227a864e71ccb0e593add2612bb952/nvidia_cudnn_cu13-9.27.0.42-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cufft",
+          "version": "11.4.1.4"
+        }
+      ],
+      "id": "wheel-nvidia-cufft-cu12-11.4.1.4",
+      "kind": "wheel",
+      "note": "nvidia-cufft-cu12: official NVIDIA wheel 11.4.1.4, discovered from PyPI (200.9 MB).",
+      "sha256": "c67884f2a7d276b4b80eb56a79322a95df592ae5e765cf1243693365ccab4e28",
+      "url": "https://files.pythonhosted.org/packages/95/f4/61e6996dd20481ee834f57a8e9dca28b1869366a135e0d42e2aa8493bdd4/nvidia_cufft_cu12-11.4.1.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "curand",
+          "version": "10.3.10.19"
+        }
+      ],
+      "id": "wheel-nvidia-curand-cu12-10.3.10.19",
+      "kind": "wheel",
+      "note": "nvidia-curand-cu12: official NVIDIA wheel 10.3.10.19, discovered from PyPI (68.3 MB).",
+      "sha256": "49b274db4780d421bd2ccd362e1415c13887c53c214f0d4b761752b8f9f6aa1e",
+      "url": "https://files.pythonhosted.org/packages/31/44/193a0e171750ca9f8320626e8a1f2381e4077a65e69e2fb9708bd479e34a/nvidia_curand_cu12-10.3.10.19-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cusolver",
+          "version": "11.7.5.82"
+        }
+      ],
+      "id": "wheel-nvidia-cusolver-cu12-11.7.5.82",
+      "kind": "wheel",
+      "note": "nvidia-cusolver-cu12: official NVIDIA wheel 11.7.5.82, discovered from PyPI (338.1 MB).",
+      "sha256": "15da72d1340d29b5b3cf3fd100e3cd53421dde36002eda6ed93811af63c40d88",
+      "url": "https://files.pythonhosted.org/packages/33/40/79b0c64d44d6c166c0964ec1d803d067f4a145cca23e23925fd351d0e642/nvidia_cusolver_cu12-11.7.5.82-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cusparse",
+          "version": "12.5.10.65"
+        }
+      ],
+      "id": "wheel-nvidia-cusparse-cu12-12.5.10.65",
+      "kind": "wheel",
+      "note": "nvidia-cusparse-cu12: official NVIDIA wheel 12.5.10.65, discovered from PyPI (366.5 MB).",
+      "sha256": "73060ce019ac064a057267c585bf1fd5a353734151f87472ff02b2c5c9984e78",
+      "url": "https://files.pythonhosted.org/packages/12/46/b0fd4b04f86577921feb97d8e2cf028afe04f614d17fb5013de9282c9216/nvidia_cusparse_cu12-12.5.10.65-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "nccl",
+          "version": "2.32.3"
+        }
+      ],
+      "id": "wheel-nvidia-nccl-cu12-2.32.3",
+      "kind": "wheel",
+      "note": "nvidia-nccl-cu12: official NVIDIA wheel 2.32.3, discovered from PyPI (351.5 MB).",
+      "sha256": "bb94b2348e4861d5e8aa00b36c3d12d9bdf9c6369b82cbb723de0b582280a21c",
+      "url": "https://files.pythonhosted.org/packages/f3/f8/9dce3698eed6fae28078eb38f748feb1665767693d8017c099de9fbf0b08/nvidia_nccl_cu12-2.32.3-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "nccl",
+          "version": "2.32.3"
+        }
+      ],
+      "id": "wheel-nvidia-nccl-cu13-2.32.3",
+      "kind": "wheel",
+      "note": "nvidia-nccl-cu13: official NVIDIA wheel 2.32.3, discovered from PyPI (305.1 MB).",
+      "sha256": "1459723080ac889d73a26edfa3e04383a7928ab31ac8f0ec43b3ea9548b04ff3",
+      "url": "https://files.pythonhosted.org/packages/5b/29/6b277e63c92d91f9cb4d1a3a554e148983de39d54baa652bb52c798af78e/nvidia_nccl_cu13-2.32.3-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-tensorflow-2.21.0",
+      "kind": "wheel",
+      "note": "tensorflow: third-party CUDA-bundling wheel (detection-only) 2.21.0, discovered from PyPI (572.2 MB).",
+      "sha256": "77c6f298e695ea1d283cdd7d30f8d97530cc6e92c1395a9ddbab9771c99233a4",
+      "url": "https://files.pythonhosted.org/packages/c9/b7/df85669b3a862bc7704de206cc52801302c0441c67c3f382d621f173c93f/tensorflow-2.21.0-cp310-cp310-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-torch-2.14.1",
+      "kind": "wheel",
+      "note": "torch: third-party CUDA-bundling wheel (detection-only) 2.14.1, discovered from PyPI (554.6 MB).",
+      "sha256": "1fee6b20869a90ccec05e35559a706338ac8aab40a9c4fb58f16667e93af36ae",
+      "url": "https://files.pythonhosted.org/packages/54/91/365b45c4c8a16c7c398354b341273d15cdbd01c9feeadac16a02ce070b27/torch-2.14.1-cp310-cp310-manylinux_2_28_x86_64.whl"
+    }
+  ],
+  "schema_version": 1
+}

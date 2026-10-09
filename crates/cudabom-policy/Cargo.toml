@@ -1,0 +1,20 @@
+[package]
+name = "cudabom-policy"
+description = "Policy-file evaluation for the `cudabom gate` command (v0.3)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+cudabom-core.workspace = true
+serde.workspace = true
+serde_json.workspace = true

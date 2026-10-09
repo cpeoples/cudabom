@@ -1,0 +1,14 @@
+{
+   "fabricmanager" : {
+      "460.27.04" : {
+         "linux-x86_64" : "fabricmanager/linux-x86_64/fabricmanager-linux-x86_64-460.27.04.tar.gz",
+         "release_date" : "2020-12-15"
+      }
+   },
+   "libnvidia_nscq" : {
+      "460.27.04" : {
+         "linux-x86_64" : "libnvidia_nscq/linux-x86_64/libnvidia_nscq-linux-x86_64-460.27.04.tar.gz",
+         "release_date" : "2020-12-15"
+      }
+   }
+}

@@ -1,0 +1,13 @@
+# Pins the Rust toolchain so local builds, pre-commit, and CI agree.
+# Bump deliberately alongside the rust-version in Cargo.toml.
+#
+# This is an exact version pin, not a floating `stable`: a floating channel
+# installs whatever stable is newest at install time, so a fresh environment
+# (a new CI runner, a Docker image, a new laptop) can silently land on a newer
+# toolchain whose clippy carries new pedantic lints the committed code has not
+# been reconciled against. Pinning keeps every environment on the same compiler
+# and makes a toolchain bump an explicit, reviewed change.
+[toolchain]
+channel = "1.99.0"
+components = ["rustfmt", "clippy"]
+profile = "minimal"

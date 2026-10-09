@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cublas",
+      "version": "12.4.5.8",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcublas/linux-aarch64/libcublas-linux-aarch64-12.4.5.8-archive.tar.xz",
+      "sha256": "1d3886c1da442325d21424f5c021957bdb0c9c8b0b8aef7bf5ca5a449f60490b"
+    },
+    {
+      "component": "cublas",
+      "version": "12.4.5.8",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcublas/linux-ppc64le/libcublas-linux-ppc64le-12.4.5.8-archive.tar.xz",
+      "sha256": "40726bd8bb106dacf5c1aef8815f3561078b13433671fed40dff431d13a34ff1"
+    },
+    {
+      "component": "cublas",
+      "version": "12.4.5.8",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcublas/linux-sbsa/libcublas-linux-sbsa-12.4.5.8-archive.tar.xz",
+      "sha256": "e946460149f1970e8c07472bab447f30054dfcc809eb2809bcd9b0090b0b876f"
+    },
+    {
+      "component": "cublas",
+      "version": "12.4.5.8",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcublas/linux-x86_64/libcublas-linux-x86_64-12.4.5.8-archive.tar.xz",
+      "sha256": "c267c4d2cd42065ae2c30ca41a43ddce4e0ecc5484de23f299e3c397b5506eda"
+    },
+    {
+      "component": "cudart",
+      "version": "12.4.127",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/linux-aarch64/cuda_cudart-linux-aarch64-12.4.127-archive.tar.xz",
+      "sha256": "0fc5240b1c2a27169b3fefb1e7390cdb0177cb86469fd545f580cd4cc69c7fde"
+    },
+    {
+      "component": "cudart",
+      "version": "12.4.127",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/linux-ppc64le/cuda_cudart-linux-ppc64le-12.4.127-archive.tar.xz",
+      "sha256": "f5e636944c7817b4f178070daa1259f25b3e84ebd092305d32aa189b21ae37e3"
+    },
+    {
+      "component": "cudart",
+      "version": "12.4.127",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/linux-sbsa/cuda_cudart-linux-sbsa-12.4.127-archive.tar.xz",
+      "sha256": "fb96abcff3544384440b9259f9aeab9bf222a5775348546ef87c68ee02eee379"
+    },
+    {
+      "component": "cudart",
+      "version": "12.4.127",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/linux-x86_64/cuda_cudart-linux-x86_64-12.4.127-archive.tar.xz",
+      "sha256": "0483bff9a36e7a44465db3cd42874f6f70f019297dcf803fbefcbf58d7448c8f"
+    },
+    {
+      "component": "cufft",
+      "version": "11.2.1.3",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcufft/linux-aarch64/libcufft-linux-aarch64-11.2.1.3-archive.tar.xz",
+      "sha256": "538735221a110b052d21ebfe57f710572814b4d8a820c125ce63db621f6b973b"
+    },
+    {
+      "component": "cufft",
+      "version": "11.2.1.3",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcufft/linux-ppc64le/libcufft-linux-ppc64le-11.2.1.3-archive.tar.xz",
+      "sha256": "5d020dc916a7c5f901802d21ca10ad4d40eaa21c4a1d487ad13a40cab60b4467"
+    },
+    {
+      "component": "cufft",
+      "version": "11.2.1.3",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcufft/linux-sbsa/libcufft-linux-sbsa-11.2.1.3-archive.tar.xz",
+      "sha256": "4087e27f2429d5f1f820ec49ac400391cbfe84c4abfadb95aaf90705ae84e725"
+    },
+    {
+      "component": "cufft",
+      "version": "11.2.1.3",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcufft/linux-x86_64/libcufft-linux-x86_64-11.2.1.3-archive.tar.xz",
+      "sha256": "0963b4b57fb7fe9217e97b494159ff4719f1abdc407b2dc215d71bae0576bb02"
+    },
+    {
+      "component": "cufile",
+      "version": "1.9.1.3",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcufile/linux-aarch64/libcufile-linux-aarch64-1.9.1.3-archive.tar.xz",
+      "sha256": "90e691a5eec221701231401aa645b95c25c7ec9c509f00717bfdea6399d8c678"
+    },
+    {
+      "component": "cufile",
+      "version": "1.9.1.3",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcufile/linux-sbsa/libcufile-linux-sbsa-1.9.1.3-archive.tar.xz",
+      "sha256": "5db80b1905b3fe25a07f29462c8694af1375834c1d8e7b6bf4cf4ffbb8c0b934"
+    },
+    {
+      "component": "cufile",
+      "version": "1.9.1.3",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcufile/linux-x86_64/libcufile-linux-x86_64-1.9.1.3-archive.tar.xz",
+      "sha256": "5bf067c142e0e78d6b5eb9904f0703a1f5f814a27c44cff596f54630582bb2a9"
+    },
+    {
+      "component": "cuobjdump",
+      "version": "12.4.127",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cuobjdump/linux-aarch64/cuda_cuobjdump-linux-aarch64-12.4.127-archive.tar.xz",
+      "sha256": "a7724c73b8a072886aab25ec80a279fb500d9995a4c02f5e06e4ce2e03b116c4"
+    },
+    {
+      "component": "cuobjdump",
+      "version": "12.4.127",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cuobjdump/linux-ppc64le/cuda_cuobjdump-linux-ppc64le-12.4.127-archive.tar.xz",
+      "sha256": "f80c713d690d4f0eef21648d45e47b6de08212a5b3291747f35950564fb37196"
+    },
+    {
+      "component": "cuobjdump",
+      "version": "12.4.127",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cuobjdump/linux-sbsa/cuda_cuobjdump-linux-sbsa-12.4.127-archive.tar.xz",
+      "sha256": "d9076a8261d5c7bd49e7892c76760ddbff0bed9c84e20d86d472d3ac33535495"
+    },
+    {
+      "component": "cuobjdump",
+      "version": "12.4.127",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cuobjdump/linux-x86_64/cuda_cuobjdump-linux-x86_64-12.4.127-archive.tar.xz",
+      "sha256": "ae4f9bcb5333b78a84a3babe23feeb8d48c00b6faa21b31477ce4c19f22f39a4"
+    },
+    {
+      "component": "curand",
+      "version": "10.3.5.147",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcurand/linux-aarch64/libcurand-linux-aarch64-10.3.5.147-archive.tar.xz",
+      "sha256": "3be3a69ab2b242cfc78ef2f85a14c3d02b04d4e64a4345c75f565d981ae99415"
+    },
+    {
+      "component": "curand",
+      "version": "10.3.5.147",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcurand/linux-ppc64le/libcurand-linux-ppc64le-10.3.5.147-archive.tar.xz",
+      "sha256": "42ed22ceebcb1840b391cb4369a41e6ed1ae31c5aae0b66fe15ba242db06c4d9"
+    },
+    {
+      "component": "curand",
+      "version": "10.3.5.147",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcurand/linux-sbsa/libcurand-linux-sbsa-10.3.5.147-archive.tar.xz",
+      "sha256": "ee337fa4c53136e336f974ba5d1a9be2a1ec5da674be3bb972a8d645051bbfae"
+    },
+    {
+      "component": "curand",
+      "version": "10.3.5.147",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcurand/linux-x86_64/libcurand-linux-x86_64-10.3.5.147-archive.tar.xz",
+      "sha256": "f3752abef1ffae7bc9180bd9885905e971cc9c28d7f4d5860731a012e07638a3"
+    },
+    {
+      "component": "cusolver",
+      "version": "11.6.1.9",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcusolver/linux-aarch64/libcusolver-linux-aarch64-11.6.1.9-archive.tar.xz",
+      "sha256": "82050419231f3ab6252cf4edb6673504adcdd712cb34ab519f7913beadb8526e"
+    },
+    {
+      "component": "cusolver",
+      "version": "11.6.1.9",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcusolver/linux-ppc64le/libcusolver-linux-ppc64le-11.6.1.9-archive.tar.xz",
+      "sha256": "55c3e49dce2cdfadaec23aeb408383d713bc0838e882f22b41931599525af795"
+    },
+    {
+      "component": "cusolver",
+      "version": "11.6.1.9",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcusolver/linux-sbsa/libcusolver-linux-sbsa-11.6.1.9-archive.tar.xz",
+      "sha256": "3344980ec35d4d850cf10909a2b0f5c1fdea7f2c1af0c6ad9b72dbd188391c3c"
+    },
+    {
+      "component": "cusolver",
+      "version": "11.6.1.9",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcusolver/linux-x86_64/libcusolver-linux-x86_64-11.6.1.9-archive.tar.xz",
+      "sha256": "0a35a16e3bc02ba6fe0393e916da087bac079eb998a01666c79533db4f0d37f6"
+    },
+    {
+      "component": "cusparse",
+      "version": "12.3.1.170",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcusparse/linux-aarch64/libcusparse-linux-aarch64-12.3.1.170-archive.tar.xz",
+      "sha256": "0ae1b89c7c26aa1fc1c59e4b5fd65b37bbefe0914cae3b36e057e8a66bd3c349"
+    },
+    {
+      "component": "cusparse",
+      "version": "12.3.1.170",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcusparse/linux-ppc64le/libcusparse-linux-ppc64le-12.3.1.170-archive.tar.xz",
+      "sha256": "8f52b2849dcc9a95fb7b2e2eea46afe5c1b459d372f3ce9eff1769845f33e0a5"
+    },
+    {
+      "component": "cusparse",
+      "version": "12.3.1.170",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcusparse/linux-sbsa/libcusparse-linux-sbsa-12.3.1.170-archive.tar.xz",
+      "sha256": "098169df5ee6ad441ca22ca7d1168c4adedada57e32238b68db42a9934347534"
+    },
+    {
+      "component": "cusparse",
+      "version": "12.3.1.170",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libcusparse/linux-x86_64/libcusparse-linux-x86_64-12.3.1.170-archive.tar.xz",
+      "sha256": "21b7e5c3afd8c3e761471c644b8bbf36cd528dd0f9d274becbeb09b79dd9bec5"
+    },
+    {
+      "component": "cuxxfilt",
+      "version": "12.4.127",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cuxxfilt/linux-aarch64/cuda_cuxxfilt-linux-aarch64-12.4.127-archive.tar.xz",
+      "sha256": "88683921e0c5624b7d416fe0f9b225ace448cf7dceb450afbcd25a3b3d8e3421"
+    },
+    {
+      "component": "cuxxfilt",
+      "version": "12.4.127",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cuxxfilt/linux-ppc64le/cuda_cuxxfilt-linux-ppc64le-12.4.127-archive.tar.xz",
+      "sha256": "3bbf33a7a4757c82900500940e8cfe8b1a42a4a7e48e9cd732c5fb94f3433704"
+    },
+    {
+      "component": "cuxxfilt",
+      "version": "12.4.127",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cuxxfilt/linux-sbsa/cuda_cuxxfilt-linux-sbsa-12.4.127-archive.tar.xz",
+      "sha256": "e8bb04577e3271477b43c6948c5a39686c93d22f87ddeefd838682298ee399ef"
+    },
+    {
+      "component": "cuxxfilt",
+      "version": "12.4.127",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cuxxfilt/linux-x86_64/cuda_cuxxfilt-linux-x86_64-12.4.127-archive.tar.xz",
+      "sha256": "5c9a74786bc84dee6f2ea941f3933ce77bfa26a9135a8d38ee8c3a7183b9b200"
+    },
+    {
+      "component": "npp",
+      "version": "12.2.5.30",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnpp/linux-aarch64/libnpp-linux-aarch64-12.2.5.30-archive.tar.xz",
+      "sha256": "c3eaaa8ac7e566d0a0452b1451c52d453f4509a236164b2b231cd194dcd2d7a6"
+    },
+    {
+      "component": "npp",
+      "version": "12.2.5.30",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnpp/linux-ppc64le/libnpp-linux-ppc64le-12.2.5.30-archive.tar.xz",
+      "sha256": "2ada6d5ec9f0a963de3bf2eb1a5e8d431a40fc4c616e1e51e04d96bbbc2604f8"
+    },
+    {
+      "component": "npp",
+      "version": "12.2.5.30",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnpp/linux-sbsa/libnpp-linux-sbsa-12.2.5.30-archive.tar.xz",
+      "sha256": "e91905f9a23d749fb8389f8671df67f71f49401d19f955d5029c7ebc3d839f73"
+    },
+    {
+      "component": "npp",
+      "version": "12.2.5.30",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnpp/linux-x86_64/libnpp-linux-x86_64-12.2.5.30-archive.tar.xz",
+      "sha256": "9062bec77b9844663692459255f35fe70cf826bce2fc8065278410fc5f27023f"
+    },
+    {
+      "component": "nvfatbin",
+      "version": "12.4.127",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvfatbin/linux-aarch64/libnvfatbin-linux-aarch64-12.4.127-archive.tar.xz",
+      "sha256": "271247df10e84047646e67b4ae2ded4f9e562bbec085c556f44490f77855d32c"
+    },
+    {
+      "component": "nvfatbin",
+      "version": "12.4.127",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvfatbin/linux-ppc64le/libnvfatbin-linux-ppc64le-12.4.127-archive.tar.xz",
+      "sha256": "071ecdda624aa570fbc45220253b149070a993e1797dc7c2ea8d662e20fae4c9"
+    },
+    {
+      "component": "nvfatbin",
+      "version": "12.4.127",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvfatbin/linux-sbsa/libnvfatbin-linux-sbsa-12.4.127-archive.tar.xz",
+      "sha256": "585d89846cf12cd6862e27e53d98aa54d357ea3d153c219a3efb1e1ecc918ffd"
+    },
+    {
+      "component": "nvfatbin",
+      "version": "12.4.127",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvfatbin/linux-x86_64/libnvfatbin-linux-x86_64-12.4.127-archive.tar.xz",
+      "sha256": "1278f5f6562ed1ae78c3c0bfa665033c986472858bf38ab31e7a1e3091efae0e"
+    },
+    {
+      "component": "nvjitlink",
+      "version": "12.4.127",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvjitlink/linux-aarch64/libnvjitlink-linux-aarch64-12.4.127-archive.tar.xz",
+      "sha256": "104229ab8ed7f585339a4b4e43f7926d8f7478e9b376a376613bbe402dfd5e5b"
+    },
+    {
+      "component": "nvjitlink",
+      "version": "12.4.127",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvjitlink/linux-ppc64le/libnvjitlink-linux-ppc64le-12.4.127-archive.tar.xz",
+      "sha256": "a08da1a0b990ef7eb845655eb51ddc9fc920921da14ee2b32ad8daaebeb1c68b"
+    },
+    {
+      "component": "nvjitlink",
+      "version": "12.4.127",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvjitlink/linux-sbsa/libnvjitlink-linux-sbsa-12.4.127-archive.tar.xz",
+      "sha256": "c85f5c50f18e1b8249a318432dbefdbb752ec81d374a59ab452f8d74acaf6017"
+    },
+    {
+      "component": "nvjitlink",
+      "version": "12.4.127",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvjitlink/linux-x86_64/libnvjitlink-linux-x86_64-12.4.127-archive.tar.xz",
+      "sha256": "0e0ec59ee56d3dfa29c66bd4e225b1a6330d42b36545ab4377880009d42b675c"
+    },
+    {
+      "component": "nvjpeg",
+      "version": "12.3.1.117",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvjpeg/linux-aarch64/libnvjpeg-linux-aarch64-12.3.1.117-archive.tar.xz",
+      "sha256": "9950455d771f18ba4dc4f60de75ed072e04b19d9ea6c01f69b40315b10709194"
+    },
+    {
+      "component": "nvjpeg",
+      "version": "12.3.1.117",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvjpeg/linux-ppc64le/libnvjpeg-linux-ppc64le-12.3.1.117-archive.tar.xz",
+      "sha256": "501efffdb76a9bbeab0bab66834dec310346a73dc16ae839854258f5b2e520fa"
+    },
+    {
+      "component": "nvjpeg",
+      "version": "12.3.1.117",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvjpeg/linux-sbsa/libnvjpeg-linux-sbsa-12.3.1.117-archive.tar.xz",
+      "sha256": "c1c2eeff199aa55b678acd59c0a76a3b44ca99f730e52becfd0373a55c2df2e3"
+    },
+    {
+      "component": "nvjpeg",
+      "version": "12.3.1.117",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/libnvjpeg/linux-x86_64/libnvjpeg-linux-x86_64-12.3.1.117-archive.tar.xz",
+      "sha256": "9f297a160b8a934e8095c4eb2ee1674a3497e06ca6a0a7d6f2cdea983d443c96"
+    },
+    {
+      "component": "nvrtc",
+      "version": "12.4.127",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvrtc/linux-aarch64/cuda_nvrtc-linux-aarch64-12.4.127-archive.tar.xz",
+      "sha256": "9fb6f14168c3194225f29f85467d95150ea65ea676f86303c5ea47ef42ff302f"
+    },
+    {
+      "component": "nvrtc",
+      "version": "12.4.127",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvrtc/linux-ppc64le/cuda_nvrtc-linux-ppc64le-12.4.127-archive.tar.xz",
+      "sha256": "cae11cf45b9443643e82bdaecd51aec9f827db7cdab9498df388471532255480"
+    },
+    {
+      "component": "nvrtc",
+      "version": "12.4.127",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvrtc/linux-sbsa/cuda_nvrtc-linux-sbsa-12.4.127-archive.tar.xz",
+      "sha256": "f9e4bd972ffee5951577b45524b656eda681407a3c761c57978acec26a3acc25"
+    },
+    {
+      "component": "nvrtc",
+      "version": "12.4.127",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuda/redist/cuda_nvrtc/linux-x86_64/cuda_nvrtc-linux-x86_64-12.4.127-archive.tar.xz",
+      "sha256": "b5e7a984fcf05d3123684d7926e595306d31fbf99f9b19e9a0d268a02fc75827"
+    }
+  ]
+}

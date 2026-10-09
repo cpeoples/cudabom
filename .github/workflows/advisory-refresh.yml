@@ -1,0 +1,158 @@
+name: advisory-refresh
+
+# Keeps the vendored advisory index (advisories/index.json) fresh against
+# NVIDIA's upstream CSAF bulletins.
+#
+# How it works:
+#   - NVIDIA publishes machine-readable CSAF in github.com/NVIDIA/product-security
+#     but provides no CSAF discovery manifest, so `cudabom db update` synthesizes
+#     one from the repository tree (see advisories/README.md).
+#   - This job resolves NVIDIA's newest commit on `main`, pins to that exact SHA
+#     (never a branch, so the committed index stays reproducible), rebuilds the
+#     normalized index, and opens a pull request when the result changes.
+#   - A human reviews the diff (new advisories, changed ranges, newly-unmapped
+#     products) and merges. Scans read the committed, reviewed snapshot offline.
+
+on:
+  schedule:
+    # Nightly at 07:17 UTC. Off the hour to avoid the cron thundering herd.
+    - cron: "17 7 * * *"
+  workflow_dispatch:
+    inputs:
+      rev:
+        description: "Upstream commit SHA to pin (defaults to NVIDIA main HEAD)"
+        required: false
+        type: string
+
+concurrency:
+  group: advisory-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  UPSTREAM_OWNER: NVIDIA
+  UPSTREAM_REPO: product-security
+  INDEX_PATH: advisories/index.json
+  MAP_PATH: advisories/product-map.json
+
+jobs:
+  refresh:
+    name: Rebuild advisory index and open PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # create the branch that carries the updated index
+      pull-requests: write # open the review PR
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        run: rustup toolchain install stable --profile minimal
+
+      - name: Cache cargo registry and build
+        uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca # v4.2.3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('Cargo.lock') }}
+
+      - name: Resolve upstream revision
+        id: rev
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rev="${{ inputs.rev }}"
+          if [ -z "$rev" ]; then
+            # Resolve NVIDIA product-security main HEAD to an immutable commit SHA.
+            rev="$(gh api "repos/${UPSTREAM_OWNER}/${UPSTREAM_REPO}/commits/main" --jq '.sha')"
+          fi
+          if [ -z "$rev" ]; then
+            echo "::error::could not resolve an upstream revision"
+            exit 1
+          fi
+          echo "rev=$rev" >> "$GITHUB_OUTPUT"
+          echo "Pinning upstream ${UPSTREAM_OWNER}/${UPSTREAM_REPO} at $rev"
+
+      - name: Rebuild advisory index
+        id: build
+        env:
+          REV: ${{ steps.rev.outputs.rev }}
+        run: |
+          set -euo pipefail
+          # Manifest mode: lists CSAF via the Git Trees API and fetches only CSAF
+          # documents (verified against their .sha256 siblings). Unmapped products
+          # are printed to stderr; capture them for the PR body.
+          cargo run --locked --quiet --bin cudabom -- \
+            db update \
+            --map "$MAP_PATH" \
+            --rev "$REV" \
+            --output "$INDEX_PATH" \
+            2> update.stderr || { cat update.stderr; exit 1; }
+          cat update.stderr
+
+          advisories="$(jq '.advisories | length' "$INDEX_PATH")"
+          echo "advisories=$advisories" >> "$GITHUB_OUTPUT"
+
+          # Extract any unmapped product lines for reviewer visibility.
+          unmapped="$(grep -A10000 'unmapped product' update.stderr | grep '^  ' | sed 's/^  //' || true)"
+          {
+            echo "unmapped<<EOF"
+            echo "${unmapped:-none}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Detect changes
+        id: diff
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- "$INDEX_PATH"; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No change to $INDEX_PATH; nothing to do."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        with:
+          # Uses the default GITHUB_TOKEN. Note: PRs opened by GITHUB_TOKEN do not
+          # themselves trigger `on: pull_request` workflows, so CI must be run
+          # once on the PR by re-running it manually or by using a PAT / GitHub
+          # App token here if automatic CI on the refresh PR is required.
+          token: ${{ github.token }}
+          branch: advisory-refresh
+          base: main
+          commit-message: "chore(advisories): refresh index at ${{ steps.rev.outputs.rev }}"
+          title: "chore(advisories): refresh index (${{ steps.build.outputs.advisories }} advisories)"
+          add-paths: ${{ env.INDEX_PATH }}
+          delete-branch: true
+          sign-commits: true
+          body: |
+            Automated refresh of the vendored advisory index.
+
+            - **Upstream:** `${{ env.UPSTREAM_OWNER }}/${{ env.UPSTREAM_REPO }}`
+            - **Pinned revision:** `${{ steps.rev.outputs.rev }}`
+            - **Advisory records:** ${{ steps.build.outputs.advisories }}
+
+            Review the diff of `${{ env.INDEX_PATH }}` for new advisories and
+            changed version ranges before merging.
+
+            **Unmapped products** (not in `${{ env.MAP_PATH }}`, so their
+            advisories are excluded — extend the map if any belong to a tracked
+            component):
+
+            ```
+            ${{ steps.build.outputs.unmapped }}
+            ```

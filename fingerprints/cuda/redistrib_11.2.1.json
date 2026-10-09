@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "release": {
+    "label": "11.2.1"
+  },
+  "provenance": {
+    "manifest_sha256": "b25be716867527e2d7cf85edfb33ca865172252bebb1a783b2ed489314dcd500",
+    "tool_version": "0.0.0"
+  },
+  "components": []
+}

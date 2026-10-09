@@ -1,0 +1,27 @@
+[package]
+name = "cudabom-identify"
+description = "Fingerprint database and matchers that turn ELF/fatbin facts into CUDA component identities with EXACT/LIKELY/UNKNOWN confidence."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+cudabom-core.workspace = true
+cudabom-elf.workspace = true
+cudabom-pe.workspace = true
+cudabom-fatbin.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

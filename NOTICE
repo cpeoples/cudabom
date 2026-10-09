@@ -1,0 +1,43 @@
+cudabom
+Copyright 2026 Chris Peoples
+
+This product includes software developed by Chris Peoples and contributors.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License in the LICENSE file at the root of this repository or at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.
+
+--------------------------------------------------------------------------------
+Attribution
+--------------------------------------------------------------------------------
+
+If you use, fork, embed, or build on this project, please retain attribution to
+the original repository and author:
+
+    cudabom by Chris Peoples
+    https://github.com/cpeoples/cudabom
+
+You must keep the LICENSE and NOTICE files in any redistribution. If you ship a
+derivative work, state that it is derived from cudabom and link back to the
+original repository. The name "cudabom" is a mark of the original author; forks
+are welcome under a different name.
+
+--------------------------------------------------------------------------------
+Trademark and affiliation disclaimer
+--------------------------------------------------------------------------------
+
+cudabom is an independent open-source project. It is NOT an NVIDIA product and
+is NOT an official NVIDIA security tool. It is not affiliated with, endorsed by,
+or sponsored by NVIDIA Corporation.
+
+"NVIDIA", "CUDA", "cuBLAS", "cuDNN", "NCCL", "TensorRT", "NGC", and related
+names are trademarks of NVIDIA Corporation, used here only descriptively to
+identify the software components that cudabom analyzes. cudabom neither includes
+nor redistributes NVIDIA binaries or NVIDIA proprietary tools.

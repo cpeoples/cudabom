@@ -1,0 +1,114 @@
+name: distribution-discover
+
+# Keeps eval/distribution.manifest.json fresh against the CUDA wheels published
+# on PyPI.
+#
+# How it works:
+#   - `cargo xtask distribution discover` queries PyPI's JSON API for a reviewed
+#     set of CUDA-bearing projects (official nvidia-*-cuXX wheels + third-party
+#     frameworks that bundle CUDA: PyTorch, CuPy, JAX, TensorFlow). This is a
+#     metadata-only crawl: it reads each release's file URL, size, and sha256
+#     from the API and downloads NO wheels. Discovery is kilobytes, not GB.
+#   - `--write` appends the newest release per project (not already pinned) to
+#     the manifest as content-pinned entries.
+#   - When the manifest changes, a pull request is opened for review. A human
+#     checks the new pins before merge; the heavy scanning stays in
+#     distribution-eval, governed by its own --tier/--stream disk controls.
+#
+# Do an initial broad local seed crawl (e.g. `cargo xtask distribution discover
+# --limit 5 --write`) once; this nightly then picks up new releases and
+# stragglers.
+
+on:
+  schedule:
+    # Nightly at 04:08 UTC, offset from the other data jobs.
+    - cron: "8 4 * * *"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Newest releases per project to propose"
+        required: false
+        default: "1"
+        type: string
+
+concurrency:
+  group: distribution-discover
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    name: Discover new CUDA wheels and open PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # create the branch carrying the manifest update
+      pull-requests: write # open the review PR
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        run: rustup toolchain install stable --profile minimal
+
+      - name: Cache cargo registry and build
+        uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca # v4.2.3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('Cargo.lock') }}
+
+      - name: Discover and pin new wheels (metadata-only)
+        env:
+          LIMIT: ${{ inputs.limit || '1' }}
+        run: |
+          set -euo pipefail
+          cargo run --locked --quiet -p xtask -- distribution discover \
+            --limit "$LIMIT" --write --manifest eval/distribution.manifest.json
+
+      - name: Detect changes
+        id: diff
+        run: |
+          set -euo pipefail
+          git add eval/distribution.manifest.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No new wheels; manifest is up to date."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        with:
+          token: ${{ github.token }}
+          branch: distribution-discover
+          base: main
+          commit-message: "chore(distribution): pin newly discovered CUDA wheels"
+          title: "chore(distribution): refresh in-the-wild manifest"
+          add-paths: |
+            eval/distribution.manifest.json
+          delete-branch: true
+          sign-commits: true
+          body: |
+            Automated refresh of the in-the-wild distribution eval manifest.
+
+            New CUDA wheels were discovered first-party from PyPI's JSON API
+            (metadata-only — no wheel was downloaded) across the reviewed set of
+            CUDA-bearing projects: official `nvidia-*-cuXX` wheels plus
+            third-party frameworks that bundle CUDA (PyTorch, CuPy, JAX,
+            TensorFlow). Each entry is content-pinned (URL + SHA-256).
+
+            Review the new entries in `eval/distribution.manifest.json` before
+            merging. Scanning them is a separate, disk-governed job
+            (`distribution-eval`), not this one.

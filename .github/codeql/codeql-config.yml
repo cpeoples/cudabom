@@ -1,0 +1,4 @@
+name: cudabom
+
+queries:
+  - uses: security-extended

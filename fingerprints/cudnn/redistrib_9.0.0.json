@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "release": {
+    "label": "9.0.0",
+    "date": "2024-02-05"
+  },
+  "provenance": {
+    "manifest_sha256": "4302e6ffb8806e56e56d3dd637a45b80f797d3a274e5c06180d580c20986968c",
+    "corpus_sha256": [
+      "52fa7088deb25d4555e37996b3d767e61d5d4397b7d45cce50bfc54cd8608a63",
+      "d3890e609d6530ee5b88ff95b60c8e6b1c1ec7fa966ec533925f20f896fcc630"
+    ],
+    "tool_version": "0.0.0"
+  },
+  "components": [
+    {
+      "name": "cudnn",
+      "description": "NVIDIA CUDA Deep Neural Network library",
+      "license": "cudnn",
+      "soname_stems": [
+        "libcudnn.so",
+        "libcudnn_adv.so",
+        "libcudnn_cnn.so",
+        "libcudnn_engines_precompiled.so",
+        "libcudnn_engines_runtime_compiled.so",
+        "libcudnn_engines_tensor_ir.so",
+        "libcudnn_ext.so",
+        "libcudnn_graph.so",
+        "libcudnn_heuristic.so",
+        "libcudnn_ops.so"
+      ],
+      "file_hashes": {
+        "00e97eacbcc17c4c655f43e62b921fd13a5f4f699ebcbedee4018dcdc917e407": [
+          "9.0.0.312"
+        ],
+        "38552583ebb8de96e83c9e6ec70d050254d8dc635ba47098d171ab3cc78b14f4": [
+          "9.0.0.312"
+        ],
+        "4232c258cbd1dfecae8b90e62b49bf3d3df83e5198dfd04ff7c833873242180f": [
+          "9.0.0.312"
+        ],
+        "430fbf5b513c69e989b3a3a5a572369778ce0c214ce1259af6b935f9cab7dd54": [
+          "9.0.0.312"
+        ],
+        "4319e69f705bf1ba4d5d2ef5cd3da02dcfb7440be7f42eeb32e170437c71d47c": [
+          "9.0.0.312"
+        ],
+        "52fa7088deb25d4555e37996b3d767e61d5d4397b7d45cce50bfc54cd8608a63": [
+          "9.0.0.312"
+        ],
+        "64263650e30887a056bad6dec48cc79d509a985e1fc8ecf04a0d5f4558efce59": [
+          "9.0.0.312"
+        ],
+        "6eaad56e7bea620872fd70a7e020378e32cddfce2ac328ca612924ecc9c1bbe9": [
+          "9.0.0.312"
+        ],
+        "7e6d92dab41ab1df658220d4ee778746722758da2eb0fab108bc7cf23067cf2b": [
+          "9.0.0.312"
+        ],
+        "8b2181759d10816a69d3ac75e69adc34b2d5ed44897a12418ca8cf8c21dfe966": [
+          "9.0.0.312"
+        ],
+        "997e53e92e4047373edab0512c1efc7f2067111532abdeab974fe395947ae0ef": [
+          "9.0.0.312"
+        ],
+        "9b4a2c315562683f2a6a08f258b88060b1ddafd5ca83cca0d8421240ddcae86b": [
+          "9.0.0.312"
+        ],
+        "9b670774a5b0e8790b17c631d5e7bafec5d7f65e061a9a26bc4c6748cb8d2b27": [
+          "9.0.0.312"
+        ],
+        "a9b223a5cc3822b4d5d3e2a1aff90a55d1138d4714cb503842379fadacb4c305": [
+          "9.0.0.312"
+        ],
+        "aa7a4197505ccaf2a61668543d6c8ce22a1f2d0535221fadefa132c20282cbc4": [
+          "9.0.0.312"
+        ],
+        "b8ef6f249128e1985893a8787a21de35cb83ec47c6dc6fd1809061dd9a3ffb20": [
+          "9.0.0.312"
+        ],
+        "c5ced0027eaac8a91826323667ec071a003201a7f4e80f5ad90ffbde219f57a5": [
+          "9.0.0.312"
+        ],
+        "d3890e609d6530ee5b88ff95b60c8e6b1c1ec7fa966ec533925f20f896fcc630": [
+          "9.0.0.312"
+        ],
+        "da66f37d049c9d0fed7c8b90298162fae22b3063b0d4821a2b968d3ef653ccf0": [
+          "9.0.0.312"
+        ],
+        "e8044c8d8932351fd0b0e9794b329ebf68408d7c42cc873ac3e40f6bb6be544d": [
+          "9.0.0.312"
+        ],
+        "e8ca5562837027d3e2e46ad87bad709e0f053fe7cd432feab319e9c731a0c234": [
+          "9.0.0.312"
+        ],
+        "ee40e0bb0d695e4793979cc88cbbe58ad1d83a0584a57a056c9259743fd86992": [
+          "9.0.0.312"
+        ],
+        "f4f3a2ed60e9e53c4fd1b1dd92cc06014dd215a13d82e33540433dffaf48d21b": [
+          "9.0.0.312"
+        ]
+      },
+      "build_ids": {
+        "16a64bfda3991fafdab0602ddedcaa81c4182191": [
+          "9.0.0.312"
+        ],
+        "259a3391f03045556ede021081b0d754bf0ae31c": [
+          "9.0.0.312"
+        ],
+        "39bfac43aff2859bf81cef3fc5700b1465f2885c": [
+          "9.0.0.312"
+        ],
+        "3c364c7a89b8234486e71f426de98229511268de": [
+          "9.0.0.312"
+        ],
+        "457c8f5dea095b0f90af2abddfcb69946df61b76": [
+          "9.0.0.312"
+        ],
+        "7ea949303de71da2b991b6c8bbac0784a423ca79": [
+          "9.0.0.312"
+        ],
+        "842bf6fa26542aceac2b24237998c542484f6cd9": [
+          "9.0.0.312"
+        ],
+        "9e482bcc5035c8b1b93f88cd85d2a094ce3dfe2e": [
+          "9.0.0.312"
+        ],
+        "a108a71fc1986b1ce141a46a6a148411043e6a0e": [
+          "9.0.0.312"
+        ],
+        "b2513a9de2549cffebbca4c6caecf147652012e8": [
+          "9.0.0.312"
+        ],
+        "dd10fb6ee5537c0cb2f020cc08932b2d3838f920": [
+          "9.0.0.312"
+        ],
+        "e02be0debd653fee91b43845b6fdf02a41f8b131": [
+          "9.0.0.312"
+        ],
+        "ec41bc44415c45b2e71cddaa4b3a5ef819f73061": [
+          "9.0.0.312"
+        ],
+        "f7204a1ff5f3b367dead4019bbc17c461cb93178": [
+          "9.0.0.312"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "9.0.0.312": [
+          "9.0.0"
+        ]
+      }
+    }
+  ]
+}

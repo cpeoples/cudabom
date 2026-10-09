@@ -1,0 +1,162 @@
+name: distribution-eval
+
+# Runs the in-the-wild CUDA identification eval (eval/distribution.manifest.json)
+# against the committed fingerprint database. Two tiers, matched to GitHub-hosted
+# runner disk limits (the guaranteed free space on a standard runner is 14 GB):
+#
+#   - Tier A (always, on PRs/nightly): wheels + conda + synthetic transforms.
+#     A few GB peak — fits the 14 GB guarantee with no cleanup gymnastics.
+#   - Tier B (nightly / manual): the full set including fat ML container images
+#     (PyTorch, TensorFlow). Run with --stream so each artifact's working set is
+#     reclaimed before the next, keeping peak disk to one artifact (~9 GB) rather
+#     than the sum (~18-20 GB). Still freed-up front for headroom.
+#
+# This is a reporting job: it uploads the eval JSON as an artifact and prints the
+# comparison table. It does not gate merges (the identification logic is covered
+# by the unit/integration suites in CI).
+
+on:
+  schedule:
+    # Nightly at 06:42 UTC, offset from fingerprint-refresh (05:23) and
+    # advisory-refresh (07:17) so the data jobs do not contend.
+    - cron: "42 6 * * *"
+  workflow_dispatch:
+    inputs:
+      tier:
+        description: "Which tier to run (a = wheels/conda/synthetic, b = full incl. containers)"
+        required: false
+        default: "a"
+        type: choice
+        options: ["a", "b"]
+
+concurrency:
+  group: distribution-eval-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # Tier A: light, always-safe. Runs on every scheduled/dispatched invocation.
+  tier-a:
+    name: distribution eval (tier A — wheels/conda/synthetic)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        run: rustup toolchain install stable --profile minimal
+
+      - name: Cache cargo registry and build
+        uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca # v4.2.3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-${{ runner.arch }}-cargo-
+
+      - name: Install competitors (best-effort)
+        # Syft and Trivy give the comparison columns; a failure here is not fatal
+        # (the eval records "not available" and still scores cudabom).
+        run: |
+          set -euo pipefail
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin || true
+          curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin || true
+
+      - name: Build cudabom release binary
+        run: cargo build --release --locked -p cudabom
+
+      - name: Run tier-A distribution eval
+        # The redist corpus synthetic entries source libraries that must already
+        # be present; fetch just those (small) via the eval redist pass first.
+        run: |
+          set -euo pipefail
+          cargo run --release --locked -p xtask -- eval --distribution \
+            --tier a --download --stream \
+            --db fingerprints --advisories advisories/index.json \
+            --out target
+          df -h /
+
+      - name: Upload eval report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: distribution-eval-tier-a
+          path: target/eval-distribution.json
+          if-no-files-found: warn
+
+  # Tier B: full set including fat containers. Nightly, or dispatched with
+  # tier=b. Streams cleanup so peak disk is one artifact.
+  tier-b:
+    name: distribution eval (tier B — full incl. containers)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || inputs.tier == 'b'
+    permissions:
+      contents: read
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        run: rustup toolchain install stable --profile minimal
+
+      - name: Cache cargo registry and build
+        uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca # v4.2.3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-${{ runner.arch }}-cargo-
+
+      - name: Free up runner disk
+        # The fat ML containers (PyTorch ~9 GB extracted) need headroom beyond
+        # the 14 GB guarantee; removing preinstalled toolchains frees ~20-30 GB.
+        run: |
+          set -euo pipefail
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/lib/android /opt/hostedtoolcache/CodeQL || true
+          df -h /
+
+      - name: Install competitors (best-effort)
+        run: |
+          set -euo pipefail
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin || true
+          curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin || true
+
+      - name: Build cudabom release binary
+        run: cargo build --release --locked -p cudabom
+
+      - name: Run tier-B distribution eval (streaming cleanup)
+        run: |
+          set -euo pipefail
+          cargo run --release --locked -p xtask -- eval --distribution \
+            --tier b --download --stream \
+            --db fingerprints --advisories advisories/index.json \
+            --out target
+          df -h /
+
+      - name: Upload eval report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: distribution-eval-tier-b
+          path: target/eval-distribution.json
+          if-no-files-found: warn

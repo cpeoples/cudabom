@@ -1,0 +1,31 @@
+[package]
+name = "cudabom-extract"
+description = "Safe, streaming walkers for wheels, sdists, archives, directories, and container images, with nesting and bomb protections."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+cudabom-core.workspace = true
+flate2.workspace = true
+object.workspace = true
+serde.workspace = true
+sha2.workspace = true
+tar.workspace = true
+walkdir.workspace = true
+zip.workspace = true
+
+[dev-dependencies]
+flate2.workspace = true
+tar.workspace = true
+tempfile.workspace = true
+zip.workspace = true

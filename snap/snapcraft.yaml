@@ -1,0 +1,68 @@
+name: cudabom
+base: core24
+adopt-info: cudabom
+title: cudabom
+summary: "Prove which NVIDIA CUDA software is inside an artifact"
+description: |
+  cudabom proves which NVIDIA CUDA software is actually inside an artifact
+  (Python wheels, shared libraries, executables, and container images) and
+  turns that evidence into security-grade SBOM, advisory, and VEX data.
+
+  It specializes in CUDA component identity (cudart, cuBLAS/cuBLASLt, cuDNN,
+  NCCL, and more), including statically linked and vendored/renamed copies,
+  using an explicit evidence model with EXACT / LIKELY / UNKNOWN confidence. It
+  correlates findings against NVIDIA's machine-readable CSAF security bulletins
+  and enriches existing Syft/Trivy/PEP 770 SBOMs rather than replacing them.
+
+  cudabom never runs code on a GPU and never executes what it scans, so it runs
+  on any CI runner. Outputs a terminal table, native JSON, CycloneDX 1.6,
+  CycloneDX VEX, SARIF 2.1.0, and Markdown.
+
+  cudabom is an independent project and is not an NVIDIA product. Releases are
+  Sigstore-signed with SLSA Build Level 3 provenance.
+license: Apache-2.0
+source-code: https://github.com/cpeoples/cudabom
+issues: https://github.com/cpeoples/cudabom/issues
+contact: https://github.com/cpeoples/cudabom/issues
+website: https://github.com/cpeoples/cudabom
+grade: stable
+
+# Strict confinement sandboxes file access to the plugged interfaces: home
+# (auto-connected) for content under the user's home directory, removable-media
+# (connect manually) for mounted drives. System paths like /etc and /opt are
+# out of scope by design.
+confinement: strict
+
+apps:
+  cudabom:
+    command: bin/cudabom
+    plugs:
+      - home
+      - removable-media
+
+parts:
+  rust-deps:
+    # snapcraft 9's rust plugin no longer provisions rustup itself. Install it
+    # to the default $HOME/.cargo, which is where the plugin puts it on PATH for
+    # the build step. The cudabom part sets rust-channel: none so the plugin
+    # uses this toolchain instead of trying to drive rustup during pull.
+    plugin: nil
+    build-packages:
+      - curl
+    override-build: |
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+        | sh -s -- -y --default-toolchain stable --profile minimal
+      craftctl default
+
+  cudabom:
+    plugin: rust
+    source: .
+    after: [rust-deps]
+    rust-channel: none
+    # Only ship the CLI binary; the other workspace crates are libraries.
+    rust-path: [crates/cudabom]
+    # The workflow stamps the tag into snap/.version; core24 has no git in the
+    # build environment for craftctl to resolve it on its own.
+    override-build: |
+      craftctl set version="$(cat "${CRAFT_PROJECT_DIR}/snap/.version")"
+      craftctl default

@@ -1,0 +1,8 @@
+{
+   "fabricmanager" : {
+      "450.51.06" : {
+         "linux-x86_64" : "fabricmanager/linux-x86_64/fabricmanager-linux-x86_64-450.51.06.tar.gz",
+         "release_date" : "2020-08-06"
+      }
+   }
+}

@@ -1,0 +1,20 @@
+[package]
+name = "cudabom-report"
+description = "Deterministic renderers for cudabom output: terminal table, native JSON, SARIF 2.1.0, and Markdown."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+cudabom-core.workspace = true
+serde.workspace = true
+serde_json.workspace = true

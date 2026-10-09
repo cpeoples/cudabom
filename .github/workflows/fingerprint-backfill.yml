@@ -1,0 +1,148 @@
+name: fingerprint-backfill
+
+# Back-fills the binary layer into fingerprint shards that were committed before
+# binary-layer derivation existed (or before their corpus was fetched).
+#
+# Why this is separate from fingerprint-refresh:
+#   - fingerprint-refresh only processes NEWLY discovered releases. The shards
+#     committed earlier are manifest-only (archive hashes, but no inner-.so
+#     hashes or build-ids), so a wheel's bundled library resolves to a version
+#     *family* (`cublas 12.x likely`) rather than an exact pin — and no CVEs
+#     correlate without the exact version.
+#   - A blanket `fingerprints build --force` would REGRESS those shards: without
+#     each release's corpus on disk it rewrites them manifest-only again.
+#
+# `fingerprints backfill` closes the gap safely: it finds a bounded batch of
+# manifest-only shards, fetches ONLY those releases' archives, re-derives ONLY
+# those shards (staging each manifest alone so the recursive builder cannot touch
+# the others), and reclaims. Coverage compounds a few releases per night until
+# the whole DB carries the binary layer — with no risk of regressing a shard it
+# did not fetch corpus for.
+
+on:
+  schedule:
+    # Nightly at 05:47 UTC, offset from fingerprint-refresh (05:23) so the two
+    # fingerprint jobs do not contend for the runner or open conflicting PRs.
+    - cron: "47 5 * * *"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "How many manifest-only shards to enrich this run"
+        required: false
+        default: "3"
+        type: string
+      jobs:
+        description: "Parallel derivation workers"
+        required: false
+        default: "4"
+        type: string
+
+concurrency:
+  group: fingerprint-backfill
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  SHARD_DIR: fingerprints
+  LOCK_DIR: fingerprints
+  CORPUS_DIR: corpus
+
+jobs:
+  backfill:
+    name: Back-fill binary layer and open PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # create the branch that carries the enriched shards
+      pull-requests: write # open the review PR
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        run: rustup toolchain install stable --profile minimal
+
+      - name: Cache cargo registry and build
+        uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca # v4.2.3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('Cargo.lock') }}
+
+      - name: Free up runner disk
+        # A batch of older CUDA toolkit archives can be several GB; removing the
+        # preinstalled toolchains frees ~20-30 GB of headroom.
+        run: |
+          set -euo pipefail
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/lib/android /opt/hostedtoolcache/CodeQL || true
+          df -h /
+
+      - name: Back-fill the binary layer (bounded batch)
+        env:
+          LIMIT: ${{ inputs.limit || '3' }}
+          JOBS: ${{ inputs.jobs || '4' }}
+        run: |
+          set -euo pipefail
+          # Finds manifest-only committed shards, fetches only those releases'
+          # archives, re-derives only those shards, and reclaims between each.
+          cargo run --locked --quiet -p xtask -- fingerprints backfill \
+            --shards "$SHARD_DIR" --locks "$LOCK_DIR" \
+            --corpus "$CORPUS_DIR" --limit "$LIMIT" --jobs "$JOBS"
+
+      - name: Reclaim disk (drop any residual corpus)
+        if: always()
+        run: |
+          set -euo pipefail
+          rm -rf "$CORPUS_DIR"
+          df -h /
+
+      - name: Detect changes
+        id: diff
+        run: |
+          set -euo pipefail
+          git add "$SHARD_DIR" 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No shards enriched (all covered, or no locks for the remaining)."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open pull request
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        with:
+          token: ${{ github.token }}
+          branch: fingerprint-backfill
+          base: main
+          commit-message: "chore(fingerprints): back-fill binary layer for committed shards"
+          title: "chore(fingerprints): back-fill binary layer (exact pins + CVE correlation)"
+          add-paths: |
+            ${{ env.SHARD_DIR }}
+          delete-branch: true
+          sign-commits: true
+          body: |
+            Automated back-fill of the **binary layer** (inner-`.so` SHA-256
+            hashes + GNU build-ids) into previously manifest-only fingerprint
+            shards, derived from the official NVIDIA archives (each verified
+            against NVIDIA's own SHA-256; no binary is committed).
+
+            With the binary layer, a wheel's bundled library resolves to an
+            **exact** version straight from its bytes (not a `x` family), which
+            in turn lets its toolkit-release advisories correlate. This run
+            enriched a bounded batch; the nightly compounds coverage a few
+            releases at a time.
+
+            Review the diff of `${{ env.SHARD_DIR }}` for new build-ids and
+            inner-`.so` hashes. Each hash/build-id maps to exactly one version
+            (no cross-version or cross-shard ambiguity). Scans only trust the
+            reviewed, committed snapshot.

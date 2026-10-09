@@ -1,0 +1,1982 @@
+{
+  "schema_version": 1,
+  "source_commit": "8bce56fbf3dfbba142c6d67fba39403bf280d0c7",
+  "advisories": [
+    {
+      "id": "CVE-2022-21821",
+      "severity": "HIGH",
+      "description": "NVIDIA CUDA Toolkit SDK contains an integer overflow vulnerability in cuobjdump.To exploit this vulnerability, a remote attacker would require a local user to download a specially crafted, corrupted file and locally execute cuobjdump against the file. Such an attack may lead to remote code execution that causes complete denial of service and an impact on data confidentiality and integrity.",
+      "published": "2022-03-28T00:00:00Z",
+      "cvss_score": 7.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-21821",
+        "https://www.cve.org/CVERecord?id=CVE-2022-21821"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "11.6.2"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "11.6.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2022-34667",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit SDK contains a stack-based buffer overflow vulnerability in cuobjdump, where an unprivileged remote attacker could exploit this buffer overflow condition by persuading a local user to download a specially crafted corrupted file and execute cuobjdump against it locally, which may lead to a limited denial of service and some loss of data integrity for the local user.",
+      "published": "2022-10-05T00:00:00Z",
+      "cvss_score": 4.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-34667",
+        "https://www.cve.org/CVERecord?id=CVE-2022-34667"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "11.8"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "11.8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2023-0193",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit SDK contains a vulnerability in cuobjdump, where a local user running the tool against a malicious binary may cause an out-of-bounds read, which may result in a limited denial of service and limited information disclosure.",
+      "published": "2023-03-01T00:00:00Z",
+      "cvss_score": 4.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-0193",
+        "https://www.cve.org/CVERecord?id=CVE-2023-0193"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.1"
+            },
+            {
+              "fixed": "12.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "12.1"
+            },
+            {
+              "fixed": "12.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2023-0196",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit SDK contains a bug in cuobjdump, where a local user running the tool against an ill-formed binary may cause a null- pointer dereference, which may result in a limited denial of service.",
+      "published": "2023-03-01T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-0196",
+        "https://www.cve.org/CVERecord?id=CVE-2023-0196"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.1"
+            },
+            {
+              "fixed": "12.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "12.1"
+            },
+            {
+              "fixed": "12.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2023-25510",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit SDK for Linux and Windows contains a NULL pointer dereference in cuobjdump, where a local user running the tool against a malformed binary may cause a limited denial of service.",
+      "published": "2023-04-21T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-25510",
+        "https://www.cve.org/CVERecord?id=CVE-2023-25510"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.1.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "12.1.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2023-25511",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit for Linux and Windows contains a vulnerability in cuobjdump, where a division-by-zero error may enable a user to cause a crash, which may lead to a limited denial of service.",
+      "published": "2023-04-21T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-25511",
+        "https://www.cve.org/CVERecord?id=CVE-2023-25511"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.1.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "12.1.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2023-25512",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA toolkit for Linux and Windows contains a vulnerability in cuobjdump, where an attacker may cause an out-of-bounds memory read by running cuobjdump on a malformed input file. A successful exploit of this vulnerability may lead to limited denial of service, code execution, and limited information disclosure.",
+      "published": "2023-04-21T00:00:00Z",
+      "cvss_score": 5.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-25512",
+        "https://www.cve.org/CVERecord?id=CVE-2023-25512"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "12.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2023-25513",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA toolkit for Linux and Windows contains a vulnerability in cuobjdump, where an attacker may cause an out-of-bounds read by tricking a user into running cuobjdump on a malformed input file. A successful exploit of this vulnerability may lead to limited denial of service, code execution, and limited information disclosure.",
+      "published": "2023-04-21T00:00:00Z",
+      "cvss_score": 5.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-25513",
+        "https://www.cve.org/CVERecord?id=CVE-2023-25513"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.0.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "12.0.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2023-25514",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA toolkit for Linux and Windows contains a vulnerability in cuobjdump, where an attacker may cause an out-of-bounds read by tricking a user into running cuobjdump on a malformed input file. A successful exploit of this vulnerability may lead to limited denial of service, code execution, and limited information disclosure.",
+      "published": "2023-04-21T00:00:00Z",
+      "cvss_score": 5.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-25514",
+        "https://www.cve.org/CVERecord?id=CVE-2023-25514"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.1.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "12.1.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2023-25523",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for Linux and Windows contains a vulnerability in the nvdisasm binary file, where an attacker may cause a NULL pointer dereference by providing a user with a malformed ELF file. A successful exploit of this vulnerability may lead to a partial denial of service.",
+      "published": "2023-06-29T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-25523",
+        "https://www.cve.org/CVERecord?id=CVE-2023-25523"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.2"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2023-31028",
+      "severity": "LOW",
+      "description": "NVIDIA nvJPEG2000 Library for Windows and Linux contains a vulnerability where improper input validation might enable an attacker to use a specially crafted input file. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2024-04-03T00:00:00Z",
+      "cvss_score": 2.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-31028",
+        "https://www.cve.org/CVERecord?id=CVE-2023-31028"
+      ],
+      "affected": [
+        {
+          "component": "nvjpeg",
+          "affected_ranges": [
+            {
+              "fixed": "0.7"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0072",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for all platforms contains a vulnerability in cuobjdump and nvdisasm where an attacker may cause a crash by tricking a user into reading a malformed ELF file. A successful exploit of this vulnerability may lead to a partial denial of service.",
+      "published": "2024-04-03T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0072",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0072"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.4"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0076",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for all platforms contains a vulnerability in cuobjdump and nvdisasm where an attacker may cause a crash by tricking a user into reading a malformed ELF file. A successful exploit of this vulnerability may lead to a partial denial of service.",
+      "published": "2024-04-03T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0076",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0076"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.4"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0102",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA Toolkit for all platforms contains a vulnerability in nvdisasm, where an attacker can cause an out-of-bounds read issue by deceiving a user into reading a malformed ELF file. A successful exploit of this vulnerability might lead to denial of service.",
+      "published": "2024-07-11T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0102",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0102"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.5.1"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0109",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit contains a vulnerability in command `cuobjdump` where a user may cause a crash by passing in a malformed ELF file. A successful exploit of this vulnerability may cause an out of bounds read in the unprivileged process memory which could lead to a limited denial of service.",
+      "published": "2024-08-29T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0109",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0109"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.6"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0110",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit contains a vulnerability in command `cuobjdump` where a user may cause an out-of-bound write by passing in a malformed ELF file. A successful exploit of this vulnerability may lead to code execution or denial of service.",
+      "published": "2024-08-29T00:00:00Z",
+      "cvss_score": 4.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0110",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0110"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.6"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0111",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit contains a vulnerability in command 'cuobjdump' where a user may cause a crash or produce incorrect output by passing a malformed ELF file. A successful exploit of this vulnerability may lead to a limited denial of service or data tampering.",
+      "published": "2024-08-29T00:00:00Z",
+      "cvss_score": 4.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0111",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0111"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.6"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0123",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for Windows and Linux contains a vulnerability in the nvdisasm command line tool where an attacker may cause an improper validation in input issue by tricking the user into running nvdisasm on a malicious ELF file. A successful exploit of this vulnerability may lead to denial of service.",
+      "published": "2024-10-02T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0123",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0123"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.6.1"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0124",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA Toolkit for Windows and Linux contains a vulnerability in the nvdisam command line tool, where a user can cause nvdisasm to read freed memory by running it on a malformed ELF file. A successful exploit of this vulnerability might lead to a limited denial of service.",
+      "published": "2024-10-02T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0124",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0124"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.6.1"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0125",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA Toolkit for Windows and Linux contains a vulnerability in the nvdisam command line tool, where a user can cause a NULL pointer dereference by running nvdisasm on a malformed ELF file. A successful exploit of this vulnerability might lead to a limited denial of service.",
+      "published": "2024-10-02T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0125",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0125"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.6.1"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0142",
+      "severity": "MEDIUM",
+      "description": "NVIDIA nvJPEG2000 library contains a vulnerability where an attacker can cause an out-of-bounds write issue by means of a specially crafted JPEG2000 file. A successful exploit of this vulnerability might lead to code execution and data tampering.",
+      "published": "2025-02-11T00:00:00Z",
+      "cvss_score": 6.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0142",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0142"
+      ],
+      "affected": [
+        {
+          "component": "nvjpeg",
+          "affected_ranges": [
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0143",
+      "severity": "MEDIUM",
+      "description": "NVIDIA nvJPEG2000 library contains a vulnerability where an attacker can cause an out-of-bounds write issue by means of a specially crafted JPEG2000 file. A successful exploit of this vulnerability might lead to code execution and data tampering.",
+      "published": "2025-02-11T00:00:00Z",
+      "cvss_score": 6.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0143",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0143"
+      ],
+      "affected": [
+        {
+          "component": "nvjpeg",
+          "affected_ranges": [
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0144",
+      "severity": "MEDIUM",
+      "description": "NVIDIA nvJPEG2000 library contains a vulnerability where an attacker can cause a buffer overflow issue by means of a specially crafted JPEG 2000 file. A successful exploit of this vulnerability might lead to data tampering.",
+      "published": "2025-02-11T00:00:00Z",
+      "cvss_score": 6.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0144",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0144"
+      ],
+      "affected": [
+        {
+          "component": "nvjpeg",
+          "affected_ranges": [
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-0145",
+      "severity": "MEDIUM",
+      "description": "NVIDIA nvJPEG2000 library contains a vulnerability where an attacker can cause a heap-based buffer overflow issue by means of a specially crafted JPEG2000 file. A successful exploit of this vulnerability might lead to code execution and data tampering.",
+      "published": "2025-02-11T00:00:00Z",
+      "cvss_score": 6.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-0145",
+        "https://www.cve.org/CVERecord?id=CVE-2024-0145"
+      ],
+      "affected": [
+        {
+          "component": "nvjpeg",
+          "affected_ranges": [
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            },
+            {
+              "introduced": "0.8.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            },
+            {
+              "fixed": "0.8.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-53870",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for all platforms contains a vulnerability in the cuobjdump binary, where a user could cause an out-of-bounds read by passing a malformed ELF file to cuobjdump. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2025-02-18T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53870",
+        "https://www.cve.org/CVERecord?id=CVE-2024-53870"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.8"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-53871",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for all platforms contains a vulnerability in the nvdisasm binary, where a user could cause an out-of-bounds read by passing a malformed ELF file to nvdisasm. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2025-02-18T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53871",
+        "https://www.cve.org/CVERecord?id=CVE-2024-53871"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.8"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-53872",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for all platforms contains a vulnerability in the cuobjdump binary, where a user could cause an out-of-bounds read by passing a malformed ELF file to cuobjdump. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2025-02-18T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53872",
+        "https://www.cve.org/CVERecord?id=CVE-2024-53872"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.8"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-53873",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for Windows contains a vulnerability in the cuobjdump binary, where a user could cause an out-of-bounds read by passing a malformed ELF file to cuobjdump. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2025-02-18T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53873",
+        "https://www.cve.org/CVERecord?id=CVE-2024-53873"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.8"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-53874",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for all platforms contains a vulnerability in  the cuobjdump binary, where a user could cause an out-of-bounds read by passing a malformed ELF file to cuobjdump. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2025-02-18T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53874",
+        "https://www.cve.org/CVERecord?id=CVE-2024-53874"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.8"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-53875",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for all platforms contains a vulnerability in the cuobjdump binary, where a user could cause an out-of-bounds read by passing a malformed ELF file to cuobjdump. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2025-02-18T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53875",
+        "https://www.cve.org/CVERecord?id=CVE-2024-53875"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.8"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-53876",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for all platforms contains a vulnerability in the nvdisasm binary, where a user could cause an out-of-bounds read by passing a malformed ELF file to nvdisasm. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2025-02-18T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53876",
+        "https://www.cve.org/CVERecord?id=CVE-2024-53876"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.8"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-53877",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for all platforms contains a vulnerability in the nvdisasm binary, where a user could cause a NULL pointer exception by passing a malformed ELF file to nvdisasm. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2025-02-18T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53877",
+        "https://www.cve.org/CVERecord?id=CVE-2024-53877"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.8"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-53878",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for Linux and Windows contains a vulnerability in the cuobjdump binary, where a user could cause a crash by passing a malformed ELF file to cuobjdump. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2025-02-18T00:00:00Z",
+      "cvss_score": 2.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53878",
+        "https://www.cve.org/CVERecord?id=CVE-2024-53878"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.8"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2024-53879",
+      "severity": "LOW",
+      "description": "NVIDIA CUDA toolkit for Linux and Windows contains a vulnerability in the cuobjdump binary, where a user could cause a crash by passing a malformed ELF file to cuobjdump. A successful exploit of this vulnerability might lead to a partial denial of service.",
+      "published": "2025-02-18T00:00:00Z",
+      "cvss_score": 2.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-53879",
+        "https://www.cve.org/CVERecord?id=CVE-2024-53879"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.8"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23247",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA toolkit for all platforms contains a vulnerability in the cuobjdump binary, where a failure to check the length of a buffer could allow a user to cause the tool to crash or execute arbitrary code by passing in a malformed ELF file. A successful exploit of this vulnerability might lead to arbitrary code execution.",
+      "published": "2025-05-27T00:00:00Z",
+      "cvss_score": 4.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23247",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23247"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "12.9"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23248",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit for all platforms contains a vulnerability in the nvdisasm binary where a user may cause an out-of-bounds read by passing a malformed ELF file to nvdisasm. A successful exploit of this vulnerability may lead to a partial denial of service.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23248",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23248"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23254",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for any platform contains a vulnerability in python executor where an attacker may cause a data validation issue by local access to the TRTLLM server. A successful exploit of this vulnerability may lead to code execution, information disclosure and data tampering.",
+      "published": "2025-04-29T00:00:00Z",
+      "cvss_score": 8.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23254",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23254"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "fixed": "0.18.2"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "0.18.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23255",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit for all platforms contains a vulnerability in the cuobjdump binary where a user may cause an out-of-bounds read by passing a malformed ELF file to cuobjdump. A successful exploit of this vulnerability may lead to a partial denial of service.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23255",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23255"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23271",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit for all platforms contains a vulnerability in the nvdisasm binary where a user may cause an out-of-bounds read by passing a malformed ELF file to nvdisasm. A successful exploit of this vulnerability may lead to a partial denial of service.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23271",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23271"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23272",
+      "severity": "MEDIUM",
+      "description": "NVIDIA nvJPEG library contains a vulnerability where an attacker can cause an out-of-bounds read by means of a specially crafted JPEG file. A successful exploit of this vulnerability might lead to information disclosure or denial of service.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 5.7,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23272",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23272"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "12.9.1"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        },
+        {
+          "component": "nvjpeg",
+          "affected_ranges": [
+            {
+              "fixed": "25.03"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23273",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit for all platforms contains a vulnerability in nvJPEG where a local authenticated user may cause a divide by zero error by submitting a specially crafted JPEG file. A successful exploit of this vulnerability may lead to denial of service.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 2.5,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23273",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23273"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        },
+        {
+          "component": "nvjpeg",
+          "affected_ranges": [
+            {
+              "fixed": "13.0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23274",
+      "severity": "MEDIUM",
+      "description": "NVIDIA nvJPEG contains a vulnerability in jpeg encoding where a user may cause an out-of-bounds read by providing a maliciously crafted input image with dimensions that cause integer overflows in array index calculations. A successful exploit of this vulnerability may lead to denial of service.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 4.5,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23274",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23274"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        },
+        {
+          "component": "nvjpeg",
+          "affected_ranges": [
+            {
+              "fixed": "13.0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23275",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit for all platforms contains a vulnerability in nvJPEG where a local authenticated user may cause a GPU out-of-bounds write by providing certain image dimensions.  A successful exploit of this vulnerability may lead to denial of service and information disclosure.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 4.2,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23275",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23275"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        },
+        {
+          "component": "nvjpeg",
+          "affected_ranges": [
+            {
+              "fixed": "13.0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23308",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit for all platforms contains a vulnerability in nvdisasm where an attacker may cause a heap-based buffer overflow by getting the user to run nvdisasm on a malicious ELF file. A successful exploit of this vulnerability may lead to arbitrary code execution at the privilege level of the user running nvdisasm.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23308",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23308"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23338",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit for all platforms contains a vulnerability in nvdisasm where a user may cause an out-of-bounds write by running nvdisasm on a malicious ELF file. A successful exploit of this vulnerability may lead to denial of service.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23338",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23338"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23339",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit for all platforms contains a vulnerability in cuobjdump where an attacker may cause a stack-based buffer overflow by getting the user to run cuobjdump on a malicious ELF file. A successful exploit of this vulnerability may lead to arbitrary code execution at the privilege level of the user running <br/>cuobjdump.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23339",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23339"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23340",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit for all platforms contains a vulnerability in the nvdisasm binary where a user may cause an out-of-bounds read by passing a malformed ELF file to nvdisasm. A successful exploit of this vulnerability may lead to a partial denial of service.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23340",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23340"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-23346",
+      "severity": "MEDIUM",
+      "description": "NVIDIA CUDA Toolkit contains a vulnerability in cuobjdump, where an unprivileged user can cause a NULL pointer dereference.  A successful exploit of this vulnerability may lead to a limited denial of service.",
+      "published": "2025-09-23T00:00:00Z",
+      "cvss_score": 3.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-23346",
+        "https://www.cve.org/CVERecord?id=CVE-2025-23346"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.0"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-33228",
+      "severity": "HIGH",
+      "description": "NVIDIA Nsight Systems contains a vulnerability in the gfx_hotspot recipe, where an attacker could cause an OS command injection by supplying a malicious string to the process_nsys_rep_cli.py script if the script is invoked manually. A successful exploit of this vulnerability might lead to code execution, escalation of privileges, data tampering, denial of service, and information disclosure.",
+      "published": "2026-01-20T00:00:00Z",
+      "cvss_score": 7.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-33228",
+        "https://www.cve.org/CVERecord?id=CVE-2025-33228"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.1"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-33229",
+      "severity": "HIGH",
+      "description": "NVIDIA Nsight Visual Studio for Windows contains a vulnerability in Nsight Monitor where an attacker can execute arbitrary code with the same privileges as the NVIDIA Nsight Visual Studio Edition Monitor application. A successful exploit of this vulnerability may lead to escalation of privileges, code execution, data tampering, denial of service, and information disclosure.",
+      "published": "2026-01-20T00:00:00Z",
+      "cvss_score": 7.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-33229",
+        "https://www.cve.org/CVERecord?id=CVE-2025-33229"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.1"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-33230",
+      "severity": "HIGH",
+      "description": "NVIDIA Nsight Systems for Linux contains a vulnerability in the .run installer, where an attacker could cause an OS command injection by supplying a malicious string to the installation path. A successful exploit of this vulnerability might lead to escalation of privileges, code execution, data tampering, denial of service, and information disclosure.",
+      "published": "2026-01-20T00:00:00Z",
+      "cvss_score": 7.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-33230",
+        "https://www.cve.org/CVERecord?id=CVE-2025-33230"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.1"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-33231",
+      "severity": "HIGH",
+      "description": "NVIDIA Nsight Systems for Windows contains a vulnerability in the application’s DLL loading mechanism where an attacker could cause an uncontrolled search path element by exploiting insecure DLL search paths. A successful exploit of this vulnerability might lead to code execution, escalation of privileges, data tampering, denial of service and information disclosure.",
+      "published": "2026-01-20T00:00:00Z",
+      "cvss_score": 6.7,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-33231",
+        "https://www.cve.org/CVERecord?id=CVE-2025-33231"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "fixed": "13.1"
+            }
+          ],
+          "fixed_ranges": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2025-33255",
+      "severity": "HIGH",
+      "description": "NVIDIA TRT-LLM for any platform contains a vulnerability in MPI server, where an attacker could cause an unsafe deserialization. A successful exploit of this vulnerability might lead to code execution, denial of service, data tampering, and information disclosure.",
+      "published": "2026-05-19T00:00:00Z",
+      "cvss_score": 7.5,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-33255",
+        "https://www.cve.org/CVERecord?id=CVE-2025-33255"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "fixed": "1.2"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24142",
+      "severity": "HIGH",
+      "description": "NVIDIA TRT-LLM for any platform contains a deserialization vulnerability   and unsafe serialized handle. A successful exploit of this vulnerability might lead to code execution, data tampering, and information disclosure.",
+      "published": "2026-05-19T00:00:00Z",
+      "cvss_score": 6.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24142",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24142"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "fixed": "1.2"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24160",
+      "severity": "HIGH",
+      "description": "NVIDIA TRT-LLM for any platform contains a vulnerability where an attacker could cause an  unchecked return value to a null pointer dereference. A successful exploit of this vulnerability might lead to denial of service.",
+      "published": "2026-05-19T00:00:00Z",
+      "cvss_score": 5.5,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24160",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24160"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "fixed": "1.2"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24163",
+      "severity": "HIGH",
+      "description": "NVIDIA TRT-LLM for any platform contains a vulnerability in RPC testing, where an attacker could  cause an unsafe deserialization. A successful exploit of this vulnerability might lead to code execution, denial of service, data tampering, and information disclosure.",
+      "published": "2026-05-19T00:00:00Z",
+      "cvss_score": 7.5,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24163",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24163"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "fixed": "1.2"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24188",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT contains a vulnerability where an attacker could cause an out-of-bounds write. A successful exploit of this vulnerability might lead to data tampering.",
+      "published": "2026-05-19T00:00:00Z",
+      "cvss_score": 8.2,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24188",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24188"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "fixed": "10.16.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "10.16.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24205",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for any platform contains a vulnerability where a user may cause a race condition by running concurrent requests. A successful exploit of this vulnerability may lead to data tampering.",
+      "published": "2026-05-19T00:00:00Z",
+      "cvss_score": 6.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24205",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24205"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "fixed": "1.2.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.2.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24220",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for any platform contains a vulnerability in visual gen server, where an attacker could cause an unsafe deserialization by unauthorized zeroMQ deserialization. A successful exploit of this vulnerability might lead to code execution.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 6.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24220",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24220"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24226",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for Linux contains a vulnerability where an attacker could cause improper control of code generation. A successful exploit of this vulnerability might lead to code execution, data tampering, and information disclosure.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 6.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24226",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24226"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24227",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT contains a vulnerability where a user might cause a deserialization of untrusted data. A successful exploit of this vulnerability might lead to code execution.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 5.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24227",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24227"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "10.16.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "11.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24229",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for Linux contains a vulnerability in the disaggregated orchestrator component, where an attacker could read, write, or delete internal cluster state by sending requests to the FastAPI server. A successful exploit of this vulnerability might lead to information disclosure, data tampering, and denial of service.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 7.3,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24229",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24229"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24233",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for Linux contains a vulnerability in the restricted unpickler used for model weight deserialization, where a local, unauthenticated attacker could cause deserialization of untrusted data. A successful exploit of this vulnerability might lead to code execution, escalation of privileges, data tampering, and information disclosure.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 8.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24233",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24233"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24234",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for Linux contains a vulnerability in the multimodal media fetching functions, where a network-accessible attacker could cause server-side request forgery. A successful exploit of this vulnerability might lead to denial of service and information disclosure.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 6.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24234",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24234"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24238",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT contains a vulnerability where an attacker might cause an improper validation of array index. A successful exploit of this vulnerability might lead to code execution.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 7.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24238",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24238"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "10.16.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "11.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24259",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for Linux contains a vulnerability where an attacker could cause missing authentication for a critical function. A successful exploit of this vulnerability might lead to code execution, data tampering, and information disclosure.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 6.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24259",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24259"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24268",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT contains a vulnerability where an attacker might cause a heap-based buffer overflow. A successful exploit of this vulnerability might lead to code execution.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 7.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24268",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24268"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "10.16.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "11.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24271",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM contains a vulnerability in the OpenAI-compatible inference API, where an attacker could cause allocation of GPU resources without limits or throttling. A successful exploit of this vulnerability might lead to denial of service.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 6.2,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24271",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24271"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-24272",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT contains a vulnerability where an attacker might cause an overflow to a heap-based buffer. A successful exploit of this vulnerability might lead to code execution.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 7.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24272",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24272"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "10.16.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "11.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-47470",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for any platform contains a vulnerability in the gRPC server chat API endpoint, where an attacker could cause improper input validation by local attack. A successful exploit of this vulnerability might lead to denial of service.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 6.2,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-47470",
+        "https://www.cve.org/CVERecord?id=CVE-2026-47470"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-47471",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for any platform contains a vulnerability in tensor deserialization, where an attacker could cause a heap based buffer overflow. A successful exploit of this vulnerability might lead to information disclosure, data tampering, or denial of service.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 7.5,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-47471",
+        "https://www.cve.org/CVERecord?id=CVE-2026-47471"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-47472",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM contains a vulnerability in its inter-process communication layer where an attacker with local same-user access could cause deserialization. A successful exploit of this vulnerability might lead to code execution, information disclosure, data tampering, and denial of service.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 7.8,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-47472",
+        "https://www.cve.org/CVERecord?id=CVE-2026-47472"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-47473",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM contains a vulnerability where an attacker could cause a write-what-where condition. A successful exploit of this vulnerability might lead to data tampering, denial of service, and information disclosure.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 7.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-47473",
+        "https://www.cve.org/CVERecord?id=CVE-2026-47473"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-47475",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM contains a vulnerability in the OpenAI-compatible inference API where an attacker could trigger a reachable assertion in the sampler thread. A successful exploit of this vulnerability might lead to denial of service.",
+      "published": "2026-07-14T00:00:00.000Z",
+      "cvss_score": 6.2,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-47475",
+        "https://www.cve.org/CVERecord?id=CVE-2026-47475"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

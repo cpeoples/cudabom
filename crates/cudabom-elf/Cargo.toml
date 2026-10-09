@@ -1,0 +1,26 @@
+[package]
+name = "cudabom-elf"
+description = "ELF fact extraction: SONAME, NEEDED, symbols, symbol versions, build-id, sections, notes, rodata strings, and static-archive members."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+cudabom-core.workspace = true
+object.workspace = true
+serde.workspace = true
+
+[dev-dependencies]
+# The `write` feature builds real, valid ELF bytes for hermetic parser tests
+# on any host (macOS included), rather than committing binary fixtures.
+object = { workspace = true, features = ["write"] }
+tempfile.workspace = true

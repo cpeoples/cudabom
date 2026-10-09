@@ -1,0 +1,73 @@
+{
+  "schema_version": 2,
+  "release": {
+    "label": "11.4.2",
+    "date": "2021-09-07"
+  },
+  "provenance": {
+    "manifest_sha256": "a20a8e2ad5fdeaad0abbe50668a07a9924b374e4cb7842e4820d349d1165f3f8",
+    "corpus_sha256": [
+      "2ab9599bbaebdcf59add73d1f1a352ae619f8cb5ccec254093c98efd4c14553c",
+      "831dffe062ae3ebda3d3c4010d0ee4e40a01fd5e6358098a87bb318ea7c79e0c",
+      "d08a1b731e5175aa3ae06a6d1c6b3059dd9ea13836d947018ea5e3ec2ca3d62b"
+    ],
+    "tool_version": "0.0.0"
+  },
+  "components": [
+    {
+      "name": "cudart",
+      "description": "CUDA Runtime (cudart)",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcudart.so",
+        "libcudart_static.a"
+      ],
+      "file_hashes": {
+        "144504db7eb68e3333981b89a4a20fbd027efbcb87af90bf8b73e374e26c071b": [
+          "11.4.108"
+        ],
+        "29e0c9f531d4b20f25b97348c63709c3231c0f97f226944b612b88114103d2ce": [
+          "11.4.108"
+        ],
+        "2ab9599bbaebdcf59add73d1f1a352ae619f8cb5ccec254093c98efd4c14553c": [
+          "11.4.108"
+        ],
+        "2b9090ff9218e55c8a57f4ee79dc5987bcfcb83a1fe15e067a8ba6d46006235c": [
+          "11.4.108"
+        ],
+        "37cb86ab4008f87fe165bf648887713e64fca146550f69fb9564977e7b80628c": [
+          "11.4.108"
+        ],
+        "831dffe062ae3ebda3d3c4010d0ee4e40a01fd5e6358098a87bb318ea7c79e0c": [
+          "11.4.108"
+        ],
+        "b59756c27658d1ea87a17c06d064d1336576431cd64da5d1790d909e455d06d3": [
+          "11.4.108"
+        ],
+        "c1facb2c70fbc8c1707e25c2ad0191c9b3c28857a85dcffa37d478f47a70eb8e": [
+          "11.4.108"
+        ],
+        "d08a1b731e5175aa3ae06a6d1c6b3059dd9ea13836d947018ea5e3ec2ca3d62b": [
+          "11.4.108"
+        ],
+        "f9a9d13ab42411d6d7d15461cbc085a16dd64ffece67d8a3b0a894cc2382aba8": [
+          "11.4.108"
+        ]
+      },
+      "build_ids": {
+        "1f8bdf6057893d322a5b0c5d837cd5f08770ccb8": [
+          "11.4.108"
+        ],
+        "d7f9d083b13f9f8df58e7dec6adfb77634b2c13c": [
+          "11.4.108"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.4.108": [
+          "11.4.2"
+        ]
+      }
+    }
+  ]
+}

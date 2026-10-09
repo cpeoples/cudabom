@@ -1,0 +1,876 @@
+{
+  "schema_version": 2,
+  "release": {
+    "label": "13.3.1",
+    "date": "2026-06-29"
+  },
+  "provenance": {
+    "manifest_sha256": "a93703b6d7b8e4847c6640918904c5e7b96726d3eab8fbf8c9a9fce527a65bd0",
+    "corpus_sha256": [
+      "0218e62ab413e435dcd0274ec8e63b62214e6aba8519201061d1597e73caadbb",
+      "1794edb653adf48f5fa02d86bb738ed75888dd355aa39dadb6202d84d554c0dc",
+      "1e59c4888267d27ba1a9bd0f3669a6439db1334a96e754cd9013c7c73e18dc9d",
+      "20f1ae21fcf56b647456edb12afdf424a75e128beb009c82c92c84984514b87d",
+      "22610703f7bc4e57d9b7b2f39ea7055c7495b603ab8fbf107b6d735a16746d4e",
+      "291ed8fe182ef19774363ea8194a760098fd24ffd39dae06145f06b5f237d2e2",
+      "2f3cd496b9183ca2de9e17dbcd7f992eac3cd4475052b151605d9e8445736b94",
+      "3f15ed0e6b9673d30c4085e7d3819d1e4c17b09056ba5e8aa8eda351c27f5849",
+      "5c67df2f09fb5538bf1687e0ad03bbda438f816808049ff4975547b91a6a71a6",
+      "66cc9bd04f3ae8ad5052851db8a4031aa843b0fe7d83cabd1ca0780d183df983",
+      "9e8f78278215babd1236b137252424ca7912c185bd093201f5d97f7dd763b74a",
+      "b2404952a5d630fbbc13e12d36975ef87a9c05c71c321c2cb5b3820789e47462",
+      "f3e933b61a26f7b1f8b053bac4a66193e115b006911e2e493623ca01ec8560d4",
+      "f79e25bb1ef2f22f26c09897f6cb8719634f38e7330bd4700a1ea9ec9591eaff"
+    ],
+    "tool_version": "0.0.0"
+  },
+  "components": [
+    {
+      "name": "cublas",
+      "description": "CUDA cuBLAS",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcublas.so",
+        "libcublasLt.so"
+      ],
+      "file_hashes": {
+        "01dd70979e68625846e9a5edcba531d3798498b866aa1c925cc25d60f63fe680": [
+          "13.6.0.2"
+        ],
+        "1794edb653adf48f5fa02d86bb738ed75888dd355aa39dadb6202d84d554c0dc": [
+          "13.6.0.2"
+        ],
+        "62e9fa30560c8f0a28e0cdcf9d6fc1fed347bcfab8847239b9ae1fdc1d86408a": [
+          "13.6.0.2"
+        ],
+        "93c275af70b6d39fbd9b78cbc925ad9a9a0a81189aaec1521a951119ebe72da3": [
+          "13.6.0.2"
+        ],
+        "edcbf94cc3864fe36e2f620222286d4eb70870ea05e9c295662d2789ee96065f": [
+          "13.6.0.2"
+        ],
+        "f34d8b61ee4c3226555a7a94c9bcdb13c2fbe029c6cf8a8fa3bfb5330156b8c1": [
+          "13.6.0.2"
+        ],
+        "f4ebaa0a184cd7518300bdf275ecd440b82d70fa6b6cfe8ecb8f00218ab19ca8": [
+          "13.6.0.2"
+        ]
+      },
+      "build_ids": {
+        "518a935d73fe36490babace3511661fb20773739": [
+          "13.6.0.2"
+        ],
+        "9f22af9e43126baf795bbc7ea93fb7ea5fba0834": [
+          "13.6.0.2"
+        ],
+        "a5a05a89989ae6fc4149ab69dff4e96edd4f9751": [
+          "13.6.0.2"
+        ],
+        "fd85f2d003d17b73bc3572e420da662fff202d7f": [
+          "13.6.0.2"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.6.0.2": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "cudart",
+      "description": "CUDA Runtime (cudart)",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcudart.so",
+        "libcudart_static.a"
+      ],
+      "file_hashes": {
+        "0cdd73d11885062daf3aa98ad4d7b8bd84f89b398be11f7054edea9ed31f597d": [
+          "13.3.29"
+        ],
+        "1e59c4888267d27ba1a9bd0f3669a6439db1334a96e754cd9013c7c73e18dc9d": [
+          "13.3.29"
+        ],
+        "1feb7dd266813ffe8dbc24e115183a5ac35a4795c8d34aca0df85ab616b64d9c": [
+          "13.3.29"
+        ],
+        "402ad1dfbdc7a1a40e10cfc73163777a0596d9af7f6d3703e3e6c96bcac6a2a9": [
+          "13.3.29"
+        ],
+        "9f92e4c3f7e14d0fed69ef876a45d4255a2dc88cb552a673a90ce881c26282fe": [
+          "13.3.29"
+        ]
+      },
+      "build_ids": {
+        "f2253a1889d2e84b73b047201a314bd4d6f8583d": [
+          "13.3.29"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.3.29": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "cudla",
+      "description": "cuDLA",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcudla.so"
+      ],
+      "file_hashes": {
+        "db426590f53be48fb1c843e73c00dda08c7aeeacc29e3b01ce71e1e91e58d818": [
+          "13.3.29"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "13.3.29": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "cufft",
+      "description": "CUDA cuFFT",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcufft.so",
+        "libcufftw.so",
+        "libcufftw_static.a"
+      ],
+      "file_hashes": {
+        "0c944f2316221af62a8731f95a1ffc93938b5c7c6c5965a8a961872a157b23bb": [
+          "12.3.0.29"
+        ],
+        "126f5e7c0c9021a3be20866ad751227cb9ed42cb267eb2867bf3db50d7c45f97": [
+          "12.3.0.29"
+        ],
+        "1829f4004be9cf0890787d15a20483f8382c8fa000705769e1bd8815a5d5aa13": [
+          "12.3.0.29"
+        ],
+        "59cab9753d0e025b9bfebda843555b1bbf99d9ea2d4a8eaa87a1185610b068e4": [
+          "12.3.0.29"
+        ],
+        "6a702b92489bc839793c7b44d57205c20342aeb0d1ee27a2442113ecef20bb72": [
+          "12.3.0.29"
+        ],
+        "83df908ae67e2b3a86201de8463562ab49dd9ee8b3b5efc3fdc2e681b14b5dd9": [
+          "12.3.0.29"
+        ],
+        "88c0e101685f3eaf4026dbba2820127ad789cedb5427ea7faabd52f0885ac18e": [
+          "12.3.0.29"
+        ],
+        "a16c40f16dda2b2ff577af1d47eaa298b8fa51bef88968fb43642369c2556149": [
+          "12.3.0.29"
+        ],
+        "b2404952a5d630fbbc13e12d36975ef87a9c05c71c321c2cb5b3820789e47462": [
+          "12.3.0.29"
+        ],
+        "c89b005c641128cac31515e83b42e5cff860f22fa3eaf8b0285b53085fb027ba": [
+          "12.3.0.29"
+        ],
+        "e6352f5cdb9e68a2162fcff4814e6f56c0d784856f33e3d31d14ebd3d74925d9": [
+          "12.3.0.29"
+        ]
+      },
+      "build_ids": {
+        "54699cadec531bc9f36859fabe0db5ceb8e255f8": [
+          "12.3.0.29"
+        ],
+        "6c8af1ba141111be23323306f78397b477b71edb": [
+          "12.3.0.29"
+        ],
+        "78f0b286e48a72f0741b60e8c4cfb09fecee4909": [
+          "12.3.0.29"
+        ],
+        "f2fc9fa85c71bde73d73bdd2e14b232b0e85f510": [
+          "12.3.0.29"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "12.3.0.29": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "cufile",
+      "description": "CUDA cuFile",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcufile.so",
+        "libcufile_rdma.so",
+        "libcufile_rdma_static.a",
+        "libcufile_static.a"
+      ],
+      "file_hashes": {
+        "10bd319eb15e68fd350d258236e1085778d0460062a85cc0af4fbaf52191377e": [
+          "1.18.1.6"
+        ],
+        "2561c6795ae3fdb3ff03baa7d9fa047967306e3e751c018e97cbab9797de5cf3": [
+          "1.18.1.6"
+        ],
+        "495f32e86abba34a3ab77bf6fe811569a30ec5b049d7167b516535f435b78cb2": [
+          "1.18.1.6"
+        ],
+        "58b38ba2d5bbea8420afdfaa6d8bd88ddb4ca31e4123d8bf8ebdc20c5857519e": [
+          "1.18.1.6"
+        ],
+        "5c67df2f09fb5538bf1687e0ad03bbda438f816808049ff4975547b91a6a71a6": [
+          "1.18.1.6"
+        ],
+        "5d688884ec053dee022ce728959080464e9737574162519d0f553e6916d405ea": [
+          "1.18.1.6"
+        ],
+        "661002c48abf386023c4282027e4a356ac909450f8bbf1fec9be9c50cc1b5eca": [
+          "1.18.1.6"
+        ],
+        "d93bc44d8316d1f71a1801c20f130efd9429cbb4f545ff5627ba8b1898065f37": [
+          "1.18.1.6"
+        ],
+        "ffc66a7f60b61c0b369f61e1e6cdf0dccf40c055fdd21d9cc0dde4e9686f7c17": [
+          "1.18.1.6"
+        ]
+      },
+      "build_ids": {
+        "2c34b542643f54e9b7b0831e43d8b4971839fd9e": [
+          "1.18.1.6"
+        ],
+        "bc193eba21d6ab68621e161a8875569ca47cbddc": [
+          "1.18.1.6"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "1.18.1.6": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "cuobjclient",
+      "description": "CUDA cuObject Client",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcuobjclient.so"
+      ],
+      "file_hashes": {
+        "6cca4342f260a51f9580225db41f7a8d9d5213f4f04674f640bd5ebe9b8fa4fa": [
+          "1.2.0.68"
+        ],
+        "eb2d4c8465a80f740efa9cfa6e2e78248bfefb5c64d7041a26291630c0a4ad54": [
+          "1.2.0.68"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "1.2.0.68": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "cuobjdump",
+      "description": "cuobjdump",
+      "license": "CUDA Toolkit",
+      "soname_stems": [],
+      "file_hashes": {
+        "02712a1fad9be784aa5b6e930ee22381678f1f1b96e83302bd171489b7dfbb38": [
+          "13.3.73"
+        ],
+        "2f3cd496b9183ca2de9e17dbcd7f992eac3cd4475052b151605d9e8445736b94": [
+          "13.3.73"
+        ],
+        "dfc2b954b540df857a586353d52744f89568e8ca366ef5f2f8890f83da365813": [
+          "13.3.73"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "13.3.73": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "cupti",
+      "description": "CUPTI",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcupti.so",
+        "libnvperf_host.so",
+        "libnvperf_target.so",
+        "libcheckpoint.so",
+        "libpcsamplingutil.so"
+      ],
+      "file_hashes": {
+        "298eb0dfbd7eb63b63aab0533b4ba1ab2542c2ea03842a744973c7f38d0982b3": [
+          "13.3.75"
+        ],
+        "5f9df946729a39830ebee4f3467cd28b5bf05740bf753fb780706e66531cc53e": [
+          "13.3.75"
+        ],
+        "602ac5c3e3d4d21bf918184a37688eec9e883e7468e511b026c3b1d525c46803": [
+          "13.3.75"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "13.3.75": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "curand",
+      "description": "CUDA cuRAND",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcurand.so"
+      ],
+      "file_hashes": {
+        "0218e62ab413e435dcd0274ec8e63b62214e6aba8519201061d1597e73caadbb": [
+          "10.4.3.29"
+        ],
+        "17ca22f6d5bf7fcc5893e217802c3829e8e9cc0dfb847e2a6ab16891a2ba3891": [
+          "10.4.3.29"
+        ],
+        "3c2245e848ff8948663646ad7870cc8451b7cf1726758bedff7c123011126e4b": [
+          "10.4.3.29"
+        ],
+        "44f629e55711dc90bbb26616e09e92d7648e81e96d60d605cb360d9a8be29ca2": [
+          "10.4.3.29"
+        ],
+        "d3c518485188990666cf9ad848dab40cd0f686a6760344a52fc9eed24acc5b49": [
+          "10.4.3.29"
+        ]
+      },
+      "build_ids": {
+        "e006ed68406ac2c330565ce422c9aed7ab90e9d8": [
+          "10.4.3.29"
+        ],
+        "ef0aef5949b08ff0146257ae52e5791cf4ecbd8b": [
+          "10.4.3.29"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "10.4.3.29": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "cusolver",
+      "description": "CUDA cuSOLVER",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcusolver.so",
+        "libcusolverMg.so"
+      ],
+      "file_hashes": {
+        "20f1ae21fcf56b647456edb12afdf424a75e128beb009c82c92c84984514b87d": [
+          "12.2.6.9"
+        ],
+        "31f749c10b3e5ff36493ba3ae18a5a567a1a73f4158e1da61a3f9d1eb275398e": [
+          "12.2.6.9"
+        ],
+        "43b66dfacb01235feb6c5d195ec8f4a93811d5bf0411e34447956fdbdfc613e3": [
+          "12.2.6.9"
+        ],
+        "86c0e83e94d59c578d1d413d5b1e0e981d51bf0e154e0152c96310c884ed7b8c": [
+          "12.2.6.9"
+        ],
+        "96f15582ee348f70b4bd26f3a0afd755903063ce1a30cc7bd13db99865c32890": [
+          "12.2.6.9"
+        ],
+        "abf62e0f0ccc0ab68203a804fae1b0c055847c51fe58a23a8cb4544a6af724a3": [
+          "12.2.6.9"
+        ],
+        "b9d477c6efe2dc3286c5e83956296586a013c1057ffdf2c7fd70b1a1a5a93f2f": [
+          "12.2.6.9"
+        ]
+      },
+      "build_ids": {
+        "044cd31ee30272e9dee3ad7d3f9f3257ecb0c46e": [
+          "12.2.6.9"
+        ],
+        "6b68206324a2f2ba923d692339ba13d10f0dbfa5": [
+          "12.2.6.9"
+        ],
+        "a11b6f1e3200f1da681bbc6039402520edcf04db": [
+          "12.2.6.9"
+        ],
+        "b7ea08a5acaf30a52e3d153ce22d92d5274f9a04": [
+          "12.2.6.9"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "12.2.6.9": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "cusparse",
+      "description": "CUDA cuSPARSE",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libcusparse.so"
+      ],
+      "file_hashes": {
+        "291ed8fe182ef19774363ea8194a760098fd24ffd39dae06145f06b5f237d2e2": [
+          "12.8.2.51"
+        ],
+        "32d81710adcf43b412d21dae591981ce936612adb95f235aa1327585e3b22c00": [
+          "12.8.2.51"
+        ],
+        "6ed4779e4ff2fefc403d307b9595ad8ffae26f8528f1def194ba0acac3ecbbaa": [
+          "12.8.2.51"
+        ],
+        "bc019c7c37ed421399155bf5fc5f37331ebf55aca66c42d8cc89bc52f61521f8": [
+          "12.8.2.51"
+        ],
+        "c4a4a857a33627029542bdce01e72ce20c102fd1d8b77b6441b6dceae4e8bbdd": [
+          "12.8.2.51"
+        ]
+      },
+      "build_ids": {
+        "8596747ee1de022e8fe2cfd88e3953337fdef149": [
+          "12.8.2.51"
+        ],
+        "8b56a17095074591d1abd5539620cf2d0d24ae8b": [
+          "12.8.2.51"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "12.8.2.51": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "cuxxfilt",
+      "description": "CUDA cuxxfilt (demangler)",
+      "license": "CUDA Toolkit",
+      "soname_stems": [],
+      "file_hashes": {
+        "3f15ed0e6b9673d30c4085e7d3819d1e4c17b09056ba5e8aa8eda351c27f5849": [
+          "13.3.29"
+        ],
+        "e68d8dcf348e8c8edcedac949f513138d62fb83cfea0a111c2571c602046ab56": [
+          "13.3.29"
+        ],
+        "f93a59c6086497603ddec4cd266bb4f5203138109af0a5e14304da3ee12431bd": [
+          "13.3.29"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "13.3.29": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "npp",
+      "description": "CUDA NPP",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libnppc.so",
+        "libnppc_static.a",
+        "libnppial.so",
+        "libnppicc.so",
+        "libnppidei.so",
+        "libnppif.so",
+        "libnppig.so",
+        "libnppim.so",
+        "libnppist.so",
+        "libnppisu.so",
+        "libnppisu_static.a",
+        "libnppitc.so",
+        "libnppitc_static.a",
+        "libnpps.so"
+      ],
+      "file_hashes": {
+        "0be5a4898689840ae3d1afc6ae4afbd8d75eddbaa2ce112702593edfca08f523": [
+          "13.1.2.81"
+        ],
+        "1de9f5cd34bf8ef7b5ed5de6f0aea8430d095356c278d08aa0213a293ed9d112": [
+          "13.1.2.81"
+        ],
+        "253e762f305273c0f96d4b5e551a1a9c08c7868788998b77763227201e56f0fc": [
+          "13.1.2.81"
+        ],
+        "32e70bacd8c30c2d590c9c2ed322ff641815ac9f3ee45c71237b014ebce6360f": [
+          "13.1.2.81"
+        ],
+        "38439720bdbefaf6523ccad667dbd998a108e98858bb6da117b64e9d761c1d0b": [
+          "13.1.2.81"
+        ],
+        "3b50fb0534455c01e0c2840ef520fd3da5046460197805287671a8993112d132": [
+          "13.1.2.81"
+        ],
+        "435be18759edca78477b01a8f51e5653c9179f69e52392c41e5feb96f3f457d8": [
+          "13.1.2.81"
+        ],
+        "498e7dca99b61561544151cbc8b4e8cee6b79e4c54815680a70232a356ffe1c0": [
+          "13.1.2.81"
+        ],
+        "4f0e769193b7934235f79f9aac523be56f42b7d4ac520a2a4fcd72466fc571ac": [
+          "13.1.2.81"
+        ],
+        "6229ce8f12d0600dc4f6c9596376dec8dfdf963a9fd5abfc61025081fe54545b": [
+          "13.1.2.81"
+        ],
+        "66cc9bd04f3ae8ad5052851db8a4031aa843b0fe7d83cabd1ca0780d183df983": [
+          "13.1.2.81"
+        ],
+        "6c3ba845f82f0407f095c3fe1eb610b2f80e85b1705960428daa305fc164a08b": [
+          "13.1.2.81"
+        ],
+        "7f23f13f127d5c8f84cd0ef62a17893af2047a00e4239d89df4db3163af7cac2": [
+          "13.1.2.81"
+        ],
+        "811226bfd11fa9bda790f24e2a5c6716c73e10b468692f68b334b101d93ff369": [
+          "13.1.2.81"
+        ],
+        "8c4c31f0108ea2e433216e597d68c7763ccaa1418d1d05c1c05931aa436682d1": [
+          "13.1.2.81"
+        ],
+        "9981b892a997ac97243deccbe60d936e471e48e3b8d970754ab2b3379dba1711": [
+          "13.1.2.81"
+        ],
+        "9e11f8eca676ac75e8227d7f4389fffad6d23309cd1f83a50056269b481595e5": [
+          "13.1.2.81"
+        ],
+        "a333e136d44dde33c9c37b8dadd150c0041de6c0b80f8d45eb36f953641b4d39": [
+          "13.1.2.81"
+        ],
+        "a4fe7f767721a4527e3096e5d8047f535e336c736cf9172c83478f9a04e019b0": [
+          "13.1.2.81"
+        ],
+        "b08aa46c89571607a6b8397a99b9c9c94295387f63df13ec5a926965af884791": [
+          "13.1.2.81"
+        ],
+        "b360e7368e61d27c00eaf4911aa8f60ae4faf51456c0a03ca52d38457023433a": [
+          "13.1.2.81"
+        ],
+        "b416f134e14570601fa0ebbb9ca93a86671390e5d11b2d0776a945295d7b6e58": [
+          "13.1.2.81"
+        ],
+        "bfc70eaa15aec80fce021303f9d2dfd2674a5c720c43a3ad7c4f23d065c06dfb": [
+          "13.1.2.81"
+        ],
+        "c3a52a919e3b490ebce59fa073328facfc0ded4943a28d0ffbef4867159b8612": [
+          "13.1.2.81"
+        ],
+        "d16a0ee0dec42c8789829a45475a661f129a23e7555746ce7513a0a6d78185a1": [
+          "13.1.2.81"
+        ],
+        "d5617f1ffbd9c2248e6f6167941d3f15fc294a23cd4bf4917e77adb8d829ba6c": [
+          "13.1.2.81"
+        ],
+        "da91f4d591777cdff2ba6bdbf60c2ee8b1e7c82e3f63741856b4f90e42c6e91f": [
+          "13.1.2.81"
+        ],
+        "dafe8b48e962d36e3f17efe0279b1a7e24e4795f9bcad59f7f842c8df05675a7": [
+          "13.1.2.81"
+        ],
+        "f754be33737ca22021e972ad4e5e081d8a1cc170c8068e83a86ecba660b3f70b": [
+          "13.1.2.81"
+        ],
+        "f770a05cfb59392650d530fae1a297859c08a49d09278f7f67e9b6480f235ec2": [
+          "13.1.2.81"
+        ]
+      },
+      "build_ids": {
+        "0283177d31d1ee7c5b5a13101c92dbe29c4eb2bc": [
+          "13.1.2.81"
+        ],
+        "104e085466465fdbda3e9f57087dd89e1a0b1b40": [
+          "13.1.2.81"
+        ],
+        "1aca770d74f8e9c5f18dde6a627d2a8658740721": [
+          "13.1.2.81"
+        ],
+        "1d3789a27043afa59c2846355614cb4fe110d5f1": [
+          "13.1.2.81"
+        ],
+        "232053a63d91655ee4fb5b7e7b397a0d155d80e3": [
+          "13.1.2.81"
+        ],
+        "3813b27955424efd37b1d5f1b558d804a1ab5732": [
+          "13.1.2.81"
+        ],
+        "38378d7c1b74c9e1092a41a251bb481149e7acf0": [
+          "13.1.2.81"
+        ],
+        "5a617a1232b87773720b88bdcc04f484986756c2": [
+          "13.1.2.81"
+        ],
+        "5fc4cb0324272feac3f8407d0d8067f44dfc4a73": [
+          "13.1.2.81"
+        ],
+        "6af91cf51939865c72232032f1e2ba5aa5140efa": [
+          "13.1.2.81"
+        ],
+        "78a53b7505e96c9a643b2934516c4dbeeb809ad4": [
+          "13.1.2.81"
+        ],
+        "83894c1956c00b46ab8c3cd15a796eb505a7b781": [
+          "13.1.2.81"
+        ],
+        "8418677145a2a449e6dffc3aab63d27d14dab05a": [
+          "13.1.2.81"
+        ],
+        "873e6f120037af50b2fc605705088db2f68a6a13": [
+          "13.1.2.81"
+        ],
+        "99c16ab6c8edd2f9a4b24adddeaf3a7ca2a443ca": [
+          "13.1.2.81"
+        ],
+        "9b4fda428932aac7a98c7880cee0e367f88686de": [
+          "13.1.2.81"
+        ],
+        "a3ad9801dfc8b0cf461028a691d78cff374bf021": [
+          "13.1.2.81"
+        ],
+        "ca129e67743dbfc685ad215c15d5d46414ee32b6": [
+          "13.1.2.81"
+        ],
+        "cbbc2dd612ac9f8bcc655d52c121862b4885f02c": [
+          "13.1.2.81"
+        ],
+        "e3d66be14547b2e73b7312f8868a61652d97edbb": [
+          "13.1.2.81"
+        ],
+        "edaf7c001778e0d0dc2cc6d7930e84ca6fc24644": [
+          "13.1.2.81"
+        ],
+        "fc3db45ae627b0f3d79e7fbe9f572953fb3e7fc5": [
+          "13.1.2.81"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.1.2.81": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "nvfatbin",
+      "description": "NVIDIA compiler library for fatbin interaction",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libnvfatbin.so",
+        "libnvfatbin_static.a"
+      ],
+      "file_hashes": {
+        "316f5232bec825342dbef65167442032fd419c3bee3d51bc831bfabcde192181": [
+          "13.3.29"
+        ],
+        "95197dc49b931b2c0fa8bbd30dbb65a9ceb22a8b7af1f84994d6aadd868763a1": [
+          "13.3.29"
+        ],
+        "d1dc1e80f3b51c10c26acd0f23b601e9c9fa4ed88f709a925a131b0a9b2c74aa": [
+          "13.3.29"
+        ],
+        "d53e2c95f6817bfce9b7665ba29f47b5909aab6f3416c3b106e1ed7a575022c7": [
+          "13.3.29"
+        ],
+        "f3e933b61a26f7b1f8b053bac4a66193e115b006911e2e493623ca01ec8560d4": [
+          "13.3.29"
+        ],
+        "fe443a345c22a860660a32ae5bc0101e1a08c72116aec4cb40b410dfe3296484": [
+          "13.3.29"
+        ]
+      },
+      "build_ids": {
+        "26810e020b5c1b430493d15f378d0416c3b28040": [
+          "13.3.29"
+        ],
+        "ff62d176249f9816d25ac6fd94c6829cba214581": [
+          "13.3.29"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.3.29": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "nvjitlink",
+      "description": "NVIDIA compiler library for JIT LTO functionality",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libnvJitLink.so",
+        "libnvJitLink_static.a"
+      ],
+      "file_hashes": {
+        "3ba1e744347cd68617b862eccfd98b125482e882b7a6319f42abc9a768513db8": [
+          "13.3.33"
+        ],
+        "43bc22509507c138c86885191bb2709b5d23506ea6abdc8bc64d9960e2b63363": [
+          "13.3.33"
+        ],
+        "6ed3a14646bd53e25ccf03a52586cdd12b07ad48cf81fe79deac49b5d64c2ce6": [
+          "13.3.33"
+        ],
+        "f79e25bb1ef2f22f26c09897f6cb8719634f38e7330bd4700a1ea9ec9591eaff": [
+          "13.3.33"
+        ],
+        "f975b125dc4b81b6864fe314280b90d2a0cb6ae04525f961c70b8734f366c77e": [
+          "13.3.33"
+        ],
+        "fd22c5a7978f4e81260f84ae3651156242a3de48d62e35353f6d5a994d3d431d": [
+          "13.3.33"
+        ]
+      },
+      "build_ids": {
+        "1cf6c738acd86010a38740f5e26083977a13ffaf": [
+          "13.3.33"
+        ],
+        "2c8b6712a155b73b9df41c8feafb2bc89267c975": [
+          "13.3.33"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.3.33": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "nvjpeg",
+      "description": "CUDA nvJPEG",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libnvjpeg.so"
+      ],
+      "file_hashes": {
+        "21ce6ef4b339aa119b1275bef536d4c34fd29915550af67cbf1f2e762bdd8d40": [
+          "13.2.1.68"
+        ],
+        "22610703f7bc4e57d9b7b2f39ea7055c7495b603ab8fbf107b6d735a16746d4e": [
+          "13.2.1.68"
+        ],
+        "298f946d674de7e35a13535d2a62c8ed19a083b286de0845c7a90cb300e2a702": [
+          "13.2.1.68"
+        ],
+        "40f36d76a38f1811ad60435dfbea926f398515c98c38bf1a595c5ef9a0e0576e": [
+          "13.2.1.68"
+        ],
+        "932265c0acdd445c260649acf38a015c95a752fd26c3c6d4fcd0cfb47abcbcaa": [
+          "13.2.1.68"
+        ]
+      },
+      "build_ids": {
+        "0fba598909d26f6efd0d43caff9e5a8f83633f9c": [
+          "13.2.1.68"
+        ],
+        "2ba515f9a4bc73e9a4040cec9530915a5a19f40f": [
+          "13.2.1.68"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.2.1.68": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "nvrtc",
+      "description": "CUDA NVRTC",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libnvrtc-builtins.so",
+        "libnvrtc.so",
+        "libnvrtc_static.a"
+      ],
+      "file_hashes": {
+        "7394c640e5761d13d2bbcdbc4b4c5dbac7cb53cd5bc732d78f8a5cb38638e913": [
+          "13.3.33"
+        ],
+        "8519f678588610bf380ccaac130729aa1a624c407183e7ad9c319c19ecc63d2f": [
+          "13.3.33"
+        ],
+        "9e8f78278215babd1236b137252424ca7912c185bd093201f5d97f7dd763b74a": [
+          "13.3.33"
+        ],
+        "afff6fa2eae856b90f66c2d83bbce4a4177404c506291e3a83486244d86c2815": [
+          "13.3.33"
+        ],
+        "b006250d14780735ed6ff049fa30924df76b965f3aaedfcbb1e64e0fd924c88c": [
+          "13.3.33"
+        ],
+        "d0502b25799be62a50b743c640e94a1722d20b1ee4ab70d697d71750f04d3b8a": [
+          "13.3.33"
+        ],
+        "f1b90d8d27b1f6f27b8eb3f468efc843ea21e604459c0467e9091c5f31fd7e7e": [
+          "13.3.33"
+        ]
+      },
+      "build_ids": {
+        "a0944f1f888213ded5aff2ed4d136eda21effe32": [
+          "13.3.33"
+        ],
+        "bca58fd381b248bede2f5cc976f99e3e4ea24224": [
+          "13.3.33"
+        ],
+        "cd6bdceeb7652e7b2562dcfda5d45c84303db704": [
+          "13.3.33"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.3.33": [
+          "13.3.1"
+        ]
+      }
+    },
+    {
+      "name": "nvvm",
+      "description": "CUDA NVVM",
+      "license": "CUDA Toolkit",
+      "soname_stems": [
+        "libnvvm.so"
+      ],
+      "file_hashes": {
+        "206b1ab4979c09b5c32f8bf907c42bc9e16cd7454cf6036f524c45a58d060f93": [
+          "13.3.73"
+        ],
+        "4bdb28ca53b714ae48887921f462a913b6806dd847978f8eba40434c85d1016f": [
+          "13.3.73"
+        ],
+        "ca8f11d5173ac16a166be8fafefbf9676542a097de1fce61b3f17696dffc1f27": [
+          "13.3.73"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "13.3.73": [
+          "13.3.1"
+        ]
+      }
+    }
+  ]
+}

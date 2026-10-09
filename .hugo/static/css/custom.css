@@ -1,0 +1,59 @@
+/* CudaBOM Relearn theme overrides.
+
+   Follows the convention of the ansible-security-scanner and grackle sites:
+   brand-color CSS variables, a themed sidebar, and a homepage brand-mark hero
+   that replaces the redundant front-matter H1. Brand color is NVIDIA green
+   (#76B900). */
+
+:root,
+:root[data-r-theme-variant="relearn-dark"],
+:root[data-r-theme-variant="relearn-light"],
+:root[data-r-theme-variant="relearn-bright"],
+:root[data-r-theme-variant="zen-dark"],
+:root[data-r-theme-variant="zen-light"] {
+  --PRIMARY-color: #76b900 !important;
+  --PRIMARY-HOVER-color: #8fd400 !important;
+  --SECONDARY-color: #76b900 !important;
+  --SECONDARY-HOVER-color: #8fd400 !important;
+  --ACCENT-color: #76b900 !important;
+  --ACCENT-HOVER-color: #8fd400 !important;
+  --CODE-INLINE-color: #76b900 !important;
+}
+
+.logo-title,
+.logo-title a {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+}
+
+.R-sidebarmenu li.active > a {
+  color: #76b900 !important;
+}
+
+/* Homepage brand-mark hero: the landing page leads with the wordmark art, so
+   the theme's front-matter H1 is redundant there. Show the dark art in dark
+   variants, the light art in light variants, and drop the page H1. */
+.brand-hero {
+  margin: 0.5rem 0 1.5rem;
+}
+.brand-hero img {
+  max-width: 100%;
+  height: auto;
+}
+.brand-hero-light {
+  display: none !important;
+}
+:root[data-r-theme-variant="relearn-light"] .brand-hero-dark,
+:root[data-r-theme-variant="relearn-bright"] .brand-hero-dark,
+:root[data-r-theme-variant="zen-light"] .brand-hero-dark {
+  display: none !important;
+}
+:root[data-r-theme-variant="relearn-light"] .brand-hero-light,
+:root[data-r-theme-variant="relearn-bright"] .brand-hero-light,
+:root[data-r-theme-variant="zen-light"] .brand-hero-light {
+  display: inline-block !important;
+}
+#R-body-inner > .flex-block-wrapper article:has(.brand-hero) > h1:first-of-type {
+  display: none;
+}

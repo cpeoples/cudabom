@@ -1,0 +1,54 @@
+# pre-commit hooks for cudabom.
+#   Install once:  pre-commit install
+#   Run manually:  pre-commit run --all-files
+#
+# The local cargo hooks mirror exactly what CI enforces, so a green pre-commit
+# means a green CI check for formatting and lints.
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=500]
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.38.0
+    hooks:
+      - id: yamllint
+        args: [-c, .yamllint.yaml, --strict]
+        files: ^(\.github/|\.pre-commit-config\.yaml$|\.yamllint\.yaml$)
+
+  - repo: local
+    hooks:
+      - id: cargo-fmt
+        name: cargo fmt
+        language: system
+        entry: cargo fmt --
+        types: [rust]
+        pass_filenames: false
+
+      - id: cargo-clippy
+        name: cargo clippy
+        language: system
+        entry: cargo clippy --workspace --all-targets --locked -- -D warnings
+        types: [rust]
+        pass_filenames: false
+
+      - id: product-map-in-sync
+        name: product-map in sync with component profiles
+        language: system
+        entry: cargo run --quiet -p xtask -- product-map --check
+        # The map is generated from advisory_terms in
+        # crates/cudabom-identify/src/derive.rs; regenerate with
+        # `cargo xtask product-map --write`. Trigger on changes to either the
+        # profiles that drive it or the generated file itself.
+        files: ^(crates/cudabom-identify/src/derive\.rs|advisories/product-map\.json|xtask/src/product_map\.rs)$
+        pass_filenames: false

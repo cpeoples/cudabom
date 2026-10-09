@@ -1,0 +1,70 @@
+# ---------------------------------------------------------------------------
+# cudabom documentation site (Hugo + Relearn)
+#
+# This config drives the static documentation site served at the project's
+# GitHub Pages URL. Content under .hugo/content/ is *generated* from the prose
+# in docs/*.md plus data-driven pages (CUDA coverage, advisory stats, the CLI
+# surface) by .hugo/scripts/build_docs.py. Do not hand-edit .hugo/content/;
+# edit docs/*.md and the generator, then re-run the build.
+#
+# Local preview:
+#   python .hugo/scripts/build_docs.py
+#   hugo server -s .hugo
+# ---------------------------------------------------------------------------
+
+# baseURL is intentionally the site root. The real production URL (the GitHub
+# Pages subpath, e.g. https://cpeoples.github.io/cudabom/) is injected only at
+# deploy time by .github/workflows/docs.yml via --baseURL, matching the pattern
+# used by the ansible-security-scanner and grackle sites. Keeping "/" here means
+# `hugo server -s .hugo` works locally with no override and assets resolve.
+baseURL = "/"
+locale = "en-us"
+title = "CudaBOM"
+theme = "hugo-theme-relearn"
+
+# Generated pages live here; the generator rewrites this tree on every run.
+contentDir = "content"
+publishDir = "public"
+
+# Fail the build on a broken internal reference so CI catches dead links.
+[markup.goldmark.renderer]
+unsafe = true
+
+[outputs]
+home = ["HTML", "RSS"]
+
+[params]
+  # Relearn chrome. No editURL is set, so the per-page edit (pencil) button is
+  # hidden: the published pages under .hugo/content/ are generated from
+  # docs/*.md, so "edit this page" would point at the wrong file.
+  showVisitedLinks = true
+  disableBreadcrumb = false
+  disableNextPrev = false
+  disableLandingPageButton = false
+  titleSeparator = "::"
+  # The first variant is the default; a dark variant leads so the site opens in
+  # dark mode. The rest stay available in the theme switcher.
+  themeVariant = ["relearn-dark", "zen-dark", "relearn-light", "relearn-bright", "zen-light"]
+  collapsibleMenu = true
+  # Hide the topbar print button; the docs are read online, not printed.
+  disablePrintButton = true
+
+  [params.author]
+    name = "cudabom contributors"
+
+# Top navigation shortcuts (right-hand menu in Relearn).
+[[menu.shortcuts]]
+  name = "<i class='fab fa-github'></i> GitHub repo"
+  identifier = "ds"
+  url = "https://github.com/cpeoples/cudabom"
+  weight = 10
+
+[[menu.shortcuts]]
+  name = "<i class='fas fa-shield-halved'></i> Threat model"
+  url = "/threat-model/"
+  weight = 20
+
+[[menu.shortcuts]]
+  name = "<i class='fas fa-scale-balanced'></i> Comparison"
+  url = "/comparison/"
+  weight = 30

@@ -1,0 +1,72 @@
+# Rust build artifacts
+/target
+**/*.rs.bk
+
+# Cargo local config overrides (the committed .cargo/config.toml stays)
+.cargo/registry/
+.cargo/git/
+
+# cudabom local data / caches
+#   The advisory index and fingerprint DB are built into the XDG data dir at
+#   runtime, but a local override may land here during development.
+/.cudabom/
+/data/
+
+# Ephemeral test fixtures.
+#   fixtures/src/ (CUDA C++ sources) IS committed. Compiled fixtures are not:
+#   they are built by an optional CI job in an official NVIDIA CUDA container
+#   and are treated as throwaway artifacts. NVIDIA binaries must never be
+#   committed (see docs/fingerprints/README.md).
+/fixtures/build/
+/fixtures/out/
+
+# Real-world evaluation corpus and downloaded NVIDIA redistributables (used to
+# derive fingerprints). NEVER committed: respecting NVIDIA license terms and
+# keeping the repo free of third-party binaries. Only *derived* fingerprint
+# data (hashes, symbol sets, version patterns) under fingerprints/ is committed.
+/corpus/
+/.fingerprint-cache/
+/fingerprints/downloads/
+
+# Fuzzing artifacts
+/fuzz/target/
+/fuzz/corpus/
+/fuzz/artifacts/
+
+# Release/data-bundle build outputs (produced by `cargo xtask bundle` and the
+# release workflow). These are published as release assets, never committed.
+/dist/
+*.tar.gz
+*.tar.gz.sha256
+
+# Snap build outputs (snapcraft writes these into the project dir).
+*.snap
+/parts/
+/prime/
+/stage/
+
+# Coverage artifacts (cargo-llvm-cov / grcov).
+/coverage/
+*.profraw
+*.profdata
+
+# Editor / OS noise
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Generated documentation site.
+#   .hugo/content/ is regenerated from docs/*.md + data by build_docs.py, and
+#   .hugo/public/ is Hugo's build output. The theme is a git submodule and the
+#   config (.hugo/hugo.toml) and generator are committed; the generated trees
+#   are not.
+/.hugo/content/
+/.hugo/public/
+/.hugo/resources/
+/.hugo/.hugo_build.lock
+
+# Snap Store publishing credentials, minted locally via `snapcraft export-login`
+# and uploaded to the GitHub `snapcraft` environment. Never commit the token.
+/.snapcreds/
+*snapcraft-creds*.txt

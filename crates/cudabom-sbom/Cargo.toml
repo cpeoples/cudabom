@@ -1,0 +1,21 @@
+[package]
+name = "cudabom-sbom"
+description = "CycloneDX 1.6 emit/enrich/merge, PEP 770 declared-SBOM reader, and CycloneDX VEX generation."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+cudabom-core.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
