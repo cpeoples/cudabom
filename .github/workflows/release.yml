@@ -128,7 +128,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # On a release GITHUB_REF_NAME is the tag (e.g. v0.1.0). On a
+          # workflow_dispatch dry run it is the branch, which may contain a
+          # slash (release/prep-...); sanitize so the archive name is a single
+          # path component the upload glob can match.
           version="${GITHUB_REF_NAME:-dev}"
+          version="${version//\//-}"
           name="${BIN_NAME}-${version}-${{ matrix.target }}"
           mkdir -p "dist/${name}"
           cp README.md LICENSE NOTICE "dist/${name}/"
