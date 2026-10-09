@@ -566,10 +566,15 @@ jobs:
             # Real release: version comes from the tag.
             cargo set-version "${RELEASE_TAG#v}"
           else
-            # TestPyPI dry run: append a unique dev suffix so the upload never
-            # collides with an existing version on the index.
+            # TestPyPI dry run: derive a unique version that never collides on
+            # the index. cargo set-version refuses a "downgrade", so a bare
+            # pre-release of the current version (0.1.0-dev.N < 0.1.0) is
+            # rejected; bump the patch first so the dev build sorts *above* the
+            # released version (0.1.1-dev.N > 0.1.0) and the command succeeds.
             base="$(cargo pkgid -p cudabom | sed 's/.*[#@]//')"
-            cargo set-version "${base}-dev.$(date +%Y%m%d%H%M%S)"
+            IFS=. read -r major minor patch <<<"${base%%-*}"
+            next="${major}.${minor}.$((patch + 1))"
+            cargo set-version "${next}-dev.$(date +%Y%m%d%H%M%S)"
           fi
 
       - name: Build wheel
