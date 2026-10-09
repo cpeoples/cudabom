@@ -85,3 +85,45 @@ fn cudart_soname_is_known_after_loading_real_shards() {
         cudart.soname_stems
     );
 }
+
+/// Repository root (parent of `fingerprints/`).
+fn fingerprints_root() -> PathBuf {
+    PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../fingerprints")
+}
+
+#[test]
+fn every_committed_tree_loads_cleanly() {
+    // Load every product subtree (cuda, cudnn, nccl, ...) at once. The loader
+    // merges recursively; a conflict means two shards disagree on a version for
+    // the same hash or build-id, which must never ship.
+    let (db, report) = FingerprintDb::from_dir(&fingerprints_root()).expect("load all shards");
+    assert!(
+        report.is_clean(),
+        "committed shards have version conflicts: {:?}",
+        report.conflicts
+    );
+    assert!(!db.is_empty(), "expected derived components across the tree");
+}
+
+#[test]
+fn every_committed_component_has_a_known_profile() {
+    // Accuracy guard: every component derived into a committed shard must map to
+    // a reviewed profile in derive.rs. A shard that derives a component with no
+    // profile would attribute an unidentified identity, so fail the build here
+    // rather than ship it.
+    let (db, _) = FingerprintDb::from_dir(&fingerprints_root()).expect("load all shards");
+    let known: std::collections::BTreeSet<&str> = cudabom_identify::advisory_terms()
+        .into_iter()
+        .map(|(_, component)| component)
+        .collect();
+    let unknown: Vec<&str> = db
+        .components
+        .iter()
+        .map(|c| c.name.as_str())
+        .filter(|name| !known.contains(name))
+        .collect();
+    assert!(
+        unknown.is_empty(),
+        "committed shards derive components with no reviewed profile: {unknown:?}"
+    );
+}
