@@ -344,14 +344,7 @@ def write_landing() -> None:
         'identity for artifacts."\n'
         "alwaysopen = true\n",
     )
-    hero = (
-        '<p class="brand-hero" align="center">'
-        '<img class="brand-hero-dark" src="/assets/brand-mark.svg" '
-        'alt="CudaBOM" width="480" />'
-        '<img class="brand-hero-light" src="/assets/brand-mark-light.svg" '
-        'alt="CudaBOM" width="480" />'
-        "</p>\n\n"
-    )
+    hero = "{{< brandhero >}}\n\n"
     body = (
         "**Find the CUDA your SBOM missed.**\n\n"
         "cudabom is an open-source Rust CLI that proves which NVIDIA CUDA "
