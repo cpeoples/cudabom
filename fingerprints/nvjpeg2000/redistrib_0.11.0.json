@@ -1,0 +1,89 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.11.0",
+    "date": "2026-07-08"
+  },
+  "provenance": {
+    "manifest_sha256": "602825031a49cdbcf0660c8240f62df832bc6553a5627b09e4133b71d2cdbf1b",
+    "corpus_sha256": [
+      "08b544cf39e4693516b0fab23793cebcc6937e8dbc1816b75b8cd0267577b973",
+      "23eba41f33fc35018dc48db31ef72e35d711bb1280cdde34e62bcaa555047348",
+      "4a534fcb34e188a8f021219d8f3a89a5ed79ae970ec75288a0b5f43f778e99ce",
+      "b448efabbc3605dedd5570e4335ead5d31d82e3ad6aad627364419c5626bd5e4",
+      "df7e998965ea7ff0ec3b355f31db0fb7b18423cbc0c3e2cd25da9e8a0e5fea2a"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvjpeg2000",
+      "description": "NVIDIA nvJPEG 2000",
+      "license": "nvJPEG 2K",
+      "soname_stems": [
+        "libnvjpeg2k.so"
+      ],
+      "file_hashes": {
+        "08b544cf39e4693516b0fab23793cebcc6937e8dbc1816b75b8cd0267577b973": [
+          "0.11.0.51"
+        ],
+        "23eba41f33fc35018dc48db31ef72e35d711bb1280cdde34e62bcaa555047348": [
+          "0.11.0.51"
+        ],
+        "4219478a67f1810bafeef86fc09345a2f6a64db477af5590c35530ba94fd6d47": [
+          "0.11.0.51"
+        ],
+        "4a534fcb34e188a8f021219d8f3a89a5ed79ae970ec75288a0b5f43f778e99ce": [
+          "0.11.0.51"
+        ],
+        "6ed3580b6bcecf54f6e3f428ef65839e1b0e03c2d36327cd82463928e2737959": [
+          "0.11.0.51"
+        ],
+        "9a0900e9408e23d3733a199aa35667e9b1bbbdc28e942b6759c7a8b2ade366af": [
+          "0.11.0.51"
+        ],
+        "b448efabbc3605dedd5570e4335ead5d31d82e3ad6aad627364419c5626bd5e4": [
+          "0.11.0.51"
+        ],
+        "b6602a4cd0097a91b4080b9716a46098b9bec4752440e15fd6012a194be42535": [
+          "0.11.0.51"
+        ],
+        "bee9fa8b0f4bc8f179f8a7be27b60cf1470d2a7ac06b025d6f34b87c1c23efaa": [
+          "0.11.0.51"
+        ],
+        "df7e998965ea7ff0ec3b355f31db0fb7b18423cbc0c3e2cd25da9e8a0e5fea2a": [
+          "0.11.0.51"
+        ],
+        "e468e80570d58d576adface41e68e8aeabed9f9b685abe283c57df33cc79acc6": [
+          "0.11.0.51"
+        ],
+        "fd5ce2e616aea1a809365675712e81f97b1169de6dec369d5fef906a6f29c184": [
+          "0.11.0.51"
+        ]
+      },
+      "build_ids": {
+        "1fea97bd315924b73d1e04b8d608f8fa81f500d1": [
+          "0.11.0.51"
+        ],
+        "51d14e5a0c6f45ff6f620cdb81e11a556255483e": [
+          "0.11.0.51"
+        ],
+        "a801125e3f391e6cdd656adefac7b9ff691134e9": [
+          "0.11.0.51"
+        ],
+        "e2ffb67a6155a993309ce9aae000ce94ddece45f": [
+          "0.11.0.51"
+        ],
+        "eaf46337005740ec0b547c09b357861d9ef12774": [
+          "0.11.0.51"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.11.0.51": [
+          "0.11.0"
+        ]
+      }
+    }
+  ]
+}

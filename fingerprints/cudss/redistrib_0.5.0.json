@@ -1,0 +1,175 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.5.0",
+    "date": "2025-02-13"
+  },
+  "provenance": {
+    "manifest_sha256": "41dcf7ba5d4db5e3aae54b07f8585c980677d4885fba9a8a5bb2b62c3af0c661",
+    "corpus_sha256": [
+      "5245d2ba26a590839e2f1dd074f87e39ee5cc201c3b29245b35c7060d59c37a5",
+      "5d07496e90fc0afb334a7e434c86c6083b1e8cf56dc65d70a01bd811e54096d7",
+      "cb59cfa26b3a4277c55ddc700ef65bffb5369d4afc2cdf08c20a9ae324bed664"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cudss",
+      "description": "NVIDIA cuDSS library",
+      "license": "cuDSS library",
+      "soname_stems": [
+        "libcudss.so",
+        "libcudss_commlayer_nccl.so",
+        "libcudss_commlayer_openmpi.so",
+        "libcudss_mtlayer_gomp.so"
+      ],
+      "file_hashes": {
+        "081f33402a7b5ec31184600fa7c5260b5336d1acbc062ec3ab255c566352a97b": [
+          "0.5.0.16"
+        ],
+        "2437653fd12533f59999671e7fbd3eff285782216605da754dd4758ab9b49769": [
+          "0.5.0.16"
+        ],
+        "5245d2ba26a590839e2f1dd074f87e39ee5cc201c3b29245b35c7060d59c37a5": [
+          "0.5.0.16"
+        ],
+        "571afda31bc43f2a5153e1086bb9d6386dd59927a2c81d626a39e649bf6a4cdc": [
+          "0.5.0.16"
+        ],
+        "5d07496e90fc0afb334a7e434c86c6083b1e8cf56dc65d70a01bd811e54096d7": [
+          "0.5.0.16"
+        ],
+        "5f90a1018fe6cd79aa1f380742240b2da3df12bafcfe2cc7470480c23443983a": [
+          "0.5.0.16"
+        ],
+        "7a87cfa4232a7d62719ae7e328e0dc4226e7ea9c7b5b2131fb26765acd092ac6": [
+          "0.5.0.16"
+        ],
+        "814cd7bdc75e5ab9ad9156bf4b16d392e71c70a242915781de288352901a2114": [
+          "0.5.0.16"
+        ],
+        "afb9a48beea252fe7e0012e7dd9d4a7c06a5394426ebb28e133e8a02a28cce10": [
+          "0.5.0.16"
+        ],
+        "c79706aa91d138ded300f22bb2badb94c964383543dabd485ebad91ec411cb6d": [
+          "0.5.0.16"
+        ],
+        "cb59cfa26b3a4277c55ddc700ef65bffb5369d4afc2cdf08c20a9ae324bed664": [
+          "0.5.0.16"
+        ],
+        "d483769574ab6f52080cc4102999427a935664f6b35ae8e4ebee8db870b11840": [
+          "0.5.0.16"
+        ],
+        "f04ed856fc1e6b88e37e59aca8e565a821e4c5b886743ccbabe30bdd9152416f": [
+          "0.5.0.16"
+        ],
+        "f9e0394bc839870c7e01abea2cb433a9352adaa91146ec25cca5960905c2c72e": [
+          "0.5.0.16"
+        ]
+      },
+      "build_ids": {
+        "1d8c759752f87c0a2c82f87083d2b33785839a93": [
+          "0.5.0.16"
+        ],
+        "424b585f8f37a588dfb842ac61ef90fc2f0b423d": [
+          "0.5.0.16"
+        ],
+        "536f81e9908784586f96ccf3643ad7e853c4ac8f": [
+          "0.5.0.16"
+        ],
+        "9ec5de795a82c44bb19752292d7f8d039a9fbc1d": [
+          "0.5.0.16"
+        ],
+        "a87336feff1aa2cb16dc0bfde225af24de7ac4b0": [
+          "0.5.0.16"
+        ],
+        "bda7e9ec6ccec58ee001c70249cd2c5f34fcaef8": [
+          "0.5.0.16"
+        ],
+        "c49338b90a2a0c398c6c3dd68f52514993455702": [
+          "0.5.0.16"
+        ],
+        "c86946b9fd67f6891b546575c6fcf815030651bd": [
+          "0.5.0.16"
+        ],
+        "f1eb3582fa5cce374d30f14388a519d44bbe0650": [
+          "0.5.0.16"
+        ],
+        "f33959ffe88abb67570481462f4b3c8b4a3ab0fa": [
+          "0.5.0.16"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "cudssConfigCreate",
+        "cudssConfigDestroy",
+        "cudssConfigGet",
+        "cudssConfigSet",
+        "cudssCreate",
+        "cudssDataCreate",
+        "cudssDataDestroy",
+        "cudssDataGet",
+        "cudssDataSet",
+        "cudssDestroy",
+        "cudssExecute",
+        "cudssGetDeviceMemHandler",
+        "cudssGetProperty",
+        "cudssMatrixCreateBatchCsr",
+        "cudssMatrixCreateBatchDn",
+        "cudssMatrixCreateCsr",
+        "cudssMatrixCreateDn",
+        "cudssMatrixDestroy",
+        "cudssMatrixGetBatchCsr",
+        "cudssMatrixGetBatchDn",
+        "cudssMatrixGetCsr",
+        "cudssMatrixGetDn",
+        "cudssMatrixGetFormat",
+        "cudssMatrixSetBatchCsrPointers",
+        "cudssMatrixSetBatchValues",
+        "cudssMatrixSetCsrPointers",
+        "cudssMatrixSetValues",
+        "cudssSetCommLayer",
+        "cudssSetDeviceMemHandler",
+        "cudssSetStream",
+        "cudssSetThreadingLayer",
+        "cudss_SuiteSparse_calloc",
+        "cudss_SuiteSparse_config",
+        "cudss_SuiteSparse_divcomplex",
+        "cudss_SuiteSparse_finish",
+        "cudss_SuiteSparse_free",
+        "cudss_SuiteSparse_hypot",
+        "cudss_SuiteSparse_malloc",
+        "cudss_SuiteSparse_realloc",
+        "cudss_SuiteSparse_start",
+        "cudss_SuiteSparse_tic",
+        "cudss_SuiteSparse_time",
+        "cudss_SuiteSparse_toc",
+        "cudss_SuiteSparse_version",
+        "cudss_amd_1",
+        "cudss_amd_2",
+        "cudss_amd_aat",
+        "cudss_amd_control",
+        "cudss_amd_defaults",
+        "cudss_amd_info",
+        "cudss_amd_order",
+        "cudss_amd_post_tree",
+        "cudss_amd_postorder",
+        "cudss_amd_preprocess",
+        "cudss_amd_valid",
+        "cudss_btf_order",
+        "cudss_colamd",
+        "cudss_colamd_recommended",
+        "cudss_colamd_report",
+        "cudss_colamd_set_defaults",
+        "cudss_symamd",
+        "cudss_symamd_report"
+      ],
+      "release_versions": {
+        "0.5.0.16": [
+          "0.5.0"
+        ]
+      }
+    }
+  ]
+}

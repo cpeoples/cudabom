@@ -1,0 +1,132 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.8.1",
+    "date": "2025-09-04"
+  },
+  "provenance": {
+    "manifest_sha256": "d8ce601cd345630af9bb95bf2a40cca317c5f8256ebc4c5bd87af72e5f90d945",
+    "corpus_sha256": [
+      "0fcf5808f66c71f755b4a73af2e955292e4334fec6a851eea1ac2e20878602b7",
+      "5426a897c73a9b98a83c4e132d15abc63dc4a00f7e38266e7b82c42cd58a01e1",
+      "82dd3e5ebc199a27011f58857a80cd825e77bba634ab2286ba3d4e13115db89a",
+      "b34272e683e9f798435af05dc124657d1444cd0e13802c3d2f3152e31cd898a3",
+      "d3ce9fb25961540291c6dc6c7292a1ea7cb886590bf896fdc2564cb2a261a3de",
+      "e87c2e1a8615aa588864915a05c42309869c96d4046b07a50a7a729af2c1ff22"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cusparselt",
+      "description": "NVIDIA cuSPARSELt",
+      "license": "cuSPARSELt",
+      "soname_stems": [
+        "libcusparseLt.so"
+      ],
+      "file_hashes": {
+        "0c7d71e0c30e3201ffb6add421b143525bc04daab8abba1345921165d01999f3": [
+          "0.8.1.1"
+        ],
+        "0fcf5808f66c71f755b4a73af2e955292e4334fec6a851eea1ac2e20878602b7": [
+          "0.8.1.1"
+        ],
+        "1a1a4be5c2da47e242d3fbab35b66077916aeb2b8175bc6a0a6691e11972951c": [
+          "0.8.1.1"
+        ],
+        "5426a897c73a9b98a83c4e132d15abc63dc4a00f7e38266e7b82c42cd58a01e1": [
+          "0.8.1.1"
+        ],
+        "6225c8d405c955889a9966e8eafd844bf90684823a89a35865be4425606c333c": [
+          "0.8.1.1"
+        ],
+        "747467f2d2a7b051bf08737fcff3734e943e31401da41298ad1b38b042ee9e11": [
+          "0.8.1.1"
+        ],
+        "82dd3e5ebc199a27011f58857a80cd825e77bba634ab2286ba3d4e13115db89a": [
+          "0.8.1.1"
+        ],
+        "9b0824bab2cecef18766241a09f983b1325bfad57f4972b103683dcb5d017942": [
+          "0.8.1.1"
+        ],
+        "b34272e683e9f798435af05dc124657d1444cd0e13802c3d2f3152e31cd898a3": [
+          "0.8.1.1"
+        ],
+        "c527814ad9d258f15cdc4563d17f9021eab8e351202af816ac03b062f6ebe095": [
+          "0.8.1.1"
+        ],
+        "d3ce9fb25961540291c6dc6c7292a1ea7cb886590bf896fdc2564cb2a261a3de": [
+          "0.8.1.1"
+        ],
+        "d83c3a9c34df98aa999e6a64278a36eb837b411af593d41fe74746a2915e379d": [
+          "0.8.1.1"
+        ],
+        "e87c2e1a8615aa588864915a05c42309869c96d4046b07a50a7a729af2c1ff22": [
+          "0.8.1.1"
+        ],
+        "f14b5393df6459e999fb197a5afe10bfff1ab437c840746bbfeb318e20ec12ff": [
+          "0.8.1.1"
+        ]
+      },
+      "build_ids": {
+        "8b9e2a641eca0780f3de6f9140736fc609fe6485": [
+          "0.8.1.1"
+        ],
+        "c12ea634c8a361ef15aff242f50e93e4d5724a49": [
+          "0.8.1.1"
+        ],
+        "c9ad223bee4a440f106249275f4684808077c705": [
+          "0.8.1.1"
+        ],
+        "ea393370ca2a968b8b528a6d814f48c51fc99052": [
+          "0.8.1.1"
+        ],
+        "f9227b10c21d630698b37334887da6d221229544": [
+          "0.8.1.1"
+        ],
+        "fc595473a6d402bb8c0718dc721efd4d5c31b320": [
+          "0.8.1.1"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "cusparseLtDenseDescriptorInit",
+        "cusparseLtDestroy",
+        "cusparseLtGetErrorName",
+        "cusparseLtGetErrorString",
+        "cusparseLtGetProperty",
+        "cusparseLtGetVersion",
+        "cusparseLtInit",
+        "cusparseLtMatDescGetAttribute",
+        "cusparseLtMatDescSetAttribute",
+        "cusparseLtMatDescriptorDestroy",
+        "cusparseLtMatmul",
+        "cusparseLtMatmulAlgGetAttribute",
+        "cusparseLtMatmulAlgSelectionDestroy",
+        "cusparseLtMatmulAlgSelectionInit",
+        "cusparseLtMatmulAlgSetAttribute",
+        "cusparseLtMatmulDescGetAttribute",
+        "cusparseLtMatmulDescSetAttribute",
+        "cusparseLtMatmulDescriptorInit",
+        "cusparseLtMatmulGetWorkspace",
+        "cusparseLtMatmulPlanDestroy",
+        "cusparseLtMatmulPlanInit",
+        "cusparseLtMatmulSearch",
+        "cusparseLtSpMMACompress",
+        "cusparseLtSpMMACompress2",
+        "cusparseLtSpMMACompressedSize",
+        "cusparseLtSpMMACompressedSize2",
+        "cusparseLtSpMMAPrune",
+        "cusparseLtSpMMAPrune2",
+        "cusparseLtSpMMAPruneCheck",
+        "cusparseLtSpMMAPruneCheck2",
+        "cusparseLtStructuredDescriptorInit"
+      ],
+      "release_versions": {
+        "0.8.1.1": [
+          "0.8.1"
+        ]
+      }
+    }
+  ]
+}

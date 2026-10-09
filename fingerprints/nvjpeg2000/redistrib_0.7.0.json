@@ -1,0 +1,52 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.7.0",
+    "date": "2023-03-20"
+  },
+  "provenance": {
+    "manifest_sha256": "787cc18303cb7f10006efe3910257bb921fedf1d3d91a5c1c6f3d80c84e345f7",
+    "corpus_sha256": [
+      "2cad6621884e4fdf175304b45ed766bb65936a0c28769fba9f8cf75c30f60d75"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvjpeg2000",
+      "description": "NVIDIA nvJPEG 2000",
+      "license": "nvJPEG 2K",
+      "soname_stems": [
+        "libnvjpeg2k.so"
+      ],
+      "file_hashes": {
+        "2cad6621884e4fdf175304b45ed766bb65936a0c28769fba9f8cf75c30f60d75": [
+          "0.7.0.31"
+        ],
+        "5b55e9c17e06910cdde0e4b87d9f62ac9a3c0db5cc534fc9bfc9df748986bae3": [
+          "0.7.0.31"
+        ],
+        "711bca6b96e485bc8676c8601fb92d7a556a7a13f12a8abeeccec5c22b6d308f": [
+          "0.7.0.31"
+        ],
+        "85825b63a9622242f5d1977ccac3316c6c9843f595628e133c45ac5b601a3c7f": [
+          "0.7.0.31"
+        ]
+      },
+      "build_ids": {
+        "d52da249c9a8d2b60398923c0449c046de4a371c": [
+          "0.7.0.31"
+        ],
+        "e466f37629e192b97aaddd7664fff7c63042b603": [
+          "0.7.0.31"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.7.0.31": [
+          "0.7.0"
+        ]
+      }
+    }
+  ]
+}

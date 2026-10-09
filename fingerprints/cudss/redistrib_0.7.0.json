@@ -1,0 +1,255 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.7.0",
+    "date": "2025-10-01"
+  },
+  "provenance": {
+    "manifest_sha256": "7204064d97a617bfbdea5a37008d9e9520ed84f5a23764b1eb008f8da7b4607e",
+    "corpus_sha256": [
+      "92f3425e7badcd2d6324efbe8c7ca314a36295ab550238f7772137c3652d7884",
+      "939606e8d062ee0fc28094e7be19e22191662e8593bc7f5eec16220ad836feb9",
+      "c33768ac50caa36103facfec21a32b2c65ed1f1f085eaf153091dcaf734fdfc6",
+      "c98d5ef87e8b6a356b21a678715033b19620ce58b5fa64c97e25e6d3e76e42dc",
+      "ce3de5e6a0cee00fd1fc355881308ef0c692c6e14b6a5625aa35a7f9df98b846",
+      "f915eb581ab965d0baa74cd1e529086fce00e9d14d9366da4480b5ef7fabb8a6"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cudss",
+      "description": "NVIDIA cuDSS library",
+      "license": "cuDSS library",
+      "soname_stems": [
+        "libcudss.so",
+        "libcudss_commlayer_nccl.so",
+        "libcudss_commlayer_openmpi.so",
+        "libcudss_mtlayer_gomp.so"
+      ],
+      "file_hashes": {
+        "03c5df77d41d668516c7de7fa1c259a20202edb71bfd0ab0dbee03eadbedfdc1": [
+          "0.7.0.20"
+        ],
+        "0e05a5ef918f9947e9e1ee9270786207a5f48da97ca7858452c8bcb0e2996101": [
+          "0.7.0.20"
+        ],
+        "197e5a9cfb7734fbb6fdb1912e7551ef6d704f5be41a96a1b9348ac06826a1a0": [
+          "0.7.0.20"
+        ],
+        "1c968149419719949daca172c3f50d71ef6521bbbdc240be44a5692659690242": [
+          "0.7.0.20"
+        ],
+        "38774836af667475bf72f1c703ceb892e5e53ae2b9db9346d98ecc0f32e352e2": [
+          "0.7.0.20"
+        ],
+        "38dadf1478428abee9b1426dd71bd8fb73d683f0f6981b3c8c04d1181f7d0b26": [
+          "0.7.0.20"
+        ],
+        "409e9dff82883619250e7d1650d3641d82664406aa32e072ad99a9ec0d1a74b7": [
+          "0.7.0.20"
+        ],
+        "4b071858fe313f6132197c07fa0937d6604a11d62c16f7f37827bae647581d74": [
+          "0.7.0.20"
+        ],
+        "6964ae3e1bdd5a3746c68f08364d3b3b11f7ce90edd620938610bf00e50bd81c": [
+          "0.7.0.20"
+        ],
+        "69b7e5dc98f2d6242eb8e072d7a73e1f573d8a1bb65d97463ba72e9334d67f58": [
+          "0.7.0.20"
+        ],
+        "6b4ef115e444be1e398a186cceb5a14cfd14bc6b991491b3a43dfda7ed3e08be": [
+          "0.7.0.20"
+        ],
+        "7c62b1632bc16784b6ee79c0d875aa5ace34006f8fe265938d9eff49b5d2e4d3": [
+          "0.7.0.20"
+        ],
+        "7f58cf97a850c78766ce44ef0e9ec2d8850583f1e7bfc15f48cf8ba6ec03eab8": [
+          "0.7.0.20"
+        ],
+        "92f3425e7badcd2d6324efbe8c7ca314a36295ab550238f7772137c3652d7884": [
+          "0.7.0.20"
+        ],
+        "939606e8d062ee0fc28094e7be19e22191662e8593bc7f5eec16220ad836feb9": [
+          "0.7.0.20"
+        ],
+        "a35f34a1995b5951cfe5b625e17d33ebe0e7e487476b5315a229cf348dcc2c0b": [
+          "0.7.0.20"
+        ],
+        "a526dcdb8f10acec0b2548a363aebd85aa20f525cd6131fe1c8d04ef010326cc": [
+          "0.7.0.20"
+        ],
+        "a6ac79c5393589fab82364fc9cd5f46cc9e5fd8f98f4bece817711999936c120": [
+          "0.7.0.20"
+        ],
+        "b0fcb42e8807ac3138aaba9bfe6127902bd09b9a18ae46837dd544c34a46a696": [
+          "0.7.0.20"
+        ],
+        "c15a926542b5a1eff70a505d85cae0170311946a66a3462c767c9e3898d0d3ca": [
+          "0.7.0.20"
+        ],
+        "c33768ac50caa36103facfec21a32b2c65ed1f1f085eaf153091dcaf734fdfc6": [
+          "0.7.0.20"
+        ],
+        "c98d5ef87e8b6a356b21a678715033b19620ce58b5fa64c97e25e6d3e76e42dc": [
+          "0.7.0.20"
+        ],
+        "ce3de5e6a0cee00fd1fc355881308ef0c692c6e14b6a5625aa35a7f9df98b846": [
+          "0.7.0.20"
+        ],
+        "d25887ce08b14dfdb98ee77ac93eef78c24d8c3ece2ad45ee0a951fbc22168e5": [
+          "0.7.0.20"
+        ],
+        "d7b04a0c2d8044233e312d2c31724030f15c4cdc251eaff19071fa2bcb3c76b3": [
+          "0.7.0.20"
+        ],
+        "d7dde0c940d8b2fdb21ec6b2f0442cd574d0401fc50f0c1fdfb40e0c9a9648fd": [
+          "0.7.0.20"
+        ],
+        "e763529b00f765c956d43b476610c1e12c7027ae3e2bddb760337b0e3e01faca": [
+          "0.7.0.20"
+        ],
+        "ebf7d1ce884ab98d53eb631ef7401056042cf842aed86e52a4a75fc26d7e61fc": [
+          "0.7.0.20"
+        ],
+        "ec99558df4dbd65659d241361c6ff4cbfad70601ea537ff4e22eae9fe428ab5d": [
+          "0.7.0.20"
+        ],
+        "f915eb581ab965d0baa74cd1e529086fce00e9d14d9366da4480b5ef7fabb8a6": [
+          "0.7.0.20"
+        ]
+      },
+      "build_ids": {
+        "2c2e7484537f87609eed26ee83657854665b190e": [
+          "0.7.0.20"
+        ],
+        "3eadd7187809cfd5dc80fd8f9d3125a52d0c120f": [
+          "0.7.0.20"
+        ],
+        "424b585f8f37a588dfb842ac61ef90fc2f0b423d": [
+          "0.7.0.20"
+        ],
+        "457b1bfada46797318e6de434fa1dfd41c6763c2": [
+          "0.7.0.20"
+        ],
+        "4afb89067b82112b80d71bca162ac0be2e787e6a": [
+          "0.7.0.20"
+        ],
+        "79f595eee5b205124724f9c3a04293043a65aef4": [
+          "0.7.0.20"
+        ],
+        "8c00ab81df24d53a027f6332f184de3b6fd9623b": [
+          "0.7.0.20"
+        ],
+        "9c462c6cd76795ab064a59266368b0e8e5280a93": [
+          "0.7.0.20"
+        ],
+        "9c7ca746434d6637078e5d056a4142f6a00409ce": [
+          "0.7.0.20"
+        ],
+        "a87336feff1aa2cb16dc0bfde225af24de7ac4b0": [
+          "0.7.0.20"
+        ],
+        "c0f4475c46f7cea63581f03d492e21ac7b1d3ec6": [
+          "0.7.0.20"
+        ],
+        "c49338b90a2a0c398c6c3dd68f52514993455702": [
+          "0.7.0.20"
+        ],
+        "c9ba358077c72e2348e27b1c38fc2baa66fee5c7": [
+          "0.7.0.20"
+        ],
+        "cbef550f8c7fc19195fe431aa9172bceb57ed2cc": [
+          "0.7.0.20"
+        ],
+        "d0a886c7949970dccd50c0d901d88f26cb908e2d": [
+          "0.7.0.20"
+        ],
+        "d4343b6f22a3828242fd04f3ba8e9acfb2229550": [
+          "0.7.0.20"
+        ],
+        "e97607322a03ca4c7d70622d898f70edeaa8aa5d": [
+          "0.7.0.20"
+        ],
+        "f139b882a876bc3a345601754972128b8825ce38": [
+          "0.7.0.20"
+        ],
+        "f33959ffe88abb67570481462f4b3c8b4a3ab0fa": [
+          "0.7.0.20"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "cudssConfigCreate",
+        "cudssConfigDestroy",
+        "cudssConfigGet",
+        "cudssConfigSet",
+        "cudssCreate",
+        "cudssCreateMg",
+        "cudssDataCreate",
+        "cudssDataDestroy",
+        "cudssDataGet",
+        "cudssDataSet",
+        "cudssDestroy",
+        "cudssExecute",
+        "cudssGetDeviceMemHandler",
+        "cudssGetProperty",
+        "cudssMatrixCreateBatchCsr",
+        "cudssMatrixCreateBatchDn",
+        "cudssMatrixCreateCsr",
+        "cudssMatrixCreateDn",
+        "cudssMatrixDestroy",
+        "cudssMatrixGetBatchCsr",
+        "cudssMatrixGetBatchDn",
+        "cudssMatrixGetCsr",
+        "cudssMatrixGetDistributionRow1d",
+        "cudssMatrixGetDn",
+        "cudssMatrixGetFormat",
+        "cudssMatrixSetBatchCsrPointers",
+        "cudssMatrixSetBatchValues",
+        "cudssMatrixSetCsrPointers",
+        "cudssMatrixSetDistributionRow1d",
+        "cudssMatrixSetValues",
+        "cudssSetCommLayer",
+        "cudssSetDeviceMemHandler",
+        "cudssSetStream",
+        "cudssSetThreadingLayer",
+        "cudss_SuiteSparse_calloc",
+        "cudss_SuiteSparse_config",
+        "cudss_SuiteSparse_divcomplex",
+        "cudss_SuiteSparse_finish",
+        "cudss_SuiteSparse_free",
+        "cudss_SuiteSparse_hypot",
+        "cudss_SuiteSparse_malloc",
+        "cudss_SuiteSparse_realloc",
+        "cudss_SuiteSparse_start",
+        "cudss_SuiteSparse_tic",
+        "cudss_SuiteSparse_time",
+        "cudss_SuiteSparse_toc",
+        "cudss_SuiteSparse_version",
+        "cudss_amd_1",
+        "cudss_amd_2",
+        "cudss_amd_aat",
+        "cudss_amd_control",
+        "cudss_amd_defaults",
+        "cudss_amd_info",
+        "cudss_amd_order",
+        "cudss_amd_post_tree",
+        "cudss_amd_postorder",
+        "cudss_amd_preprocess",
+        "cudss_amd_valid",
+        "cudss_colamd",
+        "cudss_colamd_recommended",
+        "cudss_colamd_report",
+        "cudss_colamd_set_defaults",
+        "cudss_symamd",
+        "cudss_symamd_report"
+      ],
+      "release_versions": {
+        "0.7.0.20": [
+          "0.7.0"
+        ]
+      }
+    }
+  ]
+}

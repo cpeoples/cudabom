@@ -1,0 +1,136 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "1.3.2",
+    "date": "2021-09-22"
+  },
+  "provenance": {
+    "manifest_sha256": "296d55666b8acfa855b339fd252e3116c37399829018b7d6a75cc61d953b7dee",
+    "corpus_sha256": [
+      "6e92fee6a192f9fc19876df99544893f7b4cfb8b5ff1ce6d172474c6e13154ea",
+      "8a219f0bbbebabc9ad3ea70a77a84012fb4e3bc9da2808b1eca82b02e01d5113",
+      "cf2b8f1f220cdc90aaec577bde144509f805739e00a857ef161f6a5e8b769697"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cutensor",
+      "description": "NVIDIA cuTENSOR",
+      "license": "cuTensor",
+      "soname_stems": [
+        "libcutensor.so",
+        "libcutensorMg.so",
+        "libcutensorMp.so"
+      ],
+      "file_hashes": {
+        "2065ba0ea2833227d53a8cc2875bfa4393a06631ccc2d7dc896be1bf69221497": [
+          "1.3.2.3"
+        ],
+        "3f2046d8ba0a8dacbd48ec7f063e8a39f2a68d994ed933b912e02c1da87c48e5": [
+          "1.3.2.3"
+        ],
+        "6e92fee6a192f9fc19876df99544893f7b4cfb8b5ff1ce6d172474c6e13154ea": [
+          "1.3.2.3"
+        ],
+        "7baebe14eee87f25a1740dd12c7040566945b7f1c33fe1a8676eac081dc225c4": [
+          "1.3.2.3"
+        ],
+        "7c7880de9c15db1d45cc24ce5758fcf9d1cd596139cfb57c97c2f764d86794b7": [
+          "1.3.2.3"
+        ],
+        "8a219f0bbbebabc9ad3ea70a77a84012fb4e3bc9da2808b1eca82b02e01d5113": [
+          "1.3.2.3"
+        ],
+        "8eb601ff6d88a5c4d9f404d73cd1b4691fc13dcf0efb7f6e9a10b3ec1af3c2a0": [
+          "1.3.2.3"
+        ],
+        "a9e84820eec51d1c07c77c683d20945e24e9ed331006982957900dafb88508c9": [
+          "1.3.2.3"
+        ],
+        "ad9853fb945880ce15cf4fb3f03295d55c0e5dfa32e696a59ff13cfcaf2afe2a": [
+          "1.3.2.3"
+        ],
+        "cf2b8f1f220cdc90aaec577bde144509f805739e00a857ef161f6a5e8b769697": [
+          "1.3.2.3"
+        ],
+        "efead6416699cb98e11cc224b34f9350b905d31d25cc38f274a7978cac575621": [
+          "1.3.2.3"
+        ],
+        "fa69c1f2ba3c5c5f2feda56963674da92a39c0f6bbcd3895156709f9f6f2844a": [
+          "1.3.2.3"
+        ]
+      },
+      "build_ids": {
+        "29541fdb944357f0fab4cd3dacc0438a7df94d4b": [
+          "1.3.2.3"
+        ],
+        "2f82436737d1373099cfbf589c185e626112b662": [
+          "1.3.2.3"
+        ],
+        "3967ed922ae651cc19a22415a0e36d87825f1855": [
+          "1.3.2.3"
+        ],
+        "3e66508df50c990abafafe60350cc70127e2b611": [
+          "1.3.2.3"
+        ],
+        "5b7e28ccdde9f4656d42f525dd3c1909f240bc69": [
+          "1.3.2.3"
+        ],
+        "854ec9d85f1ad0f38e541db445048da823cddef9": [
+          "1.3.2.3"
+        ],
+        "92c09c7898d399a5b5e6ff0e2d9fe1bad08cb30a": [
+          "1.3.2.3"
+        ],
+        "e755e19d26d84c4e0ec200b16f743b9c7614e7b2": [
+          "1.3.2.3"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "cutensorContraction",
+        "cutensorContractionDescriptorInfo",
+        "cutensorContractionDescriptorSetAttribute",
+        "cutensorContractionFindSetAttribute",
+        "cutensorContractionFindSetKernel",
+        "cutensorContractionGetWorkspace",
+        "cutensorContractionMaxAlgos",
+        "cutensorContractionPlanInfo",
+        "cutensorConvolutionGetOutput",
+        "cutensorElementwiseBinary",
+        "cutensorElementwiseTrinary",
+        "cutensorGetAlignmentRequirement",
+        "cutensorGetCudartVersion",
+        "cutensorGetErrorString",
+        "cutensorGetVersion",
+        "cutensorHandleAttachPlanCachelines",
+        "cutensorHandleDetachPlanCachelines",
+        "cutensorHandleReadCacheFromFile",
+        "cutensorHandleWriteCacheToFile",
+        "cutensorHeuristicFeatures",
+        "cutensorInit",
+        "cutensorInitContractionDescriptor",
+        "cutensorInitContractionFind",
+        "cutensorInitContractionPlan",
+        "cutensorInitConvolutionDescriptor",
+        "cutensorInitConvolvedMode",
+        "cutensorInitTensorDescriptor",
+        "cutensorLoggerForceDisable",
+        "cutensorLoggerOpenFile",
+        "cutensorLoggerSetCallback",
+        "cutensorLoggerSetFile",
+        "cutensorLoggerSetLevel",
+        "cutensorLoggerSetMask",
+        "cutensorPermutation",
+        "cutensorReduction",
+        "cutensorReductionGetWorkspace"
+      ],
+      "release_versions": {
+        "1.3.2.3": [
+          "1.3.2"
+        ]
+      }
+    }
+  ]
+}

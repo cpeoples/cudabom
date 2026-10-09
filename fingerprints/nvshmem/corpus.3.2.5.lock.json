@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvshmem",
+      "version": "3.2.5",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvshmem/redist/libnvshmem/linux-sbsa/libnvshmem-linux-sbsa-3.2.5_cuda12-archive.tar.xz",
+      "sha256": "2522f0ff191a39d07b33be52ff5069ca871972fb40ec382657774a7a654282e6"
+    },
+    {
+      "component": "nvshmem",
+      "version": "3.2.5",
+      "platform": "linux-x86_64-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/nvshmem/redist/libnvshmem/linux-x86_64/libnvshmem-linux-x86_64-3.2.5_cuda11-archive.tar.xz",
+      "sha256": "042f03d1699b7d27304c8ed5d9d471504b9ea9a0ec7ee73b7f2d6fbc10092668"
+    },
+    {
+      "component": "nvshmem",
+      "version": "3.2.5",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvshmem/redist/libnvshmem/linux-x86_64/libnvshmem-linux-x86_64-3.2.5_cuda12-archive.tar.xz",
+      "sha256": "07e484139a0ddddf6b62b757f9ea32ad6caf128acfa83c8e137a5512f0c97875"
+    }
+  ]
+}

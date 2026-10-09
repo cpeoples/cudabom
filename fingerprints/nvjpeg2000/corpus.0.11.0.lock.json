@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvjpeg2000",
+      "version": "0.11.0.51",
+      "platform": "linux-aarch64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvjpeg2000/redist/libnvjpeg_2k/linux-aarch64/libnvjpeg_2k-linux-aarch64-0.11.0.51_cuda12-archive.tar.xz",
+      "sha256": "4a534fcb34e188a8f021219d8f3a89a5ed79ae970ec75288a0b5f43f778e99ce"
+    },
+    {
+      "component": "nvjpeg2000",
+      "version": "0.11.0.51",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvjpeg2000/redist/libnvjpeg_2k/linux-sbsa/libnvjpeg_2k-linux-sbsa-0.11.0.51_cuda12-archive.tar.xz",
+      "sha256": "df7e998965ea7ff0ec3b355f31db0fb7b18423cbc0c3e2cd25da9e8a0e5fea2a"
+    },
+    {
+      "component": "nvjpeg2000",
+      "version": "0.11.0.51",
+      "platform": "linux-sbsa-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/nvjpeg2000/redist/libnvjpeg_2k/linux-sbsa/libnvjpeg_2k-linux-sbsa-0.11.0.51_cuda13-archive.tar.xz",
+      "sha256": "b448efabbc3605dedd5570e4335ead5d31d82e3ad6aad627364419c5626bd5e4"
+    },
+    {
+      "component": "nvjpeg2000",
+      "version": "0.11.0.51",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvjpeg2000/redist/libnvjpeg_2k/linux-x86_64/libnvjpeg_2k-linux-x86_64-0.11.0.51_cuda12-archive.tar.xz",
+      "sha256": "08b544cf39e4693516b0fab23793cebcc6937e8dbc1816b75b8cd0267577b973"
+    },
+    {
+      "component": "nvjpeg2000",
+      "version": "0.11.0.51",
+      "platform": "linux-x86_64-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/nvjpeg2000/redist/libnvjpeg_2k/linux-x86_64/libnvjpeg_2k-linux-x86_64-0.11.0.51_cuda13-archive.tar.xz",
+      "sha256": "23eba41f33fc35018dc48db31ef72e35d711bb1280cdde34e62bcaa555047348"
+    }
+  ]
+}

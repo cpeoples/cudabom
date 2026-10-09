@@ -1,0 +1,23 @@
+{
+    "release_date": "2026-08-11",
+    "release_label": "2.31.2-cuda12.9",
+    "release_product": "nccl-nccl-stable-cuda-12",
+    "nccl": {
+        "name": "NCCL",
+        "license": "NVIDIA NVTX",
+        "license_path": "nccl/LICENSE.txt",
+        "version": "2.31.2",
+        "linux-x86_64": {
+            "relative_path": "nccl/linux-x86_64/nccl-linux-x86_64-2.31.2-archive.tar.xz",
+            "sha256": "844e36812d51b5bb3c758b7bd206125e32115a5371acfb3c353778e4e736fe0e",
+            "md5": "6e53cd064186f58990b5f31d25da9bbf",
+            "size": "447839240"
+        },
+        "linux-sbsa": {
+            "relative_path": "nccl/linux-sbsa/nccl-linux-sbsa-2.31.2-archive.tar.xz",
+            "sha256": "a72e23db9423178f5872f65e522a21ce5337b6dc248d419fbf6526d1875ee856",
+            "md5": "467f155eb5c04fcb03a761097c7f0692",
+            "size": "442287400"
+        }
+    }
+}

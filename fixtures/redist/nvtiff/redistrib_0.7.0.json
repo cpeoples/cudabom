@@ -1,0 +1,65 @@
+{
+    "release_date": "2026-04-06",
+    "release_label": "0.7.0",
+    "release_product": "nvtiff",
+    "libnvtiff": {
+        "version": "0.7.0.79",
+        "linux-x86_64": {
+            "cuda12": {
+                "relative_path": "libnvtiff/linux-x86_64/libnvtiff-linux-x86_64-0.7.0.79_cuda12-archive.tar.xz",
+                "sha256": "103ad6ee79f1db3c9189e1fa3b4e23b5e19458a63922ee3670773b206e495bef",
+                "md5": "94aad7d0fea3c5270f0dcd0e6b075f4c",
+                "size": "2974828"
+            },
+            "cuda13": {
+                "relative_path": "libnvtiff/linux-x86_64/libnvtiff-linux-x86_64-0.7.0.79_cuda13-archive.tar.xz",
+                "sha256": "705c00c69150089222d06cf35efdcaa32a02e74400da0afd4cd956e0122e327e",
+                "md5": "494c1f727496a5355fb5e87b6d3e7f77",
+                "size": "2007812"
+            }
+        },
+        "cuda_variant": [
+            "12",
+            "13"
+        ],
+        "linux-sbsa": {
+            "cuda12": {
+                "relative_path": "libnvtiff/linux-sbsa/libnvtiff-linux-sbsa-0.7.0.79_cuda12-archive.tar.xz",
+                "sha256": "d44155d6721090e75259da5464fb29a81f3dd88676bae18dce20b48217a860e5",
+                "md5": "e7070945dea79663d7db9fff132a4f98",
+                "size": "2877472"
+            },
+            "cuda13": {
+                "relative_path": "libnvtiff/linux-sbsa/libnvtiff-linux-sbsa-0.7.0.79_cuda13-archive.tar.xz",
+                "sha256": "bfad9bbb1adb08f0d4ac83b876e8fb4acdbe0fda0318a99dd2b683ac174653d8",
+                "md5": "ab9dbc1044e52ccd96cefbc7952c86fa",
+                "size": "2131896"
+            }
+        },
+        "name": "NVIDIA nvTIFF",
+        "license": "nvTIFF",
+        "license_path": "libnvtiff/LICENSE.txt",
+        "windows-x86_64": {
+            "cuda12": {
+                "relative_path": "libnvtiff/windows-x86_64/libnvtiff-windows-x86_64-0.7.0.79_cuda12-archive.zip",
+                "sha256": "c7db868ebb9c189f555e0d14b9b6ad922e3e99e3168ddfb59083cfe1890fd8e8",
+                "md5": "8b35f0772d04d1229e79a0835eef6d53",
+                "size": "3343467"
+            },
+            "cuda13": {
+                "relative_path": "libnvtiff/windows-x86_64/libnvtiff-windows-x86_64-0.7.0.79_cuda13-archive.zip",
+                "sha256": "de677bd7a893ce5651d2672ae6cf09087d78108399116c9d1c8bb4f08140dfed",
+                "md5": "ca363e9c378c449ddc84662d7e279657",
+                "size": "1688958"
+            }
+        },
+        "linux-aarch64": {
+            "cuda12": {
+                "relative_path": "libnvtiff/linux-aarch64/libnvtiff-linux-aarch64-0.7.0.79_cuda12-archive.tar.xz",
+                "sha256": "e3a58435c4fea02bdaf5c626087a520477253e8b0e8bdf098168b4a5a7451345",
+                "md5": "bfdaa451884a5181b2bab46b43531720",
+                "size": "1739304"
+            }
+        }
+    }
+}

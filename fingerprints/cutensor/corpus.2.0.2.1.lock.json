@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cutensor",
+      "version": "2.0.2.5",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-ppc64le/libcutensor-linux-ppc64le-2.0.2.5-archive.tar.xz",
+      "sha256": "e351dc1e69bd0c5ac45b6ef311ee2b510c8ff6f0b350b0354d6db5563e8fabae"
+    },
+    {
+      "component": "cutensor",
+      "version": "2.0.2.5",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-2.0.2.5-archive.tar.xz",
+      "sha256": "5163dd40f11f328e469a6d9b0056c8346f5d59ed538c18d6b954e4ae657c69cc"
+    },
+    {
+      "component": "cutensor",
+      "version": "2.0.2.5",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-x86_64/libcutensor-linux-x86_64-2.0.2.5-archive.tar.xz",
+      "sha256": "0e957ae7b352f599de34b6fa1ba999b0617887f885d7436ac5737d71a6b83baa"
+    }
+  ]
+}

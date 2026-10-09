@@ -1,0 +1,73 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.8.0",
+    "date": "2026-02-09"
+  },
+  "provenance": {
+    "manifest_sha256": "3d9f20ec11f30d9225d953d4c6131c823834140d7e11f6ba4a7799bc0be5de4d",
+    "corpus_sha256": [
+      "679e70cca5f9a54e582522a828e78ff6dac6527ab608540ebf86f3e9fd532093",
+      "7eb622a529d9ba792836ed819ddcf86261b4f0ff48d93f67d006ebe7b143cf8a",
+      "8fecd957f41d4b10b5d85a1203950a8fe560dd8811d677f4130efb3e88d6210b",
+      "f29dd10fa0a7268b40e88c73be65d22890e125ec66cbe9e367d5f8ff7991031b"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cublasmp",
+      "description": "NVIDIA cuBLASMp library",
+      "license": "cuBLASMp library",
+      "soname_stems": [
+        "libcublasmp.so"
+      ],
+      "file_hashes": {
+        "11e009dda98235592ffcd81a3841e4c2cd814fe49235190e76e9f329f2c13779": [
+          "0.8.0.2023"
+        ],
+        "45f85a5d356ef4a71f884ce263dd6f44cb233056fb092926f730d4987812b6ce": [
+          "0.8.0.2023"
+        ],
+        "679e70cca5f9a54e582522a828e78ff6dac6527ab608540ebf86f3e9fd532093": [
+          "0.8.0.2023"
+        ],
+        "7eb622a529d9ba792836ed819ddcf86261b4f0ff48d93f67d006ebe7b143cf8a": [
+          "0.8.0.2023"
+        ],
+        "8538a8666f6c01cf1ff4ed8dbae9b32b2271fae8120cf80120bd9198c08a2510": [
+          "0.8.0.2023"
+        ],
+        "8fecd957f41d4b10b5d85a1203950a8fe560dd8811d677f4130efb3e88d6210b": [
+          "0.8.0.2023"
+        ],
+        "9237559f6d9b51744b113d50374b2ee8c15c1ac8a9b7bf565c304bb44b02350c": [
+          "0.8.0.2023"
+        ],
+        "f29dd10fa0a7268b40e88c73be65d22890e125ec66cbe9e367d5f8ff7991031b": [
+          "0.8.0.2023"
+        ]
+      },
+      "build_ids": {
+        "001093b9249a0b1f184bedc400db8773e40400b3": [
+          "0.8.0.2023"
+        ],
+        "081b84248411ab7d319d531c4216ccef3f806020": [
+          "0.8.0.2023"
+        ],
+        "49ae419d0047c8a0a503a3a4cc51954ce7ad18e0": [
+          "0.8.0.2023"
+        ],
+        "f0f75dac13b900fc7e490a1caee533acc7759516": [
+          "0.8.0.2023"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.8.0.2023": [
+          "0.8.0"
+        ]
+      }
+    }
+  ]
+}

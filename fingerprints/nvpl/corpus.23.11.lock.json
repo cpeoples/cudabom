@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvpl-blas",
+      "version": "0.1.0",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_blas/linux-sbsa/nvpl_blas-linux-sbsa-0.1.0-archive.tar.xz",
+      "sha256": "4ccc894593cbcbfaa1a4f3c54505982691971667acf191c9ab0f4252a37c8063"
+    },
+    {
+      "component": "nvpl-fft",
+      "version": "0.1.0",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_fft/linux-sbsa/nvpl_fft-linux-sbsa-0.1.0-archive.tar.xz",
+      "sha256": "0344f8e15e5b40f4d552f7013fe04a32e54a092cc3ebede51ddfce74b44c6e7d"
+    },
+    {
+      "component": "nvpl-lapack",
+      "version": "0.2.0.1",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_lapack/linux-sbsa/nvpl_lapack-linux-sbsa-0.2.0.1-archive.tar.xz",
+      "sha256": "7054f775b18916ee662c94ad7682ace53debbe8ee36fa926000fe412961edb0b"
+    },
+    {
+      "component": "nvpl-rand",
+      "version": "0.3.0.1",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_rand/linux-sbsa/nvpl_rand-linux-sbsa-0.3.0.1-archive.tar.xz",
+      "sha256": "0503860571b90f5bf27874168a32d7f1c0c766a5fcdd3f09481dd57d73c42e8b"
+    },
+    {
+      "component": "nvpl-scalapack",
+      "version": "0.1.0.1",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_scalapack/linux-sbsa/nvpl_scalapack-linux-sbsa-0.1.0.1-archive.tar.xz",
+      "sha256": "5529901e214bd3eb9e7d9ad73d196b3c8950b81943b776c4d8013b4a7f430268"
+    },
+    {
+      "component": "nvpl-sparse",
+      "version": "0.1.0.1",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_sparse/linux-sbsa/nvpl_sparse-linux-sbsa-0.1.0.1-archive.tar.xz",
+      "sha256": "15908b944caba8e7563d022c3307646e96c103bc78c02367fe1bfdc4187eed8b"
+    }
+  ]
+}

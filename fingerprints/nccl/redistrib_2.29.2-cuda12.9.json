@@ -1,14 +1,14 @@
 {
   "schema_version": 3,
   "release": {
-    "label": "2.32.3-cuda12.9",
-    "date": "2026-09-22"
+    "label": "2.29.2-cuda12.9",
+    "date": "2026-01-06"
   },
   "provenance": {
-    "manifest_sha256": "8c4a5bec36d65771ab1549ced5a8b06d3bcf0675dd6a076660470688f13b5e1e",
+    "manifest_sha256": "6e598a1f0bf3a6e521bd3822dcfbb1a5413b36053665f80eb0870f065732b0c6",
     "corpus_sha256": [
-      "186759f7b8ae2c62b5461bfe27dba242c21aded7c6412a88c424bf3e2afdc346",
-      "f927e0d44af067807fb25c3ae7c391fb68a16b72e693397417a162487dab1107"
+      "01a76d422563507079d8d035ff8c95221638f35d3424d627f4d9ef87ce2abc52",
+      "cb28c7c3a22908ea832cae024cf83214d67745c51d82791e557108b463682831"
     ],
     "tool_version": "0.1.0"
   },
@@ -21,40 +21,35 @@
         "libnccl.so"
       ],
       "file_hashes": {
-        "186759f7b8ae2c62b5461bfe27dba242c21aded7c6412a88c424bf3e2afdc346": [
-          "2.32.3"
+        "01a76d422563507079d8d035ff8c95221638f35d3424d627f4d9ef87ce2abc52": [
+          "2.29.2"
         ],
-        "a23d2e3e47ad7f8987ac73eb04a373d6d40cfbb3a7a5bf41a9e0e8434817559b": [
-          "2.32.3"
+        "8231274fbd2a3f07ecbe5690d6f4f016edb0d7a92a604302c7418cc0c01068f7": [
+          "2.29.2"
         ],
-        "f927e0d44af067807fb25c3ae7c391fb68a16b72e693397417a162487dab1107": [
-          "2.32.3"
+        "cb28c7c3a22908ea832cae024cf83214d67745c51d82791e557108b463682831": [
+          "2.29.2"
         ],
-        "ffd411c62896addf1966673eae694dca3caa0827767e495178d68163729f82df": [
-          "2.32.3"
+        "f15ab05c352f0a9c3da72757878da8891a2ba2e602f93258112a3e8c5054a81c": [
+          "2.29.2"
         ]
       },
       "build_ids": {
-        "855c15bcfbac035d484e5b6c3348bffa19387e0e": [
-          "2.32.3"
+        "19b6da3b991cd4a48252c3dd208d4eeb24dea8a8": [
+          "2.29.2"
         ],
-        "ca28c7ecb23ac18087e79a68818758bc44fb256f": [
-          "2.32.3"
+        "ac2b86cb6b2a51c28005f16159522143ebfd07f1": [
+          "2.29.2"
         ]
       },
       "version_markers": [],
       "symbol_markers": [
         "ncclAlgoStr",
         "ncclAllGather",
-        "ncclAllGatherConfig",
         "ncclAllReduce",
-        "ncclAllReduceConfig",
         "ncclAlltoAll",
-        "ncclAlltoAllConfig",
         "ncclBcast",
         "ncclBroadcast",
-        "ncclBroadcastConfig",
-        "ncclCftBarrierCreateRequirement",
         "ncclCommAbort",
         "ncclCommCount",
         "ncclCommCuDevice",
@@ -68,16 +63,11 @@
         "ncclCommInitRank",
         "ncclCommInitRankConfig",
         "ncclCommInitRankScalable",
-        "ncclCommMemResume",
-        "ncclCommMemStats",
-        "ncclCommMemSuspend",
         "ncclCommQueryProperties",
         "ncclCommRegister",
-        "ncclCommResume",
         "ncclCommRevoke",
         "ncclCommShrink",
         "ncclCommSplit",
-        "ncclCommSuspend",
         "ncclCommUserRank",
         "ncclCommWindowDeregister",
         "ncclCommWindowRegister",
@@ -88,12 +78,8 @@
         "ncclCudaDriverVersionCache",
         "ncclCudaLaunchBlocking",
         "ncclDebugFile",
-        "ncclDebugLevelMask",
+        "ncclDebugLevel",
         "ncclDebugMask",
-        "ncclDevCommCompat_v22902",
-        "ncclDevCommCompat_v22907",
-        "ncclDevCommCompat_v23000",
-        "ncclDevCommCompat_v23100",
         "ncclDevCommCreate",
         "ncclDevCommDestroy",
         "ncclDevFuncIdCount",
@@ -104,108 +90,47 @@
         "ncclDevKernelForFuncIsSpecialized",
         "ncclDevKernelList",
         "ncclDevKernelRequirements",
-        "ncclDynMemMarkExportToPeer",
         "ncclFuncStr",
         "ncclGather",
-        "ncclGatherConfig",
         "ncclGdrCopy",
-        "ncclGetCftDeviceLeInfo",
         "ncclGetErrorString",
         "ncclGetLastError",
         "ncclGetLsaDevicePointer",
         "ncclGetLsaMultimemDevicePointer",
-        "ncclGetMultimemDeviceLeInfo",
         "ncclGetMultimemDevicePointer",
-        "ncclGetPeerDeviceLeInfo",
         "ncclGetPeerDevicePointer",
         "ncclGetUniqueId",
         "ncclGetVersion",
         "ncclGinBarrierCreateRequirement",
         "ncclGinIbGdaki",
         "ncclGinIbGdakiDevIndexes",
-        "ncclGinInboxA2ACreateRequirement",
-        "ncclGinOutboxCreateRequirement",
-        "ncclGinProxy",
-        "ncclGinProxyVersion",
-        "ncclGinVersion",
+        "ncclGinIbProxy",
         "ncclGroupEnd",
         "ncclGroupSimulateEnd",
         "ncclGroupStart",
-        "ncclIbArThreshold",
         "ncclIbAsyncThread",
         "ncclIbDevs",
         "ncclIbIfAddr",
         "ncclIbIfName",
         "ncclIbMergedDevs",
-        "ncclIbPortRecoveryAsyncThread",
         "ncclIbRelaxedOrderingEnabled",
         "ncclIbReqTypeStr",
-        "ncclIbSpeedChangeCounter",
-        "ncclIbWqeLatEnabled",
-        "ncclIbWqeLatReportEnabled",
-        "ncclIbWqeLatThresholdNs",
-        "ncclIntEnv_v2",
+        "ncclIntEnv_v1",
         "ncclLLA2ACalcSlots",
         "ncclLLA2ACreateRequirement",
         "ncclLastError",
         "ncclLsaBarrierCreateRequirement",
         "ncclMemAlloc",
         "ncclMemFree",
-        "ncclMemManagerDestroy",
-        "ncclMemManagerInit",
-        "ncclMemTrack",
-        "ncclMemTrackImportFromPeer",
-        "ncclMemUntrackDynamic",
-        "ncclMemUntrackPersist",
         "ncclNIbDevs",
         "ncclNMergedIbDevs",
         "ncclNetIb",
-        "ncclNetIfs",
         "ncclNetSocket",
-        "ncclNetSocketDevs",
         "ncclNetVersion",
         "ncclNvmlDeviceCount",
         "ncclNvmlDevicePairs",
         "ncclNvmlDevices",
-        "ncclParamBind",
-        "ncclParamDebugFile",
-        "ncclParamDebugFileKey",
-        "ncclParamDebugLevel",
-        "ncclParamDebugLevelKey",
-        "ncclParamDebugLevels",
-        "ncclParamDebugLevelsKey",
-        "ncclParamDebugSubsys",
-        "ncclParamDebugSubsysKey",
-        "ncclParamDebugTimestampLevel",
-        "ncclParamDebugTimestampLevelKey",
-        "ncclParamDebugTsFormat",
-        "ncclParamDebugTsFormatKey",
-        "ncclParamDumpAll",
-        "ncclParamDumpAllFlag",
-        "ncclParamDumpAllFlagKey",
-        "ncclParamEnvPluginGet",
-        "ncclParamGet",
-        "ncclParamGetAllParameterKeys",
-        "ncclParamGetI16",
-        "ncclParamGetI32",
-        "ncclParamGetI64",
-        "ncclParamGetI8",
-        "ncclParamGetParameter",
-        "ncclParamGetStr",
-        "ncclParamGetU16",
-        "ncclParamGetU32",
-        "ncclParamGetU64",
-        "ncclParamGetU8",
-        "ncclParamIsCacheDisabled",
         "ncclParamLaunchMode",
-        "ncclParamNoCacheStr",
-        "ncclParamNoCacheStrKey",
-        "ncclParamRasTimeoutFactor",
-        "ncclParamRegistryInstance",
-        "ncclParamSetThreadName",
-        "ncclParamSetThreadNameKey",
-        "ncclParamWarnEnableDebugInfo",
-        "ncclParamWarnEnableDebugInfoKey",
         "ncclPluginLibPaths",
         "ncclProfilerEventMask",
         "ncclProfilerFunction",
@@ -216,29 +141,17 @@
         "ncclRedOpCreatePreMulSum",
         "ncclRedOpDestroy",
         "ncclReduce",
-        "ncclReduceConfig",
         "ncclReduceScatter",
-        "ncclReduceScatterConfig",
         "ncclResetDebugInit",
         "ncclResetDebugInitInternal",
-        "ncclRmaIbProxy",
-        "ncclRmaSocketProxy",
-        "ncclRmaVersion",
         "ncclScatter",
-        "ncclScatterConfig",
         "ncclSend",
-        "ncclSetEncryption",
         "ncclShmem",
         "ncclShmemPerWarp",
         "ncclSignal",
         "ncclSymkKernelCount",
         "ncclSymkKernelList",
-        "ncclSymkKernelListProfile",
-        "ncclSymkKernelMaxDynamicSmem",
         "ncclSymkKernelRequirements",
-        "ncclSymkLsaA2AParameterTable",
-        "ncclTeamCft",
-        "ncclTeamCftMultimem",
         "ncclTeamLsa",
         "ncclTeamRail",
         "ncclTeamRankToLsa",
@@ -251,8 +164,8 @@
         "ncclWinGetUserPtr"
       ],
       "release_versions": {
-        "2.32.3": [
-          "2.32.3-cuda12.9"
+        "2.29.2": [
+          "2.29.2-cuda12.9"
         ]
       }
     }

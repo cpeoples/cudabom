@@ -1,0 +1,86 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.6.1",
+    "date": "2024-05-02"
+  },
+  "provenance": {
+    "manifest_sha256": "4aca6331afc2d9fcdd64786faa2d2344c28e7c29061f877f46fafa612c466dd0",
+    "corpus_sha256": [
+      "57288bed161cf5cb7365ea5488fac53d76da3e9682c1b2130515e64de4366276",
+      "d07ee5ff24fb18f4b7c769d5a6bf476c7e68f7a18dd31f6b676b1d1c27759482"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cusparselt",
+      "description": "NVIDIA cuSPARSELt",
+      "license": "cuSPARSELt",
+      "soname_stems": [
+        "libcusparseLt.so"
+      ],
+      "file_hashes": {
+        "0789b330d5212e02a8cd344d4e61f4b42249d8dd35fe64d71bfcddf5bff36a85": [
+          "0.6.1.0"
+        ],
+        "57288bed161cf5cb7365ea5488fac53d76da3e9682c1b2130515e64de4366276": [
+          "0.6.1.0"
+        ],
+        "a5a91369f689aa3ffdccf4145ec2dc274a9548591dacf19ea7dfd10154b5c978": [
+          "0.6.1.0"
+        ],
+        "badb8bf09d0b595c9fc5e8aa94b9599fd19fefa411730d2b246ab2926c30ea1e": [
+          "0.6.1.0"
+        ],
+        "d07ee5ff24fb18f4b7c769d5a6bf476c7e68f7a18dd31f6b676b1d1c27759482": [
+          "0.6.1.0"
+        ]
+      },
+      "build_ids": {
+        "69893c0dd66fa738e298eff3acc9737a9dcf32c0": [
+          "0.6.1.0"
+        ],
+        "c9cbce30ce36124fe985a8dd938b9412227e6e79": [
+          "0.6.1.0"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "cusparseLtDenseDescriptorInit",
+        "cusparseLtDestroy",
+        "cusparseLtGetProperty",
+        "cusparseLtGetVersion",
+        "cusparseLtInit",
+        "cusparseLtMatDescGetAttribute",
+        "cusparseLtMatDescSetAttribute",
+        "cusparseLtMatDescriptorDestroy",
+        "cusparseLtMatmul",
+        "cusparseLtMatmulAlgGetAttribute",
+        "cusparseLtMatmulAlgSelectionInit",
+        "cusparseLtMatmulAlgSetAttribute",
+        "cusparseLtMatmulDescGetAttribute",
+        "cusparseLtMatmulDescSetAttribute",
+        "cusparseLtMatmulDescriptorInit",
+        "cusparseLtMatmulGetWorkspace",
+        "cusparseLtMatmulPlanDestroy",
+        "cusparseLtMatmulPlanInit",
+        "cusparseLtMatmulSearch",
+        "cusparseLtSpMMACompress",
+        "cusparseLtSpMMACompress2",
+        "cusparseLtSpMMACompressedSize",
+        "cusparseLtSpMMACompressedSize2",
+        "cusparseLtSpMMAPrune",
+        "cusparseLtSpMMAPrune2",
+        "cusparseLtSpMMAPruneCheck",
+        "cusparseLtSpMMAPruneCheck2",
+        "cusparseLtStructuredDescriptorInit"
+      ],
+      "release_versions": {
+        "0.6.1.0": [
+          "0.6.1"
+        ]
+      }
+    }
+  ]
+}

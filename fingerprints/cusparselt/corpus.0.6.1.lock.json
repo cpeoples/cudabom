@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cusparselt",
+      "version": "0.6.1.0",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cusparselt/redist/libcusparse_lt/linux-sbsa/libcusparse_lt-linux-sbsa-0.6.1.0-archive.tar.xz",
+      "sha256": "d07ee5ff24fb18f4b7c769d5a6bf476c7e68f7a18dd31f6b676b1d1c27759482"
+    },
+    {
+      "component": "cusparselt",
+      "version": "0.6.1.0",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cusparselt/redist/libcusparse_lt/linux-x86_64/libcusparse_lt-linux-x86_64-0.6.1.0-archive.tar.xz",
+      "sha256": "57288bed161cf5cb7365ea5488fac53d76da3e9682c1b2130515e64de4366276"
+    }
+  ]
+}

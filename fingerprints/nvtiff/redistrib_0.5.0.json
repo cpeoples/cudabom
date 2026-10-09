@@ -1,0 +1,152 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.5.0",
+    "date": "2025-02-27"
+  },
+  "provenance": {
+    "manifest_sha256": "c4829eb91e00e5aec0fffda4dd304d09bc8b74e5f5ac530d5925173ea85b0add",
+    "corpus_sha256": [
+      "01737fd52022af68b7472529b045d0aa9acfe30b3c662d5e6cae1b848b9c86fa",
+      "1706068310a5beb49bd8b4e506650517457bdc51163f93bf0a50f7fcfdd97c27",
+      "7b2f888f89125e4b4541c30b5ceb3ec752c7cd4d5fa9d4f64b702bfb3a7010dc",
+      "a7ae5b29204c292992befdfd8d60b91de66fe6900de7f81c35f1b5f88f39963d",
+      "efba42df9cffe46391ca1e1cf800685f0f5b1a3a9a73997e7a8dfe004621e3c3",
+      "fd637007421edbabce22be69c4a59cd1ca902249256cabc585459255070bfc7c"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvtiff",
+      "description": "NVIDIA nvTIFF",
+      "license": "nvTIFF",
+      "soname_stems": [
+        "libnvtiff.so"
+      ],
+      "file_hashes": {
+        "01737fd52022af68b7472529b045d0aa9acfe30b3c662d5e6cae1b848b9c86fa": [
+          "0.5.0.67"
+        ],
+        "1706068310a5beb49bd8b4e506650517457bdc51163f93bf0a50f7fcfdd97c27": [
+          "0.5.0.67"
+        ],
+        "3d5e23f1e7e8a301378b6723122a623e689f4c9bdbc1d3aa8391c5d8cf60f7d9": [
+          "0.5.0.67"
+        ],
+        "3df0a29bd61289139fbe7fe522d610ade326956097ac0a4bf2650b6a49c0458e": [
+          "0.5.0.67"
+        ],
+        "52cf2dd212f829d79a91c6cb67e4f5787d82ca406ad76bf1deace218d0448890": [
+          "0.5.0.67"
+        ],
+        "78779b442d2feeb50db7660ff30c2ae71c71b4bffad2950d5f90c12a13503304": [
+          "0.5.0.67"
+        ],
+        "7b2f888f89125e4b4541c30b5ceb3ec752c7cd4d5fa9d4f64b702bfb3a7010dc": [
+          "0.5.0.67"
+        ],
+        "880c90641d395af9cb8d67f336ed036cdd178cd8cbde793643ff189bd2857098": [
+          "0.5.0.67"
+        ],
+        "a7ae5b29204c292992befdfd8d60b91de66fe6900de7f81c35f1b5f88f39963d": [
+          "0.5.0.67"
+        ],
+        "db88b2f11e1f8f6905321f1fff3b6a7795a2505129721a12aebc24ead7f6e674": [
+          "0.5.0.67"
+        ],
+        "eac3fdddb5c6d8d6956eec54bfc2a02885ec1c9c878bd85727b23deedd1ba43d": [
+          "0.5.0.67"
+        ],
+        "efba42df9cffe46391ca1e1cf800685f0f5b1a3a9a73997e7a8dfe004621e3c3": [
+          "0.5.0.67"
+        ],
+        "f4a48b0e04ee7e11e6195a34b13673dfb96d5043a1c997388df36bbe860b1d74": [
+          "0.5.0.67"
+        ],
+        "fd637007421edbabce22be69c4a59cd1ca902249256cabc585459255070bfc7c": [
+          "0.5.0.67"
+        ]
+      },
+      "build_ids": {
+        "05caf39581321ce31b03194c11929ff1037b3b1b": [
+          "0.5.0.67"
+        ],
+        "9c6e72d6e18e2675b2b0667798481d3dd96df895": [
+          "0.5.0.67"
+        ],
+        "b4dc496065b929fcbc36589357b8fb3901b66b02": [
+          "0.5.0.67"
+        ],
+        "c32e135ef9436bb996ffc6a526e9cbc3764c9b83": [
+          "0.5.0.67"
+        ],
+        "e0cb65f8e6f2bda8703bc9c1e2eb153288b89224": [
+          "0.5.0.67"
+        ],
+        "ebba1bd053b7834ce57f008b897263fdb7b99ce2": [
+          "0.5.0.67"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "nvTiffEncode",
+        "nvTiffEncodeCtxCreate",
+        "nvTiffEncodeCtxDestroy",
+        "nvTiffEncodeFinalize",
+        "nvTiffWriteFile",
+        "nvtiffDecode",
+        "nvtiffDecodeCheckSupported",
+        "nvtiffDecodeImage",
+        "nvtiffDecodeParamsCreate",
+        "nvtiffDecodeParamsDestroy",
+        "nvtiffDecodeParamsSetOutputFormat",
+        "nvtiffDecodeParamsSetROI",
+        "nvtiffDecodeRange",
+        "nvtiffDecoderCreate",
+        "nvtiffDecoderCreateSimple",
+        "nvtiffDecoderDestroy",
+        "nvtiffEncode",
+        "nvtiffEncodeFinalize",
+        "nvtiffEncodeParamsCreate",
+        "nvtiffEncodeParamsDestroy",
+        "nvtiffEncodeParamsSetGeoKey",
+        "nvtiffEncodeParamsSetGeoKeyASCII",
+        "nvtiffEncodeParamsSetGeoKeyDOUBLE",
+        "nvtiffEncodeParamsSetGeoKeySHORT",
+        "nvtiffEncodeParamsSetImageInfo",
+        "nvtiffEncodeParamsSetInputs",
+        "nvtiffEncodeParamsSetTag",
+        "nvtiffEncoderCreate",
+        "nvtiffEncoderDestroy",
+        "nvtiffGetBitstreamSize",
+        "nvtiffStreamCreate",
+        "nvtiffStreamDestroy",
+        "nvtiffStreamGetFileInfo",
+        "nvtiffStreamGetGeoKey",
+        "nvtiffStreamGetGeoKeyASCII",
+        "nvtiffStreamGetGeoKeyDOUBLE",
+        "nvtiffStreamGetGeoKeyInfo",
+        "nvtiffStreamGetGeoKeySHORT",
+        "nvtiffStreamGetImageGeometry",
+        "nvtiffStreamGetImageInfo",
+        "nvtiffStreamGetNumImages",
+        "nvtiffStreamGetNumberOfGeoKeys",
+        "nvtiffStreamGetTagInfo",
+        "nvtiffStreamGetTagInfoGeneric",
+        "nvtiffStreamGetTagValue",
+        "nvtiffStreamGetTagValueGeneric",
+        "nvtiffStreamParse",
+        "nvtiffStreamParseFromFile",
+        "nvtiffStreamPrint",
+        "nvtiffWriteTiffBuffer",
+        "nvtiffWriteTiffFile"
+      ],
+      "release_versions": {
+        "0.5.0.67": [
+          "0.5.0"
+        ]
+      }
+    }
+  ]
+}

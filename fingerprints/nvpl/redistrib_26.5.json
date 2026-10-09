@@ -1,0 +1,255 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "26.5",
+    "date": "2026-05-28"
+  },
+  "provenance": {
+    "manifest_sha256": "e3b2031afcb00ea61b56e42c30f9f15d8b8fb4d4d9845b6ed549bb7446e62bbd",
+    "corpus_sha256": [
+      "2233a1502de4bc720671462b09a1123e3bb329d0e7f5759566d879e5f1071c20",
+      "84a0c27781a9495656ab31be165080dd0053632b76a526f495c6d6f8bedb9714",
+      "87ddf5f3aa5ecfd8bb4fee892ec3c12e475578b38885fbeb031b0b4fbd0e45c9",
+      "8bfae7bdba69fcfe85460f4a1e9259e4d958b70532a030839e00a3f1cbbba1db",
+      "efbd7ae929169f3fd94fb3aa57779004bb238ea55174aabae8dcf9b6441fd9ee",
+      "f45da9dcd482f987a7da6bd5f8272813765edaae693a839e3211c02d4afd8aad",
+      "fc50f9eae51db7d46fc2bd0fb9350d2bf149b0fea7a48815236c145c299b43a8"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvpl-blas",
+      "description": "NVPL BLAS",
+      "license": "NVPL",
+      "soname_stems": [
+        "libnvpl_blas_core.so",
+        "libnvpl_blas_ilp64_gomp.so",
+        "libnvpl_blas_ilp64_seq.so",
+        "libnvpl_blas_lp64_gomp.so",
+        "libnvpl_blas_lp64_seq.so"
+      ],
+      "file_hashes": {
+        "499c5b98cf27427cae406eb8fa180f60c18c76f7b85a535eef300220b7785d4a": [
+          "0.6.0"
+        ],
+        "6ee6e49dfdc01aba8e3fdb38562439abb1e8d52b3401bc44166c804d64521f87": [
+          "0.6.0"
+        ],
+        "85d390848df38f35b149a39b17d43635a13f9b5e88a4c4dd16a08783625dd99f": [
+          "0.6.0"
+        ],
+        "8fdd4e610d45a4856b1956d8d64ff2f8c6a8ceeb18cb18233a3fcec82d390c50": [
+          "0.6.0"
+        ],
+        "e805fb6c20d3cef6bebc9861070a35be11e73a1527b5d8c37be0801d604da90d": [
+          "0.6.0"
+        ],
+        "f45da9dcd482f987a7da6bd5f8272813765edaae693a839e3211c02d4afd8aad": [
+          "0.6.0"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "0.6.0": [
+          "26.5"
+        ]
+      }
+    },
+    {
+      "name": "nvpl-fft",
+      "description": "NVPL FFT",
+      "license": "NVPL",
+      "soname_stems": [
+        "libnvpl_fftw.so"
+      ],
+      "file_hashes": {
+        "1b65077dbc528ee84c1a2ee7ce3ee17406a83890eea68fb5b9c7ef637190282e": [
+          "0.6.0.1"
+        ],
+        "87ddf5f3aa5ecfd8bb4fee892ec3c12e475578b38885fbeb031b0b4fbd0e45c9": [
+          "0.6.0.1"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "0.6.0.1": [
+          "26.5"
+        ]
+      }
+    },
+    {
+      "name": "nvpl-lapack",
+      "description": "NVPL LAPACK",
+      "license": "NVPL",
+      "soname_stems": [
+        "libnvpl_lapack_core.so",
+        "libnvpl_lapack_ilp64_gomp.so",
+        "libnvpl_lapack_ilp64_seq.so",
+        "libnvpl_lapack_lp64_gomp.so",
+        "libnvpl_lapack_lp64_seq.so"
+      ],
+      "file_hashes": {
+        "0b7bbd97d84ba2ebb5a2d2d0d513bb0fca69dedc4085aac5f09ffacade959e21": [
+          "0.4.0.1"
+        ],
+        "2233a1502de4bc720671462b09a1123e3bb329d0e7f5759566d879e5f1071c20": [
+          "0.4.0.1"
+        ],
+        "243984525e383c517ff91ec93dd11ffc3fbcafb6fc8a8d8a3fcd7fad392215e3": [
+          "0.4.0.1"
+        ],
+        "3ae2b60e5d173a5b0498f4177292895d728ce6cf7bf00e2350ea5197cad88c43": [
+          "0.4.0.1"
+        ],
+        "3f947f294d0a02076d087c17398114030db0120cee291f5bd49be23b3ef2a99b": [
+          "0.4.0.1"
+        ],
+        "4e4d357a8ace66f63d38b607835f22ee1a21a3430c6e75b2304c53a2133d0fff": [
+          "0.4.0.1"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "0.4.0.1": [
+          "26.5"
+        ]
+      }
+    },
+    {
+      "name": "nvpl-rand",
+      "description": "NVPL RAND",
+      "license": "NVPL",
+      "soname_stems": [
+        "libnvpl_rand.so",
+        "libnvpl_rand_mt.so"
+      ],
+      "file_hashes": {
+        "84a0c27781a9495656ab31be165080dd0053632b76a526f495c6d6f8bedb9714": [
+          "0.5.4"
+        ],
+        "b1d3486f5fd91e4bc4d8557eb4b01aedb0383c9c51e38e4c21e87d35aadcf16b": [
+          "0.5.4"
+        ],
+        "d9d71924cd4a1e4b1739aa44590eb3e86149517146e3f781aff88a0e9d0150ff": [
+          "0.5.4"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "0.5.4": [
+          "26.5"
+        ]
+      }
+    },
+    {
+      "name": "nvpl-scalapack",
+      "description": "NVPL SCALAPACK",
+      "license": "NVPL",
+      "soname_stems": [
+        "libnvpl_blacs_ilp64_mpich.so",
+        "libnvpl_blacs_ilp64_openmpi3.so",
+        "libnvpl_blacs_ilp64_openmpi4.so",
+        "libnvpl_blacs_ilp64_openmpi5.so",
+        "libnvpl_blacs_lp64_mpich.so",
+        "libnvpl_blacs_lp64_openmpi3.so",
+        "libnvpl_blacs_lp64_openmpi4.so",
+        "libnvpl_blacs_lp64_openmpi5.so",
+        "libnvpl_scalapack_ilp64.so",
+        "libnvpl_scalapack_lp64.so"
+      ],
+      "file_hashes": {
+        "0ce1daa5f927aaf9da73ec8c85902df6116cde5b027826ec4be8ca168002dafc": [
+          "0.2.4"
+        ],
+        "0e22b051916176148382046a967017ca6627ca7a34dd6b2d30a6a05046b36086": [
+          "0.2.4"
+        ],
+        "0fd822f6797a80100483340e91f6b6102394f84fa24a5f397c3e534b5b687c94": [
+          "0.2.4"
+        ],
+        "41fc3cb873b1d4368307b07aeb8754ae5f08f8f22612e9adf055adb202649c81": [
+          "0.2.4"
+        ],
+        "58b2b9bf2a55e1ff2b6b7db3ab1753dc693ff9b951e85bbe57b0ec6df0940176": [
+          "0.2.4"
+        ],
+        "5b9c856bd313258396001773dea957ab172067369998a1a8d3ead66f29444ec9": [
+          "0.2.4"
+        ],
+        "611bacceb8cb5127c83808ba699e45539bff7b5460c5f0d1c6c38bf464fb5c2b": [
+          "0.2.4"
+        ],
+        "66e2b94a5d13dc730ffea6e32e01b9a3161e52706500135943fe4f4c1a145c65": [
+          "0.2.4"
+        ],
+        "80586e739e1abd06a7231c71c421c6a460f421184c29b8a3b5578b80dff89b74": [
+          "0.2.4"
+        ],
+        "f0bf288758788c9813b84cdff9239cbf894406dde906fbcb32dac1e862508060": [
+          "0.2.4"
+        ],
+        "fc50f9eae51db7d46fc2bd0fb9350d2bf149b0fea7a48815236c145c299b43a8": [
+          "0.2.4"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "0.2.4": [
+          "26.5"
+        ]
+      }
+    },
+    {
+      "name": "nvpl-sparse",
+      "description": "NVPL SPARSE",
+      "license": "NVPL",
+      "soname_stems": [
+        "libnvpl_sparse.so"
+      ],
+      "file_hashes": {
+        "07fe2ed4516f5e1bb2a3d2aa2b5a29cbd1dcb027684006d855a89a049515273d": [
+          "0.6.0"
+        ],
+        "8bfae7bdba69fcfe85460f4a1e9259e4d958b70532a030839e00a3f1cbbba1db": [
+          "0.6.0"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "0.6.0": [
+          "26.5"
+        ]
+      }
+    },
+    {
+      "name": "nvpl-tensor",
+      "description": "NVPL TENSOR",
+      "license": "NVPL",
+      "soname_stems": [
+        "libnvpl_tensor.so"
+      ],
+      "file_hashes": {
+        "1718feee0a1274e32c81a0420521f68e7c25a4e01e47ca9c0e5b26d296d2cf0b": [
+          "0.3.3"
+        ],
+        "efbd7ae929169f3fd94fb3aa57779004bb238ea55174aabae8dcf9b6441fd9ee": [
+          "0.3.3"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "0.3.3": [
+          "26.5"
+        ]
+      }
+    }
+  ]
+}

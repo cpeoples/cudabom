@@ -1,0 +1,84 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.8.0",
+    "date": "2024-04-22"
+  },
+  "provenance": {
+    "manifest_sha256": "8e5d86a125edfa8b5001a8b7c8b447302ad6901e92158e5e3a9fb22159e22190",
+    "corpus_sha256": [
+      "03a568305989b25be6def7d860b2519577ebef1538c703de0ad086fa2314a1e0",
+      "dac4f1d0c088c22155067b781142dc27ec1d3ced68b99d2180fcd1fcf02fe19e",
+      "f0b4f0ab9e19579c547e96ce189c6a93731f662898751a88d62e3caa59472367"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvjpeg2000",
+      "description": "NVIDIA nvJPEG 2000",
+      "license": "nvJPEG 2K",
+      "soname_stems": [
+        "libnvjpeg2k.so"
+      ],
+      "file_hashes": {
+        "03a568305989b25be6def7d860b2519577ebef1538c703de0ad086fa2314a1e0": [
+          "0.8.0.38"
+        ],
+        "1ea5ddc8cb37bc01fe0835198e6fe43637b64ab3db435426b5ac276920a6fe0a": [
+          "0.8.0.38"
+        ],
+        "72c6355b305287e80c945e2308c0a0970d2a70cfa1252995bc7cb76331fb0b98": [
+          "0.8.0.38"
+        ],
+        "dac4f1d0c088c22155067b781142dc27ec1d3ced68b99d2180fcd1fcf02fe19e": [
+          "0.8.0.38"
+        ],
+        "efb8db594dcb8d7a51d05574fdb180f4acaaefdd7cc63d7f4d3aff2506b6d753": [
+          "0.8.0.38"
+        ],
+        "f0b4f0ab9e19579c547e96ce189c6a93731f662898751a88d62e3caa59472367": [
+          "0.8.0.38"
+        ],
+        "f37c733bcafdd71dd35befd9a3406d561a15d05398c60941d592ab1fe043c521": [
+          "0.8.0.38"
+        ],
+        "f38fdb78a711e417db2b7f453e3937ab031de6ebddb1594a9e6e9882a8afd0e1": [
+          "0.8.0.38"
+        ],
+        "f9cb0a6111137a95993d1a0ac0b8b888dae0aefdefcc03389d746d3e606ee724": [
+          "0.8.0.38"
+        ],
+        "feabb2f4108805b251f44b0561b194a24041d01207b272a3aa42a664e938e5d4": [
+          "0.8.0.38"
+        ]
+      },
+      "build_ids": {
+        "023a1e07539f92c1d70aae014ee59344677207e2": [
+          "0.8.0.38"
+        ],
+        "3b7e358a109c2e96d83b7c7aae4e50b680d28b60": [
+          "0.8.0.38"
+        ],
+        "5f035679b888de0ecfbc0bc72ab86066f6695394": [
+          "0.8.0.38"
+        ],
+        "79ba35106603eb2f1b9cc4ebb4cdf4c9bda6e6e9": [
+          "0.8.0.38"
+        ],
+        "f23d39130123b1c9e2c89fe4d16815299c218c9d": [
+          "0.8.0.38"
+        ],
+        "f5024a1ced85dcdf193c8711e28ad8a131bbb198": [
+          "0.8.0.38"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.8.0.38": [
+          "0.8.0"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.7.0",
+    "date": "2025-01-27"
+  },
+  "provenance": {
+    "manifest_sha256": "630ea0595bde72982d670c639e1277e12e0bc84bda4d4380556b6952253fdfe7",
+    "corpus_sha256": [
+      "20bc11ffb491ebf4279bc4ca7cc8f444b59718bf27bed837552f97b72635dba5",
+      "6082f3d7f024b0183225d48361ca8436fdf30d5833e3595c6c145c03171c13ee",
+      "f625038f52dec7068824889d523e16112a2363c7e4f1da87adaac6db6bb7caa5"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cusparselt",
+      "description": "NVIDIA cuSPARSELt",
+      "license": "cuSPARSELt",
+      "soname_stems": [
+        "libcusparseLt.so"
+      ],
+      "file_hashes": {
+        "06c2d7a7ef37f3a0fc124491ec9486de8f8f1fdfc25449e54b01840abbe19047": [
+          "0.7.0.0"
+        ],
+        "20bc11ffb491ebf4279bc4ca7cc8f444b59718bf27bed837552f97b72635dba5": [
+          "0.7.0.0"
+        ],
+        "42bc584e9863b24c35f5768776fcd7bddea21efe85584b0616a4825b784f3ec8": [
+          "0.7.0.0"
+        ],
+        "6082f3d7f024b0183225d48361ca8436fdf30d5833e3595c6c145c03171c13ee": [
+          "0.7.0.0"
+        ],
+        "7a983105dd0485ac086f5befbe8e87c182860c252628849fd65a68b27ba92c97": [
+          "0.7.0.0"
+        ],
+        "bd38364c7a7982b64ec99b07d90bb71707438024397edb1363a7742373bdd950": [
+          "0.7.0.0"
+        ],
+        "f625038f52dec7068824889d523e16112a2363c7e4f1da87adaac6db6bb7caa5": [
+          "0.7.0.0"
+        ]
+      },
+      "build_ids": {
+        "4c3e6f0e8ab3b3ec8a5fab0059fe256c2dd5947f": [
+          "0.7.0.0"
+        ],
+        "6ebb74daa5086742a4252492ab234658d041f4cf": [
+          "0.7.0.0"
+        ],
+        "9c769a937fa8f7825a4d407a16bdd1e972a097d1": [
+          "0.7.0.0"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "cusparseLtDenseDescriptorInit",
+        "cusparseLtDestroy",
+        "cusparseLtGetErrorName",
+        "cusparseLtGetErrorString",
+        "cusparseLtGetProperty",
+        "cusparseLtGetVersion",
+        "cusparseLtInit",
+        "cusparseLtMatDescGetAttribute",
+        "cusparseLtMatDescSetAttribute",
+        "cusparseLtMatDescriptorDestroy",
+        "cusparseLtMatmul",
+        "cusparseLtMatmulAlgGetAttribute",
+        "cusparseLtMatmulAlgSelectionInit",
+        "cusparseLtMatmulAlgSetAttribute",
+        "cusparseLtMatmulDescGetAttribute",
+        "cusparseLtMatmulDescSetAttribute",
+        "cusparseLtMatmulDescriptorInit",
+        "cusparseLtMatmulGetWorkspace",
+        "cusparseLtMatmulPlanDestroy",
+        "cusparseLtMatmulPlanInit",
+        "cusparseLtMatmulSearch",
+        "cusparseLtSpMMACompress",
+        "cusparseLtSpMMACompress2",
+        "cusparseLtSpMMACompressedSize",
+        "cusparseLtSpMMACompressedSize2",
+        "cusparseLtSpMMAPrune",
+        "cusparseLtSpMMAPrune2",
+        "cusparseLtSpMMAPruneCheck",
+        "cusparseLtSpMMAPruneCheck2",
+        "cusparseLtStructuredDescriptorInit"
+      ],
+      "release_versions": {
+        "0.7.0.0": [
+          "0.7.0"
+        ]
+      }
+    }
+  ]
+}

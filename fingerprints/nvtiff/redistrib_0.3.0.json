@@ -1,0 +1,86 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.3.0",
+    "date": "2023-08-03"
+  },
+  "provenance": {
+    "manifest_sha256": "4a089f55ffa0df34923d88a45ef172c45e874081eb27b96ccab361ae5c0ce298",
+    "corpus_sha256": [
+      "4ff3cc945931a8761f17fcc2bb2fd508e837c84c19a304c90a869b6f4fba4b5a",
+      "bd76117e1d06388cacddadd977f1e05b1d3cf71c4f6a850ed25b6727c29fcd23"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvtiff",
+      "description": "NVIDIA nvTIFF",
+      "license": "nvTIFF",
+      "soname_stems": [
+        "libnvtiff.so"
+      ],
+      "file_hashes": {
+        "1c1a5330ce895f4cc99c1e1565e3d25f5fd88d0770e30a54679a766b627b5895": [
+          "0.3.0.55"
+        ],
+        "2681dc280264aebd114341d4b174fc8b7d9eba52f6734ce01f6dc1a22e311ece": [
+          "0.3.0.55"
+        ],
+        "27c04e2fd8e886d8176627256b059eb0477cf16029c2ab383da878afc472bf5c": [
+          "0.3.0.55"
+        ],
+        "4ff3cc945931a8761f17fcc2bb2fd508e837c84c19a304c90a869b6f4fba4b5a": [
+          "0.3.0.55"
+        ],
+        "8825382b5ad707e124dd86f710e31763a43c68a3431ade200f036e68b2b23d98": [
+          "0.3.0.55"
+        ],
+        "bd76117e1d06388cacddadd977f1e05b1d3cf71c4f6a850ed25b6727c29fcd23": [
+          "0.3.0.55"
+        ]
+      },
+      "build_ids": {
+        "c2fa04b17d982a48634934de88e0ff9f577bf988": [
+          "0.3.0.55"
+        ],
+        "f1357d2a98d00aa4fc52f170c3af8222d0595fc2": [
+          "0.3.0.55"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "nvTiffEncode",
+        "nvTiffEncodeCtxCreate",
+        "nvTiffEncodeCtxDestroy",
+        "nvTiffEncodeFinalize",
+        "nvTiffWriteFile",
+        "nvtiffDecode",
+        "nvtiffDecodeRange",
+        "nvtiffDecoderCreate",
+        "nvtiffDecoderCreateSimple",
+        "nvtiffDecoderDestroy",
+        "nvtiffStreamCreate",
+        "nvtiffStreamDestroy",
+        "nvtiffStreamGetFileInfo",
+        "nvtiffStreamGetGeoKey",
+        "nvtiffStreamGetGeoKeyASCII",
+        "nvtiffStreamGetGeoKeyDOUBLE",
+        "nvtiffStreamGetGeoKeyInfo",
+        "nvtiffStreamGetGeoKeySHORT",
+        "nvtiffStreamGetImageInfo",
+        "nvtiffStreamGetNumImages",
+        "nvtiffStreamGetNumberOfGeoKeys",
+        "nvtiffStreamGetTagInfo",
+        "nvtiffStreamGetTagValue",
+        "nvtiffStreamParseFromFile",
+        "nvtiffStreamPrint"
+      ],
+      "release_versions": {
+        "0.3.0.55": [
+          "0.3.0"
+        ]
+      }
+    }
+  ]
+}

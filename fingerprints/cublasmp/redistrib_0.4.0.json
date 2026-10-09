@@ -1,0 +1,53 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.4.0",
+    "date": "2025-03-10"
+  },
+  "provenance": {
+    "manifest_sha256": "3805b369890e1378d33d7e089c41948e070e150b8db16213b45be6eb9ee0e953",
+    "corpus_sha256": [
+      "0dbc7e91789ea3428bada7527c0012f6d5ae5c418779bb678365c2f20b2010a5",
+      "dba785a0301d2af320c8a3d9598874f270a02a77a14bfe59e94345669cacb6b6"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cublasmp",
+      "description": "NVIDIA cuBLASMp library",
+      "license": "cuBLASMp library",
+      "soname_stems": [
+        "libcublasmp.so"
+      ],
+      "file_hashes": {
+        "0dbc7e91789ea3428bada7527c0012f6d5ae5c418779bb678365c2f20b2010a5": [
+          "0.4.0.789"
+        ],
+        "5862fd44001cc553e64501ac35e9243953b8280f6f6caaec15e66cdc58263444": [
+          "0.4.0.789"
+        ],
+        "dba785a0301d2af320c8a3d9598874f270a02a77a14bfe59e94345669cacb6b6": [
+          "0.4.0.789"
+        ],
+        "efefa7b90998dd54ead83f5fd95940d3a589465afcf57051b79f9455e98a50d3": [
+          "0.4.0.789"
+        ]
+      },
+      "build_ids": {
+        "07ffbd74bbad9661574087b9bf47bcd5fd8b96a0": [
+          "0.4.0.789"
+        ],
+        "9ddb12f35af4daf9d55960acadfd4dd0ef298e25": [
+          "0.4.0.789"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.4.0.789": [
+          "0.4.0"
+        ]
+      }
+    }
+  ]
+}

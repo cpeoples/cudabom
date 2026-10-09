@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvjpeg2000",
+      "version": "0.7.0.31",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/nvjpeg2000/redist/libnvjpeg_2k/linux-x86_64/libnvjpeg_2k-linux-x86_64-0.7.0.31-archive.tar.xz",
+      "sha256": "2cad6621884e4fdf175304b45ed766bb65936a0c28769fba9f8cf75c30f60d75"
+    }
+  ]
+}

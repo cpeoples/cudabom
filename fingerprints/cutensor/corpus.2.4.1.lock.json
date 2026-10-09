@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cutensor",
+      "version": "2.4.1.4",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-2.4.1.4_cuda12-archive.tar.xz",
+      "sha256": "afcf1bd3a50b729bcd5d1ddb0a3e90ca2631d7048d51bdeafe49c650e162ebc1"
+    },
+    {
+      "component": "cutensor",
+      "version": "2.4.1.4",
+      "platform": "linux-sbsa-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-sbsa/libcutensor-linux-sbsa-2.4.1.4_cuda13-archive.tar.xz",
+      "sha256": "9baffd3658b7f4da2d2f94d23c3acddb6d12c62997d3da39a774a058fef04aa5"
+    },
+    {
+      "component": "cutensor",
+      "version": "2.4.1.4",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-x86_64/libcutensor-linux-x86_64-2.4.1.4_cuda12-archive.tar.xz",
+      "sha256": "032904fb8bba341e24aa45a8cc7b5afc63e4c28e22474530ccc97cfa546d0442"
+    },
+    {
+      "component": "cutensor",
+      "version": "2.4.1.4",
+      "platform": "linux-x86_64-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/cutensor/redist/libcutensor/linux-x86_64/libcutensor-linux-x86_64-2.4.1.4_cuda13-archive.tar.xz",
+      "sha256": "21fb0a9a3b7b6663223667b587f2ab1c54e4a61c975fea0f9d4f56d9c33f31fe"
+    }
+  ]
+}

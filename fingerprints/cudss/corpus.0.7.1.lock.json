@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cudss",
+      "version": "0.7.1.4",
+      "platform": "linux-aarch64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudss/redist/libcudss/linux-aarch64/libcudss-linux-aarch64-0.7.1.4_cuda12-archive.tar.xz",
+      "sha256": "f283c31b6badf4a5277014295705eac8e6e28f27de30d746719ea1cef7a750b8"
+    },
+    {
+      "component": "cudss",
+      "version": "0.7.1.4",
+      "platform": "linux-aarch64-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/cudss/redist/libcudss/linux-aarch64/libcudss-linux-aarch64-0.7.1.4_cuda13-archive.tar.xz",
+      "sha256": "4085361899eaf08f6b707321b33a2d5263ac986015527bef8e500f2c102f0258"
+    },
+    {
+      "component": "cudss",
+      "version": "0.7.1.4",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudss/redist/libcudss/linux-sbsa/libcudss-linux-sbsa-0.7.1.4_cuda12-archive.tar.xz",
+      "sha256": "a4ddd47ad711243bbea0da2d6520799595cc8d79aa740927e0855c0b8cb69cf8"
+    },
+    {
+      "component": "cudss",
+      "version": "0.7.1.4",
+      "platform": "linux-sbsa-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/cudss/redist/libcudss/linux-sbsa/libcudss-linux-sbsa-0.7.1.4_cuda13-archive.tar.xz",
+      "sha256": "de8295cb6773992bd1ca7e2ad93caae1fd18eba39175f0101b85d53abd3e0179"
+    },
+    {
+      "component": "cudss",
+      "version": "0.7.1.4",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudss/redist/libcudss/linux-x86_64/libcudss-linux-x86_64-0.7.1.4_cuda12-archive.tar.xz",
+      "sha256": "946571d9ea164f948e402dd97a14541cb90fbec800336cfa7ae644af5937632f"
+    },
+    {
+      "component": "cudss",
+      "version": "0.7.1.4",
+      "platform": "linux-x86_64-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/cudss/redist/libcudss/linux-x86_64/libcudss-linux-x86_64-0.7.1.4_cuda13-archive.tar.xz",
+      "sha256": "84b34ebe7fad40ec10f2aab2957a63b6070bd8ce16e3ada3e6bcac7317256347"
+    }
+  ]
+}

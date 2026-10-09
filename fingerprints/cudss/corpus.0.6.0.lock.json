@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cudss",
+      "version": "0.6.0.5",
+      "platform": "linux-aarch64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudss/redist/libcudss/linux-aarch64/libcudss-linux-aarch64-0.6.0.5_cuda12-archive.tar.xz",
+      "sha256": "e6f5d5122d735f9dbfd42c9eaba067a557a5613ee4a6001806935de11aff4b09"
+    },
+    {
+      "component": "cudss",
+      "version": "0.6.0.5",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudss/redist/libcudss/linux-sbsa/libcudss-linux-sbsa-0.6.0.5_cuda12-archive.tar.xz",
+      "sha256": "b56cd0841c543bb81b2665063967f56cf3a3a22a445ddf1642c7f765f2059b42"
+    },
+    {
+      "component": "cudss",
+      "version": "0.6.0.5",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudss/redist/libcudss/linux-x86_64/libcudss-linux-x86_64-0.6.0.5_cuda12-archive.tar.xz",
+      "sha256": "159ce1d4e3e4bba13b0bd15cf943e44b869c53b7a94f9bac980768c927f02e75"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "3.7.0",
+    "date": "2026-06-10"
+  },
+  "provenance": {
+    "manifest_sha256": "45747435c4347ed9be8abbf876a99a6f18ab58987c6a87ded2e0d16a6bc74ddb",
+    "corpus_sha256": [
+      "7c65a151fa2d55d25650fdbdd368467942743f64f3a3e66f01ef36c55e68c955",
+      "b82e2f0f9cb340f530ca169307fbde228b60b1477713beb04efb4a068486d1ed",
+      "e298ec8fa7a60f0b102fbaa72dc0b4058359de72cc97f981fa878fe24950faba",
+      "f954ed91fa270f4b905391e03d808f60c73b894d88ef0aae865916d685353b8c"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvshmem",
+      "description": "NVIDIA nvshmem",
+      "license": "nvshmem",
+      "soname_stems": [
+        "libnvshmem_device.a",
+        "libnvshmem_host.so"
+      ],
+      "file_hashes": {
+        "001d33ecd04bac900bd06400b680c3446b09c80c5a59abe18c8edefd6541f9fd": [
+          "3.7.0"
+        ],
+        "0640028efcf9d9da64f74069839a593f5ed06e35e09b84f50aee04e860863e90": [
+          "3.7.0"
+        ],
+        "0d160d742deaef801844863bf730d15a592cb6eb3b514e15556d8a1060f18c0c": [
+          "3.7.0"
+        ],
+        "0f6171bf4239431263f26baaa15e11dce63d39adb24bebc3360860e4f43c1952": [
+          "3.7.0"
+        ],
+        "15f65d11c8a21ca8abed5baadc381cc77c254f29b7525c4d2c8f712bafc52274": [
+          "3.7.0"
+        ],
+        "161522861133edeb240b118d2ee49cc799124c764c11189f00201cfd44b4ae7a": [
+          "3.7.0"
+        ],
+        "1cf0d2d00ccae823c0e8ea5937105eb2743bb9702563ed11d81b00fcb22007d5": [
+          "3.7.0"
+        ],
+        "2754bdab5ac99fc6d84f4a5d913547a357fa02395c18995cc336a4dc799fa941": [
+          "3.7.0"
+        ],
+        "3f73b953e75619e69666935e8ae820895093ecc169af962d27675c714fc98df2": [
+          "3.7.0"
+        ],
+        "4c4244415d0dacbe39c32a69dd35b801f06742392cbadbb008a660755274e0bf": [
+          "3.7.0"
+        ],
+        "7c65a151fa2d55d25650fdbdd368467942743f64f3a3e66f01ef36c55e68c955": [
+          "3.7.0"
+        ],
+        "8368f7563d9b8aa06c5bbfba82869dee40576c3abd7df214f66ef18001c363a5": [
+          "3.7.0"
+        ],
+        "96d1dec970ef4d8c0f57c3b363486b80e58a7ce3d4c9a2330d7ed26a573cdb82": [
+          "3.7.0"
+        ],
+        "9926c03f320b286f04aac2c37f0c5140f748ec043e14061a56e4217aafe1d25a": [
+          "3.7.0"
+        ],
+        "9e1b8a87ff7ef5842306ceea23b1389613aad0b2e16f096eee5f02258eeb2011": [
+          "3.7.0"
+        ],
+        "ac99ea61dc1b97bd7d853b9a0797a7806fb35789315415a7a86738bd2586ba28": [
+          "3.7.0"
+        ],
+        "b1b6a22db66a268e2fc200f57611444e6076b96a8cacf7c815a682fb8d26c5c9": [
+          "3.7.0"
+        ],
+        "b3f64405574c066c04610454125f1999b5f7598af583513facb817cb80c56ba1": [
+          "3.7.0"
+        ],
+        "b82e2f0f9cb340f530ca169307fbde228b60b1477713beb04efb4a068486d1ed": [
+          "3.7.0"
+        ],
+        "ce106cddc82b8abb061221c586b8336297b24d060f0b26fd3bc3a8eca8cfda98": [
+          "3.7.0"
+        ],
+        "d305150a842ddeb3a793d3a330573dc1de8229387e967c5dbc69698c9c32e4f4": [
+          "3.7.0"
+        ],
+        "d5cb19d310c045d066aededc0bcea79a3681e283148d0a82bdbd1f880a162ca3": [
+          "3.7.0"
+        ],
+        "e298ec8fa7a60f0b102fbaa72dc0b4058359de72cc97f981fa878fe24950faba": [
+          "3.7.0"
+        ],
+        "f954ed91fa270f4b905391e03d808f60c73b894d88ef0aae865916d685353b8c": [
+          "3.7.0"
+        ]
+      },
+      "build_ids": {
+        "0f0df012743bba4e8fc157361d7a6cee9e3d1d48": [
+          "3.7.0"
+        ],
+        "2eb89cc8bf8312144ffb3889274bea6b3a40b79e": [
+          "3.7.0"
+        ],
+        "6f4d4914867eeec431db0cae2f88b38746b89bee": [
+          "3.7.0"
+        ],
+        "efcbeee68e3b56d1f953a0159a1a94f22ea7587a": [
+          "3.7.0"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "3.7.0": [
+          "3.7.0"
+        ]
+      }
+    }
+  ]
+}

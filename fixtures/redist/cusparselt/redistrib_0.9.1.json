@@ -1,0 +1,38 @@
+{
+    "release_date": "2026-04-29",
+    "release_label": "0.9.1",
+    "release_product": "cusparselt",
+    "libcusparse_lt": {
+        "name": "NVIDIA cuSPARSELt",
+        "license": "cuSPARSELt",
+        "license_path": "libcusparse_lt/LICENSE.txt",
+        "version": "0.9.1.1",
+        "linux-x86_64": {
+            "cuda13": {
+                "relative_path": "libcusparse_lt/linux-x86_64/libcusparse_lt-linux-x86_64-0.9.1.1_cuda13-archive.tar.xz",
+                "sha256": "e77c16595ce572fbd5d98c5a4959bb955055b5f8c339f5695430358e177360ff",
+                "md5": "c08bb5e40b398602a4141205498f0c88",
+                "size": "319170096"
+            }
+        },
+        "cuda_variant": [
+            "13"
+        ],
+        "linux-sbsa": {
+            "cuda13": {
+                "relative_path": "libcusparse_lt/linux-sbsa/libcusparse_lt-linux-sbsa-0.9.1.1_cuda13-archive.tar.xz",
+                "sha256": "542fcec45ea23b2cc805010e5f270088839af1c88f8c578e3113d6fb452d7564",
+                "md5": "4a25b3e44f3382d8f5ad094fb1b4ec5d",
+                "size": "428096020"
+            }
+        },
+        "windows-x86_64": {
+            "cuda13": {
+                "relative_path": "libcusparse_lt/windows-x86_64/libcusparse_lt-windows-x86_64-0.9.1.1_cuda13-archive.zip",
+                "sha256": "2d018fcd0601f1812c38b7e13300c924a97458f2b3326bd6064a33e5bab05b33",
+                "md5": "19ba1bc412f4c7d513b45aa1248bd08b",
+                "size": "157814625"
+            }
+        }
+    }
+}

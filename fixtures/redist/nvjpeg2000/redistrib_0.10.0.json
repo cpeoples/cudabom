@@ -1,0 +1,65 @@
+{
+    "release_date": "2026-04-06",
+    "release_label": "0.10.0",
+    "release_product": "nvjpeg2000",
+    "libnvjpeg_2k": {
+        "name": "NVIDIA nvJPEG 2000",
+        "license": "nvJPEG 2K",
+        "license_path": "libnvjpeg_2k/LICENSE.txt",
+        "version": "0.10.0.49",
+        "linux-x86_64": {
+            "cuda12": {
+                "relative_path": "libnvjpeg_2k/linux-x86_64/libnvjpeg_2k-linux-x86_64-0.10.0.49_cuda12-archive.tar.xz",
+                "sha256": "b17ec3141ec50e0c3b796d4f28dae8370d8db3684deb849c87fc7ad52be1cbcb",
+                "md5": "4dfd3be3838c67a68a2935f59cddcfa0",
+                "size": "8192740"
+            },
+            "cuda13": {
+                "relative_path": "libnvjpeg_2k/linux-x86_64/libnvjpeg_2k-linux-x86_64-0.10.0.49_cuda13-archive.tar.xz",
+                "sha256": "31f52bb363a63089552954b055fbbe84f8ac64e4f9850c9d9a2366338fe15f12",
+                "md5": "ccf235df16bfa713f653ba67e981e9d5",
+                "size": "3371852"
+            }
+        },
+        "cuda_variant": [
+            "12",
+            "13"
+        ],
+        "linux-sbsa": {
+            "cuda12": {
+                "relative_path": "libnvjpeg_2k/linux-sbsa/libnvjpeg_2k-linux-sbsa-0.10.0.49_cuda12-archive.tar.xz",
+                "sha256": "c8991cb9b26d184407413b860448e0ab8358400341461f602f9a2b3b61291340",
+                "md5": "8f68f0c0fc0c5c1bc22babed9bfdf3dd",
+                "size": "8091500"
+            },
+            "cuda13": {
+                "relative_path": "libnvjpeg_2k/linux-sbsa/libnvjpeg_2k-linux-sbsa-0.10.0.49_cuda13-archive.tar.xz",
+                "sha256": "c66c5b8d868d4a4976da5be5eb6ef13080136d6243232f68fee443f8268802f9",
+                "md5": "214a9a55adcc920eac508200a1434202",
+                "size": "3657120"
+            }
+        },
+        "windows-x86_64": {
+            "cuda12": {
+                "relative_path": "libnvjpeg_2k/windows-x86_64/libnvjpeg_2k-windows-x86_64-0.10.0.49_cuda12-archive.zip",
+                "sha256": "40684ca3f49b1378526c63ddad6552c5865774962f509b4d8a14dcafe740e152",
+                "md5": "9e6172af25273623a86cb98b4ac91743",
+                "size": "7108264"
+            },
+            "cuda13": {
+                "relative_path": "libnvjpeg_2k/windows-x86_64/libnvjpeg_2k-windows-x86_64-0.10.0.49_cuda13-archive.zip",
+                "sha256": "b6e2059fe1a9702d5ac5418aba80207fe83d77e577dba0f011534ed3a6615795",
+                "md5": "4b509744ab99809b992cac38a42ad3d9",
+                "size": "3103458"
+            }
+        },
+        "linux-aarch64": {
+            "cuda12": {
+                "relative_path": "libnvjpeg_2k/linux-aarch64/libnvjpeg_2k-linux-aarch64-0.10.0.49_cuda12-archive.tar.xz",
+                "sha256": "e38cf5872a92a5f984a0f370ea2d527da4b9166238ee9a5c423b5289d773dba7",
+                "md5": "e2e0c7dd80b6cdf6e0b73c3041b42d89",
+                "size": "2540260"
+            }
+        }
+    }
+}

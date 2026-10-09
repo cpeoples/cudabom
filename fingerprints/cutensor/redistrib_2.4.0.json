@@ -1,0 +1,204 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "2.4.0",
+    "date": "2025-11-17"
+  },
+  "provenance": {
+    "manifest_sha256": "def53059a50a528ff06671db4fcf4a7bc97a426ffd08fdf86e10ee37ef50cf09",
+    "corpus_sha256": [
+      "0d34fe8655ce183540f15c70b03a4af305141617965ca394058b593372b00ba4",
+      "2703d730343bc5827b2b36698bd2e7d8e348f4459093a8910b47534e65f7b264",
+      "c012b37553bf5c338b7edaeff36a4d2af21d21985af98a5390e4f2c37ad55653",
+      "c04c560b87f8b24db7ab32335591a2dacff489f561a56372cb9855ec3da31c19"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cutensor",
+      "description": "NVIDIA cuTENSOR",
+      "license": "cuTensor",
+      "soname_stems": [
+        "libcutensor.so",
+        "libcutensorMg.so",
+        "libcutensorMp.so"
+      ],
+      "file_hashes": {
+        "06855f34ca841d81b458e2ef99017890f2479471eac222ab6b06674d25cf40f0": [
+          "2.4.0.2"
+        ],
+        "0b26037be12afaae727a9eb8d28f94bb75602914a5497e2f04cc8a22a348cedc": [
+          "2.4.0.2"
+        ],
+        "0d34fe8655ce183540f15c70b03a4af305141617965ca394058b593372b00ba4": [
+          "2.4.0.2"
+        ],
+        "0fe5dd20c7d0a95a145cc96ecf83567f30aff00902843ec87f88c470510b0b82": [
+          "2.4.0.2"
+        ],
+        "2703d730343bc5827b2b36698bd2e7d8e348f4459093a8910b47534e65f7b264": [
+          "2.4.0.2"
+        ],
+        "277181e6f4a4bb475d595aa4e82bbcf434fffe589bb695ea4683ca6c5041c7b2": [
+          "2.4.0.2"
+        ],
+        "2fc6de873c50feb691d701f61220a9ed745a938e56bbd4079ecc56b6a43e746f": [
+          "2.4.0.2"
+        ],
+        "366904b4e7cf6a84a9f76a32cd9eb320ad3b9ff236a385f6e89911e87c40ef25": [
+          "2.4.0.2"
+        ],
+        "4d0f65533af877367833823e30d5fc4dcbd59abe1c7544b525d7a692df5c11aa": [
+          "2.4.0.2"
+        ],
+        "4f075331f975ff212c884a92f17bff7b977d4f234c98b9819b922bdb842dcaed": [
+          "2.4.0.2"
+        ],
+        "50c2c101f65144163ee26aeaabdd749ffce860d1c4ae5fc98860b410e40d17cf": [
+          "2.4.0.2"
+        ],
+        "68164aba5d971aff91ba326529db87bf3d244fbf5621800bceebbb3c43501c7a": [
+          "2.4.0.2"
+        ],
+        "8d9bd240ae2c9f6787e2fa8a03fc1bf010ad7666d1ab2b68994a0a1defb6e92c": [
+          "2.4.0.2"
+        ],
+        "9a7bbf5e37f439a17402417024e261711fdd4d07de7df15cd65c7b4777f44e16": [
+          "2.4.0.2"
+        ],
+        "c012b37553bf5c338b7edaeff36a4d2af21d21985af98a5390e4f2c37ad55653": [
+          "2.4.0.2"
+        ],
+        "c04c560b87f8b24db7ab32335591a2dacff489f561a56372cb9855ec3da31c19": [
+          "2.4.0.2"
+        ],
+        "c730374e6d2c0d8fdcbf469aac1b0c2c5ade4fa17bb3718340e19ce00b756b22": [
+          "2.4.0.2"
+        ],
+        "ee7cec55dc6bfa18450b35d9970bb4ab2c94f6575fafbdc76b96c691e185d27d": [
+          "2.4.0.2"
+        ]
+      },
+      "build_ids": {
+        "30720eb22ae96b4e9e77f9caab01a030cab69602": [
+          "2.4.0.2"
+        ],
+        "4613131fd3aab2dfd0e6e61c765088de3f2eb808": [
+          "2.4.0.2"
+        ],
+        "600d9b0dacd95c71de4c0300b9cc9e65355c8e07": [
+          "2.4.0.2"
+        ],
+        "7ee45daca923d3b6f18c8bc03e8947ed97889c43": [
+          "2.4.0.2"
+        ],
+        "8c8dad30fdd9595a91892d43504a96d6c7c2ccbb": [
+          "2.4.0.2"
+        ],
+        "ac1d461645ea8ba928f29b9c1973dff128b50215": [
+          "2.4.0.2"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "CUTENSOR_COMPUTE_DESC_16BF",
+        "CUTENSOR_COMPUTE_DESC_16F",
+        "CUTENSOR_COMPUTE_DESC_32F",
+        "CUTENSOR_COMPUTE_DESC_3XTF32",
+        "CUTENSOR_COMPUTE_DESC_64F",
+        "CUTENSOR_COMPUTE_DESC_8XINT8",
+        "CUTENSOR_COMPUTE_DESC_9X16BF",
+        "CUTENSOR_COMPUTE_DESC_TF32",
+        "cutensorBlockSparseContract",
+        "cutensorComputeDescriptorGetAttribute",
+        "cutensorComputeDescriptorSetAttribute",
+        "cutensorContract",
+        "cutensorContractTrinary",
+        "cutensorCreate",
+        "cutensorCreateBlockSparseContraction",
+        "cutensorCreateBlockSparseTensorDescriptor",
+        "cutensorCreateComputeDescriptor",
+        "cutensorCreateContraction",
+        "cutensorCreateContractionTrinary",
+        "cutensorCreateElementwiseBinary",
+        "cutensorCreateElementwiseTrinary",
+        "cutensorCreatePermutation",
+        "cutensorCreatePlan",
+        "cutensorCreatePlanPreference",
+        "cutensorCreateReduction",
+        "cutensorCreateTensorDescriptor",
+        "cutensorDestroy",
+        "cutensorDestroyBlockSparseTensorDescriptor",
+        "cutensorDestroyComputeDescriptor",
+        "cutensorDestroyOperationDescriptor",
+        "cutensorDestroyPlan",
+        "cutensorDestroyPlanPreference",
+        "cutensorDestroyTensorDescriptor",
+        "cutensorElementwiseBinaryExecute",
+        "cutensorElementwiseTrinaryExecute",
+        "cutensorEstimateWorkspaceSize",
+        "cutensorGetCudartVersion",
+        "cutensorGetErrorString",
+        "cutensorGetVersion",
+        "cutensorHandleReadPlanCacheFromFile",
+        "cutensorHandleResizePlanCache",
+        "cutensorHandleWritePlanCacheToFile",
+        "cutensorLoggerForceDisable",
+        "cutensorLoggerOpenFile",
+        "cutensorLoggerSetCallback",
+        "cutensorLoggerSetFile",
+        "cutensorLoggerSetLevel",
+        "cutensorLoggerSetMask",
+        "cutensorMgContraction",
+        "cutensorMgContractionFindSetAttribute",
+        "cutensorMgContractionGetWorkspace",
+        "cutensorMgCopy",
+        "cutensorMgCopyGetWorkspace",
+        "cutensorMgCreate",
+        "cutensorMgCreateContractionDescriptor",
+        "cutensorMgCreateContractionFind",
+        "cutensorMgCreateContractionPlan",
+        "cutensorMgCreateCopyDescriptor",
+        "cutensorMgCreateCopyPlan",
+        "cutensorMgCreateTensorDescriptor",
+        "cutensorMgDestroy",
+        "cutensorMgDestroyContractionDescriptor",
+        "cutensorMgDestroyContractionFind",
+        "cutensorMgDestroyContractionPlan",
+        "cutensorMgDestroyCopyDescriptor",
+        "cutensorMgDestroyCopyPlan",
+        "cutensorMgDestroyTensorDescriptor",
+        "cutensorMpContract",
+        "cutensorMpCreate",
+        "cutensorMpCreateContraction",
+        "cutensorMpCreatePlan",
+        "cutensorMpCreatePlanPreference",
+        "cutensorMpCreateTensorDescriptor",
+        "cutensorMpDestroy",
+        "cutensorMpDestroyOperationDescriptor",
+        "cutensorMpDestroyPlan",
+        "cutensorMpDestroyPlanPreference",
+        "cutensorMpDestroyTensorDescriptor",
+        "cutensorMpPlanGetAttribute",
+        "cutensorOperationDescriptorGetAttribute",
+        "cutensorOperationDescriptorSetAttribute",
+        "cutensorOperationEstimateRuntime",
+        "cutensorOperationNumAlgos",
+        "cutensorPermute",
+        "cutensorPlanGetAttribute",
+        "cutensorPlanPreferenceGetAttribute",
+        "cutensorPlanPreferenceSetAttribute",
+        "cutensorReadKernelCacheFromFile",
+        "cutensorReduce",
+        "cutensorTensorDescriptorSetAttribute",
+        "cutensorWriteKernelCacheToFile"
+      ],
+      "release_versions": {
+        "2.4.0.2": [
+          "2.4.0"
+        ]
+      }
+    }
+  ]
+}

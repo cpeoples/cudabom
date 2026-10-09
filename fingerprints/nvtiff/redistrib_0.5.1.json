@@ -1,0 +1,185 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.5.1",
+    "date": "2025-08-05"
+  },
+  "provenance": {
+    "manifest_sha256": "09de061396f58af1239f2cb55d5b6f99791e2bc978c3e28c86b99652228087f8",
+    "corpus_sha256": [
+      "1f97778f92c938f5174fda74a913370d4ff200d77809570cecdafcd8aaff84b6",
+      "415c507443c026db501bd58d49428d6378f7d5e02e371f8f05d9cbe421565a90",
+      "5adabfe9c4eac59916bfc464b7325866da99752ade30bbc3ddd3cd9c852f69e7",
+      "5d63be4128daf28676ae01a81d2e69f828d2e7eda332c039079ff57b42915d20",
+      "7d37821154aca7846695ccf12369eeb8c0f263d58b6dfb43e23bd12f4c114ef0",
+      "8d1b07af6d8b68776d6a6533b4c33134af01d5cb6a0d9c5bcc7a866559de600a",
+      "9274e74f58c2d85d13089ba3be3e3464c2cb34d2332c9f7a96ec42765bf2b034",
+      "d20309617df0bca6b373dfa33bac99703993a0e3759af70d2691d3b829df4d33",
+      "ef8f2f8472959be63e895997c0b13892db4e3c6bf3d06a4752c8e9292531c55a"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvtiff",
+      "description": "NVIDIA nvTIFF",
+      "license": "nvTIFF",
+      "soname_stems": [
+        "libnvtiff.so"
+      ],
+      "file_hashes": {
+        "0e75603c23eed4df4d04d8ddd08bc106df9a4423596f32d238fbf7bb623280b1": [
+          "0.5.1.75"
+        ],
+        "162fa2c6cf293c2238681924332c18efa69cf670583dfe14ff15057a957b099b": [
+          "0.5.1.75"
+        ],
+        "1f97778f92c938f5174fda74a913370d4ff200d77809570cecdafcd8aaff84b6": [
+          "0.5.1.75"
+        ],
+        "37299b0f21da0204ac5bf623a9eaab84064842f6ba77074352645675ba827aa8": [
+          "0.5.1.75"
+        ],
+        "415c507443c026db501bd58d49428d6378f7d5e02e371f8f05d9cbe421565a90": [
+          "0.5.1.75"
+        ],
+        "43a3164edc20939cc470559d86ddd103e36326930b9fc9b9998ea1246a6119cc": [
+          "0.5.1.75"
+        ],
+        "4bd010b0cf8bd7db4f90e15a38758958fcd06df97c6440f033c16cc1a3fcd84e": [
+          "0.5.1.75"
+        ],
+        "5adabfe9c4eac59916bfc464b7325866da99752ade30bbc3ddd3cd9c852f69e7": [
+          "0.5.1.75"
+        ],
+        "5d63be4128daf28676ae01a81d2e69f828d2e7eda332c039079ff57b42915d20": [
+          "0.5.1.75"
+        ],
+        "6ba5c1d6f7096eb5d85183b63f2a0bcc2b0986cfa0b1c92f93e48b97eba9c9d2": [
+          "0.5.1.75"
+        ],
+        "6c9fd105cac89a58fe03a78308f11057d118bc1efe8e5908cb1e2dd035db0e6a": [
+          "0.5.1.75"
+        ],
+        "7d37821154aca7846695ccf12369eeb8c0f263d58b6dfb43e23bd12f4c114ef0": [
+          "0.5.1.75"
+        ],
+        "807f5746c0a96261d932ef3caf93abc36c6a97aac5e4959a63b6d79a8b0a0714": [
+          "0.5.1.75"
+        ],
+        "8d1b07af6d8b68776d6a6533b4c33134af01d5cb6a0d9c5bcc7a866559de600a": [
+          "0.5.1.75"
+        ],
+        "9274e74f58c2d85d13089ba3be3e3464c2cb34d2332c9f7a96ec42765bf2b034": [
+          "0.5.1.75"
+        ],
+        "a3db5d37c61845d97aa5f1c1a93f9885239741c169a4c577f1f93293dd139a0d": [
+          "0.5.1.75"
+        ],
+        "c140fb7c0cb40c8796cdc7f3cf604a7fbb85e5b6e0e3315d9c269cfa19caa46a": [
+          "0.5.1.75"
+        ],
+        "d20309617df0bca6b373dfa33bac99703993a0e3759af70d2691d3b829df4d33": [
+          "0.5.1.75"
+        ],
+        "d962f3d502f9c15f151c1cbc260edb1afe747ceccb11cf101117c73695dc1931": [
+          "0.5.1.75"
+        ],
+        "e70b2cec268443681d47d6dfa7c58f7ef68a9f447725ae5a2a5de244377d71c2": [
+          "0.5.1.75"
+        ],
+        "ef8f2f8472959be63e895997c0b13892db4e3c6bf3d06a4752c8e9292531c55a": [
+          "0.5.1.75"
+        ]
+      },
+      "build_ids": {
+        "3413bffa524ce34e607180677a18ffc29edb08e5": [
+          "0.5.1.75"
+        ],
+        "545f583e023bd64d03abec5ccfead77f6a40dfdf": [
+          "0.5.1.75"
+        ],
+        "61adeecfa179098132fffd76bcea7105d28a64c6": [
+          "0.5.1.75"
+        ],
+        "6f9dc153e08f1fb4a6d0cc085d63bb9ed791ad4f": [
+          "0.5.1.75"
+        ],
+        "89a3fa9792a3bde62d7b941fe5e1f32093aa81b2": [
+          "0.5.1.75"
+        ],
+        "92dbf29b7a9c24870eede53b8c34f7fd0bd3a9fa": [
+          "0.5.1.75"
+        ],
+        "afbd6b402b26db3c3967701597d7cf450ac14f4d": [
+          "0.5.1.75"
+        ],
+        "b0d30102346bcb6fee979163565807bc41338a6b": [
+          "0.5.1.75"
+        ],
+        "bd7aac779a8966690c199f6a850508189fc703b7": [
+          "0.5.1.75"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "nvTiffEncode",
+        "nvTiffEncodeCtxCreate",
+        "nvTiffEncodeCtxDestroy",
+        "nvTiffEncodeFinalize",
+        "nvTiffWriteFile",
+        "nvtiffDecode",
+        "nvtiffDecodeCheckSupported",
+        "nvtiffDecodeImage",
+        "nvtiffDecodeParamsCreate",
+        "nvtiffDecodeParamsDestroy",
+        "nvtiffDecodeParamsSetOutputFormat",
+        "nvtiffDecodeParamsSetROI",
+        "nvtiffDecodeRange",
+        "nvtiffDecoderCreate",
+        "nvtiffDecoderCreateSimple",
+        "nvtiffDecoderDestroy",
+        "nvtiffEncode",
+        "nvtiffEncodeFinalize",
+        "nvtiffEncodeParamsCreate",
+        "nvtiffEncodeParamsDestroy",
+        "nvtiffEncodeParamsSetGeoKey",
+        "nvtiffEncodeParamsSetGeoKeyASCII",
+        "nvtiffEncodeParamsSetGeoKeyDOUBLE",
+        "nvtiffEncodeParamsSetGeoKeySHORT",
+        "nvtiffEncodeParamsSetImageInfo",
+        "nvtiffEncodeParamsSetInputs",
+        "nvtiffEncodeParamsSetTag",
+        "nvtiffEncoderCreate",
+        "nvtiffEncoderDestroy",
+        "nvtiffGetBitstreamSize",
+        "nvtiffStreamCreate",
+        "nvtiffStreamDestroy",
+        "nvtiffStreamGetFileInfo",
+        "nvtiffStreamGetGeoKey",
+        "nvtiffStreamGetGeoKeyASCII",
+        "nvtiffStreamGetGeoKeyDOUBLE",
+        "nvtiffStreamGetGeoKeyInfo",
+        "nvtiffStreamGetGeoKeySHORT",
+        "nvtiffStreamGetImageGeometry",
+        "nvtiffStreamGetImageInfo",
+        "nvtiffStreamGetNumImages",
+        "nvtiffStreamGetNumberOfGeoKeys",
+        "nvtiffStreamGetTagInfo",
+        "nvtiffStreamGetTagInfoGeneric",
+        "nvtiffStreamGetTagValue",
+        "nvtiffStreamGetTagValueGeneric",
+        "nvtiffStreamParse",
+        "nvtiffStreamParseFromFile",
+        "nvtiffStreamPrint",
+        "nvtiffWriteTiffBuffer",
+        "nvtiffWriteTiffFile"
+      ],
+      "release_versions": {
+        "0.5.1.75": [
+          "0.5.1"
+        ]
+      }
+    }
+  ]
+}

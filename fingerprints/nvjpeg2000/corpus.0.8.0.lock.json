@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvjpeg2000",
+      "version": "0.8.0.38",
+      "platform": "linux-aarch64",
+      "url": "https://developer.download.nvidia.com/compute/nvjpeg2000/redist/libnvjpeg_2k/linux-aarch64/libnvjpeg_2k-linux-aarch64-0.8.0.38-archive.tar.xz",
+      "sha256": "dac4f1d0c088c22155067b781142dc27ec1d3ced68b99d2180fcd1fcf02fe19e"
+    },
+    {
+      "component": "nvjpeg2000",
+      "version": "0.8.0.38",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvjpeg2000/redist/libnvjpeg_2k/linux-sbsa/libnvjpeg_2k-linux-sbsa-0.8.0.38-archive.tar.xz",
+      "sha256": "03a568305989b25be6def7d860b2519577ebef1538c703de0ad086fa2314a1e0"
+    },
+    {
+      "component": "nvjpeg2000",
+      "version": "0.8.0.38",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/nvjpeg2000/redist/libnvjpeg_2k/linux-x86_64/libnvjpeg_2k-linux-x86_64-0.8.0.38-archive.tar.xz",
+      "sha256": "f0b4f0ab9e19579c547e96ce189c6a93731f662898751a88d62e3caa59472367"
+    }
+  ]
+}

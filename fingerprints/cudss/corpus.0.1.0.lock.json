@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cudss",
+      "version": "0.1.0.45",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudss/redist/libcudss/linux-x86_64/libcudss-linux-x86_64-0.1.0.45_cuda12-archive.tar.xz",
+      "sha256": "52b5f6b0a2626cde63bc5f0fd24aabb5a260370b6ac18af5e3ce201d79fd673a"
+    }
+  ]
+}

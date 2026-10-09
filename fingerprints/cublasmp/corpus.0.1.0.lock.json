@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cublasmp",
+      "version": "0.1.0.189",
+      "platform": "linux-sbsa-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cublasmp/redist/libcublasmp/linux-sbsa/libcublasmp-linux-sbsa-0.1.0.189_cuda11-archive.tar.xz",
+      "sha256": "1681af5fbcd83dccb7d3860672d2fbf9e6c19f2918bc3fed496c0564c1d15ce4"
+    },
+    {
+      "component": "cublasmp",
+      "version": "0.1.0.189",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cublasmp/redist/libcublasmp/linux-sbsa/libcublasmp-linux-sbsa-0.1.0.189_cuda12-archive.tar.xz",
+      "sha256": "8aa2de23a9afc34b3224358f5aeb18232615a722c19104ed6c5a3f2ddb9f0284"
+    },
+    {
+      "component": "cublasmp",
+      "version": "0.1.0.189",
+      "platform": "linux-x86_64-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cublasmp/redist/libcublasmp/linux-x86_64/libcublasmp-linux-x86_64-0.1.0.189_cuda11-archive.tar.xz",
+      "sha256": "8fb1b31ade2dd7bf4a601427a93d55ec0ccc13b2d9e1b09d3450421c1c683ec9"
+    },
+    {
+      "component": "cublasmp",
+      "version": "0.1.0.189",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cublasmp/redist/libcublasmp/linux-x86_64/libcublasmp-linux-x86_64-0.1.0.189_cuda12-archive.tar.xz",
+      "sha256": "20151f841ddd7ad87280b44d6e7228dcf16207dd10b36a601bbde087e34bb44d"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvtiff",
+      "version": "0.3.0.55",
+      "platform": "linux-x86_64-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/nvtiff/redist/libnvtiff/linux-x86_64/libnvtiff-linux-x86_64-0.3.0.55_cuda11-archive.tar.xz",
+      "sha256": "4ff3cc945931a8761f17fcc2bb2fd508e837c84c19a304c90a869b6f4fba4b5a"
+    },
+    {
+      "component": "nvtiff",
+      "version": "0.3.0.55",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvtiff/redist/libnvtiff/linux-x86_64/libnvtiff-linux-x86_64-0.3.0.55_cuda12-archive.tar.xz",
+      "sha256": "bd76117e1d06388cacddadd977f1e05b1d3cf71c4f6a850ed25b6727c29fcd23"
+    }
+  ]
+}

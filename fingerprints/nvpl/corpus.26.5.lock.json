@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvpl-blas",
+      "version": "0.6.0",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_blas/linux-sbsa/nvpl_blas-linux-sbsa-0.6.0-archive.tar.xz",
+      "sha256": "f45da9dcd482f987a7da6bd5f8272813765edaae693a839e3211c02d4afd8aad"
+    },
+    {
+      "component": "nvpl-fft",
+      "version": "0.6.0.1",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_fft/linux-sbsa/nvpl_fft-linux-sbsa-0.6.0.1-archive.tar.xz",
+      "sha256": "87ddf5f3aa5ecfd8bb4fee892ec3c12e475578b38885fbeb031b0b4fbd0e45c9"
+    },
+    {
+      "component": "nvpl-lapack",
+      "version": "0.4.0.1",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_lapack/linux-sbsa/nvpl_lapack-linux-sbsa-0.4.0.1-archive.tar.xz",
+      "sha256": "2233a1502de4bc720671462b09a1123e3bb329d0e7f5759566d879e5f1071c20"
+    },
+    {
+      "component": "nvpl-rand",
+      "version": "0.5.4",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_rand/linux-sbsa/nvpl_rand-linux-sbsa-0.5.4-archive.tar.xz",
+      "sha256": "84a0c27781a9495656ab31be165080dd0053632b76a526f495c6d6f8bedb9714"
+    },
+    {
+      "component": "nvpl-scalapack",
+      "version": "0.2.4",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_scalapack/linux-sbsa/nvpl_scalapack-linux-sbsa-0.2.4-archive.tar.xz",
+      "sha256": "fc50f9eae51db7d46fc2bd0fb9350d2bf149b0fea7a48815236c145c299b43a8"
+    },
+    {
+      "component": "nvpl-sparse",
+      "version": "0.6.0",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_sparse/linux-sbsa/nvpl_sparse-linux-sbsa-0.6.0-archive.tar.xz",
+      "sha256": "8bfae7bdba69fcfe85460f4a1e9259e4d958b70532a030839e00a3f1cbbba1db"
+    },
+    {
+      "component": "nvpl-tensor",
+      "version": "0.3.3",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nvpl/redist/nvpl_tensor/linux-sbsa/nvpl_tensor-linux-sbsa-0.3.3-archive.tar.xz",
+      "sha256": "efbd7ae929169f3fd94fb3aa57779004bb238ea55174aabae8dcf9b6441fd9ee"
+    }
+  ]
+}

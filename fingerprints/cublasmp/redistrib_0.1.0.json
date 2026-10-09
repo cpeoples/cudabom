@@ -1,0 +1,73 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.1.0",
+    "date": "2023-12-18"
+  },
+  "provenance": {
+    "manifest_sha256": "b3e9ea02485598d3ea410ec58ab4d69973a66c8a683a0677ec46f67ad0991428",
+    "corpus_sha256": [
+      "1681af5fbcd83dccb7d3860672d2fbf9e6c19f2918bc3fed496c0564c1d15ce4",
+      "20151f841ddd7ad87280b44d6e7228dcf16207dd10b36a601bbde087e34bb44d",
+      "8aa2de23a9afc34b3224358f5aeb18232615a722c19104ed6c5a3f2ddb9f0284",
+      "8fb1b31ade2dd7bf4a601427a93d55ec0ccc13b2d9e1b09d3450421c1c683ec9"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cublasmp",
+      "description": "NVIDIA cuBLASMp library",
+      "license": "cuBLASMp library",
+      "soname_stems": [
+        "libcublasmp.so"
+      ],
+      "file_hashes": {
+        "1681af5fbcd83dccb7d3860672d2fbf9e6c19f2918bc3fed496c0564c1d15ce4": [
+          "0.1.0.189"
+        ],
+        "18ad2413be38697d417f76b5c8e9213b85b281455e638c486702f79aa78b443a": [
+          "0.1.0.189"
+        ],
+        "20151f841ddd7ad87280b44d6e7228dcf16207dd10b36a601bbde087e34bb44d": [
+          "0.1.0.189"
+        ],
+        "53fe75f9dc513201d588c29fade567a36f90714b61b53ad21c8dcb803835b9c2": [
+          "0.1.0.189"
+        ],
+        "8aa2de23a9afc34b3224358f5aeb18232615a722c19104ed6c5a3f2ddb9f0284": [
+          "0.1.0.189"
+        ],
+        "8fb1b31ade2dd7bf4a601427a93d55ec0ccc13b2d9e1b09d3450421c1c683ec9": [
+          "0.1.0.189"
+        ],
+        "9f12399c653a03c8d8a19bbcfa093ec90f74a89dbd1a21577e92010d0e9b5c67": [
+          "0.1.0.189"
+        ],
+        "b6801b69aec8f7d9f84a88b51caee07b815099d20d2b9a547e2a61ab8a9ca461": [
+          "0.1.0.189"
+        ]
+      },
+      "build_ids": {
+        "12a5d32394abeefd9b65a84f59c2021ff9318f76": [
+          "0.1.0.189"
+        ],
+        "34546e92d3ec4eafefba35d4b585b71eedb4bff3": [
+          "0.1.0.189"
+        ],
+        "af675c42d0a71bcc7ab0fa6a911503d7ea1913b8": [
+          "0.1.0.189"
+        ],
+        "e47cf59e5b7da17843bfd2c9036a6b60d97ed765": [
+          "0.1.0.189"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.1.0.189": [
+          "0.1.0"
+        ]
+      }
+    }
+  ]
+}

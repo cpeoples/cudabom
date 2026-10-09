@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvtiff",
+      "version": "0.4.0.62",
+      "platform": "linux-aarch64-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/nvtiff/redist/libnvtiff/linux-aarch64/libnvtiff-linux-aarch64-0.4.0.62_cuda11-archive.tar.xz",
+      "sha256": "178945699ccda8ce1ac6e161782ab994bdf7f5cfaa27d705fcd3931805bca21a"
+    },
+    {
+      "component": "nvtiff",
+      "version": "0.4.0.62",
+      "platform": "linux-aarch64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvtiff/redist/libnvtiff/linux-aarch64/libnvtiff-linux-aarch64-0.4.0.62_cuda12-archive.tar.xz",
+      "sha256": "2a7cc95a2a3ae56093a0becc7f87b9726253728443840fccacb35f9fd974d4cc"
+    },
+    {
+      "component": "nvtiff",
+      "version": "0.4.0.62",
+      "platform": "linux-sbsa-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/nvtiff/redist/libnvtiff/linux-sbsa/libnvtiff-linux-sbsa-0.4.0.62_cuda11-archive.tar.xz",
+      "sha256": "c8904df056d8e365566cf1ee67e6dc554be2d030458e8d3c8c94240cdd9351c9"
+    },
+    {
+      "component": "nvtiff",
+      "version": "0.4.0.62",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvtiff/redist/libnvtiff/linux-sbsa/libnvtiff-linux-sbsa-0.4.0.62_cuda12-archive.tar.xz",
+      "sha256": "e66c275c2bcf69b82a0da69d29d70e754a22c8f32bb6cf75b34e4a2efd7640cb"
+    },
+    {
+      "component": "nvtiff",
+      "version": "0.4.0.62",
+      "platform": "linux-x86_64-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/nvtiff/redist/libnvtiff/linux-x86_64/libnvtiff-linux-x86_64-0.4.0.62_cuda11-archive.tar.xz",
+      "sha256": "8a206bb5b6b6e277e7366b8f10eec44320c5c7422117d83e4bf80bbf800bed1e"
+    },
+    {
+      "component": "nvtiff",
+      "version": "0.4.0.62",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvtiff/redist/libnvtiff/linux-x86_64/libnvtiff-linux-x86_64-0.4.0.62_cuda12-archive.tar.xz",
+      "sha256": "5f76b01eddfec0c2823eaa3aae1cf4709e695e8dbdfd22b2c54493ede2dabd4c"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.1.0",
+    "date": "2023-11-20"
+  },
+  "provenance": {
+    "manifest_sha256": "1d4d17be3e936554aa8ef0f8bc81f5b42a498b7970fddf750ac529b4c33cdb2b",
+    "corpus_sha256": [
+      "52b5f6b0a2626cde63bc5f0fd24aabb5a260370b6ac18af5e3ce201d79fd673a"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cudss",
+      "description": "NVIDIA cuDSS library",
+      "license": "cuDSS library",
+      "soname_stems": [
+        "libcudss.so",
+        "libcudss_commlayer_nccl.so",
+        "libcudss_commlayer_openmpi.so",
+        "libcudss_mtlayer_gomp.so"
+      ],
+      "file_hashes": {
+        "52b5f6b0a2626cde63bc5f0fd24aabb5a260370b6ac18af5e3ce201d79fd673a": [
+          "0.1.0.45"
+        ],
+        "560b2338825153cf9b24bf03e16f5b54d14a39611abb126f4b81af0e7ff603dc": [
+          "0.1.0.45"
+        ],
+        "bfe5eac48753ea286ba3a3d6e11af03a9e576cbf3adc7d602e8824364c089ced": [
+          "0.1.0.45"
+        ]
+      },
+      "build_ids": {
+        "c60d3c47ac8a247029ce7b764b1b9f57344052fa": [
+          "0.1.0.45"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "cudssConfigCreate",
+        "cudssConfigDestroy",
+        "cudssConfigGet",
+        "cudssConfigSet",
+        "cudssCreate",
+        "cudssDataCreate",
+        "cudssDataDestroy",
+        "cudssDataGet",
+        "cudssDataSet",
+        "cudssDestroy",
+        "cudssExecute",
+        "cudssGetProperty",
+        "cudssMatrixCreateCsr",
+        "cudssMatrixCreateDn",
+        "cudssMatrixDestroy",
+        "cudssMatrixGetCsr",
+        "cudssMatrixGetDn",
+        "cudssMatrixGetFormat",
+        "cudssMatrixSetCsrPointers",
+        "cudssMatrixSetValues",
+        "cudssSetStream",
+        "cudss_SuiteSparse_calloc",
+        "cudss_SuiteSparse_config",
+        "cudss_SuiteSparse_divcomplex",
+        "cudss_SuiteSparse_finish",
+        "cudss_SuiteSparse_free",
+        "cudss_SuiteSparse_hypot",
+        "cudss_SuiteSparse_malloc",
+        "cudss_SuiteSparse_realloc",
+        "cudss_SuiteSparse_start",
+        "cudss_SuiteSparse_tic",
+        "cudss_SuiteSparse_time",
+        "cudss_SuiteSparse_toc",
+        "cudss_SuiteSparse_version",
+        "cudss_amd_1",
+        "cudss_amd_2",
+        "cudss_amd_aat",
+        "cudss_amd_control",
+        "cudss_amd_defaults",
+        "cudss_amd_info",
+        "cudss_amd_order",
+        "cudss_amd_post_tree",
+        "cudss_amd_postorder",
+        "cudss_amd_preprocess",
+        "cudss_amd_valid",
+        "cudss_colamd",
+        "cudss_colamd_recommended",
+        "cudss_colamd_report",
+        "cudss_colamd_set_defaults",
+        "cudss_symamd",
+        "cudss_symamd_report"
+      ],
+      "release_versions": {
+        "0.1.0.45": [
+          "0.1.0"
+        ]
+      }
+    }
+  ]
+}

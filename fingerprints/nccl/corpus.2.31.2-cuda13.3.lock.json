@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nccl",
+      "version": "2.31.2",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/nccl/redist/nccl/linux-sbsa/nccl-linux-sbsa-2.31.2-archive.tar.xz",
+      "sha256": "6d56ab3cee41880ebcce1b06d1aa6a967a17df3e904e524b56b2bd1d27c7759b"
+    },
+    {
+      "component": "nccl",
+      "version": "2.31.2",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/nccl/redist/nccl/linux-x86_64/nccl-linux-x86_64-2.31.2-archive.tar.xz",
+      "sha256": "3834a5c411cf56771c491415c137329da8e676ad1f24c09ce83404f73cba33eb"
+    }
+  ]
+}
