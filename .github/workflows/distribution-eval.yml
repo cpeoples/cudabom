@@ -69,10 +69,11 @@ jobs:
       - name: Install competitors (best-effort)
         # Syft and Trivy give the comparison columns; a failure here is not fatal
         # (the eval records "not available" and still scores cudabom).
+        # Pinned to tagged installer scripts + tool versions for reproducibility.
         run: |
           set -euo pipefail
-          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin || true
-          curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin || true
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/v1.54.1/install.sh | sh -s -- -b /usr/local/bin v1.54.1 || true
+          curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/v0.75.0/contrib/install.sh | sh -s -- -b /usr/local/bin v0.75.0 || true
 
       - name: Build cudabom release binary
         run: cargo build --release --locked -p cudabom
@@ -136,10 +137,11 @@ jobs:
           df -h /
 
       - name: Install competitors (best-effort)
+        # Pinned to tagged installer scripts + tool versions for reproducibility.
         run: |
           set -euo pipefail
-          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin || true
-          curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin || true
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/v1.54.1/install.sh | sh -s -- -b /usr/local/bin v1.54.1 || true
+          curl -sSfL https://raw.githubusercontent.com/aquasecurity/trivy/v0.75.0/contrib/install.sh | sh -s -- -b /usr/local/bin v0.75.0 || true
 
       - name: Build cudabom release binary
         run: cargo build --release --locked -p cudabom

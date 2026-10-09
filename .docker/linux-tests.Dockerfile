@@ -28,7 +28,8 @@
 # image's baked-in toolchain, so the container compiles with the identical
 # compiler as local and CI. `cc`/`gcc` ship in this image already, which is
 # exactly what the real-ELF tests probe for on PATH.
-FROM rust:1-bookworm
+# Pinned by digest for supply-chain integrity; refresh the digest when bumping.
+FROM rust:1-bookworm@sha256:114c7a4425406451c2866b6aafe69fe29b1b298832db1277d411ac73c82d04d6
 
 # Explicit about the one runtime fact the tests need: a C compiler on PATH.
 # `build-essential` provides `cc`, `gcc`, and `ar`; it is present in the base
