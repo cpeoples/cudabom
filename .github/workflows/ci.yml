@@ -256,7 +256,7 @@ jobs:
           restore-keys: ${{ runner.os }}-fuzz-
 
       - name: Install cargo-fuzz
-        run: cargo install cargo-fuzz --locked
+        run: command -v cargo-fuzz >/dev/null || cargo install cargo-fuzz --locked
 
       - name: Smoke-fuzz each target
         run: |
