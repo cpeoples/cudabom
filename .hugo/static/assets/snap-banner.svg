@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240" role="img" aria-label="CudaBOM: find the CUDA your SBOM missed">
+  <defs>
+    <linearGradient id="cb-bg" x1="0" y1="0" x2="720" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0b0d12"/>
+      <stop offset="1" stop-color="#141826"/>
+    </linearGradient>
+    <linearGradient id="cb-rule" x1="243" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#76B900"/>
+      <stop offset="1" stop-color="#B6F03A" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="cb-top" x1="0" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#B6F03A"/><stop offset="1" stop-color="#86CC06"/>
+    </linearGradient>
+    <linearGradient id="cb-left" x1="0" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6FAE00"/><stop offset="1" stop-color="#4E7A00"/>
+    </linearGradient>
+    <radialGradient id="cb-glow" cx="64" cy="64" r="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#76B900" stop-opacity="0.5"/>
+      <stop offset="0.6" stop-color="#76B900" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#76B900" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="720" height="240" fill="url(#cb-bg)"/>
+  <g transform="translate(44 52)">
+    <rect x="0" y="0" width="168" height="168" rx="38" fill="#14161c"/>
+    <rect x="13" y="13" width="142" height="142" rx="29" fill="url(#cb-glow)"/>
+    <!-- Isometric CUDA-grid cube, scaled to fit the 168px tile (x1.31 -> 84 center) -->
+    <g transform="translate(84 84) scale(1.31)">
+      <path d="M0 -40 L40 -17 L0 6 L-40 -17 Z" fill="url(#cb-top)"/>
+      <path d="M-40 -17 L0 6 L0 48 L-40 25 Z" fill="url(#cb-left)"/>
+      <path d="M40 -17 L0 6 L0 48 L40 25 Z" fill="#3C5F00"/>
+      <g stroke="#14161c" stroke-width="2.2" opacity="0.9">
+        <path d="M-26.6 -9.7 L13.3 -32.6"/><path d="M-13.3 -2 L26.6 -24.9"/>
+        <path d="M-26.6 -24.9 L13.3 -2"/><path d="M-13.3 -32.6 L26.6 -9.7"/>
+      </g>
+      <g stroke="#14161c" stroke-width="2.2" opacity="0.85">
+        <path d="M-26.6 -9.7 L-26.6 17.3"/><path d="M-13.3 -2 L-13.3 25"/>
+        <path d="M-40 0 L0 23"/><path d="M-40 12.5 L0 35.5"/>
+      </g>
+      <g stroke="#14161c" stroke-width="2.2" opacity="0.85">
+        <path d="M26.6 -9.7 L26.6 17.3"/><path d="M13.3 -2 L13.3 25"/>
+        <path d="M40 0 L0 23"/><path d="M40 12.5 L0 35.5"/>
+      </g>
+      <g fill="#DFFF8A">
+        <circle cx="0" cy="-17" r="2.6"/><circle cx="-13.3" cy="-9.7" r="2.6"/><circle cx="13.3" cy="-9.7" r="2.6"/>
+        <circle cx="-13.3" cy="-24.9" r="2.6"/><circle cx="13.3" cy="-24.9" r="2.6"/>
+      </g>
+    </g>
+  </g>
+  <text x="240" y="118" font-family="'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="78" font-weight="800" letter-spacing="1" fill="#f4f4f5">CudaBOM</text>
+  <rect x="243" y="140" width="300" height="4" rx="2" fill="url(#cb-rule)"/>
+  <text x="245" y="178" font-family="'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="26" font-weight="600" fill="#c7cfdd">Find the CUDA your SBOM missed</text>
+</svg>
