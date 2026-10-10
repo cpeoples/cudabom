@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cudnn",
+      "version": "8.7.0.84",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-8.7.0.84_cuda10-archive.tar.xz",
+      "sha256": "6d985aa9cf3e19b3d5d8542fbdb6ee7ddf159c4260bdf90809cd8ddff822b518"
+    }
+  ]
+}

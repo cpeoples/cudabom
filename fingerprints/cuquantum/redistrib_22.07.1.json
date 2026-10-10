@@ -1,0 +1,85 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "22.07.1",
+    "date": "2022-08-04"
+  },
+  "provenance": {
+    "manifest_sha256": "c7e99d4e50d75a3d6add2814af4c58428046d51e11607bafd47cf16642878dbd",
+    "corpus_sha256": [
+      "0c8fb14bf8916170e15a2ae7cfa950e23af13c9cb0915bad88d754221ad60116",
+      "2d35dba3c739e8de51591bcd2d7edf1a3c9995850af6525ae08e9b5c3798cf9a",
+      "4c4931096498451593ad553b6cb7a107bb6d6cedea65c80d5376d0cfbb647f8e"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cuquantum",
+      "description": "NVIDIA cuQuantum",
+      "license": "cuQuantum",
+      "soname_stems": [
+        "libcudensitymat.so",
+        "libcupauliprop.so",
+        "libcustabilizer.so",
+        "libcustatevec.so",
+        "libcutensornet.so"
+      ],
+      "file_hashes": {
+        "0c8fb14bf8916170e15a2ae7cfa950e23af13c9cb0915bad88d754221ad60116": [
+          "22.07.1.14"
+        ],
+        "2d35dba3c739e8de51591bcd2d7edf1a3c9995850af6525ae08e9b5c3798cf9a": [
+          "22.07.1.14"
+        ],
+        "46b609a7c623ccebc3f3f25bb7cdb61ab2c09aa827f3ff019efc7f00b71df266": [
+          "22.07.1.14"
+        ],
+        "4c4931096498451593ad553b6cb7a107bb6d6cedea65c80d5376d0cfbb647f8e": [
+          "22.07.1.14"
+        ],
+        "72e899e60b1ebe01ab9df2147783f2e90a21e82be890276b23f59ce10bd19672": [
+          "22.07.1.14"
+        ],
+        "9350182ef25e46571761588ad8285f4b87c6afd7b73bd5aed30dcbc75b510a15": [
+          "22.07.1.14"
+        ],
+        "a38b5b13315f9b79b7a48e4b362fac7a5cb79d8045f9b312eaa1d5d3e76eb17f": [
+          "22.07.1.14"
+        ],
+        "da65c33a99bd98a892ec3d703c97953f751abb1215fd0d40fdf31229d3eb6612": [
+          "22.07.1.14"
+        ],
+        "dc211be2a410590bcedb146887b67ced2cb232e4dc97103696d9e291f7f1c441": [
+          "22.07.1.14"
+        ]
+      },
+      "build_ids": {
+        "96093af38df264136710a5cbf8de16af71869133": [
+          "22.07.1.14"
+        ],
+        "9f03fc92b0b4584ddb777793f989d47abca9bc08": [
+          "22.07.1.14"
+        ],
+        "a9a1a16189f6c841c176deed855dc0b0b8bee101": [
+          "22.07.1.14"
+        ],
+        "b7f59adc7e6c0ca1f4bbb6c3449dcd04543d7b01": [
+          "22.07.1.14"
+        ],
+        "c7d71dca4995a9d4c80e3e70912faebe17fcde30": [
+          "22.07.1.14"
+        ],
+        "f2aea0db6194c5b6410f45a719798cbe08d0214a": [
+          "22.07.1.14"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "22.07.1.14": [
+          "22.07.1"
+        ]
+      }
+    }
+  ]
+}
