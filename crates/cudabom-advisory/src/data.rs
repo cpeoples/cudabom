@@ -75,6 +75,18 @@ impl DataSource {
         )
     }
 
+    /// The REST API URL that lists all releases (newest first), used to show
+    /// available tags when a requested release cannot be found.
+    #[must_use]
+    pub fn releases_url(&self) -> String {
+        format!(
+            "{}/repos/{}/{}/releases",
+            self.api_base.trim_end_matches('/'),
+            self.owner,
+            self.repo
+        )
+    }
+
     /// The download URL for the bundle asset at `tag`.
     #[must_use]
     pub fn bundle_url(&self, tag: &str) -> String {
@@ -168,6 +180,24 @@ fn resolve_latest_tag(source: &DataSource) -> Result<String, FetchError> {
         ));
     }
     Ok(release.tag_name)
+}
+
+/// List the available release tags for `source`, newest first.
+///
+/// This is a best-effort lookup used to make a failed update actionable: when a
+/// requested release is missing, the caller can show which tags do exist.
+///
+/// # Errors
+/// Returns [`FetchError`] on any network, HTTP, or decode failure.
+pub fn list_release_tags(source: &DataSource) -> Result<Vec<String>, FetchError> {
+    let bytes = crate::fetch::http_get_bytes(&source.releases_url(), source.retry)?;
+    let releases: Vec<LatestRelease> =
+        serde_json::from_slice(&bytes).map_err(|e| FetchError::Archive(e.to_string()))?;
+    Ok(releases
+        .into_iter()
+        .map(|r| r.tag_name)
+        .filter(|t| !t.trim().is_empty())
+        .collect())
 }
 
 /// Safely unpack a gzip-tar data bundle into `dest`, stripping the leading

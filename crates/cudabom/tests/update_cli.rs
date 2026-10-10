@@ -32,15 +32,17 @@ fn install_bundle(tag: &str) -> tempfile::TempDir {
 fn update_without_a_data_dir_reports_a_clear_error() {
     // With every data-dir source cleared and no --data-dir, the command must
     // fail with an input error rather than panicking or writing somewhere odd.
-    Command::cargo_bin("cudabom")
-        .unwrap()
-        .args(["update", "--tag", "v0.0.0-none"])
+    // The set of sources is platform-specific, so clear all of them.
+    let mut cmd = Command::cargo_bin("cudabom").unwrap();
+    cmd.args(["update", "--tag", "v0.0.0-none"])
         .env_remove("CUDABOM_DATA_DIR")
         .env_remove("SNAP_USER_DATA")
         .env_remove("XDG_DATA_HOME")
         .env_remove("HOME")
-        .assert()
-        .code(3);
+        .env_remove("LOCALAPPDATA")
+        .env_remove("APPDATA")
+        .env_remove("USERPROFILE");
+    cmd.assert().code(3);
 }
 
 #[test]

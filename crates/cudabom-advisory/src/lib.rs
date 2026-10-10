@@ -22,7 +22,8 @@ mod version;
 pub use csaf::{ingest, CsafError, Ingest};
 pub use cudabom_fetch::RetryPolicy;
 pub use data::{
-    bundle_asset_name, update_data, DataSource, Installed, DEFAULT_DATA_OWNER, DEFAULT_DATA_REPO,
+    bundle_asset_name, list_release_tags, update_data, DataSource, Installed, DEFAULT_DATA_OWNER,
+    DEFAULT_DATA_REPO,
 };
 pub use fetch::{
     download, fetch_file, fetch_file_checked, is_csaf_path, list_csaf_paths, unpack_csaf,
