@@ -104,8 +104,14 @@ jobs:
           advisories="$(jq '.advisories | length' "$INDEX_PATH")"
           echo "advisories=$advisories" >> "$GITHUB_OUTPUT"
 
-          # Extract any unmapped product lines for reviewer visibility.
-          unmapped="$(grep -A10000 'unmapped product' update.stderr | grep '^  ' | sed 's/^  //' || true)"
+          # Extract any unmapped product lines for reviewer visibility. The CLI
+          # prints them indented under an "unmapped product(s)" header on stderr;
+          # take the lines after that header and trim leading whitespace so the
+          # list renders flush rather than carrying the CLI's indentation.
+          unmapped="$(sed -n '/unmapped product/,$p' update.stderr \
+            | sed '1d; s/^[[:space:]]*//; /^$/d' || true)"
+          unmapped_count="$(printf '%s' "$unmapped" | grep -c . || true)"
+          echo "unmapped_count=$unmapped_count" >> "$GITHUB_OUTPUT"
           {
             echo "unmapped<<EOF"
             echo "${unmapped:-none}"
@@ -149,10 +155,13 @@ jobs:
             Review the diff of `${{ env.INDEX_PATH }}` for new advisories and
             changed version ranges before merging.
 
-            **Unmapped products** (not in `${{ env.MAP_PATH }}`, so their
-            advisories are excluded; extend the map if any belong to a tracked
-            component):
+            <details><summary>Unmapped products (${{ steps.build.outputs.unmapped_count }}) not in <code>${{ env.MAP_PATH }}</code></summary>
+
+            These products have no entry in the product map, so their advisories
+            are excluded. Extend the map if any belong to a tracked component.
 
             ```
             ${{ steps.build.outputs.unmapped }}
             ```
+
+            </details>
