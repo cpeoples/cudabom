@@ -119,6 +119,12 @@ const fn component_profiles() -> &'static [ComponentProfile] {
             advisory_terms: &["nvjpeg"],
         },
         ComponentProfile {
+            manifest_key: "nvcomp",
+            component: "nvcomp",
+            soname_stems: &["libnvcomp.so", "libnvcomp_cpu.so"],
+            advisory_terms: &["nvcomp"],
+        },
+        ComponentProfile {
             manifest_key: "cuda_nvrtc",
             component: "nvrtc",
             soname_stems: &["libnvrtc.so", "libnvrtc-builtins.so"],

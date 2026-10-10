@@ -816,10 +816,14 @@ fn is_shared_object(path: &Path) -> bool {
 }
 
 /// Extract an archive into `dest`, choosing `unzip` for `.zip` (Windows
-/// archives) and the system `tar` otherwise (`.tar.xz`/`.tar.gz`). xtask is
-/// dev/CI-only tooling, so shelling out keeps the shipped binary dependency-free.
+/// archives), `extract_deb` for `.deb` (Jetson/L4T packages), and the system
+/// `tar` otherwise (`.tar.xz`/`.tar.gz`). xtask is dev/CI-only tooling, so
+/// shelling out keeps the shipped binary dependency-free.
 fn extract_archive(archive_path: &Path, dest: &Path) -> Result<()> {
     let name = archive_path.to_string_lossy();
+    if name.ends_with(".deb") {
+        return extract_deb(archive_path, dest);
+    }
     let status = if name.ends_with(".zip") {
         Command::new("unzip")
             .arg("-q")
@@ -839,6 +843,68 @@ fn extract_archive(archive_path: &Path, dest: &Path) -> Result<()> {
     };
     if !status.success() {
         bail!("failed to extract {}", archive_path.display());
+    }
+    Ok(())
+}
+
+/// Unpack a `.deb`'s inner `data.tar` member to a temp file and return it with
+/// its owning scratch dir (removed on drop).
+///
+/// A `.deb` is an `ar` archive whose payload member is `data.tar.{xz,zst,gz}`;
+/// the libraries live inside that inner tarball (for Jetson/L4T CUDA packages,
+/// under `usr/local/cuda-*/targets/aarch64-linux/lib/`). The outer `ar` layer
+/// is parsed with the `object` crate rather than the system `ar`: NVIDIA signs
+/// these packages with a trailing `_gpgbuilder` member, and the BSD `ar` on
+/// macOS misreads the GNU-style name table of such archives (it appends `/` to
+/// member names and extracts nothing). `object` reads the member names
+/// correctly on every platform. The caller runs the system `tar` on the
+/// returned path (which auto-detects xz/zstd/gzip); `control.tar.*`,
+/// `debian-binary`, and the GPG signature are metadata we do not scan.
+fn stage_deb_data_member(archive_path: &Path) -> Result<(ScratchDir, PathBuf)> {
+    use object::read::archive::ArchiveFile;
+
+    let bytes = std::fs::read(archive_path)
+        .with_context(|| format!("reading {}", archive_path.display()))?;
+    let archive = ArchiveFile::parse(&bytes[..]).map_err(|e| {
+        anyhow::anyhow!(
+            "parsing {} as a .deb (ar) archive: {e}",
+            archive_path.display()
+        )
+    })?;
+
+    for member in archive.members() {
+        let member = member.map_err(|e| anyhow::anyhow!("reading .deb member: {e}"))?;
+        let name = std::str::from_utf8(member.name()).unwrap_or_default();
+        if name.starts_with("data.tar") {
+            let member_bytes = member.data(&bytes[..]).map_err(|e| {
+                anyhow::anyhow!("reading data member of {}: {e}", archive_path.display())
+            })?;
+            let scratch = ScratchDir::new()?;
+            let data_path = scratch.path().join(name);
+            std::fs::write(&data_path, member_bytes)
+                .with_context(|| format!("writing {}", data_path.display()))?;
+            return Ok((scratch, data_path));
+        }
+    }
+    bail!("no data.tar member in {}", archive_path.display())
+}
+
+/// Extract a Debian package (`.deb`) into `dest` by unpacking its inner
+/// `data.tar` member (see [`stage_deb_data_member`]) with the system `tar`.
+fn extract_deb(archive_path: &Path, dest: &Path) -> Result<()> {
+    let (_scratch, data_path) = stage_deb_data_member(archive_path)?;
+    let status = Command::new("tar")
+        .arg("-xf")
+        .arg(&data_path)
+        .arg("-C")
+        .arg(dest)
+        .status()
+        .context("running system tar (is it installed?)")?;
+    if !status.success() {
+        bail!(
+            "failed to extract data member of {}",
+            archive_path.display()
+        );
     }
     Ok(())
 }
@@ -1078,6 +1144,9 @@ fn report_underived(
 /// extracting. Returns an empty vector on any error (the guard is best-effort).
 fn archive_table_of_contents(path: &Path) -> Vec<String> {
     let name = path.to_string_lossy();
+    if name.ends_with(".deb") {
+        return deb_table_of_contents(path);
+    }
     let output = if name.ends_with(".zip") {
         Command::new("unzip").arg("-Z1").arg(path).output()
     } else {
@@ -1085,6 +1154,25 @@ fn archive_table_of_contents(path: &Path) -> Vec<String> {
         Command::new("tar").arg("-tf").arg(path).output()
     };
     let Ok(output) = output else {
+        return Vec::new();
+    };
+    if !output.status.success() {
+        return Vec::new();
+    }
+    String::from_utf8_lossy(&output.stdout)
+        .lines()
+        .map(ToString::to_string)
+        .collect()
+}
+
+/// List a `.deb`'s inner `data.tar` entry names without a full extract, by
+/// staging the data member (see [`stage_deb_data_member`]) and running `tar
+/// -t`. Returns an empty vector on any error (the guard is best-effort).
+fn deb_table_of_contents(path: &Path) -> Vec<String> {
+    let Ok((_scratch, data_path)) = stage_deb_data_member(path) else {
+        return Vec::new();
+    };
+    let Ok(output) = Command::new("tar").arg("-tf").arg(&data_path).output() else {
         return Vec::new();
     };
     if !output.status.success() {

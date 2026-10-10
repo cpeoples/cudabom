@@ -1,0 +1,388 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "r35.4"
+  },
+  "provenance": {
+    "manifest_sha256": "37d4eba19bfd6a91623f6690ede7cf85e3bdcfbdb48baf39d8567b66cf7ea198",
+    "corpus_sha256": [
+      "2134a55a748364c3239e2003b46bf9b14893c6cd5f25c7c93d8f8beb312adf5c",
+      "488274208dc7bc2c0b0c803277926510b5e586ecc2b239a695978158da191ccd",
+      "53de2203b45dc2e47472c9a48e2dd6c5d11b78a9ee94a1d8e5707e11feffe703",
+      "87f2161d58e3766f4d1ac695dae673ad6bad0e0e8a5f9866506dccae6c72219f",
+      "931a5a27ec2dee4c9a1c9f8bb6125af320f0752b4bbc7865dd4f6b578f55842a",
+      "b1fedfac989075df9dfa3c36977df61fd3f3f1969bef10c451d03b3801dda04a",
+      "c86078219861dc4830f1d63cb6d70844e98b71287cb9431617325f5aa6783c02",
+      "d4e0025162c0c68d792b373f50843328234918e450258873f6325630580af692",
+      "f0e4150e89624d85dc6aaaec09fad97e36d285212f6765b24db9e69b85c2f0b0",
+      "f2e39c718793bfbe6dd99bac3ccf8029b7f869bb92160fce5b281e32b4535c6e"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cublas",
+      "description": "libcublas",
+      "soname_stems": [
+        "libcublas.so",
+        "libcublasLt.so"
+      ],
+      "file_hashes": {
+        "1d59a97569a4b727a2a1969e451107716ebe4b11d4868780d04cf20d9b73b69c": [
+          "11.6.6.84"
+        ],
+        "53de2203b45dc2e47472c9a48e2dd6c5d11b78a9ee94a1d8e5707e11feffe703": [
+          "11.6.6.84"
+        ],
+        "6c7e2685e3ca8bf66b776e7c5eabe4dc762b4ee50c5912ccf4d9736d024dc09f": [
+          "11.6.6.84"
+        ]
+      },
+      "build_ids": {
+        "c7ccdc15e7c3ff31b60ee2e9abefdda6edf77ceb": [
+          "11.6.6.84"
+        ],
+        "c9f6db0fb5ce30f664009f3b8867b5c7afe20f0c": [
+          "11.6.6.84"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.6.6.84": [
+          "r35.4"
+        ]
+      }
+    },
+    {
+      "name": "cudart",
+      "description": "cuda_cudart",
+      "soname_stems": [
+        "libcudart.so"
+      ],
+      "file_hashes": {
+        "488274208dc7bc2c0b0c803277926510b5e586ecc2b239a695978158da191ccd": [
+          "11.4.298"
+        ],
+        "6ca38be1cc6fa0b8ddad0313eea2a4483be27d2e8474437f9f7b7a536b7197a2": [
+          "11.4.298"
+        ]
+      },
+      "build_ids": {
+        "b2ffa8360272ac2f6c9ffd259cf84fe0c37417b3": [
+          "11.4.298"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.4.298": [
+          "r35.4"
+        ]
+      }
+    },
+    {
+      "name": "cudla",
+      "description": "libcudla",
+      "soname_stems": [
+        "libcudla.so"
+      ],
+      "file_hashes": {
+        "2134a55a748364c3239e2003b46bf9b14893c6cd5f25c7c93d8f8beb312adf5c": [
+          "11.4.298"
+        ],
+        "8cf4b7f9b2ca2227337d4fbd6c7253d689c57c25ba92a3c774ad41ace89cecc8": [
+          "11.4.298"
+        ]
+      },
+      "build_ids": {
+        "755f28f8d3cedc11c9b4fc5dc095fc191c1d1a05": [
+          "11.4.298"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.4.298": [
+          "r35.4"
+        ]
+      }
+    },
+    {
+      "name": "cufft",
+      "description": "libcufft",
+      "soname_stems": [
+        "libcufft.so",
+        "libcufftw.so"
+      ],
+      "file_hashes": {
+        "2bc7649bcdc4b860ad9f086657e346c4b110dc9532aab007db3b3d394b34f713": [
+          "10.6.0.202"
+        ],
+        "45aecf75f37f5b94b462c7cdc09ff33fea6b5d824935f8981bf6d548ee8eb731": [
+          "10.6.0.202"
+        ],
+        "87f2161d58e3766f4d1ac695dae673ad6bad0e0e8a5f9866506dccae6c72219f": [
+          "10.6.0.202"
+        ]
+      },
+      "build_ids": {
+        "4bab974e5dbf8dd038fbd41625ee53d943e4c656": [
+          "10.6.0.202"
+        ],
+        "bd599574e4800278c6e67045903cb3fbbf12bdff": [
+          "10.6.0.202"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "10.6.0.202": [
+          "r35.4"
+        ]
+      }
+    },
+    {
+      "name": "cupti",
+      "description": "cuda_cupti",
+      "soname_stems": [
+        "libcheckpoint.so",
+        "libcupti.so",
+        "libnvperf_host.so",
+        "libnvperf_target.so",
+        "libpcsamplingutil.so"
+      ],
+      "file_hashes": {
+        "2ff3e850fe3ec7957956a2983a6871f48e9afb8d259452584abd31322552e529": [
+          "11.4.298"
+        ],
+        "7edabe8a51d0ee3b0dce70d2e8fe57628317202b0106bc196a0c552a6bc7ea3c": [
+          "11.4.298"
+        ],
+        "931a5a27ec2dee4c9a1c9f8bb6125af320f0752b4bbc7865dd4f6b578f55842a": [
+          "11.4.298"
+        ],
+        "a6b9d31d6aedfe73e3d2ae93a39c46986fcdc013be65ae7d7a827d19073194d6": [
+          "11.4.298"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "11.4.298": [
+          "r35.4"
+        ]
+      }
+    },
+    {
+      "name": "curand",
+      "description": "libcurand",
+      "soname_stems": [
+        "libcurand.so"
+      ],
+      "file_hashes": {
+        "5181cc053097d27a237f5757e8b417454f26083b63577b7c015031187ed9c3bd": [
+          "10.2.5.297"
+        ],
+        "d4e0025162c0c68d792b373f50843328234918e450258873f6325630580af692": [
+          "10.2.5.297"
+        ]
+      },
+      "build_ids": {
+        "1ee6cc2a00bd34d9aa34ffaace972ecd3e520291": [
+          "10.2.5.297"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "10.2.5.297": [
+          "r35.4"
+        ]
+      }
+    },
+    {
+      "name": "cusolver",
+      "description": "libcusolver",
+      "soname_stems": [
+        "libcusolver.so",
+        "libcusolverMg.so"
+      ],
+      "file_hashes": {
+        "8ee14d5cca87e4daab4460de09f1c19e696f83e4fbcc323d4314564a960a68b0": [
+          "11.2.0.297"
+        ],
+        "9780aee61076b718e2b8386368227898eb965c1217e4eaa9b772de4cfb5b517f": [
+          "11.2.0.297"
+        ],
+        "f2e39c718793bfbe6dd99bac3ccf8029b7f869bb92160fce5b281e32b4535c6e": [
+          "11.2.0.297"
+        ]
+      },
+      "build_ids": {
+        "3b7b8d1dd7e91f91de130a5447ab3fb3d810b008": [
+          "11.2.0.297"
+        ],
+        "b932afa956eb850d2e6604ad7db29a3f51af56fd": [
+          "11.2.0.297"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.2.0.297": [
+          "r35.4"
+        ]
+      }
+    },
+    {
+      "name": "cusparse",
+      "description": "libcusparse",
+      "soname_stems": [
+        "libcusparse.so"
+      ],
+      "file_hashes": {
+        "b1fedfac989075df9dfa3c36977df61fd3f3f1969bef10c451d03b3801dda04a": [
+          "11.6.0.299"
+        ],
+        "bfd0610712d2fcfd5ce5d55ce686e88c4e0c587a82500d5b5442b295f4941f9a": [
+          "11.6.0.299"
+        ]
+      },
+      "build_ids": {
+        "ee5ec776710c00570c32d2af23e27a3e34c4f321": [
+          "11.6.0.299"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.6.0.299": [
+          "r35.4"
+        ]
+      }
+    },
+    {
+      "name": "npp",
+      "description": "libnpp",
+      "soname_stems": [
+        "libnppc.so",
+        "libnppial.so",
+        "libnppicc.so",
+        "libnppidei.so",
+        "libnppif.so",
+        "libnppig.so",
+        "libnppim.so",
+        "libnppist.so",
+        "libnppisu.so",
+        "libnppitc.so",
+        "libnpps.so"
+      ],
+      "file_hashes": {
+        "0d9473a4aaaf8d17c88357d68db9ee04038f5c1dbfc8f5e3b7ed2fa94b4c17c6": [
+          "11.4.0.287"
+        ],
+        "174234665ed8aa4ec7076d53199493ac3983774ff9d84ac07a7aa12e6c3c76e9": [
+          "11.4.0.287"
+        ],
+        "1d1ca6671f89800897b1812e1eb182d842b5304d3f37d95088764e97f5f16019": [
+          "11.4.0.287"
+        ],
+        "5b56f4b08d8dc9d190aa94268ba8d0d34dcd30ab35a6af7555d843d35b8e1e11": [
+          "11.4.0.287"
+        ],
+        "8b8d28654e4de76b9a0f5488d60477ddc06e28c55dca5992f55b91d503b1d861": [
+          "11.4.0.287"
+        ],
+        "ab4ad1d0ed2cb1f9ee5f078d912399f1f93325d03e05f29f09de9ae638768e38": [
+          "11.4.0.287"
+        ],
+        "af14d3498d7e75a9b59226291be2e9e2ec9f6ce80882357df94dbee9961f1cd6": [
+          "11.4.0.287"
+        ],
+        "b2f3e3d2a4cc1c5ea563d84409c17e062abc9c89816705d0fbd637a5c4f1108f": [
+          "11.4.0.287"
+        ],
+        "b882372716220ed614f047823781644ec0570c7b4d1fe193455d0d17d5284e09": [
+          "11.4.0.287"
+        ],
+        "bca1dc2166a418ac9ed2bb144ba1fac021696ee0b78eb44059c1c89ae0511cab": [
+          "11.4.0.287"
+        ],
+        "c86078219861dc4830f1d63cb6d70844e98b71287cb9431617325f5aa6783c02": [
+          "11.4.0.287"
+        ],
+        "d3ef7eafbb0293c496e918795bb3eb352a30e773a0d5c7074f8ee3b8739003ca": [
+          "11.4.0.287"
+        ]
+      },
+      "build_ids": {
+        "35961f6ff5b9c6cb9ea16cb5c1ec573e7e44839d": [
+          "11.4.0.287"
+        ],
+        "5841ca0aec732e786b40cb8451624bea3af07f58": [
+          "11.4.0.287"
+        ],
+        "60474a92230db89622752a2a514893708bcce8c2": [
+          "11.4.0.287"
+        ],
+        "658e35271647b829b5c4a434b267ea3845ce4335": [
+          "11.4.0.287"
+        ],
+        "72d29d89cf173a886ebc8bd5885024cd7d0a345f": [
+          "11.4.0.287"
+        ],
+        "7a932a9f9be08ea0e35273a6e9b9172514912b1c": [
+          "11.4.0.287"
+        ],
+        "ac0d12cfc6bcc3385814bfef1f48e5d28f3d5e26": [
+          "11.4.0.287"
+        ],
+        "acc52f952919cb849653ea35e25e715c7d6e4526": [
+          "11.4.0.287"
+        ],
+        "b57313f1c8cccf07a730ca163be0ca2f07c96301": [
+          "11.4.0.287"
+        ],
+        "de739145af9955e94f0210fbd85f3c97c0345fc2": [
+          "11.4.0.287"
+        ],
+        "e6a26d8848c3bedf53807d455c6887c42f6d755a": [
+          "11.4.0.287"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.4.0.287": [
+          "r35.4"
+        ]
+      }
+    },
+    {
+      "name": "nvrtc",
+      "description": "cuda_nvrtc",
+      "soname_stems": [
+        "libnvrtc-builtins.so",
+        "libnvrtc.so"
+      ],
+      "file_hashes": {
+        "55b71408e2eee379bb6976a5b9df5ef7108c3112be63ee9cf8226b2e59c6d600": [
+          "11.4.300"
+        ],
+        "7c7201d5538eb0dbdf45d8ee6e5dd42b688ad9bf60ebbb73bfcc0c6a9823db17": [
+          "11.4.300"
+        ],
+        "f0e4150e89624d85dc6aaaec09fad97e36d285212f6765b24db9e69b85c2f0b0": [
+          "11.4.300"
+        ]
+      },
+      "build_ids": {
+        "cd7f0e8236ce3f91ad24ccec1df1694cf7577c3c": [
+          "11.4.300"
+        ],
+        "cdd782bc3fd3c1415adb98400a1b73a24fc061c4": [
+          "11.4.300"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.4.300": [
+          "r35.4"
+        ]
+      }
+    }
+  ]
+}

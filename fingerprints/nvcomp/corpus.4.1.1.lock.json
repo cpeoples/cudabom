@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvcomp",
+      "version": "4.1.1.1",
+      "platform": "linux-sbsa-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/linux-sbsa/nvcomp-linux-sbsa-4.1.1.1_cuda11-archive.tar.xz",
+      "sha256": "f68a4044a4510969b7689dc881235cae2ebf90cae16317b984c175f702c56b3f"
+    },
+    {
+      "component": "nvcomp",
+      "version": "4.1.1.1",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/linux-sbsa/nvcomp-linux-sbsa-4.1.1.1_cuda12-archive.tar.xz",
+      "sha256": "9e986644b5e846cd1820d5aa53efe5bd4e8cb0c65229902344d436cecaf0c205"
+    },
+    {
+      "component": "nvcomp",
+      "version": "4.1.1.1",
+      "platform": "linux-x86_64-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/linux-x86_64/nvcomp-linux-x86_64-4.1.1.1_cuda11-archive.tar.xz",
+      "sha256": "c22a3acfe2712f6281341998d4b3a6d0ce1e1325ac90e4b0b080bf21f5817171"
+    },
+    {
+      "component": "nvcomp",
+      "version": "4.1.1.1",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/linux-x86_64/nvcomp-linux-x86_64-4.1.1.1_cuda12-archive.tar.xz",
+      "sha256": "78874c19621d9e6142c2694e0fc0e01ea049538b8ef5606bd59d40225510ba1d"
+    }
+  ]
+}

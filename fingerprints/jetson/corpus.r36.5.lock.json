@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cublas",
+      "version": "12.6.1.4",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcublas/libcublas-12-6_12.6.1.4-1_arm64.deb",
+      "sha256": "3ff5d9c20e8cf1b8fd36841271846f2d2de23aaca9bf2e9213d5dac8e6488693"
+    },
+    {
+      "component": "cudart",
+      "version": "12.6.68",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/c/cuda-cudart/cuda-cudart-12-6_12.6.68-1_arm64.deb",
+      "sha256": "54456ed3372670d6a6d7e19d5971ec234800fe620dfb822aa751bc7d80f2a516"
+    },
+    {
+      "component": "cudla",
+      "version": "12.6.68",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcudla/libcudla-12-6_12.6.68-1_arm64.deb",
+      "sha256": "bc14ff94b6211e7536b54faa6a7f38bb67a919671869c22d13b2bcae2146887c"
+    },
+    {
+      "component": "cufft",
+      "version": "11.2.6.59",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcufft/libcufft-12-6_11.2.6.59-1_arm64.deb",
+      "sha256": "68c95fdae59bde441a6ea9fc7d94eebb064f50e41fc51c4aeb4175cf098705e7"
+    },
+    {
+      "component": "cupti",
+      "version": "12.6.68",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/c/cuda-cupti/cuda-cupti-12-6_12.6.68-1_arm64.deb",
+      "sha256": "4458ad07170a0a7f8a8d5864dfa0936bac767d7878a3cd753c3cf50dc1ff631a"
+    },
+    {
+      "component": "curand",
+      "version": "10.3.7.68",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcurand/libcurand-12-6_10.3.7.68-1_arm64.deb",
+      "sha256": "7b8e1c2ce01db9539e92439859b3fb72ca95ff9da4424c9b8cd711934e7c7265"
+    },
+    {
+      "component": "cusolver",
+      "version": "11.6.4.69",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcusolver/libcusolver-12-6_11.6.4.69-1_arm64.deb",
+      "sha256": "c4301dc5e91369e3eefd326f4552febdf7daceb232712c72b8094f8b92809fdd"
+    },
+    {
+      "component": "cusparse",
+      "version": "12.5.3.3",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcusparse/libcusparse-12-6_12.5.3.3-1_arm64.deb",
+      "sha256": "c665700c6aae6a4aace16a7b1ff833fd73850a6fdafb41ed04f2e328a2769b9b"
+    },
+    {
+      "component": "npp",
+      "version": "12.3.1.54",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libn/libnpp/libnpp-12-6_12.3.1.54-1_arm64.deb",
+      "sha256": "65284b80a1fdbfe7fe3ee4e53720a71e4496df37b4702b5a2559f4bc15614b0f"
+    },
+    {
+      "component": "nvfatbin",
+      "version": "12.6.68",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libn/libnvfatbin/libnvfatbin-12-6_12.6.68-1_arm64.deb",
+      "sha256": "2dd434eafdb320bcc59465abb1eafa951fdd57ddd00afc4b1b5f1e2082d12330"
+    },
+    {
+      "component": "nvjitlink",
+      "version": "12.6.68",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libn/libnvjitlink/libnvjitlink-12-6_12.6.68-1_arm64.deb",
+      "sha256": "98c811d3fa81a1e55cc6c4fe3dc4fa0cb3b10a26b7ed23341418333b65b832a0"
+    },
+    {
+      "component": "nvjpeg",
+      "version": "12.3.3.54",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libn/libnvjpeg/libnvjpeg-12-6_12.3.3.54-1_arm64.deb",
+      "sha256": "0658635943cb77024c03990a9df0fd2543e4352377dff7b5a8654a87c4a54387"
+    },
+    {
+      "component": "nvrtc",
+      "version": "12.6.68",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/c/cuda-nvrtc/cuda-nvrtc-12-6_12.6.68-1_arm64.deb",
+      "sha256": "b8189ac22bb781b1dcccc61a902fb623238cd4e65cf456dcd95f8f319eb346be"
+    }
+  ]
+}

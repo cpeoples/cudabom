@@ -1,0 +1,234 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "4.1.1",
+    "date": "2024-12-04"
+  },
+  "provenance": {
+    "manifest_sha256": "15c28b510d4db90206da24f96fee454bb9620519460726f2b81f19f8399ca24e",
+    "corpus_sha256": [
+      "78874c19621d9e6142c2694e0fc0e01ea049538b8ef5606bd59d40225510ba1d",
+      "9e986644b5e846cd1820d5aa53efe5bd4e8cb0c65229902344d436cecaf0c205",
+      "c22a3acfe2712f6281341998d4b3a6d0ce1e1325ac90e4b0b080bf21f5817171",
+      "f68a4044a4510969b7689dc881235cae2ebf90cae16317b984c175f702c56b3f"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvcomp",
+      "description": "NVIDIA nvCOMP library",
+      "license": "nvCOMP library",
+      "soname_stems": [
+        "libnvcomp.so",
+        "libnvcomp_cpu.so",
+        "libnvcomp_device_static.a"
+      ],
+      "file_hashes": {
+        "06adc17845767049302295ff19a6c538cdf844a4322903ba6dc2ab8e7db4a4ea": [
+          "4.1.1.1"
+        ],
+        "1c09e5a2707ac76f8ee19ae695ac90fd77ec885b2cd886bf56aca73c5663110b": [
+          "4.1.1.1"
+        ],
+        "242486dc5d3fd93360f8fdefa85cc4d9860c703b28043ab0ac436bb891af3d5e": [
+          "4.1.1.1"
+        ],
+        "2cfcb21ebcb285d6cba294061f56409740ad708b3c9b15b8167e61055ce4c4a4": [
+          "4.1.1.1"
+        ],
+        "4af58e981f99c03b19bf8b2f359dd6716a3a9b454bab16254047d7ca0dfad775": [
+          "4.1.1.1"
+        ],
+        "4ffc1eedcc94e44c358b0920bc805055125b277602d860e4452feb3012ffa6b5": [
+          "4.1.1.1"
+        ],
+        "50ddfaa368709b1aee11103646f0da92c6dd609b55e968737d65edf79efc63e2": [
+          "4.1.1.1"
+        ],
+        "664e4d2832ad0633987f0d119f4852e0472446757cb1591dabaea06edf0d7327": [
+          "4.1.1.1"
+        ],
+        "78874c19621d9e6142c2694e0fc0e01ea049538b8ef5606bd59d40225510ba1d": [
+          "4.1.1.1"
+        ],
+        "8ba4ebe40e79897d09a7b6e19ab6c38e046cd273dbdb25a155ee745bfb8eb6d0": [
+          "4.1.1.1"
+        ],
+        "8e52eb2c52a3f8ab53e4e5a1e6722721dc8dd62e8748ce2312126eb92b8ca3f0": [
+          "4.1.1.1"
+        ],
+        "900fa37b66dfc79bc257fb1c843bc14384ce7156f9a5a7e8293b8c2833129789": [
+          "4.1.1.1"
+        ],
+        "960c67b58cbca044aa8fd3553a3b5ff1005b6afc502112fb60de16c830e323e2": [
+          "4.1.1.1"
+        ],
+        "9e986644b5e846cd1820d5aa53efe5bd4e8cb0c65229902344d436cecaf0c205": [
+          "4.1.1.1"
+        ],
+        "b3775fb3185faeddec05b6b82dd654f8fd445ff678507d3983fe0f7d22af6ce6": [
+          "4.1.1.1"
+        ],
+        "b75a604c1e51173d21a1d81ce70bd029c3ed1bf5a1f4856c8b45a8083e276dc4": [
+          "4.1.1.1"
+        ],
+        "b9b64b6afb30848aa203fc350af810d235ed574661e3ed60ee871d041eda2dc4": [
+          "4.1.1.1"
+        ],
+        "c03c716ac953b9d7243fa3125b2dbbe98c936e0b25bd1e16171c334df9772141": [
+          "4.1.1.1"
+        ],
+        "c151cd610b4c25843abb914b3c56bb038927d54f2bb9178707a033c10287ffd7": [
+          "4.1.1.1"
+        ],
+        "c22a3acfe2712f6281341998d4b3a6d0ce1e1325ac90e4b0b080bf21f5817171": [
+          "4.1.1.1"
+        ],
+        "c8263f893ce953f7b1b4e2807b03534b8fafb9cc63f7aa3972c208e3c5d4e90b": [
+          "4.1.1.1"
+        ],
+        "cffb66303c0999d3e166ff1b75809c6acbc906e55e14638a10c83bbcf6f318a8": [
+          "4.1.1.1"
+        ],
+        "eb2800bcedf40418d0fe201ef95924e3577f0fb17b49119c89890b3c4ca986fd": [
+          "4.1.1.1"
+        ],
+        "efe69fb3b86ddb8face42945898cb70600baa19c812946f19ac545c810b93781": [
+          "4.1.1.1"
+        ],
+        "f272e111f329e6fbef0cd573701e953fbb589e41cd1d02991150be6e7de1f38a": [
+          "4.1.1.1"
+        ],
+        "f68a4044a4510969b7689dc881235cae2ebf90cae16317b984c175f702c56b3f": [
+          "4.1.1.1"
+        ],
+        "f959b0794b644dac5642675dff70e7ccd6528fffb79376a9a895a64b02f5b03e": [
+          "4.1.1.1"
+        ],
+        "ff2e22c5c8918f42249c83c1c2fb38004f56b726e6bd72d6c729f6e3c5e66d33": [
+          "4.1.1.1"
+        ]
+      },
+      "build_ids": {
+        "58caf443c55d814b04b90d274ad4ed04a418f4d8": [
+          "4.1.1.1"
+        ],
+        "6aadf2c8f8cae6b4d6d38bde7de6f3226ca3c860": [
+          "4.1.1.1"
+        ],
+        "98814c3e9d1437ddc2e415fff2a106b3a5cf1358": [
+          "4.1.1.1"
+        ],
+        "bb57e746793bcbb575312a3511eee5a99c807717": [
+          "4.1.1.1"
+        ],
+        "cff9301963b0ee539433d002f9b285751df430be": [
+          "4.1.1.1"
+        ],
+        "e9e80a27955014f426909e728adb8b3401f135b6": [
+          "4.1.1.1"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "nvcompBatchedANSCompressAsync",
+        "nvcompBatchedANSCompressGetMaxOutputChunkSize",
+        "nvcompBatchedANSCompressGetRequiredAlignments",
+        "nvcompBatchedANSCompressGetTempSize",
+        "nvcompBatchedANSCompressGetTempSizeEx",
+        "nvcompBatchedANSDecompressAsync",
+        "nvcompBatchedANSDecompressAsyncEx",
+        "nvcompBatchedANSDecompressGetTempSize",
+        "nvcompBatchedANSDecompressGetTempSizeEx",
+        "nvcompBatchedANSGetDecompressSizeAsync",
+        "nvcompBatchedBitcompCompressAsync",
+        "nvcompBatchedBitcompCompressGetMaxOutputChunkSize",
+        "nvcompBatchedBitcompCompressGetRequiredAlignments",
+        "nvcompBatchedBitcompCompressGetTempSize",
+        "nvcompBatchedBitcompCompressGetTempSizeEx",
+        "nvcompBatchedBitcompDecompressAsync",
+        "nvcompBatchedBitcompDecompressAsyncEx",
+        "nvcompBatchedBitcompDecompressGetTempSize",
+        "nvcompBatchedBitcompDecompressGetTempSizeEx",
+        "nvcompBatchedBitcompGetDecompressSizeAsync",
+        "nvcompBatchedCRC32Async",
+        "nvcompBatchedCascadedCompressAsync",
+        "nvcompBatchedCascadedCompressGetMaxOutputChunkSize",
+        "nvcompBatchedCascadedCompressGetRequiredAlignments",
+        "nvcompBatchedCascadedCompressGetTempSize",
+        "nvcompBatchedCascadedCompressGetTempSizeEx",
+        "nvcompBatchedCascadedDecompressAsync",
+        "nvcompBatchedCascadedDecompressAsyncEx",
+        "nvcompBatchedCascadedDecompressGetTempSize",
+        "nvcompBatchedCascadedDecompressGetTempSizeEx",
+        "nvcompBatchedCascadedGetDecompressSizeAsync",
+        "nvcompBatchedDeflateCompressAsync",
+        "nvcompBatchedDeflateCompressGetMaxOutputChunkSize",
+        "nvcompBatchedDeflateCompressGetRequiredAlignments",
+        "nvcompBatchedDeflateCompressGetTempSize",
+        "nvcompBatchedDeflateCompressGetTempSizeEx",
+        "nvcompBatchedDeflateDecompressAsync",
+        "nvcompBatchedDeflateDecompressAsyncEx",
+        "nvcompBatchedDeflateDecompressGetTempSize",
+        "nvcompBatchedDeflateDecompressGetTempSizeEx",
+        "nvcompBatchedDeflateGetDecompressSizeAsync",
+        "nvcompBatchedGdeflateCompressAsync",
+        "nvcompBatchedGdeflateCompressGetMaxOutputChunkSize",
+        "nvcompBatchedGdeflateCompressGetRequiredAlignments",
+        "nvcompBatchedGdeflateCompressGetTempSize",
+        "nvcompBatchedGdeflateCompressGetTempSizeEx",
+        "nvcompBatchedGdeflateDecompressAsync",
+        "nvcompBatchedGdeflateDecompressAsyncEx",
+        "nvcompBatchedGdeflateDecompressGetTempSize",
+        "nvcompBatchedGdeflateDecompressGetTempSizeEx",
+        "nvcompBatchedGdeflateGetDecompressSizeAsync",
+        "nvcompBatchedGzipCompressAsync",
+        "nvcompBatchedGzipCompressGetMaxOutputChunkSize",
+        "nvcompBatchedGzipCompressGetTempSize",
+        "nvcompBatchedGzipCompressGetTempSizeEx",
+        "nvcompBatchedGzipDecompressAsync",
+        "nvcompBatchedGzipDecompressAsyncEx",
+        "nvcompBatchedGzipDecompressGetTempSize",
+        "nvcompBatchedGzipDecompressGetTempSizeEx",
+        "nvcompBatchedGzipGetDecompressSizeAsync",
+        "nvcompBatchedLZ4CompressAsync",
+        "nvcompBatchedLZ4CompressGetMaxOutputChunkSize",
+        "nvcompBatchedLZ4CompressGetRequiredAlignments",
+        "nvcompBatchedLZ4CompressGetTempSize",
+        "nvcompBatchedLZ4CompressGetTempSizeEx",
+        "nvcompBatchedLZ4DecompressAsync",
+        "nvcompBatchedLZ4DecompressAsyncEx",
+        "nvcompBatchedLZ4DecompressGetTempSize",
+        "nvcompBatchedLZ4DecompressGetTempSizeEx",
+        "nvcompBatchedLZ4GetDecompressSizeAsync",
+        "nvcompBatchedSnappyCompressAsync",
+        "nvcompBatchedSnappyCompressGetMaxOutputChunkSize",
+        "nvcompBatchedSnappyCompressGetRequiredAlignments",
+        "nvcompBatchedSnappyCompressGetTempSize",
+        "nvcompBatchedSnappyCompressGetTempSizeEx",
+        "nvcompBatchedSnappyDecompressAsync",
+        "nvcompBatchedSnappyDecompressAsyncEx",
+        "nvcompBatchedSnappyDecompressGetTempSize",
+        "nvcompBatchedSnappyDecompressGetTempSizeEx",
+        "nvcompBatchedSnappyGetDecompressSizeAsync",
+        "nvcompBatchedZstdCompressAsync",
+        "nvcompBatchedZstdCompressGetMaxOutputChunkSize",
+        "nvcompBatchedZstdCompressGetRequiredAlignments",
+        "nvcompBatchedZstdCompressGetTempSize",
+        "nvcompBatchedZstdCompressGetTempSizeEx",
+        "nvcompBatchedZstdDecompressAsync",
+        "nvcompBatchedZstdDecompressAsyncEx",
+        "nvcompBatchedZstdDecompressGetTempSize",
+        "nvcompBatchedZstdDecompressGetTempSizeEx",
+        "nvcompBatchedZstdGetDecompressSizeAsync",
+        "nvcompGetProperties"
+      ],
+      "release_versions": {
+        "4.1.1.1": [
+          "4.1.1"
+        ]
+      }
+    }
+  ]
+}

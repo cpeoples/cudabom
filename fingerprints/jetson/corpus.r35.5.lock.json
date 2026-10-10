@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cublas",
+      "version": "11.6.6.84",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcublas/libcublas-11-4_11.6.6.84-1_arm64.deb",
+      "sha256": "53de2203b45dc2e47472c9a48e2dd6c5d11b78a9ee94a1d8e5707e11feffe703"
+    },
+    {
+      "component": "cudart",
+      "version": "11.4.298",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/c/cuda-cudart/cuda-cudart-11-4_11.4.298-1_arm64.deb",
+      "sha256": "488274208dc7bc2c0b0c803277926510b5e586ecc2b239a695978158da191ccd"
+    },
+    {
+      "component": "cudla",
+      "version": "11.4.298",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcudla/libcudla-11-4_11.4.298-1_arm64.deb",
+      "sha256": "2134a55a748364c3239e2003b46bf9b14893c6cd5f25c7c93d8f8beb312adf5c"
+    },
+    {
+      "component": "cufft",
+      "version": "10.6.0.202",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcufft/libcufft-11-4_10.6.0.202-1_arm64.deb",
+      "sha256": "87f2161d58e3766f4d1ac695dae673ad6bad0e0e8a5f9866506dccae6c72219f"
+    },
+    {
+      "component": "cupti",
+      "version": "11.4.298",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/c/cuda-cupti/cuda-cupti-11-4_11.4.298-1_arm64.deb",
+      "sha256": "931a5a27ec2dee4c9a1c9f8bb6125af320f0752b4bbc7865dd4f6b578f55842a"
+    },
+    {
+      "component": "curand",
+      "version": "10.2.5.297",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcurand/libcurand-11-4_10.2.5.297-1_arm64.deb",
+      "sha256": "d4e0025162c0c68d792b373f50843328234918e450258873f6325630580af692"
+    },
+    {
+      "component": "cusolver",
+      "version": "11.2.0.297",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcusolver/libcusolver-11-4_11.2.0.297-1_arm64.deb",
+      "sha256": "f2e39c718793bfbe6dd99bac3ccf8029b7f869bb92160fce5b281e32b4535c6e"
+    },
+    {
+      "component": "cusparse",
+      "version": "11.6.0.299",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcusparse/libcusparse-11-4_11.6.0.299-1_arm64.deb",
+      "sha256": "b1fedfac989075df9dfa3c36977df61fd3f3f1969bef10c451d03b3801dda04a"
+    },
+    {
+      "component": "npp",
+      "version": "11.4.0.287",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libn/libnpp/libnpp-11-4_11.4.0.287-1_arm64.deb",
+      "sha256": "c86078219861dc4830f1d63cb6d70844e98b71287cb9431617325f5aa6783c02"
+    },
+    {
+      "component": "nvrtc",
+      "version": "11.4.300",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/c/cuda-nvrtc/cuda-nvrtc-11-4_11.4.300-1_arm64.deb",
+      "sha256": "f0e4150e89624d85dc6aaaec09fad97e36d285212f6765b24db9e69b85c2f0b0"
+    }
+  ]
+}
