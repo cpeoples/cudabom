@@ -1,0 +1,100 @@
+{
+  "cuda_cudart": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./cuda-cudart-11-2_11.2.72-1_amd64.deb",
+      "sha256": "0902a289173dba06d68b80993ce42bbac21f77befb21c1447da6c7cee5c9176a",
+      "size": "141004"
+    },
+    "version": "11.2.72"
+  },
+  "cuda_cupti": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./cuda-cupti-11-2_11.2.67-1_amd64.deb",
+      "sha256": "0bc6c18d55942458fbec15826a5da23a4d3f16570c5f99253c7d0ff2369242e3",
+      "size": "11435270"
+    },
+    "version": "11.2.67"
+  },
+  "cuda_nvrtc": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./cuda-nvrtc-11-2_11.2.67-1_amd64.deb",
+      "sha256": "993d54d9c3feb1943b15d4e784ca72347bd0a8f8ca5361fdf6041cb9db673bb4",
+      "size": "25761546"
+    },
+    "version": "11.2.67"
+  },
+  "libcublas": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./libcublas-11-2_11.3.1.68-1_amd64.deb",
+      "sha256": "e9d68a39528df8cd6a78a971bbe545b1e6c7c8f52cc85e534895a2acb374fa89",
+      "size": "130212214"
+    },
+    "version": "11.3.1.68"
+  },
+  "libcufft": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./libcufft-11-2_10.4.0.72-1_amd64.deb",
+      "sha256": "e327284f3fa304f06480f2bf8829d5de52b1fc81fb3b9d473f813cfb1c02124b",
+      "size": "105983080"
+    },
+    "version": "10.4.0.72"
+  },
+  "libcurand": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./libcurand-11-2_10.2.3.68-1_amd64.deb",
+      "sha256": "0f5c9c04b5880a6b6d5e8094e06cf71b270b6245c3efc4e11bbc8575b9d42646",
+      "size": "39170038"
+    },
+    "version": "10.2.3.68"
+  },
+  "libcusolver": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./libcusolver-11-2_11.0.2.68-1_amd64.deb",
+      "sha256": "ab49c57feeea5c25a9700eeaf0213a5c286abb1ff7cd61d37c172870431d60c8",
+      "size": "237249750"
+    },
+    "version": "11.0.2.68"
+  },
+  "libcusparse": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./libcusparse-11-2_11.3.1.68-1_amd64.deb",
+      "sha256": "5b19779ce350cc74edce69b018b704bfb232769e65a40d7f3c77b3b65ddfac7e",
+      "size": "77262120"
+    },
+    "version": "11.3.1.68"
+  },
+  "libnpp": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./libnpp-11-2_11.2.1.68-1_amd64.deb",
+      "sha256": "c881f46b354f1c01f144c11534892d691a59eaec08da0ab883c18225f63cd268",
+      "size": "67478764"
+    },
+    "version": "11.2.1.68"
+  },
+  "libnvfatbin": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./libnvfatbin-12-4_12.4.99-1_amd64.deb",
+      "sha256": "fe6384d0059ffc3e0bedda699c7e75797a1b316b214b47f2623ffce6a1a47563",
+      "size": "720546"
+    },
+    "version": "12.4.99"
+  },
+  "libnvjitlink": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./libnvjitlink-12-0_12.0.76-1_amd64.deb",
+      "sha256": "143139ce016c9bb4323ba410729b331d0b78828948a07a1d32e98310b47eb162",
+      "size": "14580784"
+    },
+    "version": "12.0.76"
+  },
+  "libnvjpeg": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./libnvjpeg-11-2_11.3.1.68-1_amd64.deb",
+      "sha256": "7c5a1bfeb3f7b9ca09e11b1f347df479dfad1a33a4516a67acafd29da26a9795",
+      "size": "1492112"
+    },
+    "version": "11.3.1.68"
+  },
+  "release_label": "ubuntu2004-x86_64",
+  "release_product": "cuda-repos"
+}

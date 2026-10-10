@@ -1,0 +1,133 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "23.10.0",
+    "date": "2023-10-31"
+  },
+  "provenance": {
+    "manifest_sha256": "67f2e3c6b9f8c2b4dd2dbfb88025bf045a577103a0e2e70fecdf6e2d0335c6d7",
+    "corpus_sha256": [
+      "395ac98d0993fc3419395dce86947cbdfe0abf556bb4dc674dcffcf939e0d482",
+      "5ff77bd5cf62fab02e598fe5e1b1617d521207552808173e135f9a9607f56bad",
+      "7e214d6020190ff7299a483448a4d44f54c98b69fd8dc9866a187d995ecc46e2",
+      "983c3fdf50c0ad1639a98eae0eca670b60e02516d5240e37aac4726abcbce839",
+      "a8f403a17663d4c7304b6d7944ba2c78afc630dad7741577dde3bc849b54fc79",
+      "ddef9c8c7ac977ca8477af07a53cc3d497f39c1feed88a0cb6a5d73ba9f3a1db"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cuquantum",
+      "description": "NVIDIA cuQuantum",
+      "license": "cuQuantum",
+      "soname_stems": [
+        "libcudensitymat.so",
+        "libcupauliprop.so",
+        "libcustabilizer.so",
+        "libcustatevec.so",
+        "libcutensornet.so"
+      ],
+      "file_hashes": {
+        "32552a12edc9897489f8849848bf2af417a1002212cf263de728706cedb58cc4": [
+          "23.10.0.6"
+        ],
+        "378bca08d4a466d51422e0d68d327160f7cf868f9a87d4f7567b88e57b3ae34a": [
+          "23.10.0.6"
+        ],
+        "395ac98d0993fc3419395dce86947cbdfe0abf556bb4dc674dcffcf939e0d482": [
+          "23.10.0.6"
+        ],
+        "3c0f34c94c9c01999bdcd152be4438e8efba19a768399278691d19b27e966d75": [
+          "23.10.0.6"
+        ],
+        "3e4a5a6b87faa4d95b12bca2ddd1bf409e0127c70407a13260376d1cc95fe916": [
+          "23.10.0.6"
+        ],
+        "4f9276f38c3c04a9c56a58fbd2f96582a8bf0a80ab46bebeda64099e1796f58e": [
+          "23.10.0.6"
+        ],
+        "5ff77bd5cf62fab02e598fe5e1b1617d521207552808173e135f9a9607f56bad": [
+          "23.10.0.6"
+        ],
+        "61e3f78a039f3688ea99e62393065521b2bea53632de2b1975ba2cb60cd0799f": [
+          "23.10.0.6"
+        ],
+        "632691933a8374aa604900f230ac5b2c208ad31cae9635944618067522ffe305": [
+          "23.10.0.6"
+        ],
+        "686b7276f5a47ddc53e1f9f71fad241389e98bc86c2be70322d5707d13bd9009": [
+          "23.10.0.6"
+        ],
+        "743a890f9376dfd7e82df6ff9bdb758a6b9676ed028530ee40f2ba0b97189f24": [
+          "23.10.0.6"
+        ],
+        "7e214d6020190ff7299a483448a4d44f54c98b69fd8dc9866a187d995ecc46e2": [
+          "23.10.0.6"
+        ],
+        "983c3fdf50c0ad1639a98eae0eca670b60e02516d5240e37aac4726abcbce839": [
+          "23.10.0.6"
+        ],
+        "a8f403a17663d4c7304b6d7944ba2c78afc630dad7741577dde3bc849b54fc79": [
+          "23.10.0.6"
+        ],
+        "cad5adbce23f3a6219b608f208ec8e8d46a24802edd470c2173ef515c0b54f49": [
+          "23.10.0.6"
+        ],
+        "d4c11a5d4b49158879fda352fe1e29a838db071e5bd30d5210575a87ebd92646": [
+          "23.10.0.6"
+        ],
+        "ddef9c8c7ac977ca8477af07a53cc3d497f39c1feed88a0cb6a5d73ba9f3a1db": [
+          "23.10.0.6"
+        ],
+        "fc746036bff2c0421f03bf7170e13316d5f0668e44b7a556eb06b5c6639ac71b": [
+          "23.10.0.6"
+        ]
+      },
+      "build_ids": {
+        "1cbdf7ed66d69bb7938b814e50c7ceca2c164a59": [
+          "23.10.0.6"
+        ],
+        "34a264c86405c814323f0e7893eda710487a5f2c": [
+          "23.10.0.6"
+        ],
+        "4615e438b888f7d3db4299543b50bdde65146604": [
+          "23.10.0.6"
+        ],
+        "5ed6d9eb898b327eec6a07a2459819337ec0870c": [
+          "23.10.0.6"
+        ],
+        "6d0f42153a5501f5fead155cbef7be8bf423db0e": [
+          "23.10.0.6"
+        ],
+        "70949c9ba72c719299404f10ad6e35f1b7c14437": [
+          "23.10.0.6"
+        ],
+        "76aababed0abfde29b407cef5d74f1d012b4ff3f": [
+          "23.10.0.6"
+        ],
+        "9396b2ed1a35dd0518f9f6e0e6dbe0ff5694a437": [
+          "23.10.0.6"
+        ],
+        "9ece64107da10e583fbca9ad1f39593707e11800": [
+          "23.10.0.6"
+        ],
+        "a1983315ef6241819e76235f0a6ecd353142e3dc": [
+          "23.10.0.6"
+        ],
+        "b475c741bcb3fb1306c3bb57de972762418ce13e": [
+          "23.10.0.6"
+        ],
+        "cdae408145582f45252a5e4d016f84ca95b08527": [
+          "23.10.0.6"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "23.10.0.6": [
+          "23.10.0"
+        ]
+      }
+    }
+  ]
+}

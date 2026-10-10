@@ -1,0 +1,459 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "ubuntu2204-x86_64"
+  },
+  "provenance": {
+    "manifest_sha256": "63e07751a09f56342b198228c7fbca7a67de6bd0608abbaf23943c47ce7287d5",
+    "corpus_sha256": [
+      "2585631918aa84ea122e0bbf6e256b39b272604e4e760181efcac072465876af",
+      "2667ac0458bcfae2bb592bd6e6f434be5d33aa703c547d32cd14f353b3c002f0",
+      "382be23069b37b3e7a88479e26541c1a29e085cba99b1667e69bdd7838b68501",
+      "43071a48ab10aa91492e193193d888687ce12233283056db77d51b3399db526d",
+      "5335bd7d567864362e1cecb1bcc2620409db4715b1f71dcc7c7865c2e4c3d8ea",
+      "6cd79840da7ec939a0500f479ca0a15f241b303cb1b01d7e6096e396c63f6cce",
+      "8104b41c8c03a2fd449ea53e6f5668986a8cc81c9f719de7bac47b7a0384970d",
+      "9f686617b25d6e2feaf09c712cfefa833fcef8c43660ab5310f2135c4c11eb9e",
+      "a9096859dd254edf50e035c1b25f733fd15eb37edce70c9d2af4c5553cd742fd",
+      "b477faa65d3e915837905e3f004a5ad62b0fb2c6bf9557d8d72e4e856e59b763",
+      "dbf83d9fbf1504b2af5dcce564f0cda1ae2f87bdee539c70a04a352fa539c763",
+      "e27a3dea28704f27fc70e3eb60510fe279c46c2870eaf6af381d1c2e7d8471e2"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cublas",
+      "description": "libcublas",
+      "soname_stems": [
+        "libcublas.so",
+        "libcublasLt.so"
+      ],
+      "file_hashes": {
+        "2e7ea25404dfe83df9679c5410ca3d28ba2388d7437cec56d19b9e3c0d0eaca0": [
+          "11.10.1.25"
+        ],
+        "e27a3dea28704f27fc70e3eb60510fe279c46c2870eaf6af381d1c2e7d8471e2": [
+          "11.10.1.25"
+        ],
+        "f6acd947c28d545b81e0201959f0f5cde58afe3acf5316f46b4a29dabccfda5a": [
+          "11.10.1.25"
+        ]
+      },
+      "build_ids": {
+        "a8e5e80c0788adaa7305de818ba552f205076156": [
+          "11.10.1.25"
+        ],
+        "cab8173e5bc4710aaa3934ac1f76c393db2e8430": [
+          "11.10.1.25"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.10.1.25": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "cudart",
+      "description": "cuda_cudart",
+      "soname_stems": [
+        "libcudart.so"
+      ],
+      "file_hashes": {
+        "43071a48ab10aa91492e193193d888687ce12233283056db77d51b3399db526d": [
+          "11.7.60"
+        ],
+        "e409450e09ff17eb27ee4eabaec5f21ec7d03e8d41885a5234b8713f81b5ea72": [
+          "11.7.60"
+        ]
+      },
+      "build_ids": {
+        "a8966f7dd1acc37b12b63d0a6adeed7641131b8c": [
+          "11.7.60"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.7.60": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "cufft",
+      "description": "libcufft",
+      "soname_stems": [
+        "libcufft.so",
+        "libcufftw.so"
+      ],
+      "file_hashes": {
+        "a9096859dd254edf50e035c1b25f733fd15eb37edce70c9d2af4c5553cd742fd": [
+          "10.7.2.50"
+        ],
+        "cccac277e471325c01cb4b7df4a4888382a5352f15cbe64d9f43b57d79b3b8dc": [
+          "10.7.2.50"
+        ],
+        "d2274ad9eff8e2dc1d3eaaa88e52c54dbd26e53d5581ced51d0d1b5a981b7095": [
+          "10.7.2.50"
+        ]
+      },
+      "build_ids": {
+        "b4eb4d20b49965e88762690f50de1d80d315364d": [
+          "10.7.2.50"
+        ],
+        "e1746f913839d55b51eddfd3b1f1598f9d7dee90": [
+          "10.7.2.50"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "10.7.2.50": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "cupti",
+      "description": "cuda_cupti",
+      "soname_stems": [
+        "libcheckpoint.so",
+        "libcupti.so",
+        "libcupti_static.a",
+        "libnvperf_host.so",
+        "libnvperf_target.so",
+        "libpcsamplingutil.so"
+      ],
+      "file_hashes": {
+        "382be23069b37b3e7a88479e26541c1a29e085cba99b1667e69bdd7838b68501": [
+          "11.7.50"
+        ],
+        "517d8a6fa84f0a9ff6c3d91ae14b1c9918811a4b8b35637534246d4bbd5b5390": [
+          "11.7.50"
+        ],
+        "5815bc27f5f9aa5d08477bde4d1d1ca5f737411f480616c5b2094e595d8ac251": [
+          "11.7.50"
+        ],
+        "632f7ee953fe00c60cdb599de052ce3dde2f786bd933ede1abe1a52a1feed361": [
+          "11.7.50"
+        ],
+        "6ac96871a53c07291c7cfe3d5541cd3bbed628fd1299129ca7c568fee333d2c8": [
+          "11.7.50"
+        ],
+        "781bb26f7b86426524d00cfeefa7a78d913e560fb6fed892e62eaa866b4d5f46": [
+          "11.7.50"
+        ],
+        "bc55c775244eb45b34cc3eb228eab5fdbf35f3f424ce5e3d0bef395b8676f852": [
+          "11.7.50"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "11.7.50": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "curand",
+      "description": "libcurand",
+      "soname_stems": [
+        "libcurand.so"
+      ],
+      "file_hashes": {
+        "c982f6d4b007c4a326d709a1926148423efc99b0e39e68105bebf717a39a854a": [
+          "10.2.10.50"
+        ],
+        "dbf83d9fbf1504b2af5dcce564f0cda1ae2f87bdee539c70a04a352fa539c763": [
+          "10.2.10.50"
+        ]
+      },
+      "build_ids": {
+        "249591ede1f4139c7ae784f3c122c6c68d18edb0": [
+          "10.2.10.50"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "10.2.10.50": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "cusolver",
+      "description": "libcusolver",
+      "soname_stems": [
+        "libcusolver.so",
+        "libcusolverMg.so"
+      ],
+      "file_hashes": {
+        "73e70c4c8ec4cece55d73205fa5211235154d27d312ff1df377f53caa94035a4": [
+          "11.3.5.50"
+        ],
+        "89decfb06257214067ed51064d82bee53cfbd08a797ba224973158559fe3c6bf": [
+          "11.3.5.50"
+        ],
+        "9f686617b25d6e2feaf09c712cfefa833fcef8c43660ab5310f2135c4c11eb9e": [
+          "11.3.5.50"
+        ]
+      },
+      "build_ids": {
+        "18fc14699edadaebb203f2bcbf0ec1c67fcc96fe": [
+          "11.3.5.50"
+        ],
+        "b332032428d392e87e52f90cd8e5845cf137f2c5": [
+          "11.3.5.50"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.3.5.50": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "cusparse",
+      "description": "libcusparse",
+      "soname_stems": [
+        "libcusparse.so"
+      ],
+      "file_hashes": {
+        "2667ac0458bcfae2bb592bd6e6f434be5d33aa703c547d32cd14f353b3c002f0": [
+          "11.7.3.50"
+        ],
+        "442e562ecb88fcb4658e335b3d1f6d29cfd622b5b9f9eaf6ea1768d533c9d68a": [
+          "11.7.3.50"
+        ]
+      },
+      "build_ids": {
+        "e34a28d264b79645374947e7ab44e26939dcba41": [
+          "11.7.3.50"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.7.3.50": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "npp",
+      "description": "libnpp",
+      "soname_stems": [
+        "libnppc.so",
+        "libnppial.so",
+        "libnppicc.so",
+        "libnppidei.so",
+        "libnppif.so",
+        "libnppig.so",
+        "libnppim.so",
+        "libnppist.so",
+        "libnppisu.so",
+        "libnppitc.so",
+        "libnpps.so"
+      ],
+      "file_hashes": {
+        "168b66bdbad8eb1f8f988861883442286faafe36d083383fc95c66c49b5a5ba9": [
+          "11.7.3.21"
+        ],
+        "4c26daf32d4cd74f85a3a1fa49ea99cad08eeddfbbf7b68be672b27677231ad0": [
+          "11.7.3.21"
+        ],
+        "56ecb9af9c9896d096f73bda7dee09c4354229102b87e407b0ea852eeaad9dad": [
+          "11.7.3.21"
+        ],
+        "5bba3f8a204f770ceebfa7b9b501dc671ba8781dd4622813559f145928778be9": [
+          "11.7.3.21"
+        ],
+        "6cd79840da7ec939a0500f479ca0a15f241b303cb1b01d7e6096e396c63f6cce": [
+          "11.7.3.21"
+        ],
+        "9e2c23002cbbe89aaa59ed864864107b3758ce2f763ba46229fcec76e548a2fe": [
+          "11.7.3.21"
+        ],
+        "a5d1a0ca1a8aa64464ad2cb8c8eb133870f32a647c0f17f741a921a97987547f": [
+          "11.7.3.21"
+        ],
+        "c3c7b539b5cd43780f9bfc7bb87820134853e241ab2aaabd860a520d50f1cec3": [
+          "11.7.3.21"
+        ],
+        "cbdbb87745e2e1d4e5e2cd7247134936c6e4057bfb17b6517ed1b7d009002ea1": [
+          "11.7.3.21"
+        ],
+        "cc3a1beb39b8fc8c2693e31969ae69fd480c5d49ee9109410d03f86410f591ff": [
+          "11.7.3.21"
+        ],
+        "db3855161e8551f59223478ee0290c0334952bbe18dd5697441b4a689c6c84cc": [
+          "11.7.3.21"
+        ],
+        "e5271b8bddb2ade96d87e0cf8d6a7b555bd01985b092c16d92d1a3237dde2c92": [
+          "11.7.3.21"
+        ]
+      },
+      "build_ids": {
+        "18efaedb67aa683e0f25cb79d2db384c071c14f9": [
+          "11.7.3.21"
+        ],
+        "4b6570ca956c0b9733711ba4c6f0da36246d053f": [
+          "11.7.3.21"
+        ],
+        "6058888c5bad608542a6842f2242badcf3bc36b3": [
+          "11.7.3.21"
+        ],
+        "800d9d32eae74ca1efe6e4d8eab8c8e9c5139aa2": [
+          "11.7.3.21"
+        ],
+        "8edf7c7c767135ee1e6d697c2ec9542e045abd77": [
+          "11.7.3.21"
+        ],
+        "b5435aa602ea52d8ac1c8aa55a3880659e98f77b": [
+          "11.7.3.21"
+        ],
+        "c8dd0b6e6fc08e19dfdbb1a4131c2a719bb87468": [
+          "11.7.3.21"
+        ],
+        "cb14a6164480af2342eed493d4eda25c39829abd": [
+          "11.7.3.21"
+        ],
+        "dfb3316b010526f49ce04f7622883648f0ed67b1": [
+          "11.7.3.21"
+        ],
+        "e5e53191377117c47313da4413b412d7ee529db9": [
+          "11.7.3.21"
+        ],
+        "fc1e9ff35962c0edfb50c9b1ed3eafdaf06fda91": [
+          "11.7.3.21"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.7.3.21": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "nvcomp",
+      "description": "nvcomp",
+      "soname_stems": [
+        "libnvcomp.so",
+        "libnvcomp_cpu.so"
+      ],
+      "file_hashes": {
+        "1ef190104637b1ecd4f4b9a2e13bb62c131e1828512bf6d5c907e1dd19b23ca5": [
+          "5.3.0.16"
+        ],
+        "2585631918aa84ea122e0bbf6e256b39b272604e4e760181efcac072465876af": [
+          "5.3.0.16"
+        ],
+        "2708516dc07f5b3429f75ad705be4782bc3c6aeacdc5157b146db6505eb9ca4f": [
+          "5.3.0.16"
+        ]
+      },
+      "build_ids": {
+        "dc3c6e42610e7eee8d12f7f2bb58c53938009afe": [
+          "5.3.0.16"
+        ],
+        "ea794619802b8142894618488f92d1259b9e1b06": [
+          "5.3.0.16"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "5.3.0.16": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "nvjpeg",
+      "description": "libnvjpeg",
+      "soname_stems": [
+        "libnvjpeg.so"
+      ],
+      "file_hashes": {
+        "038d60490384ab882eb421e74520f994a6a109911803805079da4db9fddc37ce": [
+          "11.7.2.34"
+        ],
+        "5335bd7d567864362e1cecb1bcc2620409db4715b1f71dcc7c7865c2e4c3d8ea": [
+          "11.7.2.34"
+        ]
+      },
+      "build_ids": {
+        "460ea9f3d72319fbeefa6dc4b2ebfe08767b262c": [
+          "11.7.2.34"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.7.2.34": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "nvrtc",
+      "description": "cuda_nvrtc",
+      "soname_stems": [
+        "libnvrtc-builtins.so",
+        "libnvrtc.so"
+      ],
+      "file_hashes": {
+        "7237cb5d7d4ccaebee29455ab3b3205a02024fdbb91c642cd69359e056d6e11d": [
+          "11.7.50"
+        ],
+        "b477faa65d3e915837905e3f004a5ad62b0fb2c6bf9557d8d72e4e856e59b763": [
+          "11.7.50"
+        ],
+        "d833c4f336b92f02b9070423b25ca57bf14e6557e9a085a6a11f7bf162be53a6": [
+          "11.7.50"
+        ]
+      },
+      "build_ids": {
+        "1d465de3687f374eacd27ab61e87b3bb24a7ccdc": [
+          "11.7.50"
+        ],
+        "c2e8e2df50cc62837262b1edab44b14eba8b8d52": [
+          "11.7.50"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "11.7.50": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "nvtiff",
+      "description": "libnvtiff",
+      "soname_stems": [
+        "libnvtiff.so"
+      ],
+      "file_hashes": {
+        "8104b41c8c03a2fd449ea53e6f5668986a8cc81c9f719de7bac47b7a0384970d": [
+          "0.6.0.78"
+        ],
+        "fd3352c2a4766e31fa26798ba9bd544365f608b953cb734ee9dac762243dec10": [
+          "0.6.0.78"
+        ]
+      },
+      "build_ids": {
+        "21d8ecc4f5714e20c61f80e07543adb7dd10f655": [
+          "0.6.0.78"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.6.0.78": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    }
+  ]
+}

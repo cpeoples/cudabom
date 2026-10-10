@@ -1,0 +1,100 @@
+{
+  "cuda_cudart": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./cuda-cudart-11-7_11.7.60-1_amd64.deb",
+      "sha256": "43071a48ab10aa91492e193193d888687ce12233283056db77d51b3399db526d",
+      "size": "161804"
+    },
+    "version": "11.7.60"
+  },
+  "cuda_cupti": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./cuda-cupti-11-7_11.7.50-1_amd64.deb",
+      "sha256": "382be23069b37b3e7a88479e26541c1a29e085cba99b1667e69bdd7838b68501",
+      "size": "13603848"
+    },
+    "version": "11.7.50"
+  },
+  "cuda_nvrtc": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./cuda-nvrtc-11-7_11.7.50-1_amd64.deb",
+      "sha256": "b477faa65d3e915837905e3f004a5ad62b0fb2c6bf9557d8d72e4e856e59b763",
+      "size": "15067788"
+    },
+    "version": "11.7.50"
+  },
+  "libcublas": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./libcublas-11-7_11.10.1.25-1_amd64.deb",
+      "sha256": "e27a3dea28704f27fc70e3eb60510fe279c46c2870eaf6af381d1c2e7d8471e2",
+      "size": "218764020"
+    },
+    "version": "11.10.1.25"
+  },
+  "libcufft": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./libcufft-11-7_10.7.2.50-1_amd64.deb",
+      "sha256": "a9096859dd254edf50e035c1b25f733fd15eb37edce70c9d2af4c5553cd742fd",
+      "size": "68306652"
+    },
+    "version": "10.7.2.50"
+  },
+  "libcurand": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./libcurand-11-7_10.2.10.50-1_amd64.deb",
+      "sha256": "dbf83d9fbf1504b2af5dcce564f0cda1ae2f87bdee539c70a04a352fa539c763",
+      "size": "41549150"
+    },
+    "version": "10.2.10.50"
+  },
+  "libcusolver": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./libcusolver-11-7_11.3.5.50-1_amd64.deb",
+      "sha256": "9f686617b25d6e2feaf09c712cfefa833fcef8c43660ab5310f2135c4c11eb9e",
+      "size": "48978630"
+    },
+    "version": "11.3.5.50"
+  },
+  "libcusparse": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./libcusparse-11-7_11.7.3.50-1_amd64.deb",
+      "sha256": "2667ac0458bcfae2bb592bd6e6f434be5d33aa703c547d32cd14f353b3c002f0",
+      "size": "101303896"
+    },
+    "version": "11.7.3.50"
+  },
+  "libnpp": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./libnpp-11-7_11.7.3.21-1_amd64.deb",
+      "sha256": "6cd79840da7ec939a0500f479ca0a15f241b303cb1b01d7e6096e396c63f6cce",
+      "size": "84231190"
+    },
+    "version": "11.7.3.21"
+  },
+  "libnvjpeg": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./libnvjpeg-11-7_11.7.2.34-1_amd64.deb",
+      "sha256": "5335bd7d567864362e1cecb1bcc2620409db4715b1f71dcc7c7865c2e4c3d8ea",
+      "size": "1829488"
+    },
+    "version": "11.7.2.34"
+  },
+  "libnvtiff": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./libnvtiff0-cuda-12_0.6.0.78-1_amd64.deb",
+      "sha256": "8104b41c8c03a2fd449ea53e6f5668986a8cc81c9f719de7bac47b7a0384970d",
+      "size": "1966858"
+    },
+    "version": "0.6.0.78"
+  },
+  "nvcomp": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./libnvcomp5-cuda-12_5.3.0.16-1_amd64.deb",
+      "sha256": "2585631918aa84ea122e0bbf6e256b39b272604e4e760181efcac072465876af",
+      "size": "23033724"
+    },
+    "version": "5.3.0.16"
+  },
+  "release_label": "ubuntu2204-x86_64",
+  "release_product": "cuda-repos"
+}

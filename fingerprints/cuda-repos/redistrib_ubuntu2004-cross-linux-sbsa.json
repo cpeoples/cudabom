@@ -1,0 +1,68 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "ubuntu2004-cross-linux-sbsa"
+  },
+  "provenance": {
+    "manifest_sha256": "3447f21680242ea0de1eecda8f4314348f2be988702ebbad0e7a4e86063af67b",
+    "corpus_sha256": [
+      "052b8bae3ba11e12a379d94661081ed55ad26cecbe83cc31adea2f82822f85bd",
+      "573a7e622073556225ab2cd65f02739cb781229d0a1a2f891811baf2e0847a61"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvfatbin",
+      "description": "libnvfatbin",
+      "soname_stems": [
+        "libnvfatbin.so"
+      ],
+      "file_hashes": {
+        "1fbe11efa3a7451827d59cb2ead3f22f899466e9b0e48e6e3f7c8d90f8964965": [
+          "12.4.99"
+        ],
+        "573a7e622073556225ab2cd65f02739cb781229d0a1a2f891811baf2e0847a61": [
+          "12.4.99"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "symbol_markers": [
+        "nvFatbinAddCubin",
+        "nvFatbinAddLTOIR",
+        "nvFatbinAddPTX",
+        "nvFatbinCreate",
+        "nvFatbinDestroy",
+        "nvFatbinGet",
+        "nvFatbinGetErrorString",
+        "nvFatbinSize",
+        "nvFatbinVersion"
+      ],
+      "release_versions": {
+        "12.4.99": [
+          "ubuntu2004-cross-linux-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvjitlink",
+      "description": "libnvjitlink",
+      "soname_stems": [
+        "libnvJitLink.so"
+      ],
+      "file_hashes": {
+        "052b8bae3ba11e12a379d94661081ed55ad26cecbe83cc31adea2f82822f85bd": [
+          "12.0.76"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "12.0.76": [
+          "ubuntu2004-cross-linux-sbsa"
+        ]
+      }
+    }
+  ]
+}
