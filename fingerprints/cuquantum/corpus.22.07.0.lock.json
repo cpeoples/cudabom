@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cuquantum",
+      "version": "22.07.0.11",
+      "platform": "linux-ppc64le",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-ppc64le/cuquantum-linux-ppc64le-22.07.0.11-archive.tar.xz",
+      "sha256": "60541d5cc4999ee2e514bc20cdab42e8737b5969ab0816d93a0c324d5d318864"
+    },
+    {
+      "component": "cuquantum",
+      "version": "22.07.0.11",
+      "platform": "linux-sbsa",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-sbsa/cuquantum-linux-sbsa-22.07.0.11-archive.tar.xz",
+      "sha256": "d1d386ed4c7876bd7dcdef9f0dddcfdd2c0ccbeece49937017688469dadef123"
+    },
+    {
+      "component": "cuquantum",
+      "version": "22.07.0.11",
+      "platform": "linux-x86_64",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-x86_64/cuquantum-linux-x86_64-22.07.0.11-archive.tar.xz",
+      "sha256": "bb67c2ddc9822cd0b3c50d6d269c051eab4971c4d75a02ac24de03b48e30f639"
+    }
+  ]
+}

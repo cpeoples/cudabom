@@ -1,0 +1,85 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "0.1.0",
+    "date": "2021-12-20"
+  },
+  "provenance": {
+    "manifest_sha256": "5a0ac07e1c6bc653c559222b5b2cc62b0ea0acc0a2f4245574de3510c92bea75",
+    "corpus_sha256": [
+      "0eb84eef619a1cfab5870fb585200a9869a197866685252e4ca8187322809554",
+      "3dd04cf08f1323318e0e63a7e28bc904c426ced3367aca809fba7e7beef94063",
+      "8ad8e98f14275ffe0de02574be5c86224af1c657c41baf02c16440301ffe0aae"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cuquantum",
+      "description": "NVIDIA cuQuantum",
+      "license": "cuQuantum",
+      "soname_stems": [
+        "libcudensitymat.so",
+        "libcupauliprop.so",
+        "libcustabilizer.so",
+        "libcustatevec.so",
+        "libcutensornet.so"
+      ],
+      "file_hashes": {
+        "0eb84eef619a1cfab5870fb585200a9869a197866685252e4ca8187322809554": [
+          "0.1.0.30"
+        ],
+        "1671aeace34920f30960a53b270d08f8be3ac397463aba43399c0ad8c47e433b": [
+          "0.1.0.30"
+        ],
+        "295246d03791016bdeb59486da4fca90f6c0cbc54fa3c789c7348b6a094a26bd": [
+          "0.1.0.30"
+        ],
+        "30023c35502c9095a736051337df2531e06e8843ec541c60e036e06ac88885c5": [
+          "0.1.0.30"
+        ],
+        "3dd04cf08f1323318e0e63a7e28bc904c426ced3367aca809fba7e7beef94063": [
+          "0.1.0.30"
+        ],
+        "5bf5b8374c9390d9b29b865e691383b75ac2e02b66423ca87df8c8d44dd228c9": [
+          "0.1.0.30"
+        ],
+        "8ad8e98f14275ffe0de02574be5c86224af1c657c41baf02c16440301ffe0aae": [
+          "0.1.0.30"
+        ],
+        "cd0d4f3397280748859bf2d4e1527f0678caa9c55a71088b97330d06c439278b": [
+          "0.1.0.30"
+        ],
+        "f095df05bc56f75c20aa4bea1b9dd810773319d3f2d8ca211701e27a9c5e117b": [
+          "0.1.0.30"
+        ]
+      },
+      "build_ids": {
+        "71ad62e4efb587748658d7065dcfc64073e39b36": [
+          "0.1.0.30"
+        ],
+        "762aee2efb91812e47f642cab31b6015de469425": [
+          "0.1.0.30"
+        ],
+        "833630f093c56d2ae6d83b9d5730c5ab8214e4c3": [
+          "0.1.0.30"
+        ],
+        "a71a8b1e39f0845681c9f89fb5db24b6127426b4": [
+          "0.1.0.30"
+        ],
+        "cc28e39f5d73dbf9420e8e720e08d88d1ba0ed1e": [
+          "0.1.0.30"
+        ],
+        "e5902acf9cf5d5722d0393c86ef137f6d49f1ca9": [
+          "0.1.0.30"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.1.0.30": [
+          "0.1.0"
+        ]
+      }
+    }
+  ]
+}

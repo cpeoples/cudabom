@@ -1,0 +1,85 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "22.05.0",
+    "date": "2022-05-12"
+  },
+  "provenance": {
+    "manifest_sha256": "2fabd27625d696b3fdf6b004f968be506c01332b57fc16b8ecea60fcc016be41",
+    "corpus_sha256": [
+      "3804ee39c96610ca1f1a644adde568344530f9377444b5309e20bc7d7e12ce57",
+      "4aefee0523ada81939a5376061532293dd34ac55e5efe7a3ab76bf7c87800aed",
+      "641cbace1da172eb7bfca8c063a5b1194056c8a1d8d80b0bfa84bfcaa60d3a68"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cuquantum",
+      "description": "NVIDIA cuQuantum",
+      "license": "cuQuantum",
+      "soname_stems": [
+        "libcudensitymat.so",
+        "libcupauliprop.so",
+        "libcustabilizer.so",
+        "libcustatevec.so",
+        "libcutensornet.so"
+      ],
+      "file_hashes": {
+        "2e850554a84b442d63bffbc71daf8ea6fb307a49cc060389c5c79f2c1d259cab": [
+          "22.05.0.41"
+        ],
+        "3804ee39c96610ca1f1a644adde568344530f9377444b5309e20bc7d7e12ce57": [
+          "22.05.0.41"
+        ],
+        "4559ee7ebb8b0a5fcb29ae2124fb0fff81b2834113d8caf14ff7bd5a010e0e8e": [
+          "22.05.0.41"
+        ],
+        "4aefee0523ada81939a5376061532293dd34ac55e5efe7a3ab76bf7c87800aed": [
+          "22.05.0.41"
+        ],
+        "523d392ba6d0d92095de5c4f55aecae83b9b7a1237da42c0ccced7a030dececa": [
+          "22.05.0.41"
+        ],
+        "5259ea76a9b7bfeed0ade25322d1035592ddc8d0e000ea7ec921593999914cce": [
+          "22.05.0.41"
+        ],
+        "641cbace1da172eb7bfca8c063a5b1194056c8a1d8d80b0bfa84bfcaa60d3a68": [
+          "22.05.0.41"
+        ],
+        "975078a4f0fe571068232283ce000ff5caa0d730584ac2f6260c7b46639531ed": [
+          "22.05.0.41"
+        ],
+        "d05dcef5cdc761962149e125edd8f73783496122a8965fd8bcffcc992678a744": [
+          "22.05.0.41"
+        ]
+      },
+      "build_ids": {
+        "1998ce39c69cab3011b3a31dd1dbf920dc9ade8f": [
+          "22.05.0.41"
+        ],
+        "3b80d32d57c338d8732e690f1fa63cfdfc551b99": [
+          "22.05.0.41"
+        ],
+        "43bcd179a7f8f4ab4677c22fc5466867fd94885c": [
+          "22.05.0.41"
+        ],
+        "9a0c6feac039e159ad70ca6bba18e70113b425f6": [
+          "22.05.0.41"
+        ],
+        "becd259412f122ac76f79ffde48ed8b7e6980047": [
+          "22.05.0.41"
+        ],
+        "c20d4235d4e40c0500f23239bd3f296e0aa89687": [
+          "22.05.0.41"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "22.05.0.41": [
+          "22.05.0"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "22.03.0",
+    "date": "2022-03-21"
+  },
+  "provenance": {
+    "manifest_sha256": "b3a94ae9d2f858970db95770b58ce488aa0a43ec7dc8e02982efab661e61c59d",
+    "corpus_sha256": [
+      "110fabf0171752232da0bf5a989fed34c50db4422360173b39ca931488fd5a32",
+      "740d28198443481ce3fbc738bea3223a3e758a62b165884fbafd5c0fdd5528fc",
+      "ebf3f9ad01732492e970d61a90d504858a61be8f0cf84e0695fec3090af17b25"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cuquantum",
+      "description": "NVIDIA cuQuantum",
+      "license": "cuQuantum",
+      "soname_stems": [
+        "libcudensitymat.so",
+        "libcupauliprop.so",
+        "libcustabilizer.so",
+        "libcustatevec.so",
+        "libcutensornet.so"
+      ],
+      "file_hashes": {
+        "0fcf3486c6dcb3d11b52992edc49af8f59e5d2bf00564a0679ba4549111599f3": [
+          "22.03.0.40"
+        ],
+        "110fabf0171752232da0bf5a989fed34c50db4422360173b39ca931488fd5a32": [
+          "22.03.0.40"
+        ],
+        "5c784a532531af0e77683471d383e21debc49a36fb13448dd2132dc4765a12fe": [
+          "22.03.0.40"
+        ],
+        "740d28198443481ce3fbc738bea3223a3e758a62b165884fbafd5c0fdd5528fc": [
+          "22.03.0.40"
+        ],
+        "84f08a85833f160f1d3c663970d91f7f635ca105375d49a83c968184e77dc795": [
+          "22.03.0.40"
+        ],
+        "880dabfe3bf0fb0b85e31e29c3e7149941c4dc1bf0ca1ce5b0cb8df8e06d1b39": [
+          "22.03.0.40"
+        ],
+        "e127fe6f2eabb6237bf966b9688b0b2383a64c42cf76d7ab1aba60b46ffc5540": [
+          "22.03.0.40"
+        ],
+        "ebf3f9ad01732492e970d61a90d504858a61be8f0cf84e0695fec3090af17b25": [
+          "22.03.0.40"
+        ],
+        "fa321d61f027a67a1c038f9e65379ceece54e98a2325da1e7baf22c908e6aaa9": [
+          "22.03.0.40"
+        ]
+      },
+      "build_ids": {
+        "0c42810d235290a5cbcbe7fe0f7a357b20088276": [
+          "22.03.0.40"
+        ],
+        "3a8fb6ca870a4c3b7fe4c1c205c9ade400650147": [
+          "22.03.0.40"
+        ],
+        "3b44c7ffc91f8a5db892ea4fbdb71e18958054f1": [
+          "22.03.0.40"
+        ],
+        "6f769dfc656222085f7dc88a65569e5ea03ff692": [
+          "22.03.0.40"
+        ],
+        "73511f49e4ac4dcc32de702cbb8c65064a1208be": [
+          "22.03.0.40"
+        ],
+        "a5810dbc8aa157faebbe046e17c289eae40bfa79": [
+          "22.03.0.40"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "22.03.0.40": [
+          "22.03.0"
+        ]
+      }
+    }
+  ]
+}
