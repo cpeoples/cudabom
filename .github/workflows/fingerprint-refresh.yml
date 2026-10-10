@@ -124,12 +124,52 @@ jobs:
           JOBS: ${{ inputs.jobs || '4' }}
         run: |
           set -euo pipefail
-          # Download + verify archives for the locked releases, then derive
-          # shards in parallel. The provenance skip means already-committed
-          # releases are not re-derived.
-          cargo run --locked --quiet -p xtask -- corpus fetch --lock "$LOCK_DIR"
+          # The discover step above saved locks and manifests only for this
+          # run's new releases. Fetch and derive just those, not the whole
+          # committed corpus: the lock dir holds every release ever locked, so a
+          # blanket fetch would re-download the full multi-tree corpus (hundreds
+          # of archives, tens of GB) every night to derive a handful of shards.
+          #
+          # The newly saved locks and manifests are exactly the files git now
+          # sees as added or modified under the lock and fixtures dirs.
+          mapfile -t new_locks < <(git status --porcelain -- "$LOCK_DIR" \
+            | awk '{print $2}' | grep -E 'corpus\..*\.lock\.json$' || true)
+          mapfile -t new_manifests < <(git status --porcelain -- "$FIXTURES_DIR" \
+            | awk '{print $2}' | grep -E 'redistrib_.*\.json$' || true)
+          if [ "${#new_locks[@]}" -eq 0 ]; then
+            echo "No new locks saved; nothing to fetch."
+            exit 0
+          fi
+          echo "fetching ${#new_locks[@]} new release lock(s)"
+
+          # Fetch each new release's archives from its own lock. One bad upstream
+          # archive (an NVIDIA re-publish under a changed hash) is skipped so it
+          # does not abort the whole batch.
+          for lock in "${new_locks[@]}"; do
+            cargo run --locked --quiet -p xtask -- corpus fetch --lock "$lock" \
+              --out "$CORPUS_DIR" \
+              || echo "skip $lock (fetch failed; see log above)"
+          done
+
+          # Derive only the new manifests. Stage them alone so the recursive
+          # builder cannot touch (and, lacking their corpus, regress) other
+          # shards. Siblings keep their product subdir and derive to the matching
+          # fingerprints/<product>/ path. CUDA manifests live at the fixtures
+          # root but their shards belong under fingerprints/cuda, so stage them
+          # into a cuda/ subdir to land there.
+          staging="$(mktemp -d)"
+          for m in "${new_manifests[@]}"; do
+            rel="${m#"$FIXTURES_DIR"/}"
+            case "$rel" in
+              */*) ;;              # sibling: already under <product>/
+              *) rel="cuda/$rel" ;; # cuda root manifest -> cuda/ subdir
+            esac
+            mkdir -p "$staging/$(dirname "$rel")"
+            cp "$m" "$staging/$rel"
+          done
           cargo run --locked --quiet -p xtask -- fingerprints build \
-            --from "$FIXTURES_DIR" --out "$SHARD_DIR" --corpus "$CORPUS_DIR" --jobs "$JOBS"
+            --from "$staging" --out "$SHARD_DIR" --corpus "$CORPUS_DIR" --jobs "$JOBS"
+          rm -rf "$staging"
 
       - name: Regenerate product map from component profiles
         if: steps.discover.outputs.new_count != '0'
