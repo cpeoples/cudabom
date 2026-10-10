@@ -118,8 +118,32 @@ jobs:
             --platform linux-x86_64 --platform linux-sbsa \
             --platform linux-ppc64le --platform linux-aarch64
 
+      - name: Discover Jetson (L4T/JetPack) CUDA packages
+        id: jetson
+        run: |
+          set -euo pipefail
+          # Jetson modules run Linux (L4T/JetPack), and their CUDA stack ships as
+          # Debian packages whose Tegra aarch64 binaries have distinct build-ids
+          # and inner-.so hashes from the generic linux-sbsa redistributables.
+          # Synthesize a redist-shaped manifest + lock for each supported JetPack
+          # release from NVIDIA's signed APT index (version, pool path, and
+          # SHA-256 straight from the source). These land under
+          # fixtures/redist/jetson and fingerprints/jetson, so the fetch, derive,
+          # orphan-prune, and PR steps below pick them up with the other trees.
+          # Re-discovery is idempotent: an unchanged release rewrites identical
+          # bytes and produces no diff.
+          cargo run --locked --quiet -p xtask -- jetson discover
+          # Signal downstream whether a Jetson lock is new or changed this run,
+          # so the fetch/derive step runs even when every other tree is current.
+          if git status --porcelain --untracked-files=all -- "$LOCK_DIR/jetson" "$FIXTURES_DIR/jetson" \
+            | grep -q .; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Fetch and derive the batch
-        if: steps.discover.outputs.new_count != '0'
+        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true'
         env:
           JOBS: ${{ inputs.jobs || '4' }}
         run: |
@@ -202,7 +226,7 @@ jobs:
           done
 
       - name: Regenerate product map from component profiles
-        if: steps.discover.outputs.new_count != '0'
+        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true'
         # The CSAF product -> component map is generated from the reviewed
         # component profiles (advisory_terms in
         # crates/cudabom-identify/src/derive.rs). Regenerate so that if a newly
@@ -220,7 +244,7 @@ jobs:
 
       - name: Detect changes
         id: diff
-        if: steps.discover.outputs.new_count != '0'
+        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true'
         run: |
           set -euo pipefail
           # Stage new/changed shards and manifests; ignore the gitignored corpus.
@@ -284,9 +308,9 @@ jobs:
             New releases were discovered first-party from NVIDIA's redist
             directory indexes across every product tree (CUDA toolkit + cuDNN,
             NCCL, cuTENSOR, cuDSS, cuSPARSELt, cuQuantum, nvJPEG2000, nvTIFF,
-            cuBLASMp, NVPL, NVSHMEM), with no hardcoded version list, and derived
-            from the official archives (each verified against NVIDIA's own
-            SHA-256).
+            cuBLASMp, NVPL, NVSHMEM, nvCOMP) plus the Jetson (L4T/JetPack) APT
+            packages, with no hardcoded version list, and derived from the
+            official archives (each verified against NVIDIA's own SHA-256).
 
             **Added this run (${{ steps.diff.outputs.added_count }} release(s)):**
 

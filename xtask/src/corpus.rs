@@ -144,6 +144,12 @@ const REDIST_PRODUCTS: &[RedistProduct] = &[
         fixtures_subdir: "nvshmem",
         shard_dir: "fingerprints/nvshmem",
     },
+    RedistProduct {
+        name: "nvcomp",
+        base_url: "https://developer.download.nvidia.com/compute/nvcomp/redist/",
+        fixtures_subdir: "nvcomp",
+        shard_dir: "fingerprints/nvcomp",
+    },
 ];
 
 /// `corpus lock --manifest <file> [--out <file>] [--base-url <url>]
@@ -328,7 +334,7 @@ pub(crate) fn corpus_archive_path(
 }
 
 /// Build the retry policy from `--no-retry` / `--max-retries` / `--retry-base-ms`.
-fn build_retry(args: &[String]) -> RetryPolicy {
+pub(crate) fn build_retry(args: &[String]) -> RetryPolicy {
     if has_flag(args, "--no-retry") {
         return RetryPolicy::none();
     }
@@ -345,7 +351,7 @@ fn build_retry(args: &[String]) -> RetryPolicy {
 /// Download options for a corpus request. Centralizes the fixed `USER_AGENT`
 /// and empty header set so every call site differs only in retry policy and the
 /// optional expected digest.
-fn get_options(retry: RetryPolicy, expected_sha256: Option<String>) -> GetOptions {
+pub(crate) fn get_options(retry: RetryPolicy, expected_sha256: Option<String>) -> GetOptions {
     GetOptions {
         retry,
         expected_sha256,
@@ -387,22 +393,12 @@ fn collect_filter(args: &[String], flag_name: &str) -> std::collections::BTreeSe
 /// to the platforms a given release actually ships, so requesting a platform a
 /// release lacks is harmless.
 fn collect_platforms(args: &[String]) -> Vec<String> {
-    let mut out = Vec::new();
-    let mut i = 0;
-    while i < args.len() {
-        if args[i] == "--platform" {
-            if let Some(v) = args.get(i + 1) {
-                out.push(v.clone());
-                i += 2;
-                continue;
-            }
-        }
-        i += 1;
+    let platforms = crate::repeated_flag(args, "--platform");
+    if platforms.is_empty() {
+        DEFAULT_PLATFORMS.iter().map(|p| (*p).to_string()).collect()
+    } else {
+        platforms
     }
-    if out.is_empty() {
-        out.extend(DEFAULT_PLATFORMS.iter().map(|p| (*p).to_string()));
-    }
-    out
 }
 
 /// The archive file name (last path segment) of a URL.
@@ -428,7 +424,7 @@ pub(crate) fn archive_file_name(url: &str) -> String {
 /// Scope:
 ///   - default / `--product all`: iterate every tree in [`REDIST_PRODUCTS`]
 ///     (CUDA toolkit + cuDNN, NCCL, cuTENSOR, cuDSS, cuSPARSELt, cuQuantum,
-///     nvJPEG2000, nvTIFF, cuBLASMp, NVPL, NVSHMEM).
+///     nvJPEG2000, nvTIFF, cuBLASMp, NVPL, NVSHMEM, nvCOMP).
 ///   - `--product <name>`: just that tree.
 ///   - `--base-url <url>`: a single explicit tree (overrides product selection;
 ///     uses the root fixtures/shard paths unless `--fixtures`/`--fingerprints`

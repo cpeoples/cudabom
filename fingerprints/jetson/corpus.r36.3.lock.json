@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cublas",
+      "version": "12.2.5.6",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcublas/libcublas-12-2_12.2.5.6-1_arm64.deb",
+      "sha256": "0c49c8ee2198b33e39d15422f0dd2f50671057c26c84c19a5e4876864d9a0b4d"
+    },
+    {
+      "component": "cudart",
+      "version": "12.2.140",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/c/cuda-cudart/cuda-cudart-12-2_12.2.140-1_arm64.deb",
+      "sha256": "c7dcedc64cc72bb2cba7b57effcd195d648cbc6b550c4bc09e9f32676d5b3f05"
+    },
+    {
+      "component": "cudla",
+      "version": "12.2.140",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcudla/libcudla-12-2_12.2.140-1_arm64.deb",
+      "sha256": "65eede2a075090411ec6f22c2315fdfcafe91865410f771be514048d4bf269e2"
+    },
+    {
+      "component": "cufft",
+      "version": "11.0.8.103",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcufft/libcufft-12-2_11.0.8.103-1_arm64.deb",
+      "sha256": "8607d66485a81a9d57a642bc3d9a3edea13057a25e82c62b753479fdc55599b4"
+    },
+    {
+      "component": "cupti",
+      "version": "12.2.142",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/c/cuda-cupti/cuda-cupti-12-2_12.2.142-1_arm64.deb",
+      "sha256": "ad15f87e8e137447cb91ea4d5060a91a854fc63cbd96ef5e13c937cf84b44a99"
+    },
+    {
+      "component": "curand",
+      "version": "10.3.3.141",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcurand/libcurand-12-2_10.3.3.141-1_arm64.deb",
+      "sha256": "422e79cb46220a0ac517bb85c98df53a0f4a7813f3e13ced9487f15e0d5ff5b4"
+    },
+    {
+      "component": "cusolver",
+      "version": "11.5.2.141",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcusolver/libcusolver-12-2_11.5.2.141-1_arm64.deb",
+      "sha256": "fb092340b981ab7bea21428f34d99e9eb20571de5ff169b3ef338484f007701c"
+    },
+    {
+      "component": "cusparse",
+      "version": "12.1.2.141",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libc/libcusparse/libcusparse-12-2_12.1.2.141-1_arm64.deb",
+      "sha256": "f167c5da94086abdecbb5ae96ce91ca708e9212896afe50456bc85b7a3dc38d0"
+    },
+    {
+      "component": "npp",
+      "version": "12.2.1.4",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libn/libnpp/libnpp-12-2_12.2.1.4-1_arm64.deb",
+      "sha256": "6985d46919b4514ddd1b067ce70fb89ea709ba026b5a344acef9743f3cf62167"
+    },
+    {
+      "component": "nvjitlink",
+      "version": "12.2.140",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libn/libnvjitlink/libnvjitlink-12-2_12.2.140-1_arm64.deb",
+      "sha256": "2ee29d82fc73f9176b1c8126444953815042e4ae650e42fee93e432ef3f05537"
+    },
+    {
+      "component": "nvjpeg",
+      "version": "12.2.2.4",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/libn/libnvjpeg/libnvjpeg-12-2_12.2.2.4-1_arm64.deb",
+      "sha256": "bdd8afa77ed475733e0ada2d8fe8356615121b8610391a044272c79b35fed835"
+    },
+    {
+      "component": "nvrtc",
+      "version": "12.2.140",
+      "platform": "linux-aarch64-tegra",
+      "url": "https://repo.download.nvidia.com/jetson/common/pool/main/c/cuda-nvrtc/cuda-nvrtc-12-2_12.2.140-1_arm64.deb",
+      "sha256": "2fc6fd7b2067b8317487f4451e5918462821c74fb1592e32ddcf932a8863e36c"
+    }
+  ]
+}

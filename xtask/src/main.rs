@@ -16,6 +16,7 @@ mod eval_distribution;
 mod eval_groundtruth;
 mod eval_tools;
 mod fingerprints;
+mod jetson;
 mod product_map;
 mod release_version;
 mod verbosity;
@@ -65,6 +66,10 @@ const TASKS: &[(&str, &str)] = &[
         "distribution discover",
         "find new in-the-wild CUDA wheels on PyPI (metadata-only; --write pins them)",
     ),
+    (
+        "jetson discover",
+        "synthesize redist-shaped manifests for Jetson (L4T/JetPack) CUDA .deb packages",
+    ),
 ];
 
 fn main() -> ExitCode {
@@ -96,6 +101,8 @@ fn main() -> ExitCode {
         bundle::build(task_args(&args, "bundle"))
     } else if task.starts_with("distribution discover") {
         distribution_discover::run(task_args(&args, "distribution discover"))
+    } else if task.starts_with("jetson discover") {
+        jetson::discover(task_args(&args, "jetson discover"))
     } else if task.starts_with("eval") {
         eval_groundtruth::run(task_args(&args, "eval"))
     } else {
@@ -127,6 +134,17 @@ pub(crate) fn flag(args: &[String], name: &str) -> Option<String> {
         .position(|a| a == name)
         .and_then(|i| args.get(i + 1))
         .cloned()
+}
+
+/// Collect every value following a repeated flag (e.g. `--platform a --platform
+/// b`), in order. Returns an empty vector when the flag is absent; callers that
+/// want a default substitute one for the empty case.
+pub(crate) fn repeated_flag(args: &[String], name: &str) -> Vec<String> {
+    args.iter()
+        .zip(args.iter().skip(1))
+        .filter(|(a, _)| a.as_str() == name)
+        .map(|(_, v)| v.clone())
+        .collect()
 }
 
 /// True if the boolean flag `name` is present in `args`.
@@ -179,6 +197,10 @@ fn print_help() {
     println!(
         "              [--write] [--json]   # metadata-only PyPI crawl; --write pins new wheels"
     );
+    println!(
+        "jetson discover [--release r36.4 ...] [--base-url <url>] [--fixtures fixtures/redist/jetson]"
+    );
+    println!("              [--out fingerprints/jetson] [--json] [--dry-run] [retry flags]");
     println!();
     println!("Global: -v/--verbose (repeatable), -q/--quiet control diagnostic output.");
 }

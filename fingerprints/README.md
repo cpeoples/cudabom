@@ -13,11 +13,19 @@ produce small, reviewable diffs and per-file growth stays bounded:
 fingerprints/
   cuda/
     redistrib_<version>.json   # derived 1:1 from NVIDIA's redistrib_<version>.json
+  <product>/                   # cudnn, nccl, cutensor, ..., nvcomp
+    redistrib_<version>.json
+  jetson/                      # Tegra (L4T/JetPack) shards, synthesized source
+    redistrib_<release>.json
   corpus.<version>.lock.json   # one per-release lockfile per CUDA release
 ```
 
 Each shard under `cuda/` is derived from exactly one NVIDIA CUDA redistributable
 manifest (`redistrib_<version>.json`), so the shard's name *is* its provenance.
+Sibling products (cuDNN, NCCL, nvCOMP, ...) derive the same way under their own
+subdirectory. The `jetson/` shards are the one exception to the 1:1 manifest
+rule: their source manifest is synthesized from NVIDIA's signed Jetson APT
+`Packages` index (see `../docs/sources.md`), then derived identically.
 At scan time, `cudabom-identify`'s directory loader
 (`FingerprintDb::from_dir`) reads every shard in sorted order and merges them
 into one in-memory database, deduplicating and unioning the per-hash version
@@ -140,8 +148,9 @@ Confirm the resulting shard carries real build-ids and hashes for the unpacked
 shared `cudabom-fetch` primitive, so it inherits retry / exponential backoff /
 `Retry-After` handling), is idempotent (skips archives already present with a
 matching digest), and writes only into the gitignored `corpus/` tree. Unpacking
-`.tar.xz` uses the system `tar`; that shelling-out lives only in `xtask`
-(dev/CI tooling), so the shipped binary carries no lzma dependency.
+`.tar.xz` uses the system `tar`, `.zip` uses `unzip`, and `.deb` (Jetson)
+unpacks its inner `data.tar` the same way; that shelling-out lives only in
+`xtask` (dev/CI tooling), so the shipped binary carries no lzma dependency.
 
 ## Provenance and the no-binaries rule
 

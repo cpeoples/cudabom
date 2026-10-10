@@ -11,6 +11,7 @@
     { "contains": "curand", "component": "curand" },
     { "contains": "cusolver", "component": "cusolver" },
     { "contains": "npp", "component": "npp" },
+    { "contains": "nvcomp", "component": "nvcomp" },
     { "contains": "nvrtc", "component": "nvrtc" },
     { "contains": "nvjitlink", "component": "nvjitlink" },
     { "contains": "nvjit link", "component": "nvjitlink" },

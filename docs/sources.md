@@ -19,6 +19,7 @@ Two rules apply across all of them:
 | Source | Authoritative for | cudabom use |
 | --- | --- | --- |
 | CUDA redistributable JSON manifests | Canonical component/release inventory, versions, platforms, archive paths, SHA-256, sizes | Fingerprint corpus generation; release/component discovery; provenance |
+| Jetson (L4T/JetPack) APT repository | Tegra aarch64 CUDA package inventory, versions, pool paths, SHA-256 | Jetson fingerprint corpus (synthesized redist manifests) |
 | CUDA package repositories (APT/deb, rpm) | OS package inventory and historical versions | OS package/version mapping (future) |
 | NVIDIA Repo Channels / CDN (`releases.json`) | Content-addressed artifact acquisition | Future-proof download resolution (investigate) |
 | NVIDIA Product Security (CSAF/CVE) | Security advisories | Advisory correlation / VEX (`cudabom db update`) |
@@ -46,6 +47,28 @@ implements exactly this (see `fingerprints/README.md`). NVIDIA's own
 `build-system-archive-import-examples` consumes `redistrib_<version>.json` the
 same way (resolve components, download, validate SHA-256, extract), which
 confirms the model.
+
+### Jetson (L4T/JetPack) APT repository
+
+Base: `https://repo.download.nvidia.com/jetson/common/`
+Per-release index: `dists/<release>/main/binary-arm64/Packages`
+
+Jetson modules run Linux (L4T/JetPack), and their CUDA stack ships as Debian
+packages rather than the `.tar.xz` redistributables. The Tegra `aarch64`
+binaries have distinct build-ids and inner-`.so` hashes from the generic
+`linux-sbsa` build, so without this source a scan of a real Jetson library
+matches only a structural family, never an exact version.
+
+The signed APT `Packages` index lists, for every CUDA library package, its
+exact `Version`, pool `Filename`, and `SHA256`: the same facts a redist
+manifest carries. `cargo xtask jetson discover` reads it and synthesizes a
+redist-shaped `redistrib_<release>.json` (one archive per package, keyed under
+the `linux-aarch64-tegra` platform), so the existing `corpus fetch` /
+`fingerprints build` flow derives Tegra fingerprints with no special-casing.
+The `.deb` payload is unpacked during the build (its inner `data.tar` extracted
+via the `object` crate, which reads the signed `ar` archive portably). Covered
+releases are JetPack 5 (r35.x) and JetPack 6 (r36.x); a release that serves no
+CUDA package is skipped at discovery.
 
 ### CUDA package repositories
 

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvcomp",
+      "version": "5.2.0.10",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/linux-sbsa/nvcomp-linux-sbsa-5.2.0.10_cuda12-archive.tar.xz",
+      "sha256": "00ac4d2b4667f283015777285d87779aefaa09ccfb07bd32686afdb66564a52d"
+    },
+    {
+      "component": "nvcomp",
+      "version": "5.2.0.10",
+      "platform": "linux-sbsa-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/linux-sbsa/nvcomp-linux-sbsa-5.2.0.10_cuda13-archive.tar.xz",
+      "sha256": "c7a7eaabb03ac9893144787cdb41c9c838d9af76124e2f3246f7e20ebbd8b9cc"
+    },
+    {
+      "component": "nvcomp",
+      "version": "5.2.0.10",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/linux-x86_64/nvcomp-linux-x86_64-5.2.0.10_cuda12-archive.tar.xz",
+      "sha256": "3412fb302b3319e64fbbbc5b3cfc17148c872c0b939bf439aee82b328d758d09"
+    },
+    {
+      "component": "nvcomp",
+      "version": "5.2.0.10",
+      "platform": "linux-x86_64-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/linux-x86_64/nvcomp-linux-x86_64-5.2.0.10_cuda13-archive.tar.xz",
+      "sha256": "2dd6c184c79fa5402c9b63a274e778d4b52e8d736ee927da81f07c1f8bed12ff"
+    }
+  ]
+}
