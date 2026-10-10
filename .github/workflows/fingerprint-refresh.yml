@@ -131,12 +131,17 @@ jobs:
           # of archives, tens of GB) every night to derive a handful of shards.
           #
           # The newly saved locks and manifests are exactly the files git now
-          # sees as added under the lock and fixtures dirs. Parse porcelain with
-          # a fixed cut (status is 2 cols + 1 space) rather than awk on
-          # whitespace, so paths are read exactly and nothing is dropped.
-          mapfile -t new_locks < <(git status --porcelain -- "$LOCK_DIR" \
+          # sees under the lock and fixtures dirs. Use --untracked-files=all:
+          # without it, git collapses a brand-new directory with no tracked
+          # files (e.g. fingerprints/cuquantum/ on its first release) to a
+          # single "fingerprints/cuquantum/" entry, so the per-file grep below
+          # matches nothing and that whole tree is silently skipped. With =all,
+          # git lists every file inside new dirs, so new trees are handled the
+          # same as existing ones. cut -c4- drops the 2-col status + space so
+          # paths are read exactly.
+          mapfile -t new_locks < <(git status --porcelain --untracked-files=all -- "$LOCK_DIR" \
             | cut -c4- | grep -E '(^|/)corpus\..*\.lock\.json$' || true)
-          mapfile -t new_manifests < <(git status --porcelain -- "$FIXTURES_DIR" \
+          mapfile -t new_manifests < <(git status --porcelain --untracked-files=all -- "$FIXTURES_DIR" \
             | cut -c4- | grep -E '(^|/)redistrib_.*\.json$' || true)
           if [ "${#new_locks[@]}" -eq 0 ]; then
             echo "No new locks saved; nothing to fetch."
