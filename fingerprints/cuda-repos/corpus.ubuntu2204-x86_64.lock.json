@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cublas",
+      "version": "11.10.1.25",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./libcublas-11-7_11.10.1.25-1_amd64.deb",
+      "sha256": "e27a3dea28704f27fc70e3eb60510fe279c46c2870eaf6af381d1c2e7d8471e2"
+    },
+    {
+      "component": "cudart",
+      "version": "11.7.60",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./cuda-cudart-11-7_11.7.60-1_amd64.deb",
+      "sha256": "43071a48ab10aa91492e193193d888687ce12233283056db77d51b3399db526d"
+    },
+    {
+      "component": "cufft",
+      "version": "10.7.2.50",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./libcufft-11-7_10.7.2.50-1_amd64.deb",
+      "sha256": "a9096859dd254edf50e035c1b25f733fd15eb37edce70c9d2af4c5553cd742fd"
+    },
+    {
+      "component": "cupti",
+      "version": "11.7.50",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./cuda-cupti-11-7_11.7.50-1_amd64.deb",
+      "sha256": "382be23069b37b3e7a88479e26541c1a29e085cba99b1667e69bdd7838b68501"
+    },
+    {
+      "component": "curand",
+      "version": "10.2.10.50",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./libcurand-11-7_10.2.10.50-1_amd64.deb",
+      "sha256": "dbf83d9fbf1504b2af5dcce564f0cda1ae2f87bdee539c70a04a352fa539c763"
+    },
+    {
+      "component": "cusolver",
+      "version": "11.3.5.50",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./libcusolver-11-7_11.3.5.50-1_amd64.deb",
+      "sha256": "9f686617b25d6e2feaf09c712cfefa833fcef8c43660ab5310f2135c4c11eb9e"
+    },
+    {
+      "component": "cusparse",
+      "version": "11.7.3.50",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./libcusparse-11-7_11.7.3.50-1_amd64.deb",
+      "sha256": "2667ac0458bcfae2bb592bd6e6f434be5d33aa703c547d32cd14f353b3c002f0"
+    },
+    {
+      "component": "npp",
+      "version": "11.7.3.21",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./libnpp-11-7_11.7.3.21-1_amd64.deb",
+      "sha256": "6cd79840da7ec939a0500f479ca0a15f241b303cb1b01d7e6096e396c63f6cce"
+    },
+    {
+      "component": "nvcomp",
+      "version": "5.3.0.16",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./libnvcomp5-cuda-12_5.3.0.16-1_amd64.deb",
+      "sha256": "2585631918aa84ea122e0bbf6e256b39b272604e4e760181efcac072465876af"
+    },
+    {
+      "component": "nvjpeg",
+      "version": "11.7.2.34",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./libnvjpeg-11-7_11.7.2.34-1_amd64.deb",
+      "sha256": "5335bd7d567864362e1cecb1bcc2620409db4715b1f71dcc7c7865c2e4c3d8ea"
+    },
+    {
+      "component": "nvrtc",
+      "version": "11.7.50",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./cuda-nvrtc-11-7_11.7.50-1_amd64.deb",
+      "sha256": "b477faa65d3e915837905e3f004a5ad62b0fb2c6bf9557d8d72e4e856e59b763"
+    },
+    {
+      "component": "nvtiff",
+      "version": "0.6.0.78",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./libnvtiff0-cuda-12_0.6.0.78-1_amd64.deb",
+      "sha256": "8104b41c8c03a2fd449ea53e6f5668986a8cc81c9f719de7bac47b7a0384970d"
+    }
+  ]
+}

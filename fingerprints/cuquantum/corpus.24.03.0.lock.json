@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cuquantum",
+      "version": "24.03.0.4",
+      "platform": "linux-ppc64le-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-ppc64le/cuquantum-linux-ppc64le-24.03.0.4_cuda11-archive.tar.xz",
+      "sha256": "d9e87ffcc6472b1dd27e228478af9271d5e19b7ae09b25b31fb883241dd56ab5"
+    },
+    {
+      "component": "cuquantum",
+      "version": "24.03.0.4",
+      "platform": "linux-ppc64le-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-ppc64le/cuquantum-linux-ppc64le-24.03.0.4_cuda12-archive.tar.xz",
+      "sha256": "7aba28d8683490d407945a6cada65bc83273b21715241fa537f1f744c539b7b7"
+    },
+    {
+      "component": "cuquantum",
+      "version": "24.03.0.4",
+      "platform": "linux-sbsa-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-sbsa/cuquantum-linux-sbsa-24.03.0.4_cuda11-archive.tar.xz",
+      "sha256": "e0cf0a59ecc7ae821e37c4ed0b507cb441d1fe7c02068ae773f847c7369a7c18"
+    },
+    {
+      "component": "cuquantum",
+      "version": "24.03.0.4",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-sbsa/cuquantum-linux-sbsa-24.03.0.4_cuda12-archive.tar.xz",
+      "sha256": "0da2a771c0135753173f65a6b00ca1201cc1a48339659146e553526cc44eab20"
+    },
+    {
+      "component": "cuquantum",
+      "version": "24.03.0.4",
+      "platform": "linux-x86_64-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-x86_64/cuquantum-linux-x86_64-24.03.0.4_cuda11-archive.tar.xz",
+      "sha256": "8b7b0431ed6fb31c940bcf18f1344d35ab17a36ad53d23858344abcee2576c7f"
+    },
+    {
+      "component": "cuquantum",
+      "version": "24.03.0.4",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-x86_64/cuquantum-linux-x86_64-24.03.0.4_cuda12-archive.tar.xz",
+      "sha256": "5926c71d6f816936b29d9220ebd8ba800abfeecf7b58b0ad06c33608acf511cc"
+    }
+  ]
+}

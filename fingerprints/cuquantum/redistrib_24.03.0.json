@@ -1,0 +1,133 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "24.03.0",
+    "date": "2024-03-22"
+  },
+  "provenance": {
+    "manifest_sha256": "0196802747223aef3636f23c8b668c9e07ba7e3557bcf71338c9a3c2f4ac3f46",
+    "corpus_sha256": [
+      "0da2a771c0135753173f65a6b00ca1201cc1a48339659146e553526cc44eab20",
+      "5926c71d6f816936b29d9220ebd8ba800abfeecf7b58b0ad06c33608acf511cc",
+      "7aba28d8683490d407945a6cada65bc83273b21715241fa537f1f744c539b7b7",
+      "8b7b0431ed6fb31c940bcf18f1344d35ab17a36ad53d23858344abcee2576c7f",
+      "d9e87ffcc6472b1dd27e228478af9271d5e19b7ae09b25b31fb883241dd56ab5",
+      "e0cf0a59ecc7ae821e37c4ed0b507cb441d1fe7c02068ae773f847c7369a7c18"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cuquantum",
+      "description": "NVIDIA cuQuantum",
+      "license": "cuQuantum",
+      "soname_stems": [
+        "libcudensitymat.so",
+        "libcupauliprop.so",
+        "libcustabilizer.so",
+        "libcustatevec.so",
+        "libcutensornet.so"
+      ],
+      "file_hashes": {
+        "0da2a771c0135753173f65a6b00ca1201cc1a48339659146e553526cc44eab20": [
+          "24.03.0.4"
+        ],
+        "39a1a0c40925672b73c4d560546922d2bc13a178df5bdeb13dfb924932d38da8": [
+          "24.03.0.4"
+        ],
+        "4a4219c709c34625acc486ed35e1fb59763cfc3be106d32aa2b199681ed2950f": [
+          "24.03.0.4"
+        ],
+        "4c0b523363bf904cbe72e77f27f28c5c90ca74bb24ba581d405ac7ab2de3eebe": [
+          "24.03.0.4"
+        ],
+        "5926c71d6f816936b29d9220ebd8ba800abfeecf7b58b0ad06c33608acf511cc": [
+          "24.03.0.4"
+        ],
+        "6c59782e291382b9a2d6c51c77a660693d07e753fcabaa209a3d8f7bc97b8ec1": [
+          "24.03.0.4"
+        ],
+        "6d533e4088cb95e4a2ba3dfab255fd7c9deef5ef1758507454bab0ca178f2388": [
+          "24.03.0.4"
+        ],
+        "7a4aae976b1296fe01f00b8fa384cd667c5fee1233c9dd19d9b3bebea1135e08": [
+          "24.03.0.4"
+        ],
+        "7aba28d8683490d407945a6cada65bc83273b21715241fa537f1f744c539b7b7": [
+          "24.03.0.4"
+        ],
+        "806d709ff2de94a5fed09a979200acd6bdaaae309018d31400cbd2b819c52a92": [
+          "24.03.0.4"
+        ],
+        "8b7b0431ed6fb31c940bcf18f1344d35ab17a36ad53d23858344abcee2576c7f": [
+          "24.03.0.4"
+        ],
+        "966ddd1a81babf565acd24c585b72dc237df0422b33184375908a69afb4a7aa0": [
+          "24.03.0.4"
+        ],
+        "b6752e794993348fd02dd8a9f533c77e340f7836be2f18c75b360d8126cec407": [
+          "24.03.0.4"
+        ],
+        "d0ffe9a93b74e3717b6a37e525f86aecd0a18659769d576cd09ee5bb33021389": [
+          "24.03.0.4"
+        ],
+        "d9e87ffcc6472b1dd27e228478af9271d5e19b7ae09b25b31fb883241dd56ab5": [
+          "24.03.0.4"
+        ],
+        "da7d1f6593eefd23bc818a7005cde08588b183e17943f1b950e188a1f6296110": [
+          "24.03.0.4"
+        ],
+        "daaeeefb955a8999646be6f9d7eecc9b71c8aa6ae75269cac1c988c1238a53d2": [
+          "24.03.0.4"
+        ],
+        "e0cf0a59ecc7ae821e37c4ed0b507cb441d1fe7c02068ae773f847c7369a7c18": [
+          "24.03.0.4"
+        ]
+      },
+      "build_ids": {
+        "00781e9ed8c80a89e837af467a82acec6eb64e8c": [
+          "24.03.0.4"
+        ],
+        "0b34dd5166efee247caf89fcee214c31eb856409": [
+          "24.03.0.4"
+        ],
+        "150d799a832ffcc0ebcd33eea13e7a7d0e09bea0": [
+          "24.03.0.4"
+        ],
+        "88af9b265e248a1e203593a67d6ab240a3d80c71": [
+          "24.03.0.4"
+        ],
+        "89f20d9669174ce7e8892ccde41db2572d7f3aa3": [
+          "24.03.0.4"
+        ],
+        "b25d5aa9e9f13813561ed914db708e205fb28c69": [
+          "24.03.0.4"
+        ],
+        "b92ef5163cecc64ff1b735a57414d4e0e619b541": [
+          "24.03.0.4"
+        ],
+        "bfca1431b530a31e5d67686740a5154be94e2907": [
+          "24.03.0.4"
+        ],
+        "e1f289517ce371f98a31b5999316c07975913116": [
+          "24.03.0.4"
+        ],
+        "eaa1cd9a4455e70050ba129f8f41d4b22152bf0f": [
+          "24.03.0.4"
+        ],
+        "ee418991eb33c5090d573cf271c0c7df149a3e63": [
+          "24.03.0.4"
+        ],
+        "fd05654e98788eeb2cacd41395c8bb185c0027eb": [
+          "24.03.0.4"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "24.03.0.4": [
+          "24.03.0"
+        ]
+      }
+    }
+  ]
+}
