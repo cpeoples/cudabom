@@ -155,8 +155,12 @@ impl Default for UnpackLimits {
 /// Errors from the fetch/unpack path.
 #[derive(Debug)]
 pub enum FetchError {
-    /// The HTTP request failed.
+    /// A network or transport failure (connection refused, DNS, timeout).
     Http(String),
+    /// A non-success HTTP status for a specific URL. Carried structurally so
+    /// callers can distinguish a missing resource (404) from other failures and
+    /// render an actionable message instead of a bare status line.
+    HttpStatus { url: String, status: u16 },
     /// The archive integrity check failed.
     Integrity { expected: String, actual: String },
     /// The archive could not be read or was malformed.
@@ -165,10 +169,24 @@ pub enum FetchError {
     LimitExceeded(String),
 }
 
+impl FetchError {
+    /// The HTTP status code when this error is a non-success response.
+    #[must_use]
+    pub fn http_status(&self) -> Option<u16> {
+        match self {
+            Self::HttpStatus { status, .. } => Some(*status),
+            _ => None,
+        }
+    }
+}
+
 impl std::fmt::Display for FetchError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::Http(m) => write!(f, "fetch failed: {m}"),
+            Self::HttpStatus { url, status } => {
+                write!(f, "fetch failed: {url}: HTTP status {status}")
+            }
             Self::Integrity { expected, actual } => write!(
                 f,
                 "archive integrity check failed: expected sha256 {expected}, got {actual}"
@@ -214,6 +232,10 @@ pub(crate) fn http_get(url: &str, options: &GetOptions) -> Result<Vec<u8>, Fetch
         cudabom_fetch::FetchError::Integrity { expected, actual } => {
             FetchError::Integrity { expected, actual }
         }
+        cudabom_fetch::FetchError::Status(status) => FetchError::HttpStatus {
+            url: url.to_string(),
+            status,
+        },
         other => FetchError::Http(format!("{url}: {other}")),
     })
 }
