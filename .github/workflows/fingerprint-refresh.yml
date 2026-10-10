@@ -131,16 +131,18 @@ jobs:
           # of archives, tens of GB) every night to derive a handful of shards.
           #
           # The newly saved locks and manifests are exactly the files git now
-          # sees as added or modified under the lock and fixtures dirs.
+          # sees as added under the lock and fixtures dirs. Parse porcelain with
+          # a fixed cut (status is 2 cols + 1 space) rather than awk on
+          # whitespace, so paths are read exactly and nothing is dropped.
           mapfile -t new_locks < <(git status --porcelain -- "$LOCK_DIR" \
-            | awk '{print $2}' | grep -E 'corpus\..*\.lock\.json$' || true)
+            | cut -c4- | grep -E '(^|/)corpus\..*\.lock\.json$' || true)
           mapfile -t new_manifests < <(git status --porcelain -- "$FIXTURES_DIR" \
-            | awk '{print $2}' | grep -E 'redistrib_.*\.json$' || true)
+            | cut -c4- | grep -E '(^|/)redistrib_.*\.json$' || true)
           if [ "${#new_locks[@]}" -eq 0 ]; then
             echo "No new locks saved; nothing to fetch."
             exit 0
           fi
-          echo "fetching ${#new_locks[@]} new release lock(s)"
+          echo "discover saved ${#new_locks[@]} new release lock(s); fetching"
 
           # Fetch each new release's archives from its own lock. One bad upstream
           # archive (an NVIDIA re-publish under a changed hash) is skipped so it
@@ -171,6 +173,29 @@ jobs:
             --from "$staging" --out "$SHARD_DIR" --corpus "$CORPUS_DIR" --jobs "$JOBS"
           rm -rf "$staging"
 
+          # Keep the commit honest: discover saves a lock + fixture per release,
+          # but a fetch can fail (bad upstream hash) or a manifest can derive no
+          # shard. Committing those orphans would ship a lock/fixture with no
+          # usable fingerprint. For every release discover staged, drop its lock
+          # and fixture unless a derived shard
+          # (fingerprints/<product>/redistrib_<version>.json) now exists for it.
+          for m in "${new_manifests[@]}"; do
+            rel="${m#"$FIXTURES_DIR"/}"           # e.g. cuquantum/redistrib_0.1.0.json or redistrib_12.4.1.json
+            file="${rel##*/}"                     # redistrib_<version>.json
+            version="${file#redistrib_}"; version="${version%.json}"
+            case "$rel" in
+              */*) product="${rel%%/*}"           # sibling tree
+                   lock="$LOCK_DIR/$product/corpus.$version.lock.json" ;;
+              *)   product="cuda"                 # cuda root manifest: shard under cuda/, lock at root
+                   lock="$LOCK_DIR/corpus.$version.lock.json" ;;
+            esac
+            shard="$SHARD_DIR/$product/$file"
+            if [ ! -f "$shard" ]; then
+              echo "drop orphan $product $version (no shard derived)"
+              rm -f "$m" "$lock"
+            fi
+          done
+
       - name: Regenerate product map from component profiles
         if: steps.discover.outputs.new_count != '0'
         # The CSAF product -> component map is generated from the reviewed
@@ -198,9 +223,39 @@ jobs:
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No shard changes; nothing to open."
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+          # Count and list what this run actually committed, not the full
+          # backlog discover reported. discover.new_count is every not-yet
+          # -committed release across all trees; the bounded --limit batch only
+          # locks and derives a slice of that. Title, commit, and body must
+          # describe the diff a reviewer sees, so derive them from the staged
+          # shard additions (fingerprints/<product>/redistrib_<version>.json).
+          mapfile -t added < <(git diff --cached --name-only --diff-filter=A -- "$SHARD_DIR" \
+            | grep -E '/redistrib_.*\.json$' \
+            | sed -E 's#^fingerprints/([^/]+)/redistrib_(.*)\.json$#\1 \2#' \
+            | sort -u)
+          # mapfile on empty input yields a zero-length array in bash 4+, but
+          # drop any stray empty element defensively so the count is exact.
+          tmp=(); for r in "${added[@]}"; do [ -n "$r" ] && tmp+=("$r"); done
+          added=("${tmp[@]}")
+          added_count="${#added[@]}"
+          echo "added_count=$added_count" >> "$GITHUB_OUTPUT"
+          # One line per release, grouped for a readable PR body.
+          {
+            echo 'added<<EOF'
+            if [ "$added_count" -eq 0 ]; then
+              echo "(no new release shards; non-shard changes only)"
+            else
+              printf '%s\n' "${added[@]}" | awk '{print "- `"$1"` "$2}'
+            fi
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+          # Distinct product trees touched, for the title.
+          products="$(printf '%s\n' "${added[@]}" | awk 'NF{print $1}' | sort -u | paste -sd', ' -)"
+          echo "products=${products:-maintenance}" >> "$GITHUB_OUTPUT"
 
       - name: Open pull request
         if: steps.diff.outputs.changed == 'true'
@@ -209,8 +264,8 @@ jobs:
           token: ${{ github.token }}
           branch: fingerprint-refresh
           base: main
-          commit-message: "chore(fingerprints): add ${{ steps.discover.outputs.new_count }} new CUDA release(s)"
-          title: "chore(fingerprints): refresh database (+${{ steps.discover.outputs.new_count }} release(s))"
+          commit-message: "chore(fingerprints): add ${{ steps.diff.outputs.added_count }} release(s) (${{ steps.diff.outputs.products }})"
+          title: "chore(fingerprints): add ${{ steps.diff.outputs.added_count }} release(s) (${{ steps.diff.outputs.products }})"
           add-paths: |
             ${{ env.SHARD_DIR }}
             ${{ env.FIXTURES_DIR }}
@@ -224,15 +279,26 @@ jobs:
             New releases were discovered first-party from NVIDIA's redist
             directory indexes across every product tree (CUDA toolkit + cuDNN,
             NCCL, cuTENSOR, cuDSS, cuSPARSELt, cuQuantum, nvJPEG2000, nvTIFF,
-            cuBLASMp, NVPL, NVSHMEM) — no hardcoded version list — and derived
+            cuBLASMp, NVPL, NVSHMEM), with no hardcoded version list, and derived
             from the official archives (each verified against NVIDIA's own
             SHA-256).
 
-            **Discovery plan (this run), per product tree:**
+            **Added this run (${{ steps.diff.outputs.added_count }} release(s)):**
+
+            ${{ steps.diff.outputs.added }}
+
+            Each nightly adds a bounded batch, so this PR is a slice of the
+            remaining backlog, not every discovered release. The full discovery
+            snapshot (what each tree has published vs committed) is below for
+            context.
+
+            <details><summary>Discovery snapshot (per product tree)</summary>
 
             ```json
             ${{ steps.discover.outputs.plan }}
             ```
+
+            </details>
 
             Review the diff of `${{ env.SHARD_DIR }}` for new components,
             build-ids, and version sets before merging. Scans only trust the
