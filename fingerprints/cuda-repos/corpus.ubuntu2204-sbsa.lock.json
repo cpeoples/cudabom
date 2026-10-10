@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cublas",
+      "version": "11.10.1.25",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./libcublas-11-7_11.10.1.25-1_arm64.deb",
+      "sha256": "cf9ccbe9ba9ca123bafcade9daae98a068ddb3630c67bbb168f7c09ea1fce01b"
+    },
+    {
+      "component": "cudart",
+      "version": "11.7.60",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./cuda-cudart-11-7_11.7.60-1_arm64.deb",
+      "sha256": "882d551a646a9ccd1d6e6a75ebd768932aaf18f5ba946743cea9971be5c3671b"
+    },
+    {
+      "component": "cudla",
+      "version": "13.2.51",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./libcudla-13-2_13.2.51-1_arm64.deb",
+      "sha256": "cd481306f6ca7e72949410e647084608e942bcfa132f301619713a6f61e57563"
+    },
+    {
+      "component": "cufft",
+      "version": "10.7.2.50",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./libcufft-11-7_10.7.2.50-1_arm64.deb",
+      "sha256": "2ad343ef123c574a4a9b21bc6dff7fd40a1ef306bb815f1cc460e41d3c09d61d"
+    },
+    {
+      "component": "cupti",
+      "version": "11.7.50",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./cuda-cupti-11-7_11.7.50-1_arm64.deb",
+      "sha256": "10c27b83d45768ec393f003371b0c5e792e70d7463904511ec61db856ee6569b"
+    },
+    {
+      "component": "curand",
+      "version": "10.2.10.50",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./libcurand-11-7_10.2.10.50-1_arm64.deb",
+      "sha256": "61386d1c3d9794c99398d1d82f3f13658300c9a7af6f38a3f7d4ba163ff37126"
+    },
+    {
+      "component": "cusolver",
+      "version": "11.3.5.50",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./libcusolver-11-7_11.3.5.50-1_arm64.deb",
+      "sha256": "8fbf242bb4739a6a8feba26bc55fa9dded882e4646dd1f541a7d35123a033997"
+    },
+    {
+      "component": "cusparse",
+      "version": "11.7.3.50",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./libcusparse-11-7_11.7.3.50-1_arm64.deb",
+      "sha256": "359612ee2bd91382904d81ff964b0b03abc4fd38358f0013b259bfa92837b5d8"
+    },
+    {
+      "component": "npp",
+      "version": "11.7.3.21",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./libnpp-11-7_11.7.3.21-1_arm64.deb",
+      "sha256": "c0c932944b14df009f2eabe041f638afc854d74412016854cfd765fe549d9287"
+    },
+    {
+      "component": "nvcomp",
+      "version": "5.3.0.16",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./libnvcomp5-cuda-12_5.3.0.16-1_arm64.deb",
+      "sha256": "5c39b36422c665f24402abde6b2b18aa69edf39c2085e98ae86ed8877e15b740"
+    },
+    {
+      "component": "nvjpeg",
+      "version": "11.7.2.34",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./libnvjpeg-11-7_11.7.2.34-1_arm64.deb",
+      "sha256": "79c29787aaa4eef7cb941c931f288e490dfcc8c0774921a3243c5df9b472d42b"
+    },
+    {
+      "component": "nvrtc",
+      "version": "11.7.50",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./cuda-nvrtc-11-7_11.7.50-1_arm64.deb",
+      "sha256": "6f5131c92c5127a547f8985fdcc1f8f9475634a1023e9ee3a35c3b017168f968"
+    },
+    {
+      "component": "nvtiff",
+      "version": "0.6.0.78",
+      "platform": "linux-sbsa-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/sbsa/./libnvtiff0-cuda-12_0.6.0.78-1_arm64.deb",
+      "sha256": "30fa5ee84b901a87ed9eeb42ce9aaf1dc58e0a05d4dc7e9e21f0a34eb111cc61"
+    }
+  ]
+}

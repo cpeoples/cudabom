@@ -1,0 +1,124 @@
+{
+  "cuda_cudart": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./cuda-cudart-13-3_13.3.29-1_arm64.deb",
+      "sha256": "fcfd8760765f57bd58389db37140da5579ac8bf2613232bed404004cfe08f5df",
+      "size": "183772"
+    },
+    "version": "13.3.29"
+  },
+  "cuda_cupti": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./cuda-cupti-13-3_13.3.35-1_arm64.deb",
+      "sha256": "25ca1de37d38e6369f308e88dbf3c4d71b99b6c6653f06a79449c6f5fcfd0a0c",
+      "size": "10596826"
+    },
+    "version": "13.3.35"
+  },
+  "cuda_nvrtc": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./cuda-nvrtc-13-3_13.3.33-1_arm64.deb",
+      "sha256": "1e37c52d9a92b2a6a7119499c3d6ab57cbd0edf4a5ef7dca526dbdc5aac07a29",
+      "size": "33354302"
+    },
+    "version": "13.3.33"
+  },
+  "libcublas": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libcublas-13-3_13.5.1.27-1_arm64.deb",
+      "sha256": "d411b9baaaf5f27dcffede747f478933f9aa9df0f272de582618be909f25c1d0",
+      "size": "486131074"
+    },
+    "version": "13.5.1.27"
+  },
+  "libcudla": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libcudla-13-3_13.3.29-1_arm64.deb",
+      "sha256": "1aacc8f1d2b6eeb3c0b9d3c4cb4f1ea52bc427420df6bc175222d2a9e4f02858",
+      "size": "32442"
+    },
+    "version": "13.3.29"
+  },
+  "libcufft": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libcufft-13-3_12.3.0.29-1_arm64.deb",
+      "sha256": "9ee7719b8d93f31b9744b1a3dc061beb55141d99533d93e84ef540dc23cc656c",
+      "size": "146933014"
+    },
+    "version": "12.3.0.29"
+  },
+  "libcurand": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libcurand-13-3_10.4.3.29-1_arm64.deb",
+      "sha256": "f482ecf49d16b63a7a6114bc20867bfeb1e05bdb942a5fd535f006f4808f0ac1",
+      "size": "43910138"
+    },
+    "version": "10.4.3.29"
+  },
+  "libcusolver": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libcusolver-13-3_12.2.2.18-1_arm64.deb",
+      "sha256": "6d1d1d079ef43fc90bb88052eabefa356598c06e55517a6e382abaa912e4dbd9",
+      "size": "200396610"
+    },
+    "version": "12.2.2.18"
+  },
+  "libcusparse": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libcusparse-13-3_12.8.1.7-1_arm64.deb",
+      "sha256": "524c01274c9dbb6acc0dcd4b37a1303b146632aab1f870dfd1b577bbb775e11c",
+      "size": "161476466"
+    },
+    "version": "12.8.1.7"
+  },
+  "libnpp": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libnpp-13-3_13.1.2.48-1_arm64.deb",
+      "sha256": "63583047bff9b1dca953baa07cef541d4744af01a00c7d41baa2d7de4c629615",
+      "size": "131490974"
+    },
+    "version": "13.1.2.48"
+  },
+  "libnvfatbin": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libnvfatbin-13-3_13.3.29-1_arm64.deb",
+      "sha256": "600cee23fd8beb7b471dda5366b5703e030b26440bbe76a18b352fd1464aea53",
+      "size": "390476"
+    },
+    "version": "13.3.29"
+  },
+  "libnvjitlink": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libnvjitlink-13-3_13.3.33-1_arm64.deb",
+      "sha256": "eca59e454c8b910880c4ea55f6860ef8432e2046bd4194e67fd6f5b0a08ef53d",
+      "size": "26242070"
+    },
+    "version": "13.3.33"
+  },
+  "libnvjpeg": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libnvjpeg-13-3_13.2.0.21-1_arm64.deb",
+      "sha256": "41277ad889613c91d7e23c41fa4f70c5c543d80b7e96740ef328f1b2c60054d6",
+      "size": "3264308"
+    },
+    "version": "13.2.0.21"
+  },
+  "libnvtiff": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libnvtiff0-cuda-12_0.8.0.82-1_arm64.deb",
+      "sha256": "5102540d315b07daf769b277abf95a32dcd2d58e2b948a0c5a3233aa098003ba",
+      "size": "3059552"
+    },
+    "version": "0.8.0.82"
+  },
+  "nvcomp": {
+    "linux-sbsa-ubuntu2604": {
+      "relative_path": "./libnvcomp5-cuda-12_5.3.0.16-1_arm64.deb",
+      "sha256": "e93afe89639c30fb0c5d40ce62326b5e82cc94eab9c8f18c4e9142d88da06e3b",
+      "size": "22777534"
+    },
+    "version": "5.3.0.16"
+  },
+  "release_label": "ubuntu2604-sbsa",
+  "release_product": "cuda-repos"
+}

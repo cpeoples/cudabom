@@ -1,0 +1,480 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "ubuntu2604-sbsa"
+  },
+  "provenance": {
+    "manifest_sha256": "b14cfb57e829897612fbd9620b46bfb965391e7a1cc85ac0777effc61aaaef59",
+    "corpus_sha256": [
+      "1aacc8f1d2b6eeb3c0b9d3c4cb4f1ea52bc427420df6bc175222d2a9e4f02858",
+      "1e37c52d9a92b2a6a7119499c3d6ab57cbd0edf4a5ef7dca526dbdc5aac07a29",
+      "25ca1de37d38e6369f308e88dbf3c4d71b99b6c6653f06a79449c6f5fcfd0a0c",
+      "41277ad889613c91d7e23c41fa4f70c5c543d80b7e96740ef328f1b2c60054d6",
+      "5102540d315b07daf769b277abf95a32dcd2d58e2b948a0c5a3233aa098003ba",
+      "524c01274c9dbb6acc0dcd4b37a1303b146632aab1f870dfd1b577bbb775e11c",
+      "600cee23fd8beb7b471dda5366b5703e030b26440bbe76a18b352fd1464aea53",
+      "63583047bff9b1dca953baa07cef541d4744af01a00c7d41baa2d7de4c629615",
+      "6d1d1d079ef43fc90bb88052eabefa356598c06e55517a6e382abaa912e4dbd9",
+      "9ee7719b8d93f31b9744b1a3dc061beb55141d99533d93e84ef540dc23cc656c",
+      "d411b9baaaf5f27dcffede747f478933f9aa9df0f272de582618be909f25c1d0",
+      "e93afe89639c30fb0c5d40ce62326b5e82cc94eab9c8f18c4e9142d88da06e3b",
+      "eca59e454c8b910880c4ea55f6860ef8432e2046bd4194e67fd6f5b0a08ef53d",
+      "f482ecf49d16b63a7a6114bc20867bfeb1e05bdb942a5fd535f006f4808f0ac1",
+      "fcfd8760765f57bd58389db37140da5579ac8bf2613232bed404004cfe08f5df"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cublas",
+      "description": "libcublas",
+      "soname_stems": [
+        "libcublas.so",
+        "libcublasLt.so"
+      ],
+      "file_hashes": {
+        "6c15bfbf538088ce72f9d83d81200b37ecff3409b905fe1696887d0f9084f11f": [
+          "13.5.1.27"
+        ],
+        "885f3af494a5b089035ec62291a1a30b9dd85834f3687aadf8ee4568de8a426f": [
+          "13.5.1.27"
+        ],
+        "d411b9baaaf5f27dcffede747f478933f9aa9df0f272de582618be909f25c1d0": [
+          "13.5.1.27"
+        ]
+      },
+      "build_ids": {
+        "1161f273f34daa11f7eb792078ec2da588f24493": [
+          "13.5.1.27"
+        ],
+        "2a65d692bdbcf76179bf7a46de1ec702fe2781df": [
+          "13.5.1.27"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.5.1.27": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cudart",
+      "description": "cuda_cudart",
+      "soname_stems": [
+        "libcudart.so"
+      ],
+      "file_hashes": {
+        "83b2ccdccdbb285613a97e8be332d1b17cbd55e267e1d2e047adb3081660335e": [
+          "13.3.29"
+        ],
+        "fcfd8760765f57bd58389db37140da5579ac8bf2613232bed404004cfe08f5df": [
+          "13.3.29"
+        ]
+      },
+      "build_ids": {
+        "964ec27cd3067e2cfe7e2144fe1ebedd2fdfd53e": [
+          "13.3.29"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.3.29": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cudla",
+      "description": "libcudla",
+      "soname_stems": [
+        "libcudla.so"
+      ],
+      "file_hashes": {
+        "1aacc8f1d2b6eeb3c0b9d3c4cb4f1ea52bc427420df6bc175222d2a9e4f02858": [
+          "13.3.29"
+        ],
+        "9f8cb217b2db4233edddd8b572964ea208e1f2789919d599e08960883d1f4489": [
+          "13.3.29"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "13.3.29": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cufft",
+      "description": "libcufft",
+      "soname_stems": [
+        "libcufft.so",
+        "libcufftw.so"
+      ],
+      "file_hashes": {
+        "9ee7719b8d93f31b9744b1a3dc061beb55141d99533d93e84ef540dc23cc656c": [
+          "12.3.0.29"
+        ],
+        "cb7ab9b55dab6a52487b4a06641df286377e9019ba6b9475b9afb81b4de59a72": [
+          "12.3.0.29"
+        ],
+        "cd6df56818eb75eb440173e9ad393a2c13c8e9ca763ff236fb06b058b34c1083": [
+          "12.3.0.29"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "12.3.0.29": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cupti",
+      "description": "cuda_cupti",
+      "soname_stems": [
+        "libcheckpoint.so",
+        "libcupti.so",
+        "libcupti_static.a",
+        "libnvperf_host.so",
+        "libnvperf_target.so",
+        "libpcsamplingutil.so"
+      ],
+      "file_hashes": {
+        "25ca1de37d38e6369f308e88dbf3c4d71b99b6c6653f06a79449c6f5fcfd0a0c": [
+          "13.3.35"
+        ],
+        "39cc6c61c99b26a70dc9fbfc6777ae80690f98504dfbef0c6f3fcf06e1d8801c": [
+          "13.3.35"
+        ],
+        "585a5c4357a59154b16fd252719aee0a8af5689fdd20c09e9ccd5b19a58075d9": [
+          "13.3.35"
+        ],
+        "6c6cfec85a8c08ff5abb230a4233e71b2a991ae0b0e8196bb7e64b7e2699becc": [
+          "13.3.35"
+        ],
+        "8de7eee8de5a143b2b1405077e77b1cc4d96df146a3a8dbb52ba71279e995cc6": [
+          "13.3.35"
+        ],
+        "9c24b0b6598ab61af3ebd1b6bae347afd481a5044ca33972b4baae203e6086b1": [
+          "13.3.35"
+        ],
+        "e860f3f9535d5d4bbe822047027d1baa7bbe98da626dae185c64e43278a7f468": [
+          "13.3.35"
+        ]
+      },
+      "build_ids": {
+        "61b820e0a125c10da44eb008dd8bc1e786818c6a": [
+          "13.3.35"
+        ],
+        "c76a32a69780e0db3298bbe7857a7ef4ee33200a": [
+          "13.3.35"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.3.35": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "curand",
+      "description": "libcurand",
+      "soname_stems": [
+        "libcurand.so"
+      ],
+      "file_hashes": {
+        "5e28a3e789845920e0b60da6b769818c621ff8d50660717a9ef3f6d4aa0c7528": [
+          "10.4.3.29"
+        ],
+        "f482ecf49d16b63a7a6114bc20867bfeb1e05bdb942a5fd535f006f4808f0ac1": [
+          "10.4.3.29"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "10.4.3.29": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cusolver",
+      "description": "libcusolver",
+      "soname_stems": [
+        "libcusolver.so",
+        "libcusolverMg.so"
+      ],
+      "file_hashes": {
+        "4ed21af3a3df3a00b2116111b4be7461c6c3b28f9308e520b1c32172d68987a5": [
+          "12.2.2.18"
+        ],
+        "6d1d1d079ef43fc90bb88052eabefa356598c06e55517a6e382abaa912e4dbd9": [
+          "12.2.2.18"
+        ],
+        "89a5e37526686b59998cdd21de0f436eb6b3a242af76d6d55b41cc61c8a790b6": [
+          "12.2.2.18"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "12.2.2.18": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cusparse",
+      "description": "libcusparse",
+      "soname_stems": [
+        "libcusparse.so"
+      ],
+      "file_hashes": {
+        "524c01274c9dbb6acc0dcd4b37a1303b146632aab1f870dfd1b577bbb775e11c": [
+          "12.8.1.7"
+        ],
+        "f6fdca3bbc62ad8316931ca9d48bf85bc0c03fe16bac7adcd087f90456238f23": [
+          "12.8.1.7"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "12.8.1.7": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "npp",
+      "description": "libnpp",
+      "soname_stems": [
+        "libnppc.so",
+        "libnppial.so",
+        "libnppicc.so",
+        "libnppidei.so",
+        "libnppif.so",
+        "libnppig.so",
+        "libnppim.so",
+        "libnppist.so",
+        "libnppisu.so",
+        "libnppitc.so",
+        "libnpps.so"
+      ],
+      "file_hashes": {
+        "02554fd46d32be64a68a06f991a8d6df6f4a1466166e6579d72d28afc9fe0185": [
+          "13.1.2.48"
+        ],
+        "1635a6029e7cffcd8c9e214cc855e1898116ea026ca32aca822e0dada56a9e7b": [
+          "13.1.2.48"
+        ],
+        "17a6004193e7c79bb5068664d5df8a0c55db73a52c73acf5aa17d7f04169617f": [
+          "13.1.2.48"
+        ],
+        "437751b69f4f57653b61e1cb1215eb2e62569ada8769eb6c2cf2c930f16b639d": [
+          "13.1.2.48"
+        ],
+        "50326951b7938a70b166d0fd13c866a0daf44122f0a195d0c315888b4bad3eb4": [
+          "13.1.2.48"
+        ],
+        "56e840674934db5a077e2df70122501b5c17c90627ab2361ce74c304219b4c27": [
+          "13.1.2.48"
+        ],
+        "63583047bff9b1dca953baa07cef541d4744af01a00c7d41baa2d7de4c629615": [
+          "13.1.2.48"
+        ],
+        "67f2eb554372843a2f9e7452d3a2ceb708e48e8ac8db551611400ce54aad593e": [
+          "13.1.2.48"
+        ],
+        "95d7d8ab2c31852eb75e974356dc9917e59facdaa2a89055bf094a0b8fc27392": [
+          "13.1.2.48"
+        ],
+        "c669cb3d8a349cd835d1755fca394f02ef145ca2fd869ca77c46738bc593ac0f": [
+          "13.1.2.48"
+        ],
+        "ea6440155c383b010c9410a0347bc02883c40eb443715f6ee79ae44888ec8e91": [
+          "13.1.2.48"
+        ],
+        "eb1fdfe0ab4f065641fe2a2b24abed51646c62939526403da8783bb60a141a5c": [
+          "13.1.2.48"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "13.1.2.48": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvcomp",
+      "description": "nvcomp",
+      "soname_stems": [
+        "libnvcomp.so",
+        "libnvcomp_cpu.so"
+      ],
+      "file_hashes": {
+        "6a60e19ee1f89dba26e59ac07b854d2714d6ac0cdd88bfcc2ad743cc210ea96f": [
+          "5.3.0.16"
+        ],
+        "9956bc6f7a1124af93d380529fd62b8b7f82c4358a7cf4234310ee28e2f795fa": [
+          "5.3.0.16"
+        ],
+        "e93afe89639c30fb0c5d40ce62326b5e82cc94eab9c8f18c4e9142d88da06e3b": [
+          "5.3.0.16"
+        ]
+      },
+      "build_ids": {
+        "09defb7cd96973c3d9bb35c9cbbf2856db895ad9": [
+          "5.3.0.16"
+        ],
+        "8002726f70b8fa7ef2b75a313df02c955cdfaaf7": [
+          "5.3.0.16"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "5.3.0.16": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvfatbin",
+      "description": "libnvfatbin",
+      "soname_stems": [
+        "libnvfatbin.so"
+      ],
+      "file_hashes": {
+        "600cee23fd8beb7b471dda5366b5703e030b26440bbe76a18b352fd1464aea53": [
+          "13.3.29"
+        ],
+        "aff19de4acf8849ec4a335308d96af8443ca09cd057b287ff7e2d46641fea37f": [
+          "13.3.29"
+        ]
+      },
+      "build_ids": {
+        "9ee753f347c53f874bdaec03eaae7dd587610f4f": [
+          "13.3.29"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.3.29": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvjitlink",
+      "description": "libnvjitlink",
+      "soname_stems": [
+        "libnvJitLink.so"
+      ],
+      "file_hashes": {
+        "7cc44a1d3b61de747f8aedb0f69c4e0e1f4a293b43ebd5f8414bfe3ca176608a": [
+          "13.3.33"
+        ],
+        "eca59e454c8b910880c4ea55f6860ef8432e2046bd4194e67fd6f5b0a08ef53d": [
+          "13.3.33"
+        ]
+      },
+      "build_ids": {
+        "963cba04d916493e58b75539c80f31143dbca12c": [
+          "13.3.33"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.3.33": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvjpeg",
+      "description": "libnvjpeg",
+      "soname_stems": [
+        "libnvjpeg.so"
+      ],
+      "file_hashes": {
+        "04339243d776f223e1ff91667841ffad87ecd60cba8dbe08c90b413bfd71971d": [
+          "13.2.0.21"
+        ],
+        "41277ad889613c91d7e23c41fa4f70c5c543d80b7e96740ef328f1b2c60054d6": [
+          "13.2.0.21"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "13.2.0.21": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvrtc",
+      "description": "cuda_nvrtc",
+      "soname_stems": [
+        "libnvrtc-builtins.so",
+        "libnvrtc.so"
+      ],
+      "file_hashes": {
+        "0b6713e0604eee22336302b8e94fa010fa087e1872abbd3889cc9df158d26746": [
+          "13.3.33"
+        ],
+        "1e37c52d9a92b2a6a7119499c3d6ab57cbd0edf4a5ef7dca526dbdc5aac07a29": [
+          "13.3.33"
+        ],
+        "a715cfedfaf2159931f4c59814e4842ba63d13f856fcf8f75a425b0a700a661c": [
+          "13.3.33"
+        ]
+      },
+      "build_ids": {
+        "17e821799d73052da756021c50512aa85efd29df": [
+          "13.3.33"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "13.3.33": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvtiff",
+      "description": "libnvtiff",
+      "soname_stems": [
+        "libnvtiff.so"
+      ],
+      "file_hashes": {
+        "400fb0b3347e9a3eae5633954694c1045b6a61510015c436f2bc4c0b31b53186": [
+          "0.8.0.82"
+        ],
+        "5102540d315b07daf769b277abf95a32dcd2d58e2b948a0c5a3233aa098003ba": [
+          "0.8.0.82"
+        ]
+      },
+      "build_ids": {
+        "12d795daa10873be4d0cd4464438f5be5d3df861": [
+          "0.8.0.82"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.8.0.82": [
+          "ubuntu2604-sbsa"
+        ]
+      }
+    }
+  ]
+}

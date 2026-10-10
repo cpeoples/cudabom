@@ -1,0 +1,89 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "ubuntu2404-cross-linux-sbsa"
+  },
+  "provenance": {
+    "manifest_sha256": "495ee2deecf20ab5c1211543fdb232d52f28d5ab78fc5698303b1a519574973c",
+    "corpus_sha256": [
+      "66b7ba1837fe754c4c75b466ea0b42de92173abcd7de8000213270881d446440",
+      "f72904e4738fe96c1516362a0ad2ebadcc5f1ad06902605386234d8f9716cd72"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvfatbin",
+      "description": "libnvfatbin",
+      "soname_stems": [
+        "libnvfatbin.so"
+      ],
+      "file_hashes": {
+        "66b7ba1837fe754c4c75b466ea0b42de92173abcd7de8000213270881d446440": [
+          "12.5.82"
+        ],
+        "74dc09df891fbc08dbefe025781e4e4b00f8c0a1d9b9573f19de7c25bbbf6602": [
+          "12.5.82"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "symbol_markers": [
+        "nvFatbinAddCubin",
+        "nvFatbinAddIndex",
+        "nvFatbinAddLTOIR",
+        "nvFatbinAddPTX",
+        "nvFatbinAddReloc",
+        "nvFatbinCreate",
+        "nvFatbinDestroy",
+        "nvFatbinGet",
+        "nvFatbinGetErrorString",
+        "nvFatbinSize",
+        "nvFatbinVersion"
+      ],
+      "release_versions": {
+        "12.5.82": [
+          "ubuntu2404-cross-linux-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvjitlink",
+      "description": "libnvjitlink",
+      "soname_stems": [
+        "libnvJitLink.so"
+      ],
+      "file_hashes": {
+        "30584eb2b741005ad287bb21f043c6e1e8d4add4dbf4217adf56fc8f10fb25a3": [
+          "12.5.82"
+        ],
+        "f72904e4738fe96c1516362a0ad2ebadcc5f1ad06902605386234d8f9716cd72": [
+          "12.5.82"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "symbol_markers": [
+        "nvJitLinkAddData",
+        "nvJitLinkAddFile",
+        "nvJitLinkComplete",
+        "nvJitLinkCreate",
+        "nvJitLinkDestroy",
+        "nvJitLinkGetErrorLog",
+        "nvJitLinkGetErrorLogSize",
+        "nvJitLinkGetInfoLog",
+        "nvJitLinkGetInfoLogSize",
+        "nvJitLinkGetLinkedCubin",
+        "nvJitLinkGetLinkedCubinSize",
+        "nvJitLinkGetLinkedPtx",
+        "nvJitLinkGetLinkedPtxSize",
+        "nvJitLinkVersion"
+      ],
+      "release_versions": {
+        "12.5.82": [
+          "ubuntu2404-cross-linux-sbsa"
+        ]
+      }
+    }
+  ]
+}

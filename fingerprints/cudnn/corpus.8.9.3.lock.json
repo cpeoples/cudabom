@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cudnn",
+      "version": "8.9.3.28",
+      "platform": "linux-ppc64le-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-ppc64le/cudnn-linux-ppc64le-8.9.3.28_cuda11-archive.tar.xz",
+      "sha256": "256f9203504d46888d63d1cfc2e89357f8ac8726b1bd37766e69084b8f35bc65"
+    },
+    {
+      "component": "cudnn",
+      "version": "8.9.3.28",
+      "platform": "linux-ppc64le-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-ppc64le/cudnn-linux-ppc64le-8.9.3.28_cuda12-archive.tar.xz",
+      "sha256": "e79e2a268bdaa0ed28a3cce4645fd884729759f624ca65bb408e857362bc2fb0"
+    },
+    {
+      "component": "cudnn",
+      "version": "8.9.3.28",
+      "platform": "linux-sbsa-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-sbsa/cudnn-linux-sbsa-8.9.3.28_cuda11-archive.tar.xz",
+      "sha256": "cc07a2d22ec66294f88c4a302cf80188e5ce883076a8fd2264fc52ee3010b87d"
+    },
+    {
+      "component": "cudnn",
+      "version": "8.9.3.28",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-sbsa/cudnn-linux-sbsa-8.9.3.28_cuda12-archive.tar.xz",
+      "sha256": "8e344640f966885e773ad4475621d2d2968364f1ca5348995cdda937d7741978"
+    },
+    {
+      "component": "cudnn",
+      "version": "8.9.3.28",
+      "platform": "linux-x86_64-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-8.9.3.28_cuda11-archive.tar.xz",
+      "sha256": "26089b5b435e03f4a6760ee8d974ce0d8f88126d416b4d612761f3c584181582"
+    },
+    {
+      "component": "cudnn",
+      "version": "8.9.3.28",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-8.9.3.28_cuda12-archive.tar.xz",
+      "sha256": "ea3336944013384bd6bb9433adb3846bd24661a00f98cd3165dcbd269ccf27ce"
+    }
+  ]
+}

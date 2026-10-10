@@ -1,0 +1,374 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "ubuntu2404-sbsa"
+  },
+  "provenance": {
+    "manifest_sha256": "c4ed03451abf9f371e1f0edd9bb1058c76907a6aa961ed2445d04065cae814b6",
+    "corpus_sha256": [
+      "0239c988c94df2939e6b937d169c453492fb976440131174e7aa19f93ce19e7c",
+      "182d068a9d7886f5fc284ec1575a4fbe1f69321505d40bb6f4f00b72c333595f",
+      "1a63ef2cb7b7faa403bcf9a4b6cd3e22e3a8e5f9eb29feec838d3234d8b5c6fb",
+      "206caf3bc0287509aab12c175f2b384f03cc8ed13f935a0f70eed03d976eb8ed",
+      "340cf8445a4e105c3d678c94096f86f445ebd561aef459f785d5dbc66abcbdf1",
+      "3e585216d7961958dc07ffbadbd02603d9a8d5f7bc6bff330fbe7da25561e843",
+      "4356ccaa7afe560ddc5d26dcf20da40ad761028d431c8fef8d8fffb8752124c9",
+      "537aef387942a3d02bf26f223ba199989aa1857210270ff1468a077059a683d4",
+      "78b68f686d9807798b1c24674766a20a4000fb141ca1b462f5e70bd250337737",
+      "a59daaef58992a1f59c588e5904d3251ca3699eb3ee05a52dc57422c01a88b10",
+      "a967c0461289e35471816638eb81021d49f147077ba9a978d9cd9d4e7eac8819",
+      "d825029a968b05692977f86430850412b0d04a77555408575763c86e1c997ded"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cublas",
+      "description": "libcublas",
+      "soname_stems": [
+        "libcublas.so",
+        "libcublasLt.so"
+      ],
+      "file_hashes": {
+        "537aef387942a3d02bf26f223ba199989aa1857210270ff1468a077059a683d4": [
+          "12.5.3.2"
+        ],
+        "7dee8701108d8b448887293e4dc7f31c63fd607741453e37881cea40dea3103b": [
+          "12.5.3.2"
+        ],
+        "e47044ce5f66ed2f1ce74da380cc1f204411aa8c90f319f10569a6b9e60911d0": [
+          "12.5.3.2"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "12.5.3.2": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cudart",
+      "description": "cuda_cudart",
+      "soname_stems": [
+        "libcudart.so"
+      ],
+      "file_hashes": {
+        "182d068a9d7886f5fc284ec1575a4fbe1f69321505d40bb6f4f00b72c333595f": [
+          "12.5.82"
+        ],
+        "a130f3e6c5f620bc817a916724a16b1012b391a3eb99828ac59cc388d788bef1": [
+          "12.5.82"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "12.5.82": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cufft",
+      "description": "libcufft",
+      "soname_stems": [
+        "libcufft.so",
+        "libcufftw.so"
+      ],
+      "file_hashes": {
+        "206caf3bc0287509aab12c175f2b384f03cc8ed13f935a0f70eed03d976eb8ed": [
+          "11.2.3.61"
+        ],
+        "5754a9d59f371ee12af03818cb6c038f8758a18e0076447600aee5921fcba757": [
+          "11.2.3.61"
+        ],
+        "848952fa233856d6dea6f80ea0584e9abc49402a87abae366fdc5548f2a8ecea": [
+          "11.2.3.61"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "11.2.3.61": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cupti",
+      "description": "cuda_cupti",
+      "soname_stems": [
+        "libcheckpoint.so",
+        "libcupti.so",
+        "libnvperf_host.so",
+        "libnvperf_target.so",
+        "libpcsamplingutil.so"
+      ],
+      "file_hashes": {
+        "298602440db7243d43ef0e859acd621d990ac87abc85b780558853878564b676": [
+          "12.5.82"
+        ],
+        "73189e2678af49de27b470d35a3fcdbe49e031058e64bdb927b5cdd57a9eef85": [
+          "12.5.82"
+        ],
+        "c43aabf486599c8dc09a7336e9d7b716b5a71a670588a1a8e5675d01266d3a84": [
+          "12.5.82"
+        ],
+        "d825029a968b05692977f86430850412b0d04a77555408575763c86e1c997ded": [
+          "12.5.82"
+        ],
+        "e7a920113148fa05765189d4c1d99514e32f48f8f774d2c0a6d8756fa27f4103": [
+          "12.5.82"
+        ],
+        "e95e498d1650f77b2793bd1dbc3fd8c7564c56bfa4271fc568201e9377225940": [
+          "12.5.82"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "12.5.82": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "curand",
+      "description": "libcurand",
+      "soname_stems": [
+        "libcurand.so"
+      ],
+      "file_hashes": {
+        "159c0182da7785e7a1e0ce18fb8e4f24e207598fe86c464247cba2dafa450f88": [
+          "10.3.6.82"
+        ],
+        "1a63ef2cb7b7faa403bcf9a4b6cd3e22e3a8e5f9eb29feec838d3234d8b5c6fb": [
+          "10.3.6.82"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "10.3.6.82": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cusolver",
+      "description": "libcusolver",
+      "soname_stems": [
+        "libcusolver.so",
+        "libcusolverMg.so"
+      ],
+      "file_hashes": {
+        "02fec9923741eaf11d8428aacb332a30a665e23ee3a3d6f9d0044a854da7583b": [
+          "11.6.3.83"
+        ],
+        "9e32f99c70864e1b3168928044f236379ea711fee2d9d4c2306314ad9022dc64": [
+          "11.6.3.83"
+        ],
+        "a967c0461289e35471816638eb81021d49f147077ba9a978d9cd9d4e7eac8819": [
+          "11.6.3.83"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "11.6.3.83": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cusparse",
+      "description": "libcusparse",
+      "soname_stems": [
+        "libcusparse.so"
+      ],
+      "file_hashes": {
+        "4356ccaa7afe560ddc5d26dcf20da40ad761028d431c8fef8d8fffb8752124c9": [
+          "12.5.1.3"
+        ],
+        "4a34901929fa7bbdabdf86de4aaa4ab1046652b5dcd3d4eaa91fbbd1adac91ac": [
+          "12.5.1.3"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "12.5.1.3": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "npp",
+      "description": "libnpp",
+      "soname_stems": [
+        "libnppc.so",
+        "libnppial.so",
+        "libnppicc.so",
+        "libnppidei.so",
+        "libnppif.so",
+        "libnppig.so",
+        "libnppim.so",
+        "libnppist.so",
+        "libnppisu.so",
+        "libnppitc.so",
+        "libnpps.so"
+      ],
+      "file_hashes": {
+        "0ba44decb481049f9bfea85af2ce0b8c555780ef49f7869aa30e0e63f5514d17": [
+          "12.3.0.159"
+        ],
+        "340cf8445a4e105c3d678c94096f86f445ebd561aef459f785d5dbc66abcbdf1": [
+          "12.3.0.159"
+        ],
+        "46be9fd11c461c36e86f7d519ed4e1b04fd391e9b1127ad6c5a323b9c6ce05f3": [
+          "12.3.0.159"
+        ],
+        "59dff45395e7761ae947e90c7586082fa74571f73ca71e7f61d63a8728664be6": [
+          "12.3.0.159"
+        ],
+        "5aa1725aef3727abd2ed927def6fd06a074e71aeb66230b79b8889ac5e930dac": [
+          "12.3.0.159"
+        ],
+        "770a4c9890bf06eb062f2a6d41f459f1d152c1cd0d36754b03f60a3142593221": [
+          "12.3.0.159"
+        ],
+        "8260298747044bad187b6a9fb299bcb37c6707f78132b6925608f982aa0e7d5f": [
+          "12.3.0.159"
+        ],
+        "99e98fa16d12567a498860b3fa8a1ae1bf3b40699df24123d3cdf652f8b13768": [
+          "12.3.0.159"
+        ],
+        "9cc74a11432d5565f987ba2c0747f1e4fb43683f8d2cee8b1c6a3e13fa08131b": [
+          "12.3.0.159"
+        ],
+        "a41e1f6aa6d067eb77b255fd1988fa9b007432026e56e6ba0bbd9cbcbdb8a5a8": [
+          "12.3.0.159"
+        ],
+        "e7f7394ef421ec481050c4ec1982e6ea6b5ec954348c7ea9696ee1bf53913690": [
+          "12.3.0.159"
+        ],
+        "f230ed7729b9c434c8b47b257acbe0e0aff8b36ac3d8cb01868e00d3f7a9dd31": [
+          "12.3.0.159"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "12.3.0.159": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvfatbin",
+      "description": "libnvfatbin",
+      "soname_stems": [
+        "libnvfatbin.so"
+      ],
+      "file_hashes": {
+        "0239c988c94df2939e6b937d169c453492fb976440131174e7aa19f93ce19e7c": [
+          "12.5.82"
+        ],
+        "3945c7d41161a18b0bc42fea7da3c0770cf35d2d923642b7f6d0afb1ba4211cc": [
+          "12.5.82"
+        ]
+      },
+      "build_ids": {
+        "2890541962701c67ee8b83aea062f97951c90938": [
+          "12.5.82"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "12.5.82": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvjitlink",
+      "description": "libnvjitlink",
+      "soname_stems": [
+        "libnvJitLink.so"
+      ],
+      "file_hashes": {
+        "3e585216d7961958dc07ffbadbd02603d9a8d5f7bc6bff330fbe7da25561e843": [
+          "12.5.82"
+        ],
+        "80693de0d769e57cb1d29c6726c4f0f724c804ca2986d09b4a7b5d65400eb328": [
+          "12.5.82"
+        ]
+      },
+      "build_ids": {
+        "6dbb4989390d78fe43df16c2cba9ebd082d50482": [
+          "12.5.82"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "12.5.82": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvjpeg",
+      "description": "libnvjpeg",
+      "soname_stems": [
+        "libnvjpeg.so"
+      ],
+      "file_hashes": {
+        "78b68f686d9807798b1c24674766a20a4000fb141ca1b462f5e70bd250337737": [
+          "12.3.2.81"
+        ],
+        "9114ab161fc78cdef74c28896a77554be8a1cc9a96766b9307dbdd512822f023": [
+          "12.3.2.81"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "12.3.2.81": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "nvrtc",
+      "description": "cuda_nvrtc",
+      "soname_stems": [
+        "libnvrtc-builtins.so",
+        "libnvrtc.so"
+      ],
+      "file_hashes": {
+        "8fb8b21fdea127454b90761a47a935fb2d705def8f98b8f2d0a95b14395813f8": [
+          "12.5.82"
+        ],
+        "a59daaef58992a1f59c588e5904d3251ca3699eb3ee05a52dc57422c01a88b10": [
+          "12.5.82"
+        ],
+        "ec9c6fec9730257c2d7f54b1539ca7514736209b0cf825ed544e982ecfb51da8": [
+          "12.5.82"
+        ]
+      },
+      "build_ids": {
+        "6c81e6135af44af11c5217a1b368baa5b78af865": [
+          "12.5.82"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "12.5.82": [
+          "ubuntu2404-sbsa"
+        ]
+      }
+    }
+  ]
+}

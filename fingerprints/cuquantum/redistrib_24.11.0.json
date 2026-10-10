@@ -1,0 +1,125 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "24.11.0",
+    "date": "2024-11-17"
+  },
+  "provenance": {
+    "manifest_sha256": "e4c2dd9fd34f268ae19b572120262114afe0747112f5ba574627c63dd5a33078",
+    "corpus_sha256": [
+      "16c1aba50c657456928386a8597d4b766daa3c6f69da738a9568ad4ac97094ae",
+      "4640da62e66f17671c8d89be93a439b8a7a13169f7aa902a3e9b6cf676d4bffd",
+      "a36123e52daeae5e6e5c543b12d45fb41411280ceb924bbde54d4d1051cf10ef",
+      "e3e4a289887d17d4b78eaac97f2fa03b2de9d832f918eb48ab97de997c104ce6"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cuquantum",
+      "description": "NVIDIA cuQuantum",
+      "license": "cuQuantum",
+      "soname_stems": [
+        "libcudensitymat.so",
+        "libcupauliprop.so",
+        "libcustabilizer.so",
+        "libcustatevec.so",
+        "libcutensornet.so"
+      ],
+      "file_hashes": {
+        "16c1aba50c657456928386a8597d4b766daa3c6f69da738a9568ad4ac97094ae": [
+          "24.11.0.21"
+        ],
+        "25b81c46493faa3894929be55939d100f64a78e695e46afd1c48d7a09ea9e878": [
+          "24.11.0.21"
+        ],
+        "2d817f0b0bf390b718d400c84c9dbd0ed3c56d0eca5c73294c824facd5cbf076": [
+          "24.11.0.21"
+        ],
+        "42e8ae31d739fd3768c5e81cd45b22b8414d9b5d5f3324dbfc2cda928489d406": [
+          "24.11.0.21"
+        ],
+        "4640da62e66f17671c8d89be93a439b8a7a13169f7aa902a3e9b6cf676d4bffd": [
+          "24.11.0.21"
+        ],
+        "4cecc4ee20bac91edf5e0ec2ca052fc80c7126375e33d060b877e81725144d4f": [
+          "24.11.0.21"
+        ],
+        "4e7d7b13419dfa516be8da89c3613fdf8d61c0a41f0f3a56518c1f792c4b92ae": [
+          "24.11.0.21"
+        ],
+        "5d7a1789f9dba24d9d10095ba5e3d4cb669827d924f190d7ef13fb531f633c3d": [
+          "24.11.0.21"
+        ],
+        "6ff701ced510929f1179fa1d15a5256fdb50842f7d6eec61c182ca01a54cf233": [
+          "24.11.0.21"
+        ],
+        "9a9d588bbfd9134f493f57db5401bc32debc78ed1106cfb55bbd78ddbe71a674": [
+          "24.11.0.21"
+        ],
+        "a36123e52daeae5e6e5c543b12d45fb41411280ceb924bbde54d4d1051cf10ef": [
+          "24.11.0.21"
+        ],
+        "af3afc66761984f18e8102ea0988d736be08cb2554f1be07b9746d81ec1dae5a": [
+          "24.11.0.21"
+        ],
+        "b6b7e92391a036c56165b4451fc957594ce033c6860e7a5ac806a71f05adc805": [
+          "24.11.0.21"
+        ],
+        "c7e84ffe5e318dbf6de6ebe3c843c8899712eb9c4dbc25f1ea0d69d46ae33b51": [
+          "24.11.0.21"
+        ],
+        "dd7f3c00ea2f9ff0db811b5af6199b80cba69c36891c74b1cdd0ecd7ed2bd5d5": [
+          "24.11.0.21"
+        ],
+        "e3e4a289887d17d4b78eaac97f2fa03b2de9d832f918eb48ab97de997c104ce6": [
+          "24.11.0.21"
+        ]
+      },
+      "build_ids": {
+        "1f8f661ed3b747fb7476eb65cde882e32fa7213b": [
+          "24.11.0.21"
+        ],
+        "21b41f4602a31e6c5d30be1ed9293bd3e739907f": [
+          "24.11.0.21"
+        ],
+        "27c9c438139f84941cfa8c4e104a4385b6f67db2": [
+          "24.11.0.21"
+        ],
+        "779a9e3a6af55f3af8fa5d9db035bbd10b085443": [
+          "24.11.0.21"
+        ],
+        "8845a3d634adcf0ab4103926eab2c8b42dce89dc": [
+          "24.11.0.21"
+        ],
+        "a18bf09584c5218e9753b7e47a949317129af603": [
+          "24.11.0.21"
+        ],
+        "b0ce37d5fab32abaa7b5f94169e604a82d113a92": [
+          "24.11.0.21"
+        ],
+        "c4ae88e440a0f4cc55e92c40bd02cf4c0c52b2fb": [
+          "24.11.0.21"
+        ],
+        "e39f9240fa53fe279ece01b441a7ee73562dcee3": [
+          "24.11.0.21"
+        ],
+        "f7d38158c85650bf673f15fe26f9b08b705f9d0b": [
+          "24.11.0.21"
+        ],
+        "fd5486006500252c48ae2128d8f8db8f7008f93d": [
+          "24.11.0.21"
+        ],
+        "ff4d31a3c95c2ac4e8e1193534a1e02b24163d04": [
+          "24.11.0.21"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "24.11.0.21": [
+          "24.11.0"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "nvfatbin",
+      "version": "12.5.82",
+      "platform": "linux-cross-linux-sbsa-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/cross-linux-sbsa/./libnvfatbin-cross-sbsa-12-5_12.5.82-1_all.deb",
+      "sha256": "66b7ba1837fe754c4c75b466ea0b42de92173abcd7de8000213270881d446440"
+    },
+    {
+      "component": "nvjitlink",
+      "version": "12.5.82",
+      "platform": "linux-cross-linux-sbsa-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/cross-linux-sbsa/./libnvjitlink-cross-sbsa-12-5_12.5.82-1_all.deb",
+      "sha256": "f72904e4738fe96c1516362a0ad2ebadcc5f1ad06902605386234d8f9716cd72"
+    }
+  ]
+}

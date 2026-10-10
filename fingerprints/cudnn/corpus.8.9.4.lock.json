@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cudnn",
+      "version": "8.9.4.25",
+      "platform": "linux-ppc64le-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-ppc64le/cudnn-linux-ppc64le-8.9.4.25_cuda11-archive.tar.xz",
+      "sha256": "88309918adeef54c01261423242d5748f89320e1d61832e429fa4b7126c8c2ec"
+    },
+    {
+      "component": "cudnn",
+      "version": "8.9.4.25",
+      "platform": "linux-ppc64le-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-ppc64le/cudnn-linux-ppc64le-8.9.4.25_cuda12-archive.tar.xz",
+      "sha256": "d5bf263f38e89fae62c4eb579bbc953d97b5bf300f91a3e6d6404df43b2641b6"
+    },
+    {
+      "component": "cudnn",
+      "version": "8.9.4.25",
+      "platform": "linux-sbsa-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-sbsa/cudnn-linux-sbsa-8.9.4.25_cuda11-archive.tar.xz",
+      "sha256": "6aa88fe0e09eec35d8010507716bee1152c2efe55ffb062a82aa320616549fc2"
+    },
+    {
+      "component": "cudnn",
+      "version": "8.9.4.25",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-sbsa/cudnn-linux-sbsa-8.9.4.25_cuda12-archive.tar.xz",
+      "sha256": "cad77909d936789efe44c8d348e3dcab9c8fcc95ac622658f9a903794e292375"
+    },
+    {
+      "component": "cudnn",
+      "version": "8.9.4.25",
+      "platform": "linux-x86_64-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-8.9.4.25_cuda11-archive.tar.xz",
+      "sha256": "e8b41f85e930dc7a51d22aae6ebe493f3b6bc7979465c3ea0996bae2f1240554"
+    },
+    {
+      "component": "cudnn",
+      "version": "8.9.4.25",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-8.9.4.25_cuda12-archive.tar.xz",
+      "sha256": "82d04906c0d6828561bbddc68f8b18cf0a334ef1162f6eff7bc88dc3313e15d1"
+    }
+  ]
+}

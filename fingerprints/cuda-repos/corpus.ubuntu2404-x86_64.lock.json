@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cublas",
+      "version": "12.5.3.2",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./libcublas-12-5_12.5.3.2-1_amd64.deb",
+      "sha256": "9af2c4643bf26359e2a5f88a44a92d2d4c168848658024c1c09b31b0fc995eae"
+    },
+    {
+      "component": "cudart",
+      "version": "12.5.82",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./cuda-cudart-12-5_12.5.82-1_amd64.deb",
+      "sha256": "6e4c47208b22048508db00fb96ba8fe288e53e7c324f964ec14b1bd453c4b2be"
+    },
+    {
+      "component": "cufft",
+      "version": "11.2.3.61",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./libcufft-12-5_11.2.3.61-1_amd64.deb",
+      "sha256": "045ae03d0d65d0fccda15b2e28bf1181ba539f8ebf607c9c2153f2f68a589de9"
+    },
+    {
+      "component": "cupti",
+      "version": "12.5.82",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./cuda-cupti-12-5_12.5.82-1_amd64.deb",
+      "sha256": "33783fa87b1a2d33dd66ca0c566d7d15357a174b0c3360cf1b9781f077f2531a"
+    },
+    {
+      "component": "curand",
+      "version": "10.3.6.82",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./libcurand-12-5_10.3.6.82-1_amd64.deb",
+      "sha256": "9337862c95fe00fd769fbfce099916bb664938819c86915eda0c17e7cac29d75"
+    },
+    {
+      "component": "cusolver",
+      "version": "11.6.3.83",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./libcusolver-12-5_11.6.3.83-1_amd64.deb",
+      "sha256": "9035c344e4c433912d587afe00c2bd376dbac792c03cd890bc380315cb6ff8a9"
+    },
+    {
+      "component": "cusparse",
+      "version": "12.5.1.3",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./libcusparse-12-5_12.5.1.3-1_amd64.deb",
+      "sha256": "422dfaeace5b089e2c4f5b57e2cad62ddcf2a776ae19bf241f4ca6d73478ee65"
+    },
+    {
+      "component": "npp",
+      "version": "12.3.0.159",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./libnpp-12-5_12.3.0.159-1_amd64.deb",
+      "sha256": "e6e590adcfdc3cdca7a2b76074bbe2d85a4d07de393249d7ee09e52c383e6130"
+    },
+    {
+      "component": "nvfatbin",
+      "version": "12.5.82",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./libnvfatbin-12-5_12.5.82-1_amd64.deb",
+      "sha256": "b0c7e1184b7cda21d3d3977b40726f71b51d2c125ccef342803e12feadbdb147"
+    },
+    {
+      "component": "nvjitlink",
+      "version": "12.5.82",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./libnvjitlink-12-5_12.5.82-1_amd64.deb",
+      "sha256": "0cce49a5c4c9b800c510b91b35eadd4f4daa846b03d07d560a5bea6139458deb"
+    },
+    {
+      "component": "nvjpeg",
+      "version": "12.3.2.81",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./libnvjpeg-12-5_12.3.2.81-1_amd64.deb",
+      "sha256": "fab970d55a20dd249fd5b2695e73de749a066001a9a29fee60d8f0ec2f962e43"
+    },
+    {
+      "component": "nvrtc",
+      "version": "12.5.82",
+      "platform": "linux-x86_64-ubuntu2404",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/./cuda-nvrtc-12-5_12.5.82-1_amd64.deb",
+      "sha256": "874b12dd1af8d54fc0bbfcbd62156179a6abb95c8e119bb8cbd56d99e8ec4369"
+    }
+  ]
+}

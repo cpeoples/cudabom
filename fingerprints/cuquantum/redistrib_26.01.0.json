@@ -1,0 +1,173 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "26.01.0",
+    "date": "2026-01-26"
+  },
+  "provenance": {
+    "manifest_sha256": "ace9311d6fba53b9ec7f2b7b7caa0ff436d5e7521b01e2cdf63c92b2fc96618b",
+    "corpus_sha256": [
+      "1ec3b95b4788a5e7e7d935d25e0cb7f28db8085ecdf851371581bca66be01576",
+      "43dc4eee6c7dc2564dc36396bc7cb0775e631c28052c470ebb20fdbf1dd426c1",
+      "64781007659513442344f9c9e4e04ead717c991798ccec716808699b99a95d93",
+      "a6120312154f51bddfa50edc9a11d239ed8a2630b893fccf953a73780d656134"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cuquantum",
+      "description": "NVIDIA cuQuantum",
+      "license": "cuQuantum",
+      "soname_stems": [
+        "libcudensitymat.so",
+        "libcupauliprop.so",
+        "libcustabilizer.so",
+        "libcustatevec.so",
+        "libcutensornet.so"
+      ],
+      "file_hashes": {
+        "00c32155a8d4b1c3fc5c1db47c62a395e99a3d1c7462cc59678b9f5a0453c28e": [
+          "26.01.0.4"
+        ],
+        "1c83744d87c8d5e493549c99e1c01f61a6f5b7eb7aef19024511faae0203fd40": [
+          "26.01.0.4"
+        ],
+        "1ec3b95b4788a5e7e7d935d25e0cb7f28db8085ecdf851371581bca66be01576": [
+          "26.01.0.4"
+        ],
+        "22a7f52779e2fa919df23f8c6dccb04a1e62d184f1db5ee923aadd41c21ed15d": [
+          "26.01.0.4"
+        ],
+        "2305c4253521489fadd54c5042b3520580f569c779a57135b886775aba1b5d12": [
+          "26.01.0.4"
+        ],
+        "28293271bbd9df02a9367277b40827abff1314c74e1cb1f24f786510905f8ed2": [
+          "26.01.0.4"
+        ],
+        "30f3d299447ac1032b93c9aa8085deabc797b9353ad37b9ef32fd620cb2636ff": [
+          "26.01.0.4"
+        ],
+        "36fc6a0b77f433a66793750406e69052073bc39a4c0be79a8ed7e3aafe0ad8e3": [
+          "26.01.0.4"
+        ],
+        "37a344a6199de493cba8d6ce32028897056427660a90091d551fe1bac803a447": [
+          "26.01.0.4"
+        ],
+        "3f4377cb009f88520e9fa96a2af7540f9b8ef6933f74586e8d24326898e7a6ef": [
+          "26.01.0.4"
+        ],
+        "43dc4eee6c7dc2564dc36396bc7cb0775e631c28052c470ebb20fdbf1dd426c1": [
+          "26.01.0.4"
+        ],
+        "4a8044b06232a75ed7349f57b30d993fbe0f7c8033519e29ebb85b30aa5695f1": [
+          "26.01.0.4"
+        ],
+        "64781007659513442344f9c9e4e04ead717c991798ccec716808699b99a95d93": [
+          "26.01.0.4"
+        ],
+        "6b38c23daa383bc46f8671de0f328d8c5c539a07539037df44be5eb091dbeb7e": [
+          "26.01.0.4"
+        ],
+        "7889abccf4b25c9772ef02799ef8e9a06861db8682c6e6240c38116cd710b7c3": [
+          "26.01.0.4"
+        ],
+        "996a9451ac25309907fceb032ecb09ca2e3a1bf195aa172bf43e21f907818111": [
+          "26.01.0.4"
+        ],
+        "a6120312154f51bddfa50edc9a11d239ed8a2630b893fccf953a73780d656134": [
+          "26.01.0.4"
+        ],
+        "a95b7ac259fa5428277fc1e188fabc7ebde71d267940c853af56b2791d3c0101": [
+          "26.01.0.4"
+        ],
+        "c1f5c32d93c39ae1db785aa554dd037d8145cd2f6093b01ee0f135ee5bb38f7d": [
+          "26.01.0.4"
+        ],
+        "c3b4d791fc9bce5fe9cea0d595a0e1b05750fb78082c25ec31470f256f9d049b": [
+          "26.01.0.4"
+        ],
+        "c46d57e9179a4d1adbaddfd0d9635b374aec45ffc1938c25a51bcaacbd228eb2": [
+          "26.01.0.4"
+        ],
+        "d895054d4d21d798bbe95ef0738c1f73466b8a9711595db6f0269baefeff5a71": [
+          "26.01.0.4"
+        ],
+        "d8d06054e11596e20e0e30222cf4e2940697e82fd004eceafe43cf79fef85798": [
+          "26.01.0.4"
+        ],
+        "dbda05365db4872a8de10910dc40d673fa78b8630287ee3707cf1ce8cf521d2d": [
+          "26.01.0.4"
+        ]
+      },
+      "build_ids": {
+        "32363ddea0d239b2a2bdb04a8a4a039cad89c248": [
+          "26.01.0.4"
+        ],
+        "3ceb17c810ef38f853584aa1cc59749e4d24255a": [
+          "26.01.0.4"
+        ],
+        "456c83afeb7acf49acd060d318a7e624adfde5e6": [
+          "26.01.0.4"
+        ],
+        "46e3d630ac8f5abe4ccee35c3d99fa3fc62d86ee": [
+          "26.01.0.4"
+        ],
+        "4a43c7426a56bf1d7e06d75baa638cad404ed511": [
+          "26.01.0.4"
+        ],
+        "4fa64384555eb74ebd19c32fafaad80a0ad8d30b": [
+          "26.01.0.4"
+        ],
+        "5b6b1bfb45869924747262ec0d03911e4112b867": [
+          "26.01.0.4"
+        ],
+        "63105a20ebb8d07d62aca1a548aa7dcc76a5019e": [
+          "26.01.0.4"
+        ],
+        "6ebfc185fe975a742e4a0b335e08bb45122f1346": [
+          "26.01.0.4"
+        ],
+        "72e5a028b3dfc4739227ca2838abb3e0018f25a5": [
+          "26.01.0.4"
+        ],
+        "7c1ee821b267ec49f39374a295178dac7a32b3c4": [
+          "26.01.0.4"
+        ],
+        "7cd909b10975feb5ba54c8a81810e757a01b7114": [
+          "26.01.0.4"
+        ],
+        "987b62326685293a6a9987c95ceaa3350e08416a": [
+          "26.01.0.4"
+        ],
+        "a4e236f6d4f71404245e60b4806f779c03dd1324": [
+          "26.01.0.4"
+        ],
+        "a91da5a7ed78ef8075aa1d31dd2d6c0b416e3529": [
+          "26.01.0.4"
+        ],
+        "ad4534cf1f5c602a9e022a0c303915cce4b077dc": [
+          "26.01.0.4"
+        ],
+        "b149410666e5b3c436dedf98d39b0110a3ff19e7": [
+          "26.01.0.4"
+        ],
+        "c226eef758ddb05ad38cb1e63bf32576b14f6b76": [
+          "26.01.0.4"
+        ],
+        "cc7ef75aa057e9a78b724fde43d2001207a3e917": [
+          "26.01.0.4"
+        ],
+        "e79a6a52dfc4bd2ba0c9bcb5019f1ac5efd24d3b": [
+          "26.01.0.4"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "26.01.0.4": [
+          "26.01.0"
+        ]
+      }
+    }
+  ]
+}

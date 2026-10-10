@@ -1,0 +1,20 @@
+{
+  "libnvfatbin": {
+    "linux-cross-linux-sbsa-ubuntu2404": {
+      "relative_path": "./libnvfatbin-cross-sbsa-12-5_12.5.82-1_all.deb",
+      "sha256": "66b7ba1837fe754c4c75b466ea0b42de92173abcd7de8000213270881d446440",
+      "size": "548874"
+    },
+    "version": "12.5.82"
+  },
+  "libnvjitlink": {
+    "linux-cross-linux-sbsa-ubuntu2404": {
+      "relative_path": "./libnvjitlink-cross-sbsa-12-5_12.5.82-1_all.deb",
+      "sha256": "f72904e4738fe96c1516362a0ad2ebadcc5f1ad06902605386234d8f9716cd72",
+      "size": "12845892"
+    },
+    "version": "12.5.82"
+  },
+  "release_label": "ubuntu2404-cross-linux-sbsa",
+  "release_product": "cuda-repos"
+}

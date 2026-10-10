@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cuquantum",
+      "version": "26.03.0.5",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-sbsa/cuquantum-linux-sbsa-26.03.0.5_cuda12-archive.tar.xz",
+      "sha256": "2220ce633963b4c1dd8606cf2ac4529ccef1fca52bfbdb9708ecacf963cca35e"
+    },
+    {
+      "component": "cuquantum",
+      "version": "26.03.0.5",
+      "platform": "linux-sbsa-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-sbsa/cuquantum-linux-sbsa-26.03.0.5_cuda13-archive.tar.xz",
+      "sha256": "d0f6e0eee9a9de2241af051a4c4c2884cbf20d7ad6758ad07757dc12395b5528"
+    },
+    {
+      "component": "cuquantum",
+      "version": "26.03.0.5",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-x86_64/cuquantum-linux-x86_64-26.03.0.5_cuda12-archive.tar.xz",
+      "sha256": "f66e97cef65700c4a6c93bb4dc312cf8f9c2abbedf7a7731faa8e28062c9adec"
+    },
+    {
+      "component": "cuquantum",
+      "version": "26.03.0.5",
+      "platform": "linux-x86_64-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/cuquantum/redist/cuquantum/linux-x86_64/cuquantum-linux-x86_64-26.03.0.5_cuda13-archive.tar.xz",
+      "sha256": "cdb873e69fc16c51a09e23b3a3b04cb9028f1141715764437cda3eaa9f27dd56"
+    }
+  ]
+}
