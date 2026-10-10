@@ -266,7 +266,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.REFRESH_PAT }}
           branch: fingerprint-refresh
           base: main
           commit-message: "chore(fingerprints): add ${{ steps.diff.outputs.added_count }} release(s) (${{ steps.diff.outputs.products }})"

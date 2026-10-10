@@ -131,7 +131,7 @@ jobs:
           # themselves trigger `on: pull_request` workflows, so CI must be run
           # once on the PR by re-running it manually or by using a PAT / GitHub
           # App token here if automatic CI on the refresh PR is required.
-          token: ${{ github.token }}
+          token: ${{ secrets.REFRESH_PAT }}
           branch: advisory-refresh
           base: main
           commit-message: "chore(advisories): refresh index at ${{ steps.rev.outputs.rev }}"
