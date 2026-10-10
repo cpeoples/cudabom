@@ -6,7 +6,10 @@
 //! only when corroborated; a bare dependency name is `Unknown`. Strong signals
 //! (a known file hash or build-id from the fingerprint DB) yield `Exact`.
 
-use cudabom_core::{Component, Confidence, Evidence, EvidenceKind, Finding, Relationship};
+use cudabom_core::{
+    Component, Confidence, CoverageGap, CoverageGapKind, Evidence, EvidenceKind, Finding,
+    Relationship,
+};
 
 use crate::db::{ComponentFingerprint, FingerprintDb};
 use crate::soname::{major_version, parse_soname};
@@ -121,6 +124,111 @@ pub fn identify_file(facts: &FileFacts, db: &FingerprintDb) -> Vec<Finding> {
     findings
 }
 
+/// SONAME stems whose presence as a NEEDED dependency marks a binary as linking
+/// the CUDA runtime. A library that depends on these is a CUDA library even
+/// when its own stem is unknown to the database, so this is the corroborating
+/// signal that gates [`coverage_gaps`]'s unknown-library tier. The list is the
+/// CUDA runtime and driver API stems; it is intentionally small and specific so
+/// an unrelated `libnv*`/`libcu*` name is never flagged on its name alone.
+const CUDA_RUNTIME_STEMS: &[&str] = &["libcudart.so", "libcuda.so"];
+
+/// Report libraries the scan could not fully attribute, as
+/// [`cudabom_core::CoverageGap`]s.
+///
+/// This is the user-facing coverage report, computed from the same facts as
+/// [`identify_file`] but kept entirely separate: it names no component and
+/// produces no [`Finding`], so it cannot affect finding counts, confidence,
+/// advisory correlation, or exit codes. Two gaps are reported, each implying a
+/// different action:
+///
+///   - [`KnownComponentUnfingerprintedBuild`](cudabom_core::CoverageGapKind::KnownComponentUnfingerprintedBuild):
+///     the DB profiles this library's component and carries fingerprints for
+///     it, but none matched this build. A newer DB likely covers it.
+///   - [`UnknownCudaLinkedLibrary`](cudabom_core::CoverageGapKind::UnknownCudaLinkedLibrary):
+///     the library links the CUDA runtime (or exports CUDA-namespaced symbols)
+///     but its stem matches no known component. It may be untracked.
+///
+/// Nothing is reported from a name alone: the unknown tier requires
+/// corroborating evidence that the file is a CUDA library, so a non-CUDA `.so`
+/// is never flagged however its name reads.
+#[must_use]
+pub fn coverage_gaps(facts: &FileFacts, db: &FingerprintDb) -> Vec<CoverageGap> {
+    // A strong signal already pins this file exactly; there is no gap.
+    if let Some(sha) = &facts.sha256 {
+        if lookup_hash(db, sha).is_some() {
+            return Vec::new();
+        }
+    }
+    let Some(elf) = &facts.elf else {
+        return Vec::new();
+    };
+    if let Some(build_id) = &elf.build_id {
+        if lookup_build_id(db, build_id).is_some() {
+            return Vec::new();
+        }
+    }
+
+    // The gap report is about the file's own identity, read from its SONAME.
+    // A file without one (an executable, a dependency-only edge) is not itself
+    // a library to attribute, so it yields no gap.
+    let Some(soname) = &elf.soname else {
+        return Vec::new();
+    };
+    let Some(parts) = parse_soname(soname) else {
+        return Vec::new();
+    };
+
+    let component = db
+        .components
+        .iter()
+        .find(|c| c.soname_stems.iter().any(|s| s == &parts.stem));
+
+    let kind = match component {
+        // Known stem. A gap exists only when the component is *fingerprinted*
+        // (carries at least one hash or build-id) yet none matched this build.
+        // When the component has no fingerprints at all (a manifest-only shard),
+        // a structural SONAME match is the best the DB can do and is not a gap.
+        Some(comp) => {
+            let fingerprinted = !comp.file_hashes.is_empty() || !comp.build_ids.is_empty();
+            if fingerprinted {
+                CoverageGapKind::KnownComponentUnfingerprintedBuild
+            } else {
+                return Vec::new();
+            }
+        }
+        // Unknown stem. Flag only with corroborating evidence that this really
+        // is a CUDA library: it links the CUDA runtime, or it exports symbols a
+        // known component claims as identifying markers. A bare unknown name is
+        // never flagged.
+        None => {
+            if is_cuda_linked(elf, db) {
+                CoverageGapKind::UnknownCudaLinkedLibrary
+            } else {
+                return Vec::new();
+            }
+        }
+    };
+
+    vec![CoverageGap {
+        kind,
+        soname_stem: parts.stem,
+        soname: Some(soname.clone()),
+        location: facts.location(),
+    }]
+}
+
+/// True when an ELF is evidently a CUDA library despite an unknown SONAME stem:
+/// it NEEDED-links the CUDA runtime, or it exports enough of a known
+/// component's identifying marker symbols to be CUDA code. Both are properties
+/// of the binary, not of its name, so neither can misfire on a non-CUDA file.
+fn is_cuda_linked(elf: &cudabom_elf::ElfFacts, db: &FingerprintDb) -> bool {
+    let links_runtime = elf
+        .needed
+        .iter()
+        .any(|n| parse_soname(n).is_some_and(|p| CUDA_RUNTIME_STEMS.contains(&p.stem.as_str())));
+    links_runtime || best_symbol_match(db, &elf.exported_symbols).is_some()
+}
+
 /// Append an [`Architecture`](EvidenceKind::Architecture) evidence item to each
 /// finding, when the file's architecture is known. Idempotent per call; callers
 /// invoke it exactly once per finding on the path that produced it.
@@ -184,33 +292,7 @@ fn identify_from_symbols(
     db: &FingerprintDb,
     exported: &[String],
 ) -> Option<Finding> {
-    /// Minimum number of matching marker symbols before a component is named.
-    const MIN_SYMBOL_MATCHES: usize = 2;
-
-    if exported.is_empty() {
-        return None;
-    }
-    let exported_set: std::collections::BTreeSet<&str> =
-        exported.iter().map(String::as_str).collect();
-
-    // Pick the component with the most marker matches, so a member that happens
-    // to reference two components attributes to the one it most belongs to.
-    let best = db
-        .components
-        .iter()
-        .filter(|c| !c.symbol_markers.is_empty())
-        .map(|c| {
-            let hits = c
-                .symbol_markers
-                .iter()
-                .filter(|m| exported_set.contains(m.as_str()))
-                .count();
-            (c, hits)
-        })
-        .filter(|(_, hits)| *hits >= MIN_SYMBOL_MATCHES)
-        .max_by_key(|(_, hits)| *hits)?;
-
-    let (comp, hits) = best;
+    let (comp, hits) = best_symbol_match(db, exported)?;
     Some(Finding {
         id: finding_id(&facts.path, &comp.name),
         component: Component {
@@ -228,6 +310,41 @@ fn identify_from_symbols(
         }],
         conflicts: Vec::new(),
     })
+}
+
+/// The component whose identifying marker symbols the exported set best matches,
+/// with the hit count, or `None` when no component clears [`MIN_SYMBOL_MATCHES`].
+///
+/// The pure core of symbol attribution: both the finding path
+/// ([`identify_from_symbols`]) and the coverage check ([`is_cuda_linked`]) ask
+/// the same question of a symbol set, so they share this one answer. Picking the
+/// component with the most matches attributes a member that references two
+/// components to the one it most belongs to.
+fn best_symbol_match<'a>(
+    db: &'a FingerprintDb,
+    exported: &[String],
+) -> Option<(&'a ComponentFingerprint, usize)> {
+    /// Minimum number of matching marker symbols before a component is named.
+    const MIN_SYMBOL_MATCHES: usize = 2;
+
+    if exported.is_empty() {
+        return None;
+    }
+    let exported_set: std::collections::BTreeSet<&str> =
+        exported.iter().map(String::as_str).collect();
+    db.components
+        .iter()
+        .filter(|c| !c.symbol_markers.is_empty())
+        .map(|c| {
+            let hits = c
+                .symbol_markers
+                .iter()
+                .filter(|m| exported_set.contains(m.as_str()))
+                .count();
+            (c, hits)
+        })
+        .filter(|(_, hits)| *hits >= MIN_SYMBOL_MATCHES)
+        .max_by_key(|(_, hits)| *hits)
 }
 
 /// Attribute a component from a Windows PE image, matching its version
@@ -836,5 +953,161 @@ mod pe_tests {
         assert_eq!(findings.len(), 1);
         assert_eq!(findings[0].confidence, Confidence::Exact);
         assert_eq!(findings[0].evidence[0].kind, EvidenceKind::KnownFileHash);
+    }
+}
+
+#[cfg(test)]
+mod coverage_tests {
+    use super::*;
+    use cudabom_core::CoverageGapKind;
+    use cudabom_elf::{ElfClass, ElfFacts, ElfType, Endianness};
+
+    /// ELF facts for a shared library with the given soname, NEEDED list, and
+    /// exported symbols. Build-id omitted unless a test sets one.
+    fn so(soname: &str, needed: &[&str], exports: &[&str]) -> FileFacts {
+        FileFacts {
+            path: format!("/usr/lib/{soname}"),
+            sha256: None,
+            layer_digest: None,
+            elf: Some(ElfFacts {
+                class: ElfClass::Elf64,
+                endianness: Endianness::Little,
+                elf_type: ElfType::SharedObject,
+                architecture: "X86_64".to_string(),
+                soname: Some(soname.to_string()),
+                needed: needed.iter().map(ToString::to_string).collect(),
+                runpaths: Vec::new(),
+                build_id: None,
+                section_names: Vec::new(),
+                exported_symbols: exports.iter().map(ToString::to_string).collect(),
+                dynamically_linked: true,
+            }),
+            pe: None,
+            gpu_code: None,
+        }
+    }
+
+    /// A DB whose `cublas` component is fingerprinted (carries a build-id).
+    fn db_fingerprinted_cublas() -> FingerprintDb {
+        let json = r#"{
+            "schema_version": 2,
+            "components": [
+                { "name": "cublas", "soname_stems": ["libcublas.so"],
+                  "build_ids": { "aa": ["12.4.1"] } }
+            ]
+        }"#;
+        FingerprintDb::from_json(json.as_bytes()).unwrap()
+    }
+
+    #[test]
+    fn unknown_stem_linking_cuda_runtime_is_reported() {
+        // libcusolvermp.so is not a known stem, but it NEEDED-links the CUDA
+        // runtime, so it is a genuine coverage gap.
+        let db = db_fingerprinted_cublas();
+        let facts = so("libcusolvermp.so.0", &["libcudart.so.12"], &[]);
+        let gaps = coverage_gaps(&facts, &db);
+        assert_eq!(gaps.len(), 1);
+        assert_eq!(gaps[0].kind, CoverageGapKind::UnknownCudaLinkedLibrary);
+        assert_eq!(gaps[0].soname_stem, "libcusolvermp.so");
+        // It is never promoted into a finding.
+        assert_eq!(identify_file(&facts, &db), Vec::new());
+    }
+
+    #[test]
+    fn unknown_stem_not_linking_cuda_is_silent() {
+        // A library whose name merely starts with libnv/libcu but which does
+        // not link the CUDA runtime (or export CUDA symbols) is never flagged.
+        let db = db_fingerprinted_cublas();
+        let facts = so("libnvme.so.1", &["libc.so.6"], &["nvme_reset"]);
+        assert_eq!(coverage_gaps(&facts, &db), Vec::new());
+    }
+
+    #[test]
+    fn known_stem_fingerprinted_but_no_match_is_update_gap() {
+        // libcublas.so is a known, fingerprinted component, but this build's
+        // hash/build-id is absent: the "run update" gap.
+        let db = db_fingerprinted_cublas();
+        let facts = so("libcublas.so.12", &[], &[]);
+        let gaps = coverage_gaps(&facts, &db);
+        assert_eq!(gaps.len(), 1);
+        assert_eq!(
+            gaps[0].kind,
+            CoverageGapKind::KnownComponentUnfingerprintedBuild
+        );
+    }
+
+    #[test]
+    fn known_stem_not_fingerprinted_is_not_a_gap() {
+        // A manifest-only shard (no hashes/build-ids) attributes structurally;
+        // a SONAME match is the best the DB can do and is not a coverage gap.
+        let json = r#"{
+            "schema_version": 1,
+            "components": [
+                { "name": "cublas", "soname_stems": ["libcublas.so"] }
+            ]
+        }"#;
+        let db = FingerprintDb::from_json(json.as_bytes()).unwrap();
+        let facts = so("libcublas.so.12", &[], &[]);
+        assert_eq!(coverage_gaps(&facts, &db), Vec::new());
+    }
+
+    #[test]
+    fn exact_hash_match_yields_no_gap() {
+        let json = r#"{
+            "schema_version": 2,
+            "components": [
+                { "name": "cublas", "soname_stems": ["libcublas.so"],
+                  "file_hashes": { "deadbeef": ["12.4.1"] } }
+            ]
+        }"#;
+        let db = FingerprintDb::from_json(json.as_bytes()).unwrap();
+        let mut facts = so("libcublas.so.12", &[], &[]);
+        facts.sha256 = Some("deadbeef".to_string());
+        assert_eq!(coverage_gaps(&facts, &db), Vec::new());
+    }
+
+    #[test]
+    fn exact_build_id_match_yields_no_gap() {
+        let db = db_fingerprinted_cublas();
+        let mut facts = so("libcublas.so.12", &[], &[]);
+        if let Some(elf) = facts.elf.as_mut() {
+            elf.build_id = Some("aa".to_string());
+        }
+        assert_eq!(coverage_gaps(&facts, &db), Vec::new());
+    }
+
+    #[test]
+    fn file_without_soname_yields_no_gap() {
+        // An executable that merely links CUDA is a dependency edge, not a
+        // library to attribute; the gap report is about the file's own identity.
+        let db = db_fingerprinted_cublas();
+        let mut facts = so("app", &["libcudart.so.12"], &[]);
+        if let Some(elf) = facts.elf.as_mut() {
+            elf.soname = None;
+        }
+        assert_eq!(coverage_gaps(&facts, &db), Vec::new());
+    }
+
+    #[test]
+    fn unknown_stem_exporting_cuda_symbols_is_reported() {
+        // No CUDA-runtime NEEDED edge, but it exports a known component's
+        // marker symbols, so it is CUDA code with an unknown stem.
+        let json = r#"{
+            "schema_version": 3,
+            "components": [
+                { "name": "nccl", "soname_stems": ["libnccl.so"],
+                  "build_ids": { "aa": ["2.20.5"] },
+                  "symbol_markers": ["ncclAllReduce", "ncclCommInitRank"] }
+            ]
+        }"#;
+        let db = FingerprintDb::from_json(json.as_bytes()).unwrap();
+        let facts = so(
+            "libncclext.so.1",
+            &["libc.so.6"],
+            &["ncclAllReduce", "ncclCommInitRank"],
+        );
+        let gaps = coverage_gaps(&facts, &db);
+        assert_eq!(gaps.len(), 1);
+        assert_eq!(gaps[0].kind, CoverageGapKind::UnknownCudaLinkedLibrary);
     }
 }

@@ -9,7 +9,7 @@
 //! by id before rendering.
 
 use cudabom_advisory::Verdict;
-use cudabom_core::{Finding, Limits};
+use cudabom_core::{CoverageGap, CoverageGapKind, Finding, Limits};
 use cudabom_fatbin::{CapabilityManifest, GpuCode};
 use serde::Serialize;
 
@@ -30,6 +30,11 @@ struct ScanReport {
     /// CUDA-component findings, sorted by id.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     findings: Vec<Finding>,
+    /// NVIDIA CUDA libraries the scan could not fully attribute. Informational
+    /// only: never affects findings, advisory verdicts, or the exit code.
+    /// Omitted when empty.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    coverage_gaps: Vec<CoverageGap>,
     /// NVIDIA-provided descriptive metadata (description + license) for each
     /// found component, keyed by canonical name. Omitted when empty.
     #[serde(default, skip_serializing_if = "std::collections::BTreeMap::is_empty")]
@@ -203,6 +208,7 @@ pub(crate) fn run(args: &ScanArgs) -> ExitStatus {
         targets: args.targets.clone(),
         files: outcome.files,
         findings: outcome.findings,
+        coverage_gaps: outcome.coverage_gaps,
         catalog: outcome.catalog,
         capability: outcome.capability,
         composition: outcome.composition,
@@ -420,6 +426,10 @@ fn render_table(report: &ScanReport, all_files: bool) -> String {
 
     // Per-binary composition section (links vs contains), when present.
     render_composition(&mut out, &report.composition);
+
+    // Coverage report: NVIDIA libraries we could not fully attribute. Purely
+    // informational, so it sits after the findings/composition it never alters.
+    render_coverage(&mut out, &report.coverage_gaps);
 
     // Advisory correlation section, when present.
     if let Some(adv) = &report.advisories {
@@ -899,6 +909,39 @@ fn fmt_node_verdicts(verdicts: &[crate::commands::composition::NodeVerdict]) -> 
         parts.push(format!("{investigating} under investigation"));
     }
     format!("  advisories: {}", parts.join(", "))
+}
+
+/// Render the coverage report: NVIDIA CUDA libraries the scan could not fully
+/// attribute. Two tiers, each with the action it implies. Informational only;
+/// omitted entirely when there is nothing to report.
+fn render_coverage(out: &mut String, gaps: &[CoverageGap]) {
+    use std::fmt::Write as _;
+    if gaps.is_empty() {
+        return;
+    }
+    let _ = writeln!(out);
+    let _ = writeln!(
+        out,
+        "coverage gaps (NVIDIA libraries not fully identified):"
+    );
+    for gap in gaps {
+        let note = match gap.kind {
+            CoverageGapKind::KnownComponentUnfingerprintedBuild => {
+                "known library, this build not in the database"
+            }
+            CoverageGapKind::UnknownCudaLinkedLibrary => {
+                "links the CUDA runtime but is not a known component"
+            }
+            _ => "not fully identified",
+        };
+        let soname = gap.soname.as_deref().unwrap_or(&gap.soname_stem);
+        let _ = writeln!(out, "  {soname}  in {}", gap.location.path);
+        let _ = writeln!(out, "      {note}");
+    }
+    let _ = writeln!(
+        out,
+        "  note: run `cudabom update` for the latest database; if a library is still unlisted, it may be new to cudabom"
+    );
 }
 
 /// Render the GPU capability manifest, when the artifact has device code.

@@ -37,7 +37,7 @@ pub use derive::{
     advisory_terms, canonicalize_declared_name, derive, resolve_component, soname_stems_for,
     Derived,
 };
-pub use matcher::identify_file;
+pub use matcher::{coverage_gaps, identify_file};
 pub use redist::{HashScope, RedistArchive, RedistComponent, RedistError, RedistManifest};
 
 use cudabom_core::{Evidence, EvidenceKind, Location};

@@ -189,81 +189,103 @@ jobs:
           JOBS: ${{ inputs.jobs || '4' }}
         run: |
           set -euo pipefail
-          # The discover step above saved locks and manifests only for this
-          # run's new releases. Fetch and derive just those, not the whole
+          # The discover step above saved a lock and manifest for this run's
+          # new releases only. Fetch and derive just those, not the whole
           # committed corpus: the lock dir holds every release ever locked, so a
           # blanket fetch would re-download the full multi-tree corpus (hundreds
           # of archives, tens of GB) every night to derive a handful of shards.
           #
-          # The newly saved locks and manifests are exactly the files git now
-          # sees under the lock and fixtures dirs. Use --untracked-files=all:
-          # without it, git collapses a brand-new directory with no tracked
-          # files (e.g. fingerprints/cuquantum/ on its first release) to a
-          # single "fingerprints/cuquantum/" entry, so the per-file grep below
-          # matches nothing and that whole tree is silently skipped. With =all,
-          # git lists every file inside new dirs, so new trees are handled the
-          # same as existing ones. cut -c4- drops the 2-col status + space so
-          # paths are read exactly.
+          # The newly saved locks are exactly the lockfiles git now sees under
+          # the lock dir. Use --untracked-files=all: without it, git collapses a
+          # brand-new directory with no tracked files (e.g. fingerprints/
+          # cuquantum/ on its first release) to a single
+          # "fingerprints/cuquantum/" entry, so the per-file grep below matches
+          # nothing and that whole tree is silently skipped. With =all, git
+          # lists every file inside new dirs, so new trees are handled the same
+          # as existing ones. cut -c4- drops the 2-col status + space so paths
+          # are read exactly. Each lock's manifest is resolved below.
           mapfile -t new_locks < <(git status --porcelain --untracked-files=all -- "$LOCK_DIR" \
             | cut -c4- | grep -E '(^|/)corpus\..*\.lock\.json$' || true)
-          mapfile -t new_manifests < <(git status --porcelain --untracked-files=all -- "$FIXTURES_DIR" \
-            | cut -c4- | grep -E '(^|/)redistrib_.*\.json$' || true)
           if [ "${#new_locks[@]}" -eq 0 ]; then
             echo "No new locks saved; nothing to fetch."
             exit 0
           fi
           echo "discover saved ${#new_locks[@]} new release lock(s); fetching"
 
-          # Fetch each new release's archives from its own lock. One bad upstream
-          # archive (an NVIDIA re-publish under a changed hash) is skipped so it
-          # does not abort the whole batch.
-          for lock in "${new_locks[@]}"; do
-            cargo run --locked --quiet -p xtask -- corpus fetch --lock "$lock" \
-              --out "$CORPUS_DIR" \
-              || echo "skip $lock (fetch failed; see log above)"
-          done
+          # Map a release lock to its manifest. A lock is named
+          # corpus.<version>.lock.json and lives either at the fixtures root
+          # (CUDA toolkit) or under a sibling product dir; its manifest is the
+          # redistrib_<version>.json beside it in $FIXTURES_DIR. Resolving the
+          # manifest from the lock lets each release be fetched, derived, and
+          # pruned on its own, so peak disk is one release rather than the whole
+          # batch (a 20-wide batch hitting cuDNN overran the runner otherwise).
+          manifest_for_lock() {
+            local lock="$1" rel product version
+            rel="${lock#"$LOCK_DIR"/}"            # corpus.<v>.lock.json or <product>/corpus.<v>.lock.json
+            version="${rel##*/}"; version="${version#corpus.}"; version="${version%.lock.json}"
+            case "$rel" in
+              */*) product="${rel%%/*}"; printf '%s/%s/redistrib_%s.json' "$FIXTURES_DIR" "$product" "$version" ;;
+              *)   printf '%s/redistrib_%s.json' "$FIXTURES_DIR" "$version" ;;
+            esac
+          }
 
-          # Derive only the new manifests. Stage them alone so the recursive
-          # builder cannot touch (and, lacking their corpus, regress) other
-          # shards. Siblings keep their product subdir and derive to the matching
-          # fingerprints/<product>/ path. CUDA manifests live at the fixtures
-          # root but their shards belong under fingerprints/cuda, so stage them
-          # into a cuda/ subdir to land there.
-          staging="$(mktemp -d)"
-          for m in "${new_manifests[@]}"; do
+          # Stage one manifest into a build tree, mirroring the layout
+          # `fingerprints build` expects: siblings keep their product subdir;
+          # a CUDA root manifest goes under cuda/ so its shard lands in
+          # fingerprints/cuda. Echoes the staging dir for the caller to build
+          # from and remove.
+          stage_manifest() {
+            local m="$1" rel staging
             rel="${m#"$FIXTURES_DIR"/}"
             case "$rel" in
-              */*) ;;              # sibling: already under <product>/
+              */*) ;;               # sibling: already under <product>/
               *) rel="cuda/$rel" ;; # cuda root manifest -> cuda/ subdir
             esac
+            staging="$(mktemp -d)"
             mkdir -p "$staging/$(dirname "$rel")"
             cp "$m" "$staging/$rel"
-          done
-          cargo run --locked --quiet -p xtask -- fingerprints build \
-            --from "$staging" --out "$SHARD_DIR" --corpus "$CORPUS_DIR" --jobs "$JOBS"
-          rm -rf "$staging"
+            printf '%s' "$staging"
+          }
 
-          # Keep the commit honest: discover saves a lock + fixture per release,
-          # but a fetch can fail (bad upstream hash) or a manifest can derive no
-          # shard. Committing those orphans would ship a lock/fixture with no
-          # usable fingerprint. For every release discover staged, drop its lock
-          # and fixture unless a derived shard
-          # (fingerprints/<product>/redistrib_<version>.json) now exists for it.
-          for m in "${new_manifests[@]}"; do
-            rel="${m#"$FIXTURES_DIR"/}"           # e.g. cuquantum/redistrib_0.1.0.json or redistrib_12.4.1.json
-            file="${rel##*/}"                     # redistrib_<version>.json
+          # Drop a release's lock and manifest when no shard was derived for it
+          # (a failed fetch or a manifest that yields nothing): committing the
+          # lock/fixture without a usable fingerprint would ship an orphan.
+          prune_orphan() {
+            local m="$1" rel file version product lock shard
+            rel="${m#"$FIXTURES_DIR"/}"
+            file="${rel##*/}"
             version="${file#redistrib_}"; version="${version%.json}"
             case "$rel" in
-              */*) product="${rel%%/*}"           # sibling tree
-                   lock="$LOCK_DIR/$product/corpus.$version.lock.json" ;;
-              *)   product="cuda"                 # cuda root manifest: shard under cuda/, lock at root
-                   lock="$LOCK_DIR/corpus.$version.lock.json" ;;
+              */*) product="${rel%%/*}"; lock="$LOCK_DIR/$product/corpus.$version.lock.json" ;;
+              *)   product="cuda"; lock="$LOCK_DIR/corpus.$version.lock.json" ;;
             esac
             shard="$SHARD_DIR/$product/$file"
             if [ ! -f "$shard" ]; then
               echo "drop orphan $product $version (no shard derived)"
               rm -f "$m" "$lock"
             fi
+          }
+
+          # Each release is fetched, derived, and pruned on its own, then its
+          # downloaded archives are cleared before the next. One bad upstream
+          # archive (an NVIDIA re-publish under a changed hash) is skipped so it
+          # does not abort the whole batch; its manifest derives no shard and is
+          # pruned as an orphan below.
+          for lock in "${new_locks[@]}"; do
+            manifest="$(manifest_for_lock "$lock")"
+            if [ ! -f "$manifest" ]; then
+              echo "skip $lock (no manifest $manifest)"
+              continue
+            fi
+            cargo run --locked --quiet -p xtask -- corpus fetch --lock "$lock" --out "$CORPUS_DIR" \
+              || echo "skip $lock (fetch failed; see log above)"
+            staging="$(stage_manifest "$manifest")"
+            cargo run --locked --quiet -p xtask -- fingerprints build \
+              --from "$staging" --out "$SHARD_DIR" --corpus "$CORPUS_DIR" --jobs "$JOBS"
+            rm -rf "$staging"
+            prune_orphan "$manifest"
+            # Flat disk: clear this release's archives before the next release.
+            rm -rf "${CORPUS_DIR:?}"/*
           done
 
       - name: Regenerate product map from component profiles

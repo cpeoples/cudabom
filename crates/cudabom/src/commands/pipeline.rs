@@ -8,7 +8,7 @@
 //! commands cannot drift apart.
 
 use cudabom_advisory::{match_findings_with_toolkit, AdvisoryIndex, Match};
-use cudabom_core::{Error, Finding, Limits};
+use cudabom_core::{CoverageGap, Error, Finding, Limits};
 use cudabom_elf::ElfFacts;
 use cudabom_extract::{scan_target, FileKind, ScannedFile};
 use cudabom_fatbin::{CapabilityManifest, FatbinFacts, GpuCode};
@@ -82,6 +82,10 @@ pub(crate) struct PipelineOutcome {
     pub(crate) files: Vec<FileReport>,
     /// CUDA-component findings, sorted by id.
     pub(crate) findings: Vec<Finding>,
+    /// Libraries the scan could not fully attribute, surfaced as an
+    /// informational coverage report. Sorted and de-duplicated. Never a
+    /// [`Finding`]: this affects no counts, confidence, or exit code.
+    pub(crate) coverage_gaps: Vec<CoverageGap>,
     /// Advisory matches, present only when an index was supplied. Sorted by
     /// advisory id then component.
     pub(crate) advisory_matches: Option<Vec<Match>>,
@@ -130,6 +134,7 @@ pub(crate) fn run(
 ) -> Result<PipelineOutcome, ExitStatus> {
     let mut files = Vec::new();
     let mut findings = Vec::new();
+    let mut coverage_gaps = Vec::new();
 
     for (index, target) in targets.iter().enumerate() {
         crate::verbosity::detail!(
@@ -143,6 +148,7 @@ pub(crate) fn run(
             let (report, facts) = build_file_report(file);
             for file_facts in &facts {
                 findings.extend(cudabom_identify::identify_file(file_facts, db));
+                coverage_gaps.extend(cudabom_identify::coverage_gaps(file_facts, db));
             }
             files.push(report);
             Ok(())
@@ -165,6 +171,18 @@ pub(crate) fn run(
 
     // Deterministic finding order regardless of extraction order.
     findings.sort_by(|a, b| a.id.cmp(&b.id));
+
+    // Deterministic, de-duplicated coverage report. The same library can be
+    // reached twice (e.g. host file and an embedded copy at the same path); a
+    // stable sort by (path, stem, kind) then dedup keeps the report tidy.
+    coverage_gaps.sort_by(|a, b| {
+        a.location
+            .path
+            .cmp(&b.location.path)
+            .then_with(|| a.soname_stem.cmp(&b.soname_stem))
+            .then_with(|| a.kind.as_str().cmp(b.kind.as_str()))
+    });
+    coverage_gaps.dedup();
 
     // Correlate against advisories, if an index was provided.
     let (advisory_matches, advisory_source_commit) = match advisory_index {
@@ -232,6 +250,7 @@ pub(crate) fn run(
     Ok(PipelineOutcome {
         files,
         findings,
+        coverage_gaps,
         advisory_matches,
         advisory_source_commit,
         capability,

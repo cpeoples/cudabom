@@ -20,8 +20,8 @@ pub mod paths;
 pub use config::{Budget, Limits};
 pub use error::{Error, Result};
 pub use model::{
-    Artifact, ArtifactKind, Component, Confidence, Evidence, EvidenceKind, Finding, Location,
-    Relationship,
+    Artifact, ArtifactKind, Component, Confidence, CoverageGap, CoverageGapKind, Evidence,
+    EvidenceKind, Finding, Location, Relationship,
 };
 
 /// The cudabom native output schema version.

@@ -1001,3 +1001,118 @@ fn scan_markdown_emits_tables_and_caveat() {
     );
     assert!(out.contains("absence of a match is not proof of safety"));
 }
+
+#[test]
+fn scan_reports_coverage_gap_for_unknown_cuda_linked_library() {
+    // A library whose SONAME stem the DB does not know, but which links the
+    // CUDA runtime: surfaced as an informational coverage gap, never a finding,
+    // and the scan still exits 0.
+    let elf =
+        dynamic_elf::build_dynamic_elf("libcusolvermp.so.0", &["libc.so.6", "libcudart.so.12"]);
+
+    let dir = tempfile::tempdir().unwrap();
+    let elf_path = dir.path().join("libcusolvermp.so.0");
+    std::fs::write(&elf_path, &elf).unwrap();
+
+    // DB knows cudart (so the NEEDED edge resolves) but not cusolvermp.
+    let db_path = dir.path().join("db.json");
+    std::fs::write(
+        &db_path,
+        r#"{ "schema_version": 1, "components": [ { "name": "cudart", "soname_stems": ["libcudart.so"] } ] }"#,
+    )
+    .unwrap();
+
+    let assert = Command::cargo_bin("cudabom")
+        .unwrap()
+        .args([
+            "scan",
+            elf_path.to_str().unwrap(),
+            "--db",
+            db_path.to_str().unwrap(),
+            "--format",
+            "json",
+        ])
+        .assert()
+        .success();
+
+    let out = String::from_utf8(assert.get_output().stdout.clone()).unwrap();
+    let json: serde_json::Value = serde_json::from_str(&out).unwrap();
+
+    let gaps = json["coverage_gaps"].as_array().unwrap();
+    let gap = gaps
+        .iter()
+        .find(|g| g["soname_stem"] == "libcusolvermp.so")
+        .expect("the unknown CUDA-linked library is reported as a coverage gap");
+    assert_eq!(gap["kind"], "unknown-cuda-linked-library");
+
+    // It is never promoted into a finding: cusolvermp is not named.
+    let named: Vec<&str> = json["findings"]
+        .as_array()
+        .map(|a| {
+            a.iter()
+                .filter_map(|f| f["component"]["name"].as_str())
+                .collect()
+        })
+        .unwrap_or_default();
+    assert!(
+        !named.contains(&"cusolvermp"),
+        "a coverage gap must not become a named finding"
+    );
+}
+
+#[test]
+fn scan_table_shows_coverage_gap_section() {
+    let elf =
+        dynamic_elf::build_dynamic_elf("libcusolvermp.so.0", &["libc.so.6", "libcudart.so.12"]);
+
+    let dir = tempfile::tempdir().unwrap();
+    let elf_path = dir.path().join("libcusolvermp.so.0");
+    std::fs::write(&elf_path, &elf).unwrap();
+
+    let db_path = dir.path().join("db.json");
+    std::fs::write(
+        &db_path,
+        r#"{ "schema_version": 1, "components": [ { "name": "cudart", "soname_stems": ["libcudart.so"] } ] }"#,
+    )
+    .unwrap();
+
+    Command::cargo_bin("cudabom")
+        .unwrap()
+        .args([
+            "scan",
+            elf_path.to_str().unwrap(),
+            "--db",
+            db_path.to_str().unwrap(),
+            "--format",
+            "table",
+        ])
+        .assert()
+        .success()
+        .stdout(predicates::str::contains("coverage gaps"))
+        .stdout(predicates::str::contains("libcusolvermp.so.0"))
+        .stdout(predicates::str::contains("cudabom update"));
+}
+
+#[test]
+fn scan_non_cuda_library_reports_no_coverage_gap() {
+    // A plain library that does not link the CUDA runtime must never appear in
+    // the coverage report, however its name reads.
+    let elf = dynamic_elf::build_dynamic_elf("libnvme.so.1", &["libc.so.6"]);
+
+    let dir = tempfile::tempdir().unwrap();
+    let elf_path = dir.path().join("libnvme.so.1");
+    std::fs::write(&elf_path, &elf).unwrap();
+
+    let assert = Command::cargo_bin("cudabom")
+        .unwrap()
+        .args(["scan", elf_path.to_str().unwrap(), "--format", "json"])
+        .assert()
+        .success();
+
+    let out = String::from_utf8(assert.get_output().stdout.clone()).unwrap();
+    let json: serde_json::Value = serde_json::from_str(&out).unwrap();
+    assert!(
+        json.get("coverage_gaps").is_none() || json["coverage_gaps"].as_array().unwrap().is_empty(),
+        "a non-CUDA library must not be flagged:\n{out}"
+    );
+}

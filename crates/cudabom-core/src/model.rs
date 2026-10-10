@@ -220,6 +220,54 @@ pub struct Finding {
     pub conflicts: Vec<String>,
 }
 
+/// A CUDA-adjacent library the scan could not fully attribute, surfaced so the
+/// gap is visible rather than silently dropped.
+///
+/// Deliberately *not* a [`Finding`]: it names no component and asserts no
+/// identity, so it never affects finding counts, confidence, advisory
+/// correlation, or exit codes.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct CoverageGap {
+    /// Which kind of gap this is.
+    pub kind: CoverageGapKind,
+    /// The library SONAME stem observed (e.g. `libcusolvermp.so`).
+    pub soname_stem: String,
+    /// The full SONAME as observed (e.g. `libcusolvermp.so.0`), when present.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub soname: Option<String>,
+    /// Where the library was observed.
+    pub location: Location,
+}
+
+/// The two distinct coverage gaps, which imply different user actions.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "kebab-case")]
+#[non_exhaustive]
+pub enum CoverageGapKind {
+    /// The database knows this library's component (its stem is profiled), but
+    /// no fingerprint (hash or build-id) matched *this* build. A newer database
+    /// likely covers it: the user action is `cudabom update`.
+    KnownComponentUnfingerprintedBuild,
+    /// The library links the CUDA runtime (or exports CUDA-namespaced symbols)
+    /// but its stem matches no known component at all. It may be a CUDA library
+    /// cudabom does not yet track: the user action is to update and, if still
+    /// unlisted, report it.
+    UnknownCudaLinkedLibrary,
+}
+
+impl CoverageGapKind {
+    /// The canonical kebab-case token (matches the serde representation).
+    #[must_use]
+    pub fn as_str(self) -> &'static str {
+        match self {
+            CoverageGapKind::KnownComponentUnfingerprintedBuild => {
+                "known-component-unfingerprinted-build"
+            }
+            CoverageGapKind::UnknownCudaLinkedLibrary => "unknown-cuda-linked-library",
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
