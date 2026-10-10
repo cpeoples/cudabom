@@ -816,13 +816,17 @@ fn is_shared_object(path: &Path) -> bool {
 }
 
 /// Extract an archive into `dest`, choosing `unzip` for `.zip` (Windows
-/// archives), `extract_deb` for `.deb` (Jetson/L4T packages), and the system
-/// `tar` otherwise (`.tar.xz`/`.tar.gz`). xtask is dev/CI-only tooling, so
-/// shelling out keeps the shipped binary dependency-free.
+/// archives), `extract_deb` for `.deb` (Jetson/L4T and per-distro packages),
+/// `extract_rpm` for `.rpm` (per-distro RPM packages via libarchive/`bsdtar`),
+/// and the system `tar` otherwise (`.tar.xz`/`.tar.gz`). xtask is dev/CI-only
+/// tooling, so shelling out keeps the shipped binary dependency-free.
 fn extract_archive(archive_path: &Path, dest: &Path) -> Result<()> {
     let name = archive_path.to_string_lossy();
     if name.ends_with(".deb") {
         return extract_deb(archive_path, dest);
+    }
+    if name.ends_with(".rpm") {
+        return extract_rpm(archive_path, dest);
     }
     let status = if name.ends_with(".zip") {
         Command::new("unzip")
@@ -841,6 +845,23 @@ fn extract_archive(archive_path: &Path, dest: &Path) -> Result<()> {
             .status()
             .context("running system tar (is it installed?)")?
     };
+    if !status.success() {
+        bail!("failed to extract {}", archive_path.display());
+    }
+    Ok(())
+}
+
+/// Extract a `.rpm` into `dest` using `bsdtar` (libarchive), which reads the
+/// RPM header + cpio payload natively. This avoids `rpm2cpio`, which is not
+/// present on macOS, mirroring the portable `.deb` handling.
+fn extract_rpm(archive_path: &Path, dest: &Path) -> Result<()> {
+    let status = Command::new("bsdtar")
+        .arg("-xf")
+        .arg(archive_path)
+        .arg("-C")
+        .arg(dest)
+        .status()
+        .context("running bsdtar to extract a .rpm (is libarchive/bsdtar installed?)")?;
     if !status.success() {
         bail!("failed to extract {}", archive_path.display());
     }
@@ -1149,6 +1170,9 @@ fn archive_table_of_contents(path: &Path) -> Vec<String> {
     }
     let output = if name.ends_with(".zip") {
         Command::new("unzip").arg("-Z1").arg(path).output()
+    } else if name.ends_with(".rpm") {
+        // libarchive reads the RPM header + cpio payload; list without extract.
+        Command::new("bsdtar").arg("-tf").arg(path).output()
     } else {
         // .tar.xz / .tar.gz / .tar: tar auto-detects compression.
         Command::new("tar").arg("-tf").arg(path).output()

@@ -9,8 +9,10 @@
 //! primitive as `db update`, so the corpus fetch inherits backoff and
 //! rate-limit handling.
 
+mod apt;
 mod bundle;
 mod corpus;
+mod cuda_repos;
 mod distribution_discover;
 mod eval_distribution;
 mod eval_groundtruth;
@@ -19,6 +21,8 @@ mod fingerprints;
 mod jetson;
 mod product_map;
 mod release_version;
+mod rpm;
+mod sources;
 mod verbosity;
 
 use std::process::ExitCode;
@@ -70,6 +74,10 @@ const TASKS: &[(&str, &str)] = &[
         "jetson discover",
         "synthesize redist-shaped manifests for Jetson (L4T/JetPack) CUDA .deb packages",
     ),
+    (
+        "cuda-repos discover",
+        "synthesize redist-shaped manifests for per-distro CUDA .deb / .rpm packages (compute/cuda/repos)",
+    ),
 ];
 
 fn main() -> ExitCode {
@@ -103,6 +111,8 @@ fn main() -> ExitCode {
         distribution_discover::run(task_args(&args, "distribution discover"))
     } else if task.starts_with("jetson discover") {
         jetson::discover(task_args(&args, "jetson discover"))
+    } else if task.starts_with("cuda-repos discover") {
+        cuda_repos::discover(task_args(&args, "cuda-repos discover"))
     } else if task.starts_with("eval") {
         eval_groundtruth::run(task_args(&args, "eval"))
     } else {
@@ -201,6 +211,13 @@ fn print_help() {
         "jetson discover [--release r36.4 ...] [--base-url <url>] [--fixtures fixtures/redist/jetson]"
     );
     println!("              [--out fingerprints/jetson] [--json] [--dry-run] [retry flags]");
+    println!(
+        "cuda-repos discover [--distro ubuntu2404 ...] [--arch x86_64 ...] [--base-url <url>]"
+    );
+    println!(
+        "              [--fixtures fixtures/redist/cuda-repos] [--out fingerprints/cuda-repos]"
+    );
+    println!("              [--limit N] [--json] [--dry-run] [retry flags]");
     println!();
     println!("Global: -v/--verbose (repeatable), -q/--quiet control diagnostic output.");
 }

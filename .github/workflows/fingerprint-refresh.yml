@@ -71,6 +71,19 @@ jobs:
       - name: Install Rust toolchain
         run: rustup toolchain install stable --profile minimal
 
+      - name: Install libarchive-tools (bsdtar for .rpm extraction)
+        # The per-distro RPM repos ship .rpm packages; fingerprint derivation
+        # extracts them with bsdtar (libarchive), which reads the RPM header and
+        # cpio payload natively without rpm2cpio. Hosted ubuntu runners do not
+        # always ship bsdtar, so install it explicitly.
+        run: |
+          set -euo pipefail
+          if ! command -v bsdtar >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y libarchive-tools
+          fi
+          bsdtar --version
+
       - name: Cache cargo registry and build
         uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca # v4.2.3
         with:
@@ -142,8 +155,36 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Discover per-distro CUDA repos (.deb / .rpm packages)
+        id: cuda_repos
+        env:
+          REPOS_BATCH: ${{ inputs.batch || '4' }}
+        run: |
+          set -euo pipefail
+          # Besides the .tar.xz redistributables, NVIDIA ships the same CUDA
+          # libraries as per-distro .deb/.rpm packages under
+          # compute/cuda/repos/<distro>/<arch>/. Those are separately built
+          # binaries with their own build-ids and inner-.so hashes, so a scan
+          # of a library from an apt/dnf CUDA install matches only a structural
+          # family in the redist corpus, never an exact version. Synthesize a
+          # redist-shaped manifest + lock per distro/arch from NVIDIA's own
+          # package index (Debian Packages / YUM primary.xml: version, path, and
+          # SHA-256 straight from the source), deduplicated by archive sha256 so
+          # a binary shared across distros is recorded once. These land under
+          # fixtures/redist/cuda-repos and fingerprints/cuda-repos, so the
+          # fetch, derive, orphan-prune, and PR steps below pick them up with
+          # the other trees. --limit bounds the batch; re-discovery is
+          # idempotent (an unchanged target rewrites identical bytes).
+          cargo run --locked --quiet -p xtask -- cuda-repos discover --limit "$REPOS_BATCH"
+          if git status --porcelain --untracked-files=all -- "$LOCK_DIR/cuda-repos" "$FIXTURES_DIR/cuda-repos" \
+            | grep -q .; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Fetch and derive the batch
-        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true'
+        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true' || steps.cuda_repos.outputs.changed == 'true'
         env:
           JOBS: ${{ inputs.jobs || '4' }}
         run: |
@@ -226,7 +267,7 @@ jobs:
           done
 
       - name: Regenerate product map from component profiles
-        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true'
+        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true' || steps.cuda_repos.outputs.changed == 'true'
         # The CSAF product -> component map is generated from the reviewed
         # component profiles (advisory_terms in
         # crates/cudabom-identify/src/derive.rs). Regenerate so that if a newly
@@ -244,7 +285,7 @@ jobs:
 
       - name: Detect changes
         id: diff
-        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true'
+        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true' || steps.cuda_repos.outputs.changed == 'true'
         run: |
           set -euo pipefail
           # Stage new/changed shards and manifests; ignore the gitignored corpus.
@@ -309,8 +350,11 @@ jobs:
             directory indexes across every product tree (CUDA toolkit + cuDNN,
             NCCL, cuTENSOR, cuDSS, cuSPARSELt, cuQuantum, nvJPEG2000, nvTIFF,
             cuBLASMp, NVPL, NVSHMEM, nvCOMP) plus the Jetson (L4T/JetPack) APT
-            packages, with no hardcoded version list, and derived from the
-            official archives (each verified against NVIDIA's own SHA-256).
+            packages and the per-distro CUDA repos (compute/cuda/repos:
+            Debian/Ubuntu `.deb` and RHEL/Fedora/SLES/Amazon/Azure `.rpm`,
+            deduplicated by archive SHA-256), with no hardcoded version list,
+            and derived from the official archives (each verified against
+            NVIDIA's own SHA-256).
 
             **Added this run (${{ steps.diff.outputs.added_count }} release(s)):**
 
