@@ -32,8 +32,6 @@ const DEFAULT_PLATFORMS: &[&str] = &[
     "linux-ppc64le",
     "linux-aarch64",
 ];
-/// Default NVIDIA CUDA redist base URL (archives resolve against this).
-const DEFAULT_BASE_URL: &str = "https://developer.download.nvidia.com/compute/cuda/redist/";
 /// Default corpus download directory (gitignored).
 const DEFAULT_CORPUS_DIR: &str = "corpus";
 /// Default directory for saved redist manifests (fixtures).
@@ -59,12 +57,25 @@ const DEFAULT_SHARD_DIR: &str = cudabom_core::paths::CUDA_SHARD_DIR;
 struct RedistProduct {
     /// Product name (matches NVIDIA's `--product` and the URL path segment).
     name: &'static str,
-    /// The `compute/<product>/redist/` base URL.
-    base_url: &'static str,
     /// Fixtures subdirectory under the fixtures root (empty = root, for cuda).
     fixtures_subdir: &'static str,
     /// Shard directory for this product's derived fingerprints.
     shard_dir: &'static str,
+    /// Ad-hoc base URL override (set only by `--base-url`); when `None` the URL
+    /// is composed from the configured download host.
+    base_url_override: Option<&'static str>,
+}
+
+impl RedistProduct {
+    /// The `compute/<product>/redist/` base URL, composed from the configured
+    /// download host (see [`crate::sources`]), or the `--base-url` override
+    /// returned verbatim when one is set.
+    fn base_url(&self) -> String {
+        match self.base_url_override {
+            Some(url) => url.to_string(),
+            None => crate::sources::redist_base(self.name),
+        }
+    }
 }
 
 /// NVIDIA's published redistributable product trees (CUDA Installation Guide,
@@ -74,81 +85,81 @@ struct RedistProduct {
 const REDIST_PRODUCTS: &[RedistProduct] = &[
     RedistProduct {
         name: "cuda",
-        base_url: "https://developer.download.nvidia.com/compute/cuda/redist/",
         fixtures_subdir: "",
         shard_dir: cudabom_core::paths::CUDA_SHARD_DIR,
+        base_url_override: None,
     },
     RedistProduct {
         name: "cudnn",
-        base_url: "https://developer.download.nvidia.com/compute/cudnn/redist/",
         fixtures_subdir: "cudnn",
         shard_dir: "fingerprints/cudnn",
+        base_url_override: None,
     },
     RedistProduct {
         name: "nccl",
-        base_url: "https://developer.download.nvidia.com/compute/nccl/redist/",
         fixtures_subdir: "nccl",
         shard_dir: "fingerprints/nccl",
+        base_url_override: None,
     },
     RedistProduct {
         name: "cutensor",
-        base_url: "https://developer.download.nvidia.com/compute/cutensor/redist/",
         fixtures_subdir: "cutensor",
         shard_dir: "fingerprints/cutensor",
+        base_url_override: None,
     },
     RedistProduct {
         name: "cudss",
-        base_url: "https://developer.download.nvidia.com/compute/cudss/redist/",
         fixtures_subdir: "cudss",
         shard_dir: "fingerprints/cudss",
+        base_url_override: None,
     },
     RedistProduct {
         name: "cusparselt",
-        base_url: "https://developer.download.nvidia.com/compute/cusparselt/redist/",
         fixtures_subdir: "cusparselt",
         shard_dir: "fingerprints/cusparselt",
+        base_url_override: None,
     },
     RedistProduct {
         name: "cuquantum",
-        base_url: "https://developer.download.nvidia.com/compute/cuquantum/redist/",
         fixtures_subdir: "cuquantum",
         shard_dir: "fingerprints/cuquantum",
+        base_url_override: None,
     },
     RedistProduct {
         name: "nvjpeg2000",
-        base_url: "https://developer.download.nvidia.com/compute/nvjpeg2000/redist/",
         fixtures_subdir: "nvjpeg2000",
         shard_dir: "fingerprints/nvjpeg2000",
+        base_url_override: None,
     },
     RedistProduct {
         name: "nvtiff",
-        base_url: "https://developer.download.nvidia.com/compute/nvtiff/redist/",
         fixtures_subdir: "nvtiff",
         shard_dir: "fingerprints/nvtiff",
+        base_url_override: None,
     },
     RedistProduct {
         name: "cublasmp",
-        base_url: "https://developer.download.nvidia.com/compute/cublasmp/redist/",
         fixtures_subdir: "cublasmp",
         shard_dir: "fingerprints/cublasmp",
+        base_url_override: None,
     },
     RedistProduct {
         name: "nvpl",
-        base_url: "https://developer.download.nvidia.com/compute/nvpl/redist/",
         fixtures_subdir: "nvpl",
         shard_dir: "fingerprints/nvpl",
+        base_url_override: None,
     },
     RedistProduct {
         name: "nvshmem",
-        base_url: "https://developer.download.nvidia.com/compute/nvshmem/redist/",
         fixtures_subdir: "nvshmem",
         shard_dir: "fingerprints/nvshmem",
+        base_url_override: None,
     },
     RedistProduct {
         name: "nvcomp",
-        base_url: "https://developer.download.nvidia.com/compute/nvcomp/redist/",
         fixtures_subdir: "nvcomp",
         shard_dir: "fingerprints/nvcomp",
+        base_url_override: None,
     },
 ];
 
@@ -158,7 +169,7 @@ pub(crate) fn lock(args: &[String]) -> Result<()> {
     let manifest_path =
         flag(args, "--manifest").context("corpus lock requires --manifest <redistrib_*.json>")?;
     let out = flag(args, "--out").unwrap_or_else(|| DEFAULT_LOCK.to_string());
-    let base_url = flag(args, "--base-url").unwrap_or_else(|| DEFAULT_BASE_URL.to_string());
+    let base_url = flag(args, "--base-url").unwrap_or_else(|| crate::sources::redist_base("cuda"));
     let platforms = collect_platforms(args);
     let platform_refs: Vec<&str> = platforms.iter().map(String::as_str).collect();
 
@@ -518,9 +529,9 @@ fn resolve_targets(args: &[String]) -> Result<Vec<RedistProduct>> {
         let base_url: &'static str = Box::leak(url.into_boxed_str());
         return Ok(vec![RedistProduct {
             name: "cuda",
-            base_url,
             fixtures_subdir: "",
             shard_dir: DEFAULT_SHARD_DIR,
+            base_url_override: Some(base_url),
         }]);
     }
     match flag(args, "--product").as_deref() {
@@ -557,7 +568,7 @@ fn discover_one(
     dry_run: bool,
     emit_json: bool,
 ) -> Result<DiscoverSummary> {
-    let base_url = product.base_url;
+    let base_url = product.base_url();
 
     // 1. Read NVIDIA's directory index and extract every published manifest.
     if !emit_json {
@@ -566,7 +577,7 @@ fn discover_one(
             product.name
         );
     }
-    let index_body = cudabom_fetch::get(base_url, &get_options(retry, None))
+    let index_body = cudabom_fetch::get(&base_url, &get_options(retry, None))
         .with_context(|| format!("fetching redist index {base_url}"))?;
     let index_text = String::from_utf8_lossy(&index_body);
     let published = parse_manifest_names(&index_text);
@@ -617,7 +628,7 @@ fn discover_one(
 
     fetch_and_lock_new(
         &new_releases,
-        base_url,
+        &base_url,
         fixtures_dir,
         lock_out,
         platform_refs,

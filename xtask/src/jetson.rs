@@ -29,19 +29,17 @@
 //! derives the binary layer (build-id + inner-`.so` hash) exactly as it does
 //! for the `.tar.xz` redistributables, yielding Tegra-exact fingerprints.
 
-use std::collections::BTreeMap;
 use std::path::PathBuf;
 
 use anyhow::{Context, Result};
 use cudabom_identify::{lock_from_manifest, resolve_component, RedistManifest};
 use serde_json::{json, Map, Value};
 
+use crate::apt::{manifest_key_for, parse_cuda_library_packages, DebPackage};
 use crate::corpus::{build_retry, get_options};
 use crate::verbosity::{detail, status};
 use crate::{flag, has_flag};
 
-/// Base URL of NVIDIA's Jetson APT repository.
-const DEFAULT_BASE_URL: &str = "https://repo.download.nvidia.com/jetson";
 /// The JetPack L4T releases whose APT index publishes CUDA packages: JetPack 5
 /// (r35.x) and JetPack 6 (r36.x). A release that serves no CUDA library is
 /// skipped at discovery, so a forward-looking entry is harmless; adding a new
@@ -56,22 +54,6 @@ const DEFAULT_FIXTURES_DIR: &str = "fixtures/redist/jetson";
 /// Shard and corpus-lock directory for the Jetson tree.
 const DEFAULT_SHARD_DIR: &str = "fingerprints/jetson";
 
-/// One runtime CUDA library package parsed from an APT `Packages` stanza.
-#[derive(Debug, Clone, PartialEq, Eq)]
-struct DebPackage {
-    /// APT `Source` name (e.g. `libcublas`, `cuda-cudart`).
-    source: String,
-    /// Exact upstream version with the Debian revision stripped
-    /// (`12.6.1.4-1` -> `12.6.1.4`).
-    version: String,
-    /// Pool path relative to the repository base (the `Filename` field).
-    filename: String,
-    /// NVIDIA's own sha256 of the `.deb`, lowercased.
-    sha256: String,
-    /// Size in bytes, when present.
-    size: Option<u64>,
-}
-
 /// `jetson discover [--base-url <url>] [--release <r> ...] [--fixtures <dir>]
 /// [--out <dir>] [--json] [--dry-run] [retry flags]`
 ///
@@ -80,7 +62,7 @@ struct DebPackage {
 /// `--dry-run`) write it under the Jetson fixtures directory so `fingerprints
 /// build` can fetch and derive it.
 pub(crate) fn discover(args: &[String]) -> Result<()> {
-    let base_url = flag(args, "--base-url").unwrap_or_else(|| DEFAULT_BASE_URL.to_string());
+    let base_url = flag(args, "--base-url").unwrap_or_else(crate::sources::jetson_base);
     let releases = collect_releases(args);
     let fixtures_dir =
         PathBuf::from(flag(args, "--fixtures").unwrap_or_else(|| DEFAULT_FIXTURES_DIR.to_string()));
@@ -185,89 +167,6 @@ pub(crate) fn discover(args: &[String]) -> Result<()> {
     Ok(())
 }
 
-/// Map an APT `Source` name to the redist manifest key the profile table uses.
-/// NVIDIA's Jetson package sources use hyphens where the redist manifest keys
-/// use underscores (`cuda-cudart` -> `cuda_cudart`); the `lib*` sources already
-/// match (`libcublas` -> `libcublas`). Replacing `-` with `_` normalizes both.
-fn manifest_key_for(source: &str) -> String {
-    source.replace('-', "_")
-}
-
-/// Parse the runtime CUDA library packages out of an APT `Packages` index.
-///
-/// The index is a sequence of stanzas separated by blank lines, each a set of
-/// `Field: value` lines. A stanza is kept when it is a runtime CUDA library:
-/// it declares a `Provides:` of a versioned `.so`, its `Source` resolves to a
-/// known component profile, and it is not a `-dev` package (headers/symlinks,
-/// no runtime library). Only first-party fields are read; nothing is inferred.
-fn parse_cuda_library_packages(index_text: &str) -> Vec<DebPackage> {
-    let mut out = Vec::new();
-    for stanza in index_text.split("\n\n") {
-        let mut fields: BTreeMap<&str, &str> = BTreeMap::new();
-        for line in stanza.lines() {
-            // A leading space marks a continuation of the previous field (e.g. a
-            // multi-line Description); none of those carry a field we read.
-            if line.starts_with(' ') {
-                continue;
-            }
-            if let Some((k, v)) = line.split_once(": ") {
-                fields.insert(k, v.trim());
-            }
-        }
-
-        let Some(package) = fields.get("Package") else {
-            continue;
-        };
-        // The -dev packages ship headers and symlinks, no runtime library.
-        if package.contains("-dev-") || package.ends_with("-dev") {
-            continue;
-        }
-        let Some(provides) = fields.get("Provides") else {
-            continue;
-        };
-        if !provides.contains(".so") {
-            continue;
-        }
-
-        let Some(source) = fields.get("Source") else {
-            continue;
-        };
-        // Keep only sources that resolve to a reviewed component, so we never
-        // synthesize an entry cudabom cannot attribute.
-        if resolve_component(&manifest_key_for(source)).is_none() {
-            continue;
-        }
-
-        let (Some(version), Some(filename), Some(sha256)) = (
-            fields.get("Version"),
-            fields.get("Filename"),
-            fields.get("SHA256"),
-        ) else {
-            continue;
-        };
-
-        out.push(DebPackage {
-            source: (*source).to_string(),
-            version: strip_debian_revision(version),
-            filename: (*filename).to_string(),
-            sha256: sha256.to_ascii_lowercase(),
-            size: fields.get("Size").and_then(|s| s.parse::<u64>().ok()),
-        });
-    }
-    out.sort_by(|a, b| a.source.cmp(&b.source));
-    out.dedup_by(|a, b| a.source == b.source);
-    out
-}
-
-/// Strip the Debian package revision from a version (`12.6.1.4-1` ->
-/// `12.6.1.4`). The upstream version is everything before the last `-`.
-fn strip_debian_revision(version: &str) -> String {
-    match version.rsplit_once('-') {
-        Some((upstream, _rev)) => upstream.to_string(),
-        None => version.to_string(),
-    }
-}
-
 /// Build a `redistrib_<release>.json` body in the [`RedistManifest`] shape from
 /// the parsed packages. Each package becomes a component keyed by its
 /// normalized manifest key, carrying one `linux-aarch64-tegra` archive with
@@ -323,53 +222,12 @@ SHA256: 3ff5d9c20e8cf1b8fd36841271846f2d2de23aaca9bf2e9213d5dac8e6488693\n\
 Description: CUBLAS native runtime libraries\n\
  CUBLAS native runtime libraries\n\
 \n\
-Package: libcublas-dev-12-6\n\
-Source: libcublas\n\
-Version: 12.6.1.4-1\n\
-Provides: libcublas.so.12-dev (= 12.6.1.4)\n\
-Filename: pool/main/libc/libcublas/libcublas-dev-12-6_12.6.1.4-1_arm64.deb\n\
-SHA256: 8125eeb5502d569a19f8bf8c54fd455c2a4a722f3c571e02bfe8c6bdd3d6e800\n\
-\n\
 Package: cuda-cudart-12-6\n\
 Source: cuda-cudart\n\
 Version: 12.6.68-1\n\
 Provides: libcudart.so.12 (= 12.6.68)\n\
 Filename: pool/main/c/cuda-cudart/cuda-cudart-12-6_12.6.68-1_arm64.deb\n\
-SHA256: AABBCCDD\n\
-\n\
-Package: nsight-systems-2024.5.1\n\
-Source: nsight-systems\n\
-Version: 2024.5.1-1\n\
-Filename: pool/main/n/nsight/nsight-systems_2024.5.1-1_arm64.deb\n\
-SHA256: 99998888\n";
-
-    #[test]
-    fn parses_only_runtime_cuda_libraries() {
-        let pkgs = parse_cuda_library_packages(SAMPLE);
-        // libcublas-12-6 and cuda-cudart-12-6 are kept; the -dev package and
-        // nsight-systems (no .so Provides, no component profile) are dropped.
-        let sources: Vec<&str> = pkgs.iter().map(|p| p.source.as_str()).collect();
-        assert_eq!(sources, vec!["cuda-cudart", "libcublas"]);
-    }
-
-    #[test]
-    fn strips_debian_revision_and_lowercases_hash() {
-        let pkgs = parse_cuda_library_packages(SAMPLE);
-        let cublas = pkgs.iter().find(|p| p.source == "libcublas").unwrap();
-        assert_eq!(cublas.version, "12.6.1.4");
-        assert_eq!(
-            cublas.sha256,
-            "3ff5d9c20e8cf1b8fd36841271846f2d2de23aaca9bf2e9213d5dac8e6488693"
-        );
-        assert_eq!(cublas.size, Some(218_073_004));
-    }
-
-    #[test]
-    fn maps_source_to_manifest_key() {
-        assert_eq!(manifest_key_for("cuda-cudart"), "cuda_cudart");
-        assert_eq!(manifest_key_for("libcublas"), "libcublas");
-        assert_eq!(manifest_key_for("cuda-nvrtc"), "cuda_nvrtc");
-    }
+SHA256: AABBCCDD\n";
 
     #[test]
     fn synthesized_manifest_parses_as_a_redist_manifest() {
@@ -386,11 +244,5 @@ SHA256: 99998888\n";
         assert!(archive
             .relative_path
             .ends_with("cuda-cudart-12-6_12.6.68-1_arm64.deb"));
-    }
-
-    #[test]
-    fn strip_debian_revision_handles_missing_revision() {
-        assert_eq!(strip_debian_revision("12.6.1.4-1"), "12.6.1.4");
-        assert_eq!(strip_debian_revision("12.6.1.4"), "12.6.1.4");
     }
 }
