@@ -104,7 +104,7 @@ jobs:
             Automated refresh of the in-the-wild distribution eval manifest.
 
             New CUDA wheels were discovered first-party from PyPI's JSON API
-            (metadata-only — no wheel was downloaded) across the reviewed set of
+            (metadata only, no wheel was downloaded) across the reviewed set of
             CUDA-bearing projects: official `nvidia-*-cuXX` wheels plus
             third-party frameworks that bundle CUDA (PyTorch, CuPy, JAX,
             TensorFlow). Each entry is content-pinned (URL + SHA-256).

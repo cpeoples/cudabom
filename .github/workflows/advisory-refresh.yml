@@ -150,7 +150,7 @@ jobs:
             changed version ranges before merging.
 
             **Unmapped products** (not in `${{ env.MAP_PATH }}`, so their
-            advisories are excluded — extend the map if any belong to a tracked
+            advisories are excluded; extend the map if any belong to a tracked
             component):
 
             ```

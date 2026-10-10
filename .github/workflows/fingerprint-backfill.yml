@@ -7,7 +7,7 @@ name: fingerprint-backfill
 #   - fingerprint-refresh only processes NEWLY discovered releases. The shards
 #     committed earlier are manifest-only (archive hashes, but no inner-.so
 #     hashes or build-ids), so a wheel's bundled library resolves to a version
-#     *family* (`cublas 12.x likely`) rather than an exact pin — and no CVEs
+#     *family* (`cublas 12.x likely`) rather than an exact pin, and no CVEs
 #     correlate without the exact version.
 #   - A blanket `fingerprints build --force` would REGRESS those shards: without
 #     each release's corpus on disk it rewrites them manifest-only again.
@@ -16,7 +16,7 @@ name: fingerprint-backfill
 # manifest-only shards, fetches ONLY those releases' archives, re-derives ONLY
 # those shards (staging each manifest alone so the recursive builder cannot touch
 # the others), and reclaims. Coverage compounds a few releases per night until
-# the whole DB carries the binary layer — with no risk of regressing a shard it
+# the whole DB carries the binary layer, with no risk of regressing a shard it
 # did not fetch corpus for.
 
 on:

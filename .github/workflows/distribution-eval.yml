@@ -5,7 +5,7 @@ name: distribution-eval
 # runner disk limits (the guaranteed free space on a standard runner is 14 GB):
 #
 #   - Tier A (always, on PRs/nightly): wheels + conda + synthetic transforms.
-#     A few GB peak — fits the 14 GB guarantee with no cleanup gymnastics.
+#     A few GB peak, fits the 14 GB guarantee with no cleanup gymnastics.
 #   - Tier B (nightly / manual): the full set including fat ML container images
 #     (PyTorch, TensorFlow). Run with --stream so each artifact's working set is
 #     reclaimed before the next, keeping peak disk to one artifact (~9 GB) rather
@@ -39,7 +39,7 @@ permissions:
 jobs:
   # Tier A: light, always-safe. Runs on every scheduled/dispatched invocation.
   tier-a:
-    name: distribution eval (tier A — wheels/conda/synthetic)
+    name: distribution eval (tier A, wheels/conda/synthetic)
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -100,7 +100,7 @@ jobs:
   # Tier B: full set including fat containers. Nightly, or dispatched with
   # tier=b. Streams cleanup so peak disk is one artifact.
   tier-b:
-    name: distribution eval (tier B — full incl. containers)
+    name: distribution eval (tier B, full incl. containers)
     runs-on: ubuntu-latest
     if: github.event_name == 'schedule' || inputs.tier == 'b'
     permissions:
