@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cudnn",
+      "version": "9.9.0.52",
+      "platform": "linux-aarch64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-aarch64/cudnn-linux-aarch64-9.9.0.52_cuda12-archive.tar.xz",
+      "sha256": "2a5981413cd2861ec65315d950c89d747768a7f6736d52c9f5384b25905e2570"
+    },
+    {
+      "component": "cudnn",
+      "version": "9.9.0.52",
+      "platform": "linux-sbsa-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-sbsa/cudnn-linux-sbsa-9.9.0.52_cuda11-archive.tar.xz",
+      "sha256": "564323790e3c9f9b4ebcbbf7624cac8c0f8f6b1c8da42efcd0bd5087ed9bcd8c"
+    },
+    {
+      "component": "cudnn",
+      "version": "9.9.0.52",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-sbsa/cudnn-linux-sbsa-9.9.0.52_cuda12-archive.tar.xz",
+      "sha256": "f0faeee9eff3d77d0e8a3c55ce6a096ee6050f7da4e54e1ff541e9fa31820bbd"
+    },
+    {
+      "component": "cudnn",
+      "version": "9.9.0.52",
+      "platform": "linux-x86_64-cuda11",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-9.9.0.52_cuda11-archive.tar.xz",
+      "sha256": "5696665117d87f112024ec47d7d3a90f5f338d13226dd6ea50e5b24d6163872f"
+    },
+    {
+      "component": "cudnn",
+      "version": "9.9.0.52",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-9.9.0.52_cuda12-archive.tar.xz",
+      "sha256": "73f99e9c5d39cb7799dfe0f7b42d09a0bf6e3f5a90dbd16d570438daa1daea18"
+    }
+  ]
+}
