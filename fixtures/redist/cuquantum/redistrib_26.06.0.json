@@ -1,0 +1,43 @@
+{
+    "release_date": "2026-06-29",
+    "release_label": "26.06.0",
+    "release_product": "cuquantum",
+    "cuquantum": {
+        "name": "NVIDIA cuQuantum",
+        "license": "cuQuantum",
+        "license_path": "cuquantum/LICENSE.txt",
+        "version": "26.06.0.17",
+        "linux-x86_64": {
+            "cuda12": {
+                "relative_path": "cuquantum/linux-x86_64/cuquantum-linux-x86_64-26.06.0.17_cuda12-archive.tar.xz",
+                "sha256": "4c37aa346fab9023d985e79667b047e13a0c0f9b9fea7dfca453979b331c8f77",
+                "md5": "d93c890a8956509ba3764cc506aaf61a",
+                "size": "265692480"
+            },
+            "cuda13": {
+                "relative_path": "cuquantum/linux-x86_64/cuquantum-linux-x86_64-26.06.0.17_cuda13-archive.tar.xz",
+                "sha256": "1526046a38910024b10de02d568c4fad5dab9a6caf2089afa21477b7949bf0b9",
+                "md5": "d8617a35b4ad252c1a0ce25d44bfdae2",
+                "size": "287741100"
+            }
+        },
+        "cuda_variant": [
+            "12",
+            "13"
+        ],
+        "linux-sbsa": {
+            "cuda12": {
+                "relative_path": "cuquantum/linux-sbsa/cuquantum-linux-sbsa-26.06.0.17_cuda12-archive.tar.xz",
+                "sha256": "f4a5308e50ee7912bc6dfd399af58206ae891746c282ecfd135c748ac4d0e236",
+                "md5": "5706af0b3f98c769fbf631dca1191647",
+                "size": "265531036"
+            },
+            "cuda13": {
+                "relative_path": "cuquantum/linux-sbsa/cuquantum-linux-sbsa-26.06.0.17_cuda13-archive.tar.xz",
+                "sha256": "b966b1038b2430c63a10fd40f8d942a1edca929f85eeb52a7c8390c21b5e3de5",
+                "md5": "936b0f68ed78af3288a51052ec83a991",
+                "size": "287041656"
+            }
+        }
+    }
+}

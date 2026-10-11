@@ -1,0 +1,452 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "9.5.0",
+    "date": "2024-10-07"
+  },
+  "provenance": {
+    "manifest_sha256": "3939f0533fdd0d3aa7edd1ac358d43da18e438e5d8f39c3c15bb72519bad7fb5",
+    "corpus_sha256": [
+      "494b640a69feb40ce806a726aa63a1de6b2ec459acbe6a116ef6fe3e6b27877d",
+      "4fd22e78e83673da5f0c9dd6d5f14b176bba1e2170c4bd22a2046782d1e375a6",
+      "81beb7e0d05d07bd587715b69c5e82aea00d96038bd828924acb5d6910105e2a",
+      "86e4e4f4c09b31d3850b402d94ea52741a2f94c2f717ddc8899a14aca96e032d",
+      "cf7387fd3ca0d061fb9dc0bf6c30dfb54cdcc4830d0e077fd61a02082686170f"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "cudnn",
+      "description": "NVIDIA CUDA Deep Neural Network library",
+      "license": "cudnn",
+      "soname_stems": [
+        "libcudnn.so",
+        "libcudnn_adv.so",
+        "libcudnn_cnn.so",
+        "libcudnn_engines_precompiled.so",
+        "libcudnn_engines_runtime_compiled.so",
+        "libcudnn_engines_tensor_ir.so",
+        "libcudnn_ext.so",
+        "libcudnn_graph.so",
+        "libcudnn_heuristic.so",
+        "libcudnn_ops.so"
+      ],
+      "file_hashes": {
+        "0239981b2e794718322869ef8c192a7bc0b8169370cba8b6e96539ca7e45753d": [
+          "9.5.0.50"
+        ],
+        "0e23bcaecc1505b8c315d7957f096f167914ab2b0d2bb6819d9ee9cddb3cdd4d": [
+          "9.5.0.50"
+        ],
+        "1520013122a5e5944cb4a099fd9b6a73c8f2df818bb77f3d7fdba9fb2fb0c771": [
+          "9.5.0.50"
+        ],
+        "18d73b29ae7f557039ba0105de986bac73c5be22a8689b79f6a80ea864cd29b7": [
+          "9.5.0.50"
+        ],
+        "1a4723fdff9532212e8d87acc6d19c707fd6b178a069dfe2ee356a0694466424": [
+          "9.5.0.50"
+        ],
+        "2850feaa6c81f338ef676f3816a12e7fefbf7e5d7f3becb72f5e04687b328e84": [
+          "9.5.0.50"
+        ],
+        "2c7cf19fa6ffd923e4f12472b6e7bd33144bda7e9553cc54a491afa8f4d4df38": [
+          "9.5.0.50"
+        ],
+        "33ed5c3249fc06234c713807ac1db6a74519617c6e063f678ef3818ec90bc608": [
+          "9.5.0.50"
+        ],
+        "3b737dee10274a5fa4850399fe8d20975cf74857338cf4007b0359603e98c14d": [
+          "9.5.0.50"
+        ],
+        "3d96c000272ad4864a7b3bc6e55f88b57534325e041493f140e5b11e8ab1a131": [
+          "9.5.0.50"
+        ],
+        "3f42c4b26d7e8e2c0fc764d566b396aecc678e3040005bdd44973c76a8a5c5b3": [
+          "9.5.0.50"
+        ],
+        "42260f1dd3baf3133dda8a036343613d2f4de291dc91ef87ffe541ea6e67be07": [
+          "9.5.0.50"
+        ],
+        "42e2e6f91625ddc30bf42ce72d898a23072bce45629c28e08132f09cd19dcf2e": [
+          "9.5.0.50"
+        ],
+        "494b640a69feb40ce806a726aa63a1de6b2ec459acbe6a116ef6fe3e6b27877d": [
+          "9.5.0.50"
+        ],
+        "4c63b56649c52fb7237d495388de478ba3e4fc813830c0b96e710d27f0358d17": [
+          "9.5.0.50"
+        ],
+        "4c9ffdcbce10a3c935056487102d010ff692723565786e07d951de5908d537b4": [
+          "9.5.0.50"
+        ],
+        "4fd22e78e83673da5f0c9dd6d5f14b176bba1e2170c4bd22a2046782d1e375a6": [
+          "9.5.0.50"
+        ],
+        "6488e6b4d2a42fd14076feeda2fb107a647767d1ecc9da20bdd44a5650fb0ccd": [
+          "9.5.0.50"
+        ],
+        "65f6ea564b1d57048c89b831eadfdbbc05ca6bf1673d5e111870cd93dca71a8e": [
+          "9.5.0.50"
+        ],
+        "687e5414641f4f8d170e38b7db5f6d6de17f4a7d365d6ea8d2557bb78688bef8": [
+          "9.5.0.50"
+        ],
+        "6f9a144f32561e7010e104fbe3fd9bfca72bf767d7821ed97f522e7c8dcaed00": [
+          "9.5.0.50"
+        ],
+        "76b3fe463d4bfbd2bd314a43d5c197ef0931936e800c2dd81765bf96ac917b05": [
+          "9.5.0.50"
+        ],
+        "81beb7e0d05d07bd587715b69c5e82aea00d96038bd828924acb5d6910105e2a": [
+          "9.5.0.50"
+        ],
+        "86e4e4f4c09b31d3850b402d94ea52741a2f94c2f717ddc8899a14aca96e032d": [
+          "9.5.0.50"
+        ],
+        "989f3577372abb07f6d60ad462eb67c1f9ffe54abdba5b2f34d981c2db75e756": [
+          "9.5.0.50"
+        ],
+        "9c7487f1dd1c36636e3f4c29829b497fb5973027359121292f4d668f14347d2a": [
+          "9.5.0.50"
+        ],
+        "ad21c703cbc7519b6605f992d33b634eed339c97fee290e356d8ecf88a4ff0ee": [
+          "9.5.0.50"
+        ],
+        "b165fbfc9db9add9b9e253d8661fa020b00576a8ba51133fca716ef8d6b7154c": [
+          "9.5.0.50"
+        ],
+        "c14618433ca2b8c63754b962a2d5df6630a4bd82909be8f5dba6246aa42a10f0": [
+          "9.5.0.50"
+        ],
+        "c1631b14206284da7987efc8e36088ca7cd7e947d076bdacc6eb26993f7aa7fe": [
+          "9.5.0.50"
+        ],
+        "c5ef09a19e5176e28197f3f667f872679980be6e73f75db5eb24e4a049de7dfa": [
+          "9.5.0.50"
+        ],
+        "cae9ed72fbc48e86bbfaae8231b094a78570e2724cd7bae8c82c5ef6d85a6e8e": [
+          "9.5.0.50"
+        ],
+        "cf7387fd3ca0d061fb9dc0bf6c30dfb54cdcc4830d0e077fd61a02082686170f": [
+          "9.5.0.50"
+        ],
+        "d344275cdbb184b101a08c7910329f74224b51a2000b86bd1e22a1bf9805baca": [
+          "9.5.0.50"
+        ],
+        "d50527d0254ae3b56128ae5461fc7678e6b3fcd3e2567addebd21a091b1f7cb6": [
+          "9.5.0.50"
+        ],
+        "d6353b5163bf04157889a5f8df77b33a288c6f2653fc332d5e82bfb3581b7b40": [
+          "9.5.0.50"
+        ],
+        "d6aabc9dfb363dcf6d83fdb3d3740e96c899f70c7c62af933de789c2c88ad60f": [
+          "9.5.0.50"
+        ],
+        "dff947707c515e26771142109fae10c00b542794aa01ec8350531131eb241d08": [
+          "9.5.0.50"
+        ],
+        "eecac90af3272cafd8412790a794c0be2fc481ee85cc497ce5acbcaa2c4a09c1": [
+          "9.5.0.50"
+        ],
+        "f2e08fa5b2babb312f1d656b23410e603eeea2554feef165c325efb46aeac210": [
+          "9.5.0.50"
+        ],
+        "f84b7fd311d81a40b1e7dfbe5614c31249fc3f0bd60fd61c16f09c7b0d4caf7a": [
+          "9.5.0.50"
+        ],
+        "fd3767593408e437e9cc6cf85551603fd444009de406023cb94163d691fbc36c": [
+          "9.5.0.50"
+        ],
+        "fd41a31adf175852b9ac92f06f26e37ec20401bec09388d05055d6fe28369264": [
+          "9.5.0.50"
+        ]
+      },
+      "build_ids": {
+        "0ae8ee38102fb6a7a0c4075c0ac8d348ccf2dda3": [
+          "9.5.0.50"
+        ],
+        "341585362819b91e505a4bf6e0cd3636360e5ac9": [
+          "9.5.0.50"
+        ],
+        "3f530be234635e47e4fd53f9aa8974b78c7fb21a": [
+          "9.5.0.50"
+        ],
+        "42f4dfb607a8b179ae179981f25e623e20b72fc7": [
+          "9.5.0.50"
+        ],
+        "45add149270ca6942e935dc13144662c04b2a443": [
+          "9.5.0.50"
+        ],
+        "55311dbe26c7d5a7df473247792ebc08774651f8": [
+          "9.5.0.50"
+        ],
+        "649fb919f376bfb7aed75db202a8194fddf1d5b0": [
+          "9.5.0.50"
+        ],
+        "6df1de3b7786a8543d193a3cd4d4a7224745810e": [
+          "9.5.0.50"
+        ],
+        "8278f92a6a037823c23c46bc31a5838e60e2bc8d": [
+          "9.5.0.50"
+        ],
+        "9a197fe3da1a3e2dd348371e59ebf3eab068ac8d": [
+          "9.5.0.50"
+        ],
+        "bd8d1ed5ffb5f013ac8c6e27e6e0390980369bd2": [
+          "9.5.0.50"
+        ],
+        "c507e2e46cf72f920970e4da557db11210834522": [
+          "9.5.0.50"
+        ],
+        "c7141a9780e55ab14f8c4ba5dec8190b1766f4f7": [
+          "9.5.0.50"
+        ],
+        "d7c7b229bf74696bfa7975c372ba6a0d8e92a465": [
+          "9.5.0.50"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "cudnnActivationBackward",
+        "cudnnActivationForward",
+        "cudnnAddTensor",
+        "cudnnAdvVersionCheck",
+        "cudnnBackendCreateDescriptor",
+        "cudnnBackendDestroyDescriptor",
+        "cudnnBackendExecute",
+        "cudnnBackendFinalize",
+        "cudnnBackendGetAttribute",
+        "cudnnBackendInitialize",
+        "cudnnBackendPopulateCudaGraph",
+        "cudnnBackendSetAttribute",
+        "cudnnBackendUpdateCudaGraph",
+        "cudnnBatchNormalizationBackward",
+        "cudnnBatchNormalizationBackwardEx",
+        "cudnnBatchNormalizationForwardInference",
+        "cudnnBatchNormalizationForwardTraining",
+        "cudnnBatchNormalizationForwardTrainingEx",
+        "cudnnBuildRNNDynamic",
+        "cudnnCTCLoss",
+        "cudnnCTCLoss_v8",
+        "cudnnCnnVersionCheck",
+        "cudnnConvolutionBackwardBias",
+        "cudnnConvolutionBackwardData",
+        "cudnnConvolutionBackwardFilter",
+        "cudnnConvolutionBiasActivationForward",
+        "cudnnConvolutionForward",
+        "cudnnCreate",
+        "cudnnCreateActivationDescriptor",
+        "cudnnCreateAttnDescriptor",
+        "cudnnCreateCTCLossDescriptor",
+        "cudnnCreateConvolutionDescriptor",
+        "cudnnCreateDropoutDescriptor",
+        "cudnnCreateFilterDescriptor",
+        "cudnnCreateFusedOpsConstParamPack",
+        "cudnnCreateFusedOpsPlan",
+        "cudnnCreateFusedOpsVariantParamPack",
+        "cudnnCreateLRNDescriptor",
+        "cudnnCreateOpTensorDescriptor",
+        "cudnnCreatePoolingDescriptor",
+        "cudnnCreateRNNDataDescriptor",
+        "cudnnCreateRNNDescriptor",
+        "cudnnCreateReduceTensorDescriptor",
+        "cudnnCreateSeqDataDescriptor",
+        "cudnnCreateSpatialTransformerDescriptor",
+        "cudnnCreateTensorDescriptor",
+        "cudnnCreateTensorTransformDescriptor",
+        "cudnnDeriveBNTensorDescriptor",
+        "cudnnDeriveNormTensorDescriptor",
+        "cudnnDestroy",
+        "cudnnDestroyActivationDescriptor",
+        "cudnnDestroyAttnDescriptor",
+        "cudnnDestroyCTCLossDescriptor",
+        "cudnnDestroyConvolutionDescriptor",
+        "cudnnDestroyDropoutDescriptor",
+        "cudnnDestroyFilterDescriptor",
+        "cudnnDestroyFusedOpsConstParamPack",
+        "cudnnDestroyFusedOpsPlan",
+        "cudnnDestroyFusedOpsVariantParamPack",
+        "cudnnDestroyLRNDescriptor",
+        "cudnnDestroyOpTensorDescriptor",
+        "cudnnDestroyPoolingDescriptor",
+        "cudnnDestroyRNNDataDescriptor",
+        "cudnnDestroyRNNDescriptor",
+        "cudnnDestroyReduceTensorDescriptor",
+        "cudnnDestroySeqDataDescriptor",
+        "cudnnDestroySpatialTransformerDescriptor",
+        "cudnnDestroyTensorDescriptor",
+        "cudnnDestroyTensorTransformDescriptor",
+        "cudnnDivisiveNormalizationBackward",
+        "cudnnDivisiveNormalizationForward",
+        "cudnnDropoutBackward",
+        "cudnnDropoutForward",
+        "cudnnDropoutGetReserveSpaceSize",
+        "cudnnDropoutGetStatesSize",
+        "cudnnFindConvolutionBackwardDataAlgorithm",
+        "cudnnFindConvolutionBackwardDataAlgorithmEx",
+        "cudnnFindConvolutionBackwardFilterAlgorithm",
+        "cudnnFindConvolutionBackwardFilterAlgorithmEx",
+        "cudnnFindConvolutionForwardAlgorithm",
+        "cudnnFindConvolutionForwardAlgorithmEx",
+        "cudnnFusedOpsExecute",
+        "cudnnGetActivationDescriptor",
+        "cudnnGetActivationDescriptorSwishBeta",
+        "cudnnGetAttnDescriptor",
+        "cudnnGetBackdoor",
+        "cudnnGetBatchNormalizationBackwardExWorkspaceSize",
+        "cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize",
+        "cudnnGetBatchNormalizationTrainingExReserveSpaceSize",
+        "cudnnGetCTCLossDescriptor",
+        "cudnnGetCTCLossDescriptorEx",
+        "cudnnGetCTCLossDescriptor_v8",
+        "cudnnGetCTCLossDescriptor_v9",
+        "cudnnGetCTCLossWorkspaceSize",
+        "cudnnGetCTCLossWorkspaceSize_v8",
+        "cudnnGetCallback",
+        "cudnnGetConvolution2dDescriptor",
+        "cudnnGetConvolution2dForwardOutputDim",
+        "cudnnGetConvolutionBackwardDataAlgorithmMaxCount",
+        "cudnnGetConvolutionBackwardDataAlgorithm_v7",
+        "cudnnGetConvolutionBackwardDataWorkspaceSize",
+        "cudnnGetConvolutionBackwardFilterAlgorithmMaxCount",
+        "cudnnGetConvolutionBackwardFilterAlgorithm_v7",
+        "cudnnGetConvolutionBackwardFilterWorkspaceSize",
+        "cudnnGetConvolutionForwardAlgorithmMaxCount",
+        "cudnnGetConvolutionForwardAlgorithm_v7",
+        "cudnnGetConvolutionForwardWorkspaceSize",
+        "cudnnGetConvolutionGroupCount",
+        "cudnnGetConvolutionMathType",
+        "cudnnGetConvolutionNdDescriptor",
+        "cudnnGetConvolutionNdForwardOutputDim",
+        "cudnnGetConvolutionReorderType",
+        "cudnnGetCudartVersion",
+        "cudnnGetDropoutDescriptor",
+        "cudnnGetErrorString",
+        "cudnnGetFilter4dDescriptor",
+        "cudnnGetFilterNdDescriptor",
+        "cudnnGetFilterSizeInBytes",
+        "cudnnGetFoldedConvBackwardDataDescriptors",
+        "cudnnGetFusedOpsConstParamPackAttribute",
+        "cudnnGetFusedOpsVariantParamPackAttribute",
+        "cudnnGetLRNDescriptor",
+        "cudnnGetLastErrorString",
+        "cudnnGetLibConfig",
+        "cudnnGetMaxDeviceVersion",
+        "cudnnGetModuleForDescriptor",
+        "cudnnGetMultiHeadAttnBuffers",
+        "cudnnGetMultiHeadAttnWeights",
+        "cudnnGetNormalizationBackwardWorkspaceSize",
+        "cudnnGetNormalizationForwardTrainingWorkspaceSize",
+        "cudnnGetNormalizationTrainingReserveSpaceSize",
+        "cudnnGetOpTensorDescriptor",
+        "cudnnGetPooling2dDescriptor",
+        "cudnnGetPooling2dForwardOutputDim",
+        "cudnnGetPoolingNdDescriptor",
+        "cudnnGetPoolingNdForwardOutputDim",
+        "cudnnGetProperty",
+        "cudnnGetRNNDataDescriptor",
+        "cudnnGetRNNDescriptor_v8",
+        "cudnnGetRNNDropoutLocationsInternal",
+        "cudnnGetRNNTempSpaceSizes",
+        "cudnnGetRNNWeightParams",
+        "cudnnGetRNNWeightSpaceSize",
+        "cudnnGetReduceTensorDescriptor",
+        "cudnnGetReductionIndicesSize",
+        "cudnnGetReductionWorkspaceSize",
+        "cudnnGetSeqDataDescriptor",
+        "cudnnGetStream",
+        "cudnnGetTensor4dDescriptor",
+        "cudnnGetTensorNdDescriptor",
+        "cudnnGetTensorSizeInBytes",
+        "cudnnGetTensorTransformDescriptor",
+        "cudnnGetTime",
+        "cudnnGetTimeDiffString",
+        "cudnnGetVersion",
+        "cudnnGraphVersionCheck",
+        "cudnnIm2Col",
+        "cudnnInitTransformDest",
+        "cudnnLRNCrossChannelBackward",
+        "cudnnLRNCrossChannelForward",
+        "cudnnMakeFusedOpsPlan",
+        "cudnnMultiHeadAttnBackwardData",
+        "cudnnMultiHeadAttnBackwardWeights",
+        "cudnnMultiHeadAttnForward",
+        "cudnnNormalizationBackward",
+        "cudnnNormalizationForwardInference",
+        "cudnnNormalizationForwardTraining",
+        "cudnnOpTensor",
+        "cudnnOpsVersionCheck",
+        "cudnnPoolingBackward",
+        "cudnnPoolingForward",
+        "cudnnQueryRuntimeError",
+        "cudnnRNNBackwardData_v8",
+        "cudnnRNNBackwardWeights_v8",
+        "cudnnRNNForward",
+        "cudnnRNNGetClip_v8",
+        "cudnnRNNGetClip_v9",
+        "cudnnRNNSetClip_v8",
+        "cudnnRNNSetClip_v9",
+        "cudnnReduceTensor",
+        "cudnnReorderFilterAndBias",
+        "cudnnRestoreDropoutDescriptor",
+        "cudnnScaleTensor",
+        "cudnnSetActivationDescriptor",
+        "cudnnSetActivationDescriptorSwishBeta",
+        "cudnnSetAttnDescriptor",
+        "cudnnSetBackdoor",
+        "cudnnSetBackdoorEx",
+        "cudnnSetCTCLossDescriptor",
+        "cudnnSetCTCLossDescriptorEx",
+        "cudnnSetCTCLossDescriptor_v8",
+        "cudnnSetCTCLossDescriptor_v9",
+        "cudnnSetCallback",
+        "cudnnSetConvolution2dDescriptor",
+        "cudnnSetConvolutionGroupCount",
+        "cudnnSetConvolutionMathType",
+        "cudnnSetConvolutionNdDescriptor",
+        "cudnnSetConvolutionReorderType",
+        "cudnnSetDropoutDescriptor",
+        "cudnnSetFilter4dDescriptor",
+        "cudnnSetFilterNdDescriptor",
+        "cudnnSetFusedOpsConstParamPackAttribute",
+        "cudnnSetFusedOpsVariantParamPackAttribute",
+        "cudnnSetLRNDescriptor",
+        "cudnnSetOpTensorDescriptor",
+        "cudnnSetPooling2dDescriptor",
+        "cudnnSetPoolingNdDescriptor",
+        "cudnnSetRNNDataDescriptor",
+        "cudnnSetRNNDescriptor_v8",
+        "cudnnSetReduceTensorDescriptor",
+        "cudnnSetSeqDataDescriptor",
+        "cudnnSetSpatialTransformerNdDescriptor",
+        "cudnnSetStream",
+        "cudnnSetTensor",
+        "cudnnSetTensor4dDescriptor",
+        "cudnnSetTensor4dDescriptorEx",
+        "cudnnSetTensorNdDescriptor",
+        "cudnnSetTensorNdDescriptorEx",
+        "cudnnSetTensorTransformDescriptor",
+        "cudnnSnprintf",
+        "cudnnSoftmaxBackward",
+        "cudnnSoftmaxForward",
+        "cudnnSpatialTfGridGeneratorBackward",
+        "cudnnSpatialTfGridGeneratorForward",
+        "cudnnSpatialTfSamplerBackward",
+        "cudnnSpatialTfSamplerForward",
+        "cudnnTransformFilter",
+        "cudnnTransformTensor",
+        "cudnnTransformTensorEx",
+        "cudnn_adv_infer_version",
+        "cudnn_graph_version",
+        "cudnn_ops_infer_version"
+      ],
+      "release_versions": {
+        "9.5.0.50": [
+          "9.5.0"
+        ]
+      }
+    }
+  ]
+}
