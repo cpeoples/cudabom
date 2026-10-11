@@ -79,6 +79,12 @@ jobs:
           HUGO_BASEURL: ${{ steps.pages.outputs.base_url || '/' }}
         run: python3 .hugo/scripts/build_docs.py
 
+      - name: Check component documentation links
+        # Fail the build if any component's NVIDIA docs link stops resolving
+        # (a renamed page, or a new family whose derived URL is wrong), so a
+        # dead link never ships to the site.
+        run: python3 .hugo/scripts/build_docs.py --check-links
+
       - name: Build site
         # The production baseURL (the Pages subpath) is injected here rather than
         # hardcoded in hugo.toml, so local `hugo server` serves at the root and

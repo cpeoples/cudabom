@@ -56,6 +56,11 @@
 .idea/
 .vscode/
 
+# Python bytecode caches (the docs generator and other helper scripts are
+# Python; these are produced anywhere a script runs and are never committed).
+__pycache__/
+*.py[cod]
+
 # Generated documentation site.
 #   .hugo/content/ is regenerated from docs/*.md + data by build_docs.py, and
 #   .hugo/public/ is Hugo's build output. The theme is a git submodule and the
