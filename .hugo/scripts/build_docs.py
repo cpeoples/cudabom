@@ -38,7 +38,7 @@ HUGO_DIR = Path(__file__).resolve().parent.parent
 REPO = HUGO_DIR.parent
 CONTENT = HUGO_DIR / "content"
 DOCS = REPO / "docs"
-FINGERPRINTS = REPO / "fingerprints" / "cuda"
+FINGERPRINTS = REPO / "fingerprints"
 ADVISORIES = REPO / "advisories" / "index.json"
 
 # Ordered prose pages: (source file, slug, nav title, menu weight).
@@ -57,6 +57,124 @@ PROSE_PAGES = [
     # file is a short pointer to that section.
     (DOCS / "threat-model.md", "threat-model", "Threat model", 90),
 ]
+
+# Documentation link per fingerprinted component family. Most families follow
+# the convention https://docs.nvidia.com/cuda/<name>/, which component_doc_url
+# derives automatically, so a new family that follows it is linked with no code
+# change. Only families whose documentation lives elsewhere need an entry here;
+# the binary-utility tools share the CUDA Binary Utilities guide, and the nvpl-*
+# families live under the NVPL docs. The docs link-check (build_docs.py
+# --check-links, run in CI) verifies every resolved URL still returns 200, so
+# rot surfaces as a failing build rather than a dead link on the site.
+COMPONENT_DOC_OVERRIDES = {
+    "cudart": "https://docs.nvidia.com/cuda/cuda-runtime-api/",
+    "cudla": "https://docs.nvidia.com/cuda/cudla-api/",
+    "cudnn": "https://docs.nvidia.com/deeplearning/cudnn/",
+    "cufile": "https://docs.nvidia.com/gpudirect-storage/api-reference-guide/",
+    "cuobjclient": "https://docs.nvidia.com/cuda/cuda-binary-utilities/",
+    "cuobjdump": "https://docs.nvidia.com/cuda/cuda-binary-utilities/",
+    "cupti": "https://docs.nvidia.com/cupti/",
+    "cuxxfilt": "https://docs.nvidia.com/cuda/cuda-binary-utilities/",
+    "nccl": "https://docs.nvidia.com/deeplearning/nccl/",
+    "nvpl-blas": "https://docs.nvidia.com/nvpl/_static/blas/index.html",
+    "nvpl-fft": "https://docs.nvidia.com/nvpl/_static/fft/index.html",
+    "nvpl-lapack": "https://docs.nvidia.com/nvpl/_static/lapack/index.html",
+    "nvpl-rand": "https://docs.nvidia.com/nvpl/_static/rand/index.html",
+    "nvpl-scalapack": "https://docs.nvidia.com/nvpl/_static/scalapack/index.html",
+    "nvpl-sparse": "https://docs.nvidia.com/nvpl/_static/sparse/index.html",
+    "nvpl-tensor": "https://docs.nvidia.com/nvpl/_static/tensor/index.html",
+    "nvshmem": "https://docs.nvidia.com/nvshmem/api/",
+    "nvvm": "https://docs.nvidia.com/cuda/nvvm-ir-spec/",
+}
+
+
+def component_doc_url(name: str) -> str:
+    """NVIDIA documentation URL for a component family.
+
+    Families whose docs follow the common convention resolve to
+    https://docs.nvidia.com/cuda/<name>/ automatically; the rest come from
+    COMPONENT_DOC_OVERRIDES. Every URL is validated by `--check-links`.
+    """
+    return COMPONENT_DOC_OVERRIDES.get(name, f"https://docs.nvidia.com/cuda/{name}/")
+
+
+PACKAGE_KEY = re.compile(r"^(lib)?[a-z0-9]+(_[a-z0-9]+)*$")
+
+
+def best_description(variants: set[str]) -> str:
+    """Pick the most human-readable description among a family's variants.
+
+    NVIDIA labels the same component differently across releases: prose like
+    "CUDA cuBLAS" in some shards, the bare package key "libcublas" in others.
+    Prefer a variant that reads as a phrase (has a space and is not just a
+    package key), then the longest, so the table shows real descriptions.
+    """
+    if not variants:
+        return ""
+
+    def score(d: str) -> tuple[int, int]:
+        # Rank anything that is not a bare package key above those that are, so
+        # "cuDLA" beats "libcudla" even without a space; prefer longer within a
+        # rank so fuller phrases win.
+        return (0 if PACKAGE_KEY.match(d) else 1, len(d))
+
+    return max(variants, key=score)
+
+
+def component_families() -> set[str]:
+    """Every component family name present in the fingerprint shards."""
+    names: set[str] = set()
+    for shard in FINGERPRINTS.glob("*/redistrib_*.json"):
+        data = json.loads(shard.read_text(encoding="utf-8"))
+        for c in data.get("components", []):
+            name = c.get("name")
+            if name:
+                names.add(name)
+    return names
+
+
+def check_links() -> int:
+    """Verify every component's documentation URL still resolves (HTTP 200).
+
+    Run in CI so a convention change, a renamed NVIDIA page, or a newly
+    fingerprinted family with a broken derived URL fails the build instead of
+    shipping a dead link. Returns a process exit code.
+    """
+    import urllib.error
+    import urllib.request
+
+    families = sorted(component_families())
+    log(f"checking {len(families)} component documentation link(s)")
+    failures: list[tuple[str, str, str]] = []
+    for name in families:
+        url = component_doc_url(name)
+        status: object = None
+        for method in ("HEAD", "GET"):
+            req = urllib.request.Request(
+                url, method=method, headers={"User-Agent": "cudabom-docs-linkcheck"}
+            )
+            try:
+                with urllib.request.urlopen(req, timeout=20) as resp:
+                    status = resp.status
+                break
+            except urllib.error.HTTPError as e:
+                status = e.code
+                if method == "HEAD":
+                    continue  # some servers reject HEAD; retry with GET
+            except Exception as e:  # noqa: BLE001 - report any transport error
+                status = str(e)
+                if method == "HEAD":
+                    continue
+        if status != 200:
+            failures.append((name, url, str(status)))
+            log(f"  FAIL {name}: {status}  {url}")
+        else:
+            log(f"  ok   {name}  {url}")
+    if failures:
+        log(f"{len(failures)} documentation link(s) did not return 200")
+        return 1
+    log("all component documentation links resolved")
+    return 0
 
 
 def log(msg: str) -> None:
@@ -162,6 +280,15 @@ def copy_prose() -> int:
         body = src.read_text(encoding="utf-8")
         body = strip_badges(body)
         body = strip_leading_h1(body)
+        if slug == "overview":
+            # The README hero uses the dark GIF for dark mode; on the site's
+            # overview, use the transparent (panel + light text) GIF in dark
+            # mode so it sits on the page background, keeping the light GIF for
+            # light mode. The light <source> is unchanged.
+            body = body.replace(
+                "docs/assets/brand-mark-animated.gif",
+                "docs/assets/brand-mark-animated-transparent.gif",
+            )
         body = rewrite_repo_links(body)
         write_page(slug, front_matter(title, weight) + body)
         count += 1
@@ -170,24 +297,13 @@ def copy_prose() -> int:
 
 
 def gen_coverage() -> None:
-    """CUDA fingerprint coverage, from fingerprints/cuda/*.json."""
-    shards = sorted(FINGERPRINTS.glob("*.json"))
-    releases = []
-    components: dict[str, int] = {}
-    total_hashes = 0
-    for shard in shards:
-        data = json.loads(shard.read_text(encoding="utf-8"))
-        rel = data.get("release", {})
-        label = rel.get("label", shard.stem)
-        comps = data.get("components", [])
-        shard_hashes = 0
-        for c in comps:
-            name = c.get("name", "?")
-            n = len(c.get("file_hashes", {}) or {})
-            components[name] = components.get(name, 0) + n
-            shard_hashes += n
-        total_hashes += shard_hashes
-        releases.append((label, rel.get("date", ""), len(comps), shard_hashes))
+    """CUDA fingerprint coverage, from every tree under fingerprints/.
+
+    Each product tree is a subdirectory of fingerprints/ holding
+    redistrib_<version>.json shards (cuda, cudnn, nccl, jetson, ...). The trees
+    are discovered from the filesystem rather than listed here, so a tree added
+    by a future refresh appears on this page with no code change.
+    """
 
     def ver_key(label: str):
         parts = []
@@ -195,8 +311,61 @@ def gen_coverage() -> None:
             parts.append(int(p) if p.isdigit() else 0)
         return parts
 
-    releases.sort(key=lambda r: ver_key(r[0]))
+    trees = sorted(d for d in FINGERPRINTS.iterdir() if d.is_dir())
+    # Per tree: its releases; plus repo-wide rollups for the summary line.
+    per_tree: list[tuple[str, list[tuple[str, str, int, int]]]] = []
+    components: dict[str, int] = {}
+    descriptions: dict[str, set[str]] = {}
+    total_hashes = 0
+    total_releases = 0
+    # Releases NVIDIA lists but that ship no fingerprintable library (the CUDA
+    # redist program predates the toolkit libraries: 11.0.3-11.4.1 carry only
+    # fabricmanager/nscq, no cublas/cudart/etc.). Counted and explained, but not
+    # shown as empty rows that would read as missing coverage.
+    empty_releases = 0
+    for tree in trees:
+        releases = []
+        for shard in sorted(tree.glob("redistrib_*.json")):
+            data = json.loads(shard.read_text(encoding="utf-8"))
+            rel = data.get("release", {})
+            label = rel.get("label", shard.stem)
+            comps = data.get("components", [])
+            shard_hashes = 0
+            for c in comps:
+                name = c.get("name", "?")
+                n = len(c.get("file_hashes", {}) or {})
+                components[name] = components.get(name, 0) + n
+                desc = (c.get("description") or "").strip()
+                if desc:
+                    # NVIDIA's descriptions vary across releases: some shards
+                    # carry prose ("CUDA cuBLAS"), others only the raw package
+                    # key ("libcublas"). Collect every variant and pick the most
+                    # readable one at render time rather than letting shard order
+                    # decide.
+                    descriptions.setdefault(name, set()).add(desc)
+                shard_hashes += n
+            if shard_hashes == 0:
+                empty_releases += 1
+                continue
+            total_hashes += shard_hashes
+            releases.append((label, rel.get("date", ""), len(comps), shard_hashes))
+        if not releases:
+            continue
+        releases.sort(key=lambda r: ver_key(r[0]))
+        total_releases += len(releases)
+        per_tree.append((tree.name, releases))
 
+    summary = (
+        f"**{total_releases} releases** fingerprinted across "
+        f"**{len(per_tree)} product trees**, **{total_hashes:,} file hashes** "
+        f"across **{len(components)} component families**.\n"
+    )
+    if empty_releases:
+        summary += (
+            f"\n{empty_releases} earlier release(s) NVIDIA lists carry no "
+            "redistributable libraries (the CUDA redist program began at "
+            "11.4.2), so they hold no fingerprints and are omitted below.\n"
+        )
     lines = [
         front_matter("CUDA coverage", 20),
         "cudabom identifies CUDA components by matching an artifact's content "
@@ -204,35 +373,46 @@ def gen_coverage() -> None:
         "archives**. This page is generated from the committed fingerprint "
         "database, so it always reflects exactly what the current build can "
         "recognize.\n",
-        f"**{len(releases)} CUDA releases** fingerprinted, "
-        f"**{total_hashes:,} file hashes** across "
-        f"**{len(components)} component families**.\n",
+        summary,
         "## Component families\n",
-        "| Component | File hashes |",
-        "|---|---|",
+        "| Component | Description | File hashes |",
+        "|---|---|---|",
     ]
-    for name, n in sorted(components.items(), key=lambda kv: (-kv[1], kv[0])):
-        lines.append(f"| `{name}` | {n:,} |")
-    lines += [
-        "",
-        "## Fingerprinted releases\n",
-        "| CUDA release | Date | Components | File hashes |",
-        "|---|---|---|---|",
-    ]
-    for label, date, ncomp, nhash in releases:
-        lines.append(f"| {label} | {date or '-'} | {ncomp} | {nhash:,} |")
-    lines.append("")
+    for name, n in sorted(components.items(), key=lambda kv: kv[0]):
+        url = component_doc_url(name)
+        desc = best_description(descriptions.get(name, set()))
+        lines.append(f"| [`{name}`]({url}) | {desc} | {n:,} |")
+    lines += ["", "## Fingerprinted releases\n"]
+    for tree_name, releases in per_tree:
+        tree_hashes = sum(r[3] for r in releases)
+        lines += [
+            f"### {tree_name}\n",
+            f"{len(releases)} release(s), {tree_hashes:,} file hashes.\n",
+            "| Release | Date | Components | File hashes |",
+            "|---|---|---|---|",
+        ]
+        for label, date, ncomp, nhash in releases:
+            lines.append(f"| {label} | {date or '-'} | {ncomp} | {nhash:,} |")
+        lines.append("")
     write_page("coverage", "\n".join(lines))
-    log(f"generated coverage page ({len(releases)} releases, {total_hashes} hashes)")
+    log(
+        f"generated coverage page ({total_releases} releases across "
+        f"{len(per_tree)} trees, {total_hashes} hashes)"
+    )
 
 
 def gen_advisories_stats() -> None:
-    """Advisory coverage, from advisories/index.json."""
+    """Advisory coverage, from advisories/index.json: a severity rollup plus a
+    compact per-advisory table (CVE, severity, CVSS, affected components, the
+    version each is fixed in, and the canonical link). Data-driven, so it tracks
+    the committed index on every refresh."""
     if not ADVISORIES.exists():
         log("skip advisory stats (advisories/index.json missing)")
         return
     data = json.loads(ADVISORIES.read_text(encoding="utf-8"))
     advs = data.get("advisories", [])
+    sev_order = ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNKNOWN"]
+    sev_rank = {s: i for i, s in enumerate(sev_order)}
     by_sev: dict[str, int] = {}
     with_refs = 0
     total_refs = 0
@@ -243,7 +423,6 @@ def gen_advisories_stats() -> None:
         if refs:
             with_refs += 1
         total_refs += len(refs)
-    sev_order = ["CRITICAL", "HIGH", "MEDIUM", "LOW", "UNKNOWN"]
     lines = [
         front_matter("Advisory coverage", 55),
         "cudabom correlates identified CUDA versions against a normalized "
@@ -260,6 +439,44 @@ def gen_advisories_stats() -> None:
     for sev in sev_order:
         if sev in by_sev:
             lines.append(f"| {sev} | {by_sev[sev]} |")
+
+    def affected_cell(a: dict) -> tuple[str, str]:
+        """(components, fixed-versions) cells for one advisory, joining the
+        per-component fixed version from its ranges."""
+        comps, fixes = [], []
+        for item in a.get("affected", []) or []:
+            comps.append(item.get("component", "?"))
+            fixes += [
+                r.get("fixed") for r in item.get("fixed_ranges", []) or [] if r.get("fixed")
+            ]
+        uniq = lambda xs: ", ".join(dict.fromkeys(xs)) or "-"  # noqa: E731
+        return uniq(comps), uniq(fixes)
+
+    advs_sorted = sorted(
+        advs,
+        key=lambda a: (
+            sev_rank.get((a.get("severity") or "UNKNOWN").upper(), 99),
+            -(a.get("cvss_score") or 0.0),  # highest CVSS first within a severity
+            a.get("id", ""),  # stable, deterministic tiebreaker
+        ),
+    )
+    lines += [
+        "",
+        "## Indexed advisories\n",
+        "| CVE | Severity | CVSS | Affected | Fixed in |",
+        "|---|---|---|---|---|",
+    ]
+    for a in advs_sorted:
+        sev = (a.get("severity") or "UNKNOWN").upper()
+        cvss = a.get("cvss_score")
+        comps, fixes = affected_cell(a)
+        cve = a.get("id", "?")
+        refs = a.get("references", []) or []
+        cve_cell = f"[`{cve}`]({refs[0]})" if refs else f"`{cve}`"
+        lines.append(
+            f"| {cve_cell} | {sev} | {cvss if cvss is not None else '-'} "
+            f"| {comps} | {fixes} |"
+        )
     lines.append("")
     write_page("advisory-coverage", "\n".join(lines))
     log(f"generated advisory-coverage page ({len(advs)} advisories)")
@@ -378,6 +595,8 @@ def write_landing() -> None:
 
 
 def main() -> int:
+    if "--check-links" in sys.argv[1:]:
+        return check_links()
     if CONTENT.exists():
         shutil.rmtree(CONTENT)
     CONTENT.mkdir(parents=True)

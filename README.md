@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/cpeoples/cudabom/main/docs/assets/brand-mark-animated.gif" alt="CudaBOM" width="480">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/cpeoples/cudabom/main/docs/assets/brand-mark-animated-light.gif">
+    <img src="https://raw.githubusercontent.com/cpeoples/cudabom/main/docs/assets/brand-mark-animated.gif" alt="CudaBOM" width="480">
+  </picture>
 </p>
 
 <!-- BADGES_START - stripped from the Hugo docs build; see .hugo/scripts/build_docs.py -->
