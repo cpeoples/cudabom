@@ -369,6 +369,16 @@ jobs:
         # notices. A no-op when nothing changed.
         run: cargo run --locked --quiet -p xtask -- product-map --write
 
+      - name: Regenerate component documentation links
+        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true' || steps.cuda_repos.outputs.changed == 'true' || steps.heal.outcome == 'success'
+        # The per-component documentation links (advisories/component-docs.json)
+        # are discovered live: xtask probes NVIDIA's docs for each fingerprinted
+        # family and records the proven URL. Regenerate here so a newly
+        # discovered or auto-derived (Model B) library gets a correct, verified
+        # doc link in this same review PR rather than a guessed one that only
+        # fails later at site-build time. A no-op when nothing changed.
+        run: cargo run --locked --quiet -p xtask -- doc-links --write
+
       - name: Reclaim disk (drop the downloaded corpus)
         if: always()
         run: |
@@ -382,7 +392,7 @@ jobs:
         run: |
           set -euo pipefail
           # Stage new/changed shards and manifests; ignore the gitignored corpus.
-          git add "$SHARD_DIR" "$FIXTURES_DIR" "$LOCK_DIR" advisories/product-map.json 2>/dev/null || true
+          git add "$SHARD_DIR" "$FIXTURES_DIR" "$LOCK_DIR" advisories/product-map.json advisories/component-docs.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No shard changes; nothing to open."
@@ -468,6 +478,7 @@ jobs:
             ${{ env.FIXTURES_DIR }}
             ${{ env.LOCK_DIR }}
             advisories/product-map.json
+            advisories/component-docs.json
           delete-branch: true
           sign-commits: true
           body: |
@@ -520,4 +531,6 @@ jobs:
             If `advisories/product-map.json` changed, it was regenerated from
             the component profiles (`advisory_terms` in
             `crates/cudabom-identify/src/derive.rs`); review it as part of the
-            same change.
+            same change. If `advisories/component-docs.json` changed, each
+            documentation URL was discovered and verified live against NVIDIA's
+            docs by `cargo xtask doc-links`; review the new links.

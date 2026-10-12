@@ -113,6 +113,14 @@ jobs:
         # drifted; regenerate with `cargo xtask product-map --write`.
         run: cargo run --locked --quiet -p xtask -- product-map --check
 
+      - name: Component documentation links canonically formatted
+        # advisories/component-docs.json is generated (and verified live) by
+        # `cargo xtask doc-links --write` in the nightly refresh. This offline
+        # check fails if the committed file is hand-edited or formatted
+        # differently; it does not touch the network (link rot is caught by the
+        # docs workflow's --check-links). Regenerate with `doc-links --write`.
+        run: cargo run --locked --quiet -p xtask -- doc-links --check
+
       - name: Release version pins agree
         # Every internal path-dep version pin in Cargo.toml must equal the
         # workspace package version. Bump them together with

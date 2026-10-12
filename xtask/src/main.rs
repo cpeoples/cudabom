@@ -14,6 +14,7 @@ mod bundle;
 mod corpus;
 mod cuda_repos;
 mod distribution_discover;
+mod doc_links;
 mod eval_distribution;
 mod eval_groundtruth;
 mod eval_tools;
@@ -58,6 +59,10 @@ const TASKS: &[(&str, &str)] = &[
         "generate advisories/product-map.json from component profiles (--check/--write)",
     ),
     (
+        "doc-links",
+        "resolve component documentation URLs into advisories/component-docs.json (--check/--write)",
+    ),
+    (
         "bundle",
         "package committed data into cudabom-data-<tag>.tar.gz (+ .sha256)",
     ),
@@ -97,6 +102,8 @@ fn main() -> ExitCode {
         fingerprints::backfill(task_args(&args, "fingerprints backfill"))
     } else if task.starts_with("product-map") {
         product_map::run(task_args(&args, "product-map"))
+    } else if task.starts_with("doc-links") {
+        doc_links::run(task_args(&args, "doc-links"))
     } else if task.starts_with("release-version") {
         release_version::run(task_args(&args, "release-version"))
     } else if task.starts_with("corpus lock") {
@@ -188,6 +195,10 @@ fn print_help() {
     println!("fingerprints backfill [--limit N] [--jobs N] [--corpus corpus]");
     println!("              # enrich committed manifest-only shards with the binary layer");
     println!("product-map   [--check | --write] [--out advisories/product-map.json]");
+    println!("doc-links     [--check | --write] [--out advisories/component-docs.json] [--shards fingerprints]");
+    println!(
+        "              # --check is offline (canonical compare); --write probes NVIDIA docs live"
+    );
     println!("release-version <x.y.z> | --check   # the one place to bump the release version");
     println!("bundle        --tag <tag> [--out dist] [--fingerprints fingerprints/cuda]");
     println!("              [--advisories advisories/index.json]");
