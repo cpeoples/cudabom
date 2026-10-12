@@ -131,9 +131,7 @@ const EXCEPTIONS: &[Exception] = &[
 fn heading_aliases(component: &str) -> &'static [&'static str] {
     match component {
         "cudart" => &["cuda runtime", "cuda-runtime-api"],
-        "cudla" => &["cudla"],
-        "nvjpeg" => &["nvjpeg"],
-        "nvjpeg2000" => &["nvjpeg2000", "nvjpeg 2000"],
+        "nvjpeg2000" => &["nvjpeg 2000"],
         "cal" => &["communication abstraction layer"],
         "cuxxfilt" => &["cu++filt"],
         _ => &[],
@@ -145,12 +143,13 @@ pub(crate) fn run(args: &[String]) -> Result<()> {
     let out = PathBuf::from(flag(args, "--out").unwrap_or_else(|| DEFAULT_OUT.to_string()));
     let shard_root =
         PathBuf::from(flag(args, "--shards").unwrap_or_else(|| DEFAULT_SHARD_ROOT.to_string()));
-    let write = has_flag(args, "--write");
+    if has_flag(args, "--write") && has_flag(args, "--check") {
+        bail!("--write and --check are mutually exclusive");
+    }
+
     // --check is the safe default so a bare invocation never touches the network
     // or mutates the tree.
-    let check = has_flag(args, "--check") || !write;
-
-    if write {
+    if has_flag(args, "--write") {
         let families = component_families(&shard_root)?;
         status!(
             "xtask: resolving documentation links for {} component families",
@@ -170,32 +169,28 @@ pub(crate) fn run(args: &[String]) -> Result<()> {
         return Ok(());
     }
 
-    if check {
-        // Offline: parse the committed sidecar and re-render it canonically. A
-        // mismatch means the file was hand-edited or formatted differently, not
-        // that a link rotted (that is `build_docs.py --check-links`, online).
-        let existing = std::fs::read_to_string(&out).with_context(|| {
-            format!(
-                "reading {} (run `cargo xtask doc-links --write`)",
-                out.display()
-            )
-        })?;
-        let parsed = parse(&existing)
-            .with_context(|| format!("parsing {} (is it valid sidecar JSON?)", out.display()))?;
-        let regenerated = render(&parsed);
-        if existing == regenerated {
-            status!("xtask: {} is canonically formatted", out.display());
-            return Ok(());
-        }
-        bail!(
-            "{} is not in canonical form.\n\
-             Re-run `cargo xtask doc-links --write` (online) to regenerate it, or \
-             hand-fix the formatting to match (sorted keys, 2-space indent, trailing newline).",
+    // Offline: parse the committed sidecar and re-render it canonically. A
+    // mismatch means the file was hand-edited or formatted differently, not
+    // that a link rotted (that is `build_docs.py --check-links`, online).
+    let existing = std::fs::read_to_string(&out).with_context(|| {
+        format!(
+            "reading {} (run `cargo xtask doc-links --write`)",
             out.display()
-        );
+        )
+    })?;
+    let parsed = parse(&existing)
+        .with_context(|| format!("parsing {} (is it valid sidecar JSON?)", out.display()))?;
+    let regenerated = render(&parsed);
+    if existing == regenerated {
+        status!("xtask: {} is canonically formatted", out.display());
+        return Ok(());
     }
-
-    Ok(())
+    bail!(
+        "{} is not in canonical form.\n\
+         Re-run `cargo xtask doc-links --write` (online) to regenerate it, or \
+         hand-fix the formatting to match (sorted keys, 2-space indent, trailing newline).",
+        out.display()
+    )
 }
 
 /// Every component family name present in the committed shard tree, sorted and

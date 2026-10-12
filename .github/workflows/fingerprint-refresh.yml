@@ -41,11 +41,13 @@ on:
         type: string
 
 concurrency:
-  # Key on the trigger so a manual workflow_dispatch and the nightly schedule
-  # do not cannibalize each other (static group => the later run self-cancels
-  # with cancel-in-progress: false). Two runs of the SAME event still serialize
-  # on the shared fingerprint-refresh branch, which is what we want.
-  group: fingerprint-refresh-${{ github.event_name }}
+  # One static group for every trigger (nightly schedule AND manual
+  # workflow_dispatch), so refresh runs never execute concurrently. Both
+  # triggers push the shared fingerprint-refresh branch and open a PR against
+  # main; overlapping runs would race on that branch and the PR. With a static
+  # group and cancel-in-progress: false, a run started while another is active
+  # serializes behind it instead of racing or cancelling it.
+  group: fingerprint-refresh
   cancel-in-progress: false
 
 permissions:
@@ -396,6 +398,22 @@ jobs:
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No shard changes; nothing to open."
+            exit 0
+          fi
+
+          # Guard against proposing already-merged work. This job runs for ~37m
+          # on whatever `main` was at checkout; if `main` advances meanwhile
+          # (e.g. a prior refresh PR gets merged mid-run), the shards derived
+          # here can already be on `main` by the time we reach this step. Diff
+          # the staged tree against LIVE `main`, not the stale checkout base:
+          # if they are identical, this run reproduces committed state and must
+          # not open a no-op PR (the exact cause of the duplicate #28 vs #26).
+          git fetch --no-tags --quiet origin main
+          staged_tree="$(git write-tree)"
+          main_tree="$(git rev-parse origin/main^{tree})"
+          if [ "$staged_tree" = "$main_tree" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Staged tree matches origin/main ($main_tree); already merged, nothing to open."
             exit 0
           fi
           echo "changed=true" >> "$GITHUB_OUTPUT"

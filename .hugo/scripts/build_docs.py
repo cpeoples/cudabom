@@ -189,8 +189,8 @@ def check_links() -> int:
     import urllib.error
     import urllib.request
 
-    def probe(url: str) -> object:
-        status: object = None
+    def probe(url: str) -> int | str:
+        status: int | str = 0
         for method in ("HEAD", "GET"):
             req = urllib.request.Request(
                 url, method=method, headers={"User-Agent": "cudabom-docs-linkcheck"}
@@ -202,7 +202,7 @@ def check_links() -> int:
                 status = e.code
                 if method == "HEAD":
                     continue  # some servers reject HEAD; retry with GET
-            except Exception as e:  # noqa: BLE001 - report any transport error
+            except (urllib.error.URLError, TimeoutError) as e:
                 status = str(e)
                 if method == "HEAD":
                     continue
@@ -212,11 +212,9 @@ def check_links() -> int:
     log(f"checking {len(families)} component documentation link(s)")
     failures: list[tuple[str, str, str]] = []
     for name in families:
-        candidates = component_doc_candidates(name)
-        last_url, last_status = candidates[0], None
-        for url in candidates:
-            last_url = url
-            last_status = probe(url)
+        last_url = last_status = None
+        for url in component_doc_candidates(name):
+            last_url, last_status = url, probe(url)
             if last_status == 200:
                 break
         if last_status != 200:
@@ -237,11 +235,7 @@ def log(msg: str) -> None:
 
 def front_matter(title: str, weight: int, extra: str = "") -> str:
     """A minimal Relearn front-matter block."""
-    block = f'+++\ntitle = "{title}"\nweight = {weight}\n'
-    if extra:
-        block += extra
-    block += "+++\n\n"
-    return block
+    return f'+++\ntitle = "{title}"\nweight = {weight}\n{extra}+++\n\n'
 
 
 BADGES_BLOCK = re.compile(r"<!--\s*BADGES_START.*?BADGES_END\s*-->\s*", re.DOTALL)
@@ -374,11 +368,8 @@ def gen_coverage() -> None:
     by a future refresh appears on this page with no code change.
     """
 
-    def ver_key(label: str):
-        parts = []
-        for p in label.replace("-", ".").split("."):
-            parts.append(int(p) if p.isdigit() else 0)
-        return parts
+    def ver_key(label: str) -> list[int]:
+        return [int(p) if p.isdigit() else 0 for p in label.replace("-", ".").split(".")]
 
     trees = sorted(d for d in FINGERPRINTS.iterdir() if d.is_dir())
     # Per tree: its releases; plus repo-wide rollups for the summary line.
@@ -518,8 +509,11 @@ def gen_advisories_stats() -> None:
             fixes += [
                 r.get("fixed") for r in item.get("fixed_ranges", []) or [] if r.get("fixed")
             ]
-        uniq = lambda xs: ", ".join(dict.fromkeys(xs)) or "-"  # noqa: E731
-        return uniq(comps), uniq(fixes)
+
+        def dedupe(xs: list[str]) -> str:
+            return ", ".join(dict.fromkeys(xs)) or "-"
+
+        return dedupe(comps), dedupe(fixes)
 
     advs_sorted = sorted(
         advs,

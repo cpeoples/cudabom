@@ -87,13 +87,14 @@ const MANUAL_RULES: &[(&str, &str)] = &[
 pub(crate) fn run(args: &[String]) -> Result<()> {
     let out = PathBuf::from(flag(args, "--out").unwrap_or_else(|| DEFAULT_OUT.to_string()));
     let shard_root = shard_root(flag(args, "--shards"));
-    let write = has_flag(args, "--write");
-    // --check is the safe default so a bare invocation never mutates the tree.
-    let check = has_flag(args, "--check") || !write;
+    if has_flag(args, "--write") && has_flag(args, "--check") {
+        bail!("--write and --check are mutually exclusive");
+    }
 
     let generated = render(&shard_root);
 
-    if write {
+    // --check is the safe default so a bare invocation never mutates the tree.
+    if has_flag(args, "--write") {
         if let Some(parent) = out.parent() {
             std::fs::create_dir_all(parent).ok();
         }
@@ -102,31 +103,27 @@ pub(crate) fn run(args: &[String]) -> Result<()> {
         return Ok(());
     }
 
-    if check {
-        let existing = std::fs::read_to_string(&out).with_context(|| {
-            format!(
-                "reading {} (run `cargo xtask product-map --write`)",
-                out.display()
-            )
-        })?;
-        if existing == generated {
-            status!(
-                "xtask: {} is up to date with the component profiles",
-                out.display()
-            );
-            return Ok(());
-        }
-        bail!(
-            "{} is out of sync with the component profiles.\n\
-             Run `cargo xtask product-map --write` and commit the result.\n\
-             (The map is generated from advisory_terms in \
-             crates/cudabom-identify/src/derive.rs, the MANUAL_RULES seed, \
-             and auto-derived components in the fingerprints/ shards.)",
+    let existing = std::fs::read_to_string(&out).with_context(|| {
+        format!(
+            "reading {} (run `cargo xtask product-map --write`)",
+            out.display()
+        )
+    })?;
+    if existing == generated {
+        status!(
+            "xtask: {} is up to date with the component profiles",
             out.display()
         );
+        return Ok(());
     }
-
-    Ok(())
+    bail!(
+        "{} is out of sync with the component profiles.\n\
+         Run `cargo xtask product-map --write` and commit the result.\n\
+         (The map is generated from advisory_terms in \
+         crates/cudabom-identify/src/derive.rs, the MANUAL_RULES seed, \
+         and auto-derived components in the fingerprints/ shards.)",
+        out.display()
+    )
 }
 
 /// Build the ordered, de-duplicated rule list: manual seed first, then
