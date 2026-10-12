@@ -22,7 +22,7 @@
 //!    that gap, the generator reads the committed shard tree and emits a
 //!    `{ contains: <name>, component: <name> }` rule for each shard component
 //!    not already covered, using the component's own name as its advisory term
-//!    (exactly [`cudabom_identify::AutoIdentity::advisory_term`]). This keeps
+//!    (exactly what [`cudabom_identify::auto_identity`] returns). This keeps
 //!    advisory coverage dynamic: a newly auto-derived component becomes
 //!    advisable in the same refresh PR that first fingerprints it.
 //!
@@ -54,7 +54,7 @@ const DEFAULT_OUT: &str = "advisories/product-map.json";
 
 /// Root directory holding the committed fingerprint shards (per-product
 /// subdirectories). Auto-derived components (Model B) exist only in the shards,
-/// not in the reviewed [`cudabom_identify::component_profiles`] table, so the
+/// not in the reviewed [`cudabom_identify::advisory_terms`] table, so the
 /// generator reads this tree to contribute their advisory vocabulary. Kept
 /// relative to the repo root (xtask runs from `<root>/xtask` under cargo but
 /// the CLI/CI run from `<root>`); resolved via [`shard_root`].
@@ -183,7 +183,7 @@ fn shard_root(flag: Option<String>) -> PathBuf {
 /// `(contains, component)` pair for every component whose name is NOT a
 /// reviewed profile component (those already contribute via `advisory_terms`).
 /// The pair is `(name, name)`: the component's own name is its advisory term,
-/// matching [`cudabom_identify::AutoIdentity::advisory_term`]. Sorted by name
+/// matching [`cudabom_identify::auto_identity`]. Sorted by name
 /// for deterministic output; a missing/empty shard tree yields no rules (so the
 /// generator still works on a tree with no shards yet).
 ///

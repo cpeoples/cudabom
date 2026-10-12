@@ -1193,7 +1193,7 @@ fn so_belongs_to_auto_key(soname_stem: &str, manifest_key: &str) -> bool {
 /// `libNAME.so` (Linux) and `NAME64_<major>.dll` (Windows), so the DLL base
 /// name is the authoritative identity signal on Windows. Reconstructing the
 /// `libNAME.so` stem lets a DLL flow through the *same* identity pipeline the
-/// Linux `.so` uses ([`component_owning_soname`] fold / [`so_belongs_to_auto_key`]
+/// Linux `.so` uses ([`cudabom_identify::component_owning_soname`] fold / [`so_belongs_to_auto_key`]
 /// / [`cudabom_identify::auto_identity`]); the DLL's `NAME` casing is preserved
 /// (unlike [`dll_name_belongs_to`], which lowercases for comparison) so the
 /// reconstructed stem matches mixed-case SONAMEs such as `libcublasLt.so`.
