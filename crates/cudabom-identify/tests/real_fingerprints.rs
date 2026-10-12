@@ -109,24 +109,35 @@ fn every_committed_tree_loads_cleanly() {
 }
 
 #[test]
-fn every_committed_component_has_a_known_profile() {
-    // Accuracy guard: every component derived into a committed shard must map to
-    // a reviewed profile in derive.rs. A shard that derives a component with no
-    // profile would attribute an unidentified identity, so fail the build here
-    // rather than ship it.
+fn every_committed_component_is_profiled_or_auto_derived() {
+    // Accuracy guard: a component in a committed shard must either map to a
+    // reviewed profile in derive.rs, or be a genuine Model B auto-derivation.
+    //
+    // Model B mints a component from a library's real SONAME when no reviewed
+    // profile owns the manifest key, so a profile-less name is legitimate as
+    // long as it is backed by a soname stem that no reviewed profile claims
+    // (an owned stem would have folded into that profile instead of minting a
+    // new unit). A component with no profile AND no unowned soname stem has no
+    // identity source at all, so fail the build rather than ship it.
     let (db, _) = FingerprintDb::from_dir(&fingerprints_root()).expect("load all shards");
-    let known: std::collections::BTreeSet<&str> = cudabom_identify::advisory_terms()
+    let profiled: std::collections::BTreeSet<&str> = cudabom_identify::advisory_terms()
         .into_iter()
         .map(|(_, component)| component)
         .collect();
-    let unknown: Vec<&str> = db
+    let unidentified: Vec<&str> = db
         .components
         .iter()
+        .filter(|c| !profiled.contains(c.name.as_str()))
+        .filter(|c| {
+            !c.soname_stems
+                .iter()
+                .any(|stem| cudabom_identify::component_owning_soname(stem).is_none())
+        })
         .map(|c| c.name.as_str())
-        .filter(|name| !known.contains(name))
         .collect();
     assert!(
-        unknown.is_empty(),
-        "committed shards derive components with no reviewed profile: {unknown:?}"
+        unidentified.is_empty(),
+        "committed shards derive components with neither a reviewed profile \
+         nor an auto-derivable soname: {unidentified:?}"
     );
 }
