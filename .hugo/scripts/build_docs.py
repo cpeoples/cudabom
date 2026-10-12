@@ -85,17 +85,48 @@ COMPONENT_DOC_OVERRIDES = {
     "nvpl-tensor": "https://docs.nvidia.com/nvpl/_static/tensor/index.html",
     "nvshmem": "https://docs.nvidia.com/nvshmem/api/",
     "nvvm": "https://docs.nvidia.com/cuda/nvvm-ir-spec/",
+    # Auto-derived (Model B) libraries with no standalone CUDA doc page. CAL is
+    # the communication abstraction layer documented inside the cuBLASMp guide
+    # (its own page, not the landing page); cuVS is a RAPIDS library whose
+    # landing page lives on developer.nvidia.com rather than the
+    # docs.nvidia.com/cuda convention.
+    "cal": "https://docs.nvidia.com/cuda/cublasmp/usage/initialization/cal.html",
+    "cuvs": "https://developer.nvidia.com/cuvs",
+    # OpenCL has no docs.nvidia.com/cuda/opencl/ page (that path 404s); NVIDIA's
+    # own OpenCL page is the developer-site landing.
+    "opencl": "https://developer.nvidia.com/opencl",
 }
 
 
-def component_doc_url(name: str) -> str:
-    """NVIDIA documentation URL for a component family.
+def component_doc_candidates(name: str) -> list[str]:
+    """Ordered documentation URLs to try for a component family.
 
-    Families whose docs follow the common convention resolve to
-    https://docs.nvidia.com/cuda/<name>/ automatically; the rest come from
-    COMPONENT_DOC_OVERRIDES. Every URL is validated by `--check-links`.
+    An explicit COMPONENT_DOC_OVERRIDES entry wins outright. Otherwise the
+    resolver proposes the common docs.nvidia.com/cuda/<name>/ convention first,
+    then a few other NVIDIA/RAPIDS layouts that newer or auto-derived (Model B)
+    libraries follow. The link check keeps the first candidate that returns 200,
+    so a newly fingerprinted family that lives at a predictable path resolves
+    with no code change, and only a genuinely doc-less library needs an entry.
     """
-    return COMPONENT_DOC_OVERRIDES.get(name, f"https://docs.nvidia.com/cuda/{name}/")
+    override = COMPONENT_DOC_OVERRIDES.get(name)
+    if override is not None:
+        return [override]
+    return [
+        f"https://docs.nvidia.com/cuda/{name}/",
+        f"https://docs.nvidia.com/{name}/",
+        f"https://developer.nvidia.com/{name}",
+    ]
+
+
+def component_doc_url(name: str) -> str:
+    """Best-guess NVIDIA documentation URL for a component family.
+
+    Returns the first candidate from `component_doc_candidates` (the override,
+    or the docs.nvidia.com/cuda/<name>/ convention). Pure and offline so static
+    page generation stays deterministic; `--check-links` is what actually walks
+    the candidate list against the live docs and reports a dead link.
+    """
+    return component_doc_candidates(name)[0]
 
 
 PACKAGE_KEY = re.compile(r"^(lib)?[a-z0-9]+(_[a-z0-9]+)*$")
@@ -138,16 +169,16 @@ def check_links() -> int:
 
     Run in CI so a convention change, a renamed NVIDIA page, or a newly
     fingerprinted family with a broken derived URL fails the build instead of
-    shipping a dead link. Returns a process exit code.
+    shipping a dead link. For each family the ordered candidates from
+    `component_doc_candidates` are tried and the first reachable one is kept, so
+    an auto-derived library that happens to live at a predictable path resolves
+    on its own; a family is a failure only when none of its candidates return
+    200. Returns a process exit code.
     """
     import urllib.error
     import urllib.request
 
-    families = sorted(component_families())
-    log(f"checking {len(families)} component documentation link(s)")
-    failures: list[tuple[str, str, str]] = []
-    for name in families:
-        url = component_doc_url(name)
+    def probe(url: str) -> object:
         status: object = None
         for method in ("HEAD", "GET"):
             req = urllib.request.Request(
@@ -155,8 +186,7 @@ def check_links() -> int:
             )
             try:
                 with urllib.request.urlopen(req, timeout=20) as resp:
-                    status = resp.status
-                break
+                    return resp.status
             except urllib.error.HTTPError as e:
                 status = e.code
                 if method == "HEAD":
@@ -165,11 +195,24 @@ def check_links() -> int:
                 status = str(e)
                 if method == "HEAD":
                     continue
-        if status != 200:
-            failures.append((name, url, str(status)))
-            log(f"  FAIL {name}: {status}  {url}")
+        return status
+
+    families = sorted(component_families())
+    log(f"checking {len(families)} component documentation link(s)")
+    failures: list[tuple[str, str, str]] = []
+    for name in families:
+        candidates = component_doc_candidates(name)
+        last_url, last_status = candidates[0], None
+        for url in candidates:
+            last_url = url
+            last_status = probe(url)
+            if last_status == 200:
+                break
+        if last_status != 200:
+            failures.append((name, last_url, str(last_status)))
+            log(f"  FAIL {name}: {last_status}  {last_url}")
         else:
-            log(f"  ok   {name}  {url}")
+            log(f"  ok   {name}  {last_url}")
     if failures:
         log(f"{len(failures)} documentation link(s) did not return 200")
         return 1
