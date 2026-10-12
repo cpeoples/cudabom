@@ -4,10 +4,11 @@
     "label": "ubuntu2004-sbsa"
   },
   "provenance": {
-    "manifest_sha256": "0fdc8663a60f02c309e4f2abfe9e0bb0a3f5ece4ef786492904c050f41a4818e",
+    "manifest_sha256": "4e0f3aa0f68ae5b489eca2b93ebbe632982044d769ca5fa8f44c2235a893349e",
     "corpus_sha256": [
       "1ad55efd7ef03b5204ca4e79d94107266bc49c8af6a103ae03caaaa9ba24df83",
       "763a768d9d55b82b5e6eaa286db849a11231482c421b5b9e3d4bb3f836f680ca",
+      "788a378977a5a785a253418a38ef855989eac57be78f3b387326248443d4067b",
       "7dc1fe9740fc6ba9b575dab9f2324ad029bd5ee4650eee7a46b50de32c90a2fa",
       "9b21751280b48306364844e9fe639fd7668d9f47899e205a1fbc9ceee288ad74",
       "a1b392d570d188074091924799ee0d096561a4635aa89cb00e98b381f710a8ad",
@@ -92,6 +93,31 @@
       "version_markers": [],
       "release_versions": {
         "10.4.0.72": [
+          "ubuntu2004-sbsa"
+        ]
+      }
+    },
+    {
+      "name": "cufftmp",
+      "soname_stems": [
+        "libcufftMp.so"
+      ],
+      "file_hashes": {
+        "788a378977a5a785a253418a38ef855989eac57be78f3b387326248443d4067b": [
+          "12.1.3.2"
+        ],
+        "e580df997d5ac9c40bf1d09baa82d8f307a08ba27acd38ae090dc4c6f0e7807a": [
+          "12.1.3.2"
+        ]
+      },
+      "build_ids": {
+        "bda78db9380d8f3287a19074d1e58677fa13458c": [
+          "12.1.3.2"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "12.1.3.2": [
           "ubuntu2004-sbsa"
         ]
       }

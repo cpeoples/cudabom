@@ -23,6 +23,14 @@
     },
     "version": "11.2.67"
   },
+  "cuda_opencl": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./cuda-opencl-12-0_12.0.76-1_amd64.deb",
+      "sha256": "6d750ddb28d92e02cb47d8028574ea77245f8afa95cd8c7066d47957bf716db3",
+      "size": "23832"
+    },
+    "version": "12.0.76"
+  },
   "libcublas": {
     "linux-x86_64-ubuntu2004": {
       "relative_path": "./libcublas-11-2_11.3.1.68-1_amd64.deb",
@@ -38,6 +46,14 @@
       "size": "105983080"
     },
     "version": "10.4.0.72"
+  },
+  "libcufftmp": {
+    "linux-x86_64-ubuntu2004": {
+      "relative_path": "./libcufftmp12-cuda-13_12.1.3.2-1_amd64.deb",
+      "sha256": "265837c7d56418ba758f56de1023fa3ec82e5e3386aa499fe371a6bd0f142c25",
+      "size": "166904780"
+    },
+    "version": "12.1.3.2"
   },
   "libcurand": {
     "linux-x86_64-ubuntu2004": {

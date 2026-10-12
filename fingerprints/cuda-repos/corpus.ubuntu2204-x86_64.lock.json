@@ -51,6 +51,13 @@
       "sha256": "2667ac0458bcfae2bb592bd6e6f434be5d33aa703c547d32cd14f353b3c002f0"
     },
     {
+      "component": "libcuvs",
+      "version": "26.04.00.194111",
+      "platform": "linux-x86_64-ubuntu2204",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/./libcuvs1-cuda-12_26.04.00.194111-1_amd64.deb",
+      "sha256": "be527d17333b1e30e06cafd3ad049fe62381a4166d7db9bb8c93bc0c74bbe26f"
+    },
+    {
       "component": "npp",
       "version": "11.7.3.21",
       "platform": "linux-x86_64-ubuntu2204",

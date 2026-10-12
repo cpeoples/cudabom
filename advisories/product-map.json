@@ -7,7 +7,6 @@
     { "contains": "cuda driver", "component": "cuda-driver" },
     { "contains": "cuda runtime", "component": "cudart" },
     { "contains": "cudart", "component": "cudart" },
-    { "contains": "cufft", "component": "cufft" },
     { "contains": "curand", "component": "curand" },
     { "contains": "cusolver", "component": "cusolver" },
     { "contains": "npp", "component": "npp" },
@@ -49,6 +48,11 @@
     { "contains": "nvpl rand", "component": "nvpl-rand" },
     { "contains": "nvpl scalapack", "component": "nvpl-scalapack" },
     { "contains": "nvpl sparse", "component": "nvpl-sparse" },
-    { "contains": "nvpl tensor", "component": "nvpl-tensor" }
+    { "contains": "nvpl tensor", "component": "nvpl-tensor" },
+    { "contains": "cal", "component": "cal" },
+    { "contains": "cufftmp", "component": "cufftmp" },
+    { "contains": "cufft", "component": "cufft" },
+    { "contains": "cuvs", "component": "cuvs" },
+    { "contains": "opencl", "component": "opencl" }
   ]
 }

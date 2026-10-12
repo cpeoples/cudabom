@@ -4,7 +4,7 @@
     "label": "ubuntu2204-x86_64"
   },
   "provenance": {
-    "manifest_sha256": "63e07751a09f56342b198228c7fbca7a67de6bd0608abbaf23943c47ce7287d5",
+    "manifest_sha256": "76a859ddcc504b34c4c2d17fdb3f02ce7e2f6d2820e3a0afbd3e4701c38c9b5b",
     "corpus_sha256": [
       "2585631918aa84ea122e0bbf6e256b39b272604e4e760181efcac072465876af",
       "2667ac0458bcfae2bb592bd6e6f434be5d33aa703c547d32cd14f353b3c002f0",
@@ -16,6 +16,7 @@
       "9f686617b25d6e2feaf09c712cfefa833fcef8c43660ab5310f2135c4c11eb9e",
       "a9096859dd254edf50e035c1b25f733fd15eb37edce70c9d2af4c5553cd742fd",
       "b477faa65d3e915837905e3f004a5ad62b0fb2c6bf9557d8d72e4e856e59b763",
+      "be527d17333b1e30e06cafd3ad049fe62381a4166d7db9bb8c93bc0c74bbe26f",
       "dbf83d9fbf1504b2af5dcce564f0cda1ae2f87bdee539c70a04a352fa539c763",
       "e27a3dea28704f27fc70e3eb60510fe279c46c2870eaf6af381d1c2e7d8471e2"
     ],
@@ -237,6 +238,31 @@
       "version_markers": [],
       "release_versions": {
         "11.7.3.50": [
+          "ubuntu2204-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "cuvs",
+      "soname_stems": [
+        "libcuvs_c.so"
+      ],
+      "file_hashes": {
+        "1291304e36affb29cc8f53330a87254a334f9c19b9729da809f782b1352d88a4": [
+          "26.04.00.194111"
+        ],
+        "be527d17333b1e30e06cafd3ad049fe62381a4166d7db9bb8c93bc0c74bbe26f": [
+          "26.04.00.194111"
+        ]
+      },
+      "build_ids": {
+        "0f9a188066c4c0523901e30068fd6809d0ee32ac": [
+          "26.04.00.194111"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "26.04.00.194111": [
           "ubuntu2204-x86_64"
         ]
       }

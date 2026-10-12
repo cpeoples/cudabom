@@ -7,14 +7,70 @@
   "provenance": {
     "manifest_sha256": "2bda286ae0be2a3996a407b01a68082374abb4087acaaf4165e88f7c54322805",
     "corpus_sha256": [
+      "271d9951ee5b5e4e6e9fcb7079ce3c36f5dd581b3a0f7d1937f81e0c0e058fb8",
+      "3500c18236fc449cf0395ee422c5a1771ce6349dc547951eaa6562ffc4fc762c",
       "5f5813814343e83eeb743ddb4b1df0b346cdbf2b2026b32a0bc4a349361ec8e4",
       "891e86a28cfe08772f2485e4db7ec8d28292e6a1b0e78967d08404c8371925b5",
+      "d0016b62d42916e37cd065279eb8fa4947e3423220812c696c09ea417477c770",
       "d6cacf073bf87987b0f20a7a5a168ec503264d295e3aebf9df177326e8fcb286",
-      "d86648a6e1f1d35eb25af258e1828e483aa07c568b95941f349fc68316f56290"
+      "d86648a6e1f1d35eb25af258e1828e483aa07c568b95941f349fc68316f56290",
+      "eac07cc1524b37c693944e3e91c4857ed66bc2bb2579407ce9795916c9a113a4"
     ],
     "tool_version": "0.1.0"
   },
   "components": [
+    {
+      "name": "cal",
+      "soname_stems": [
+        "libcal.so"
+      ],
+      "file_hashes": {
+        "271d9951ee5b5e4e6e9fcb7079ce3c36f5dd581b3a0f7d1937f81e0c0e058fb8": [
+          "0.4.3.36"
+        ],
+        "3500c18236fc449cf0395ee422c5a1771ce6349dc547951eaa6562ffc4fc762c": [
+          "0.4.3.36"
+        ],
+        "7fbcde7bac751e339fbcbff66d3a239ade4e3b32cc65c9ad6cbd7fa0c2e123a2": [
+          "0.4.3.36"
+        ],
+        "802f34a99f0e29d5b283a9fb7d0d0ad2b0c2626aa2773cb17cc8154119050ad0": [
+          "0.4.3.36"
+        ],
+        "d0016b62d42916e37cd065279eb8fa4947e3423220812c696c09ea417477c770": [
+          "0.4.3.36"
+        ],
+        "d90676a406c37ecc980c96f547900a8f3d010778fd7838f7d20c61a55374a1a9": [
+          "0.4.3.36"
+        ],
+        "e52fb7604f70235994845c34fd0cb4873ca8e925ce4005f6854fea435e4625fd": [
+          "0.4.3.36"
+        ],
+        "eac07cc1524b37c693944e3e91c4857ed66bc2bb2579407ce9795916c9a113a4": [
+          "0.4.3.36"
+        ]
+      },
+      "build_ids": {
+        "3a2fcbeb64c41b19dfa6bcbc7f1b596628084d4e": [
+          "0.4.3.36"
+        ],
+        "4fbc725e05a8b63416d075782e109f42328674ef": [
+          "0.4.3.36"
+        ],
+        "ac2def21bcdd836fea8ff725dbe6461e053e67d2": [
+          "0.4.3.36"
+        ],
+        "b43c1f24838e98c0264651543fb00a2b0d47511b": [
+          "0.4.3.36"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.4.3.36": [
+          "0.2.1"
+        ]
+      }
+    },
     {
       "name": "cublasmp",
       "description": "NVIDIA cuBLASMp library",

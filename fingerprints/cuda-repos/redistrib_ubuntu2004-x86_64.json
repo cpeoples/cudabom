@@ -4,13 +4,15 @@
     "label": "ubuntu2004-x86_64"
   },
   "provenance": {
-    "manifest_sha256": "236448c24f353287a25c208f53ff844cadc529ab4dd53559c2ab0c86ab36522d",
+    "manifest_sha256": "d7eb9500e74b146f5d1bc670f8ba77a6b2f0ce49ec56e4753f113adb888aac0d",
     "corpus_sha256": [
       "0902a289173dba06d68b80993ce42bbac21f77befb21c1447da6c7cee5c9176a",
       "0bc6c18d55942458fbec15826a5da23a4d3f16570c5f99253c7d0ff2369242e3",
       "0f5c9c04b5880a6b6d5e8094e06cf71b270b6245c3efc4e11bbc8575b9d42646",
       "143139ce016c9bb4323ba410729b331d0b78828948a07a1d32e98310b47eb162",
+      "265837c7d56418ba758f56de1023fa3ec82e5e3386aa499fe371a6bd0f142c25",
       "5b19779ce350cc74edce69b018b704bfb232769e65a40d7f3c77b3b65ddfac7e",
+      "6d750ddb28d92e02cb47d8028574ea77245f8afa95cd8c7066d47957bf716db3",
       "7c5a1bfeb3f7b9ca09e11b1f347df479dfad1a33a4516a67acafd29da26a9795",
       "993d54d9c3feb1943b15d4e784ca72347bd0a8f8ca5361fdf6041cb9db673bb4",
       "ab49c57feeea5c25a9700eeaf0213a5c286abb1ff7cd61d37c172870431d60c8",
@@ -110,6 +112,31 @@
       "version_markers": [],
       "release_versions": {
         "10.4.0.72": [
+          "ubuntu2004-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "cufftmp",
+      "soname_stems": [
+        "libcufftMp.so"
+      ],
+      "file_hashes": {
+        "265837c7d56418ba758f56de1023fa3ec82e5e3386aa499fe371a6bd0f142c25": [
+          "12.1.3.2"
+        ],
+        "bea192c3eaa1f66a47f31f80ba77073770da197bf0e87b5f83dbdcad626896e9": [
+          "12.1.3.2"
+        ]
+      },
+      "build_ids": {
+        "edf50e5e335f7fdbf36805c95a1c11fdd7ff8671": [
+          "12.1.3.2"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "12.1.3.2": [
           "ubuntu2004-x86_64"
         ]
       }
@@ -450,6 +477,31 @@
       "version_markers": [],
       "release_versions": {
         "11.2.67": [
+          "ubuntu2004-x86_64"
+        ]
+      }
+    },
+    {
+      "name": "opencl",
+      "soname_stems": [
+        "libOpenCL.so"
+      ],
+      "file_hashes": {
+        "1552ec44b469da72e585a29ac7fd2aa98d7f99b9362b7fb8f3dcb2d6b603d3fb": [
+          "12.0.76"
+        ],
+        "6d750ddb28d92e02cb47d8028574ea77245f8afa95cd8c7066d47957bf716db3": [
+          "12.0.76"
+        ]
+      },
+      "build_ids": {
+        "b3217362255db6f1188e7596454ffe8bc4606b53": [
+          "12.0.76"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "12.0.76": [
           "ubuntu2004-x86_64"
         ]
       }

@@ -9,6 +9,13 @@
       "sha256": "e9d68a39528df8cd6a78a971bbe545b1e6c7c8f52cc85e534895a2acb374fa89"
     },
     {
+      "component": "cuda_opencl",
+      "version": "12.0.76",
+      "platform": "linux-x86_64-ubuntu2004",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/./cuda-opencl-12-0_12.0.76-1_amd64.deb",
+      "sha256": "6d750ddb28d92e02cb47d8028574ea77245f8afa95cd8c7066d47957bf716db3"
+    },
+    {
       "component": "cudart",
       "version": "11.2.72",
       "platform": "linux-x86_64-ubuntu2004",
@@ -49,6 +56,13 @@
       "platform": "linux-x86_64-ubuntu2004",
       "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/./libcusparse-11-2_11.3.1.68-1_amd64.deb",
       "sha256": "5b19779ce350cc74edce69b018b704bfb232769e65a40d7f3c77b3b65ddfac7e"
+    },
+    {
+      "component": "libcufftmp",
+      "version": "12.1.3.2",
+      "platform": "linux-x86_64-ubuntu2004",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/./libcufftmp12-cuda-13_12.1.3.2-1_amd64.deb",
+      "sha256": "265837c7d56418ba758f56de1023fa3ec82e5e3386aa499fe371a6bd0f142c25"
     },
     {
       "component": "npp",

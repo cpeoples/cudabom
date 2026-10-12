@@ -51,6 +51,13 @@
       "sha256": "763a768d9d55b82b5e6eaa286db849a11231482c421b5b9e3d4bb3f836f680ca"
     },
     {
+      "component": "libcufftmp",
+      "version": "12.1.3.2",
+      "platform": "linux-sbsa-ubuntu2004",
+      "url": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/sbsa/./libcufftmp12-cuda-13_12.1.3.2-1_arm64.deb",
+      "sha256": "788a378977a5a785a253418a38ef855989eac57be78f3b387326248443d4067b"
+    },
+    {
       "component": "npp",
       "version": "11.2.1.68",
       "platform": "linux-sbsa-ubuntu2004",

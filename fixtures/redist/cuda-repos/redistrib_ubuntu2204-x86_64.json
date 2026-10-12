@@ -63,6 +63,14 @@
     },
     "version": "11.7.3.50"
   },
+  "libcuvs": {
+    "linux-x86_64-ubuntu2204": {
+      "relative_path": "./libcuvs1-cuda-12_26.04.00.194111-1_amd64.deb",
+      "sha256": "be527d17333b1e30e06cafd3ad049fe62381a4166d7db9bb8c93bc0c74bbe26f",
+      "size": "253789700"
+    },
+    "version": "26.04.00.194111"
+  },
   "libnpp": {
     "linux-x86_64-ubuntu2204": {
       "relative_path": "./libnpp-11-7_11.7.3.21-1_amd64.deb",
