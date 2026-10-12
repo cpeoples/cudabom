@@ -423,6 +423,49 @@ pub fn soname_stems_for(component: &str) -> &'static [&'static str] {
         .map_or(&[], |p| p.soname_stems)
 }
 
+/// Reverse lookup: the profiled component that already owns a given SONAME
+/// stem, if any. Matching is on stem equality after normalizing both sides to
+/// their `.so` stem (dropping any ABI version suffix), so a scanned
+/// `libcudnn_graph.so.9` or the bare `libcudnn_graph.so` both resolve to the
+/// `cudnn` component that lists `libcudnn_graph.so` in its reviewed profile.
+///
+/// This is what lets Model B *fold* an auto-derived library into an existing
+/// reviewed component rather than minting a fragment: cuDNN publishes several
+/// of its sub-libraries (e.g. `libcudnn_graph.so`,
+/// `libcudnn_engines_runtime_compiled.so`) under the separate `cudnn_jit`
+/// manifest key, but those stems are already owned by `cudnn`, so their
+/// fingerprints must accrue to `cudnn`. Returns `None` for a stem no profile
+/// owns (a genuinely new library), so the caller then auto-derives it.
+#[must_use]
+pub fn component_owning_soname(soname_stem: &str) -> Option<&'static str> {
+    // Normalize the query to its `.so` stem (`libcudnn_graph.so.9` ->
+    // `libcudnn_graph.so`) so a versioned SONAME matches the profile's stem.
+    let normalized = soname_stem
+        .find(".so")
+        .map_or(soname_stem, |idx| &soname_stem[..idx + ".so".len()]);
+    component_profiles()
+        .iter()
+        .find_map(|p| p.soname_stems.contains(&normalized).then_some(p.component))
+}
+
+/// Normalize a manifest key to a component display name: lowercase, drop a
+/// leading `lib` or `cuda_` decoration, and fold separators to `_`.
+///
+/// This is the first-party NVIDIA unit name (`libcal` -> `cal`, `cuda_nvtx` ->
+/// `nvtx`, `cuda_opencl` -> `opencl`), used both as the identity for a
+/// genuinely new auto-derived component and (lowercased) as its advisory term,
+/// so a scanned library and a CSAF product name reconcile by the same name
+/// NVIDIA ships the package under.
+#[must_use]
+pub fn normalize_manifest_key_name(manifest_key: &str) -> String {
+    let key = manifest_key.to_ascii_lowercase();
+    let core = key
+        .strip_prefix("lib")
+        .or_else(|| key.strip_prefix("cuda_"))
+        .unwrap_or(&key);
+    core.replace(['-', ' '], "_")
+}
+
 /// Map a *declared* component name or purl (as a third party like NGC writes
 /// it) to a canonical cudabom component name, when it names a CUDA component
 /// cudabom knows.
@@ -555,6 +598,134 @@ fn is_cuda_track_token(tok: &str) -> bool {
     let Some(rest) = rest else { return false };
     let digits = rest.strip_suffix('x').unwrap_or(rest);
     !digits.is_empty() && digits.chars().all(|c| c.is_ascii_digit())
+}
+
+/// Reduce a SONAME stem to its *stem-core*: strip a leading `lib`, a trailing
+/// `.so` (and any ABI version suffix after it), leaving the library's bare name.
+///
+/// Examples: `libcal.so` -> `cal`; `libcal.so.12` -> `cal`;
+/// `libnvToolsExt.so.1` -> `nvToolsExt`; `libOpenCL.so` -> `OpenCL`. A name
+/// with no `.so` is treated as not a shared-library stem and yields `None`, so
+/// callers never fabricate an identity from a non-library file name.
+#[must_use]
+pub fn soname_stem_core(soname_stem: &str) -> Option<String> {
+    // The core is everything between a leading `lib` and the first `.so`.
+    let so_idx = soname_stem.find(".so")?;
+    let before = &soname_stem[..so_idx];
+    let core = before.strip_prefix("lib").unwrap_or(before);
+    if core.is_empty() {
+        return None;
+    }
+    Some(core.to_string())
+}
+
+/// Derive the canonical component name for a genuinely new shared library
+/// NVIDIA ships under `manifest_key`, whose real archive SONAME stem is
+/// `soname_stem`.
+///
+/// The name comes from the *manifest key* (the first-party NVIDIA unit name),
+/// normalized by stripping a leading `lib` or `cuda_` and folding separators
+/// (`libcal` -> `cal`, `cuda_nvtx` -> `nvtx`, `cuda_opencl` -> `opencl`). This
+/// matches how advisories refer to a package better than the raw SONAME
+/// stem-core (`nvToolsExt`, `OpenCL`) would. The `soname_stem` is still read and
+/// attached elsewhere as the real matching signal; it is used here only as a
+/// fallback label when the key normalizes to nothing usable.
+///
+/// Callers must first consult [`component_owning_soname`]: a stem already owned
+/// by a reviewed profile folds into that component and never reaches here.
+#[must_use]
+pub fn auto_identity(soname_stem: &str, manifest_key: &str) -> String {
+    let component = normalize_manifest_key_name(manifest_key);
+    if component.is_empty() {
+        return soname_stem_core(soname_stem).unwrap_or_else(|| manifest_key.to_string());
+    }
+    component
+}
+
+/// First-party license classification: is an unprofiled key's manifest
+/// `license` one of NVIDIA's driver/datacenter/IDE tags that must NOT
+/// auto-derive as a CUDA runtime component?
+///
+/// Model B mints a component for any unprofiled key whose archive ships a
+/// `.so`. By itself that would wrongly mint non-CUDA units whose primary
+/// library name-matches the key: datacenter telemetry/management
+/// (`collectx_bringup`, `libnvsdm`, `libnvidia_nscq`, `fabricmanager`, `nvlsm`,
+/// `mft`), the driver (`nvidia_driver`), and IDE tooling (`nsight_compute`,
+/// `nsight_systems`). NVIDIA already classifies these in the redist manifest
+/// via the `license` field, so this uses NVIDIA's own tag rather than our own
+/// key-name denylist (future-proof: a new driver/datacenter archive carrying
+/// one of these licenses is excluded automatically).
+///
+/// EXCLUDED is EXACTLY these four tags (trimmed, case-insensitive):
+/// `NVIDIA Driver`, `NVIDIA Proprietary`, `NVIDIA SLA`, and bare `NVIDIA`. This
+/// is a full-string match, never a substring: a CUDA license such as
+/// `CUDA Toolkit` (which contains neither tag) and product licenses like
+/// `cuTensor`, `NVPL`, or `libcal library` all fall through as eligible. A key
+/// with no `license` field is NOT excluded here (it falls through to the other
+/// gates: ships-a-`.so` and the `soname_belongs_to_key` attribution guard).
+#[must_use]
+pub fn license_is_excluded(license: Option<&str>) -> bool {
+    let Some(license) = license else {
+        return false; // absent license is not an exclusion signal
+    };
+    let normalized = license.trim().to_ascii_lowercase();
+    matches!(
+        normalized.as_str(),
+        "nvidia driver" | "nvidia proprietary" | "nvidia sla" | "nvidia"
+    )
+}
+
+/// Attribution-safety predicate for an auto-derived component: does a `.so`
+/// whose SONAME stem is `soname_stem` belong to the archive published under
+/// `manifest_key`?
+///
+/// NVIDIA archives bundle unrelated libraries (a `libcuda.so` driver stub, a
+/// `libOpenCL.so`). A reviewed `ComponentProfile` gates these with
+/// [`soname_stems_for`]; an auto-derived key has no allowlist, so this applies
+/// a principled rule mirroring `dll_name_belongs_to`: credit the `.so` only
+/// when its stem-core relates to the key's core name. "Relates" means either
+/// name is a prefix of the other after normalization (so `cal` matches the
+/// `libcal` key, and `cudnn_graph` matches the `cudnn_jit` family's `cudnn`
+/// root), while an unrelated bundled stub (`cuda`, `OpenCL`) is dropped.
+#[must_use]
+pub fn soname_belongs_to_key(soname_stem: &str, manifest_key: &str) -> bool {
+    let Some(core) = soname_stem_core(soname_stem) else {
+        return false;
+    };
+    let core = core.to_ascii_lowercase();
+    // Normalize the manifest key to a comparable core: drop a leading `lib`
+    // or `cuda_` decoration and fold separators, matching how NVIDIA names the
+    // archive after its primary library (`libcal` -> `cal`, `cuda_nvtx` ->
+    // `nvtx`).
+    let key_core = normalize_manifest_key_name(manifest_key);
+    if key_core.is_empty() {
+        return false;
+    }
+    // Relate on a shared prefix in either direction, token-aware so a stub like
+    // `cuda` does not match a `cudnn_*` key by raw character prefix.
+    related_core(&core, &key_core) || related_core(&key_core, &core)
+}
+
+/// True if `a` relates to `b`: equal, one extends the other at a token (`_`)
+/// boundary, or they share the same leading token. This credits `cudnn_graph`
+/// and `cudnn_engines_runtime_compiled` to the `cudnn_jit` key (shared `cudnn`
+/// family token) and `cal` to `cal`, while rejecting `cuda` vs `cudnn` (their
+/// leading tokens differ: `cuda` != `cudnn`).
+fn related_core(a: &str, b: &str) -> bool {
+    if a == b {
+        return true;
+    }
+    // `a` extends `b` when it begins with `b` followed by a token separator,
+    // so `cudnn_graph` extends `cudnn` but `cudnnx` does not extend `cudnn`.
+    if a.strip_prefix(b).is_some_and(|rest| rest.starts_with('_')) {
+        return true;
+    }
+    // Family relation: same leading token (`cudnn_graph` ~ `cudnn_jit` via
+    // `cudnn`). A single-token core only relates to another single-token core
+    // when equal (handled above), so this never over-matches `cal` ~ `cublas`.
+    let a_head = a.split('_').next().unwrap_or(a);
+    let b_head = b.split('_').next().unwrap_or(b);
+    a_head == b_head && a.contains('_') && b.contains('_')
 }
 
 /// The outcome of deriving a [`FingerprintDb`] from a manifest.
@@ -868,5 +1039,109 @@ mod tests {
         assert!(!is_cuda_track_token("cu"));
         assert!(!is_cuda_track_token("cuda"));
         assert!(!is_cuda_track_token("cublas"));
+    }
+
+    #[test]
+    fn soname_stem_core_strips_lib_so_and_abi_version() {
+        // Leading `lib` and trailing `.so`(+ABI) are stripped to the bare core.
+        assert_eq!(soname_stem_core("libcal.so").as_deref(), Some("cal"));
+        assert_eq!(soname_stem_core("libcal.so.12").as_deref(), Some("cal"));
+        assert_eq!(
+            soname_stem_core("libnvToolsExt.so.1").as_deref(),
+            Some("nvToolsExt")
+        );
+        // Case is preserved for the core (identity is read, not normalized).
+        assert_eq!(soname_stem_core("libOpenCL.so").as_deref(), Some("OpenCL"));
+        // A versioned real SONAME still reduces to the stem-core.
+        assert_eq!(
+            soname_stem_core("libcudnn_graph.so.9").as_deref(),
+            Some("cudnn_graph")
+        );
+        // Non-library names (no `.so`) are rejected: never fabricate identity.
+        assert_eq!(soname_stem_core("cuobjdump"), None);
+        assert_eq!(soname_stem_core("libnvptxcompiler_static.a"), None);
+        // A degenerate `lib.so` has no core.
+        assert_eq!(soname_stem_core("lib.so"), None);
+    }
+
+    #[test]
+    fn auto_identity_reads_name_from_manifest_key() {
+        // The component name comes from the normalized manifest key, not the
+        // raw SONAME stem-core.
+        assert_eq!(auto_identity("libcal.so", "libcal"), "cal");
+        // libnvToolsExt.so under key `cuda_nvtx` -> `nvtx`, NOT `nvToolsExt`.
+        assert_eq!(auto_identity("libnvToolsExt.so", "cuda_nvtx"), "nvtx");
+        // libOpenCL.so under key `cuda_opencl` -> `opencl`, NOT `OpenCL`.
+        assert_eq!(auto_identity("libOpenCL.so", "cuda_opencl"), "opencl");
+        // Separators in the key fold to `_` after prefix stripping.
+        assert_eq!(
+            auto_identity("libfoo.so", "cuda_foo-bar baz"),
+            "foo_bar_baz"
+        );
+    }
+
+    #[test]
+    fn component_owning_soname_folds_cudnn_sublibraries() {
+        // cuDNN sub-libraries shipped under the cudnn_jit key are already owned
+        // by the reviewed `cudnn` profile, so they fold into `cudnn`.
+        assert_eq!(component_owning_soname("libcudnn_graph.so"), Some("cudnn"));
+        assert_eq!(
+            component_owning_soname("libcudnn_engines_runtime_compiled.so"),
+            Some("cudnn")
+        );
+        // A versioned SONAME normalizes to the `.so` stem before matching.
+        assert_eq!(
+            component_owning_soname("libcudnn_graph.so.9"),
+            Some("cudnn")
+        );
+        // A genuinely new library no profile owns returns None, so the caller
+        // auto-derives it.
+        assert_eq!(component_owning_soname("libcal.so"), None);
+        assert_eq!(component_owning_soname("libnvToolsExt.so"), None);
+    }
+
+    #[test]
+    fn license_is_excluded_matches_only_the_four_nvidia_tags() {
+        // The four EXCLUDED driver/datacenter/IDE tags, case-insensitive +
+        // trimmed.
+        assert!(license_is_excluded(Some("NVIDIA Driver")));
+        assert!(license_is_excluded(Some("NVIDIA Proprietary")));
+        assert!(license_is_excluded(Some("NVIDIA SLA")));
+        assert!(license_is_excluded(Some("NVIDIA")));
+        assert!(license_is_excluded(Some("  nvidia sla  ")));
+        assert!(license_is_excluded(Some("nvidia driver")));
+        // CUDA-family / product licenses are allowed.
+        assert!(!license_is_excluded(Some("CUDA Toolkit")));
+        assert!(!license_is_excluded(Some("cuDNN")));
+        assert!(!license_is_excluded(Some("libcal library")));
+        assert!(!license_is_excluded(Some("cuTensor")));
+        assert!(!license_is_excluded(Some("NVPL")));
+        // Must be a full-string match, never a substring of "NVIDIA".
+        assert!(!license_is_excluded(Some("NVIDIA cuTENSOR")));
+        assert!(!license_is_excluded(Some("NVIDIA Math Library")));
+        // Absent license falls through (not excluded).
+        assert!(!license_is_excluded(None));
+    }
+
+    #[test]
+    fn soname_belongs_to_key_credits_primary_and_drops_bundled_stubs() {
+        // The archive's primary library (named like the key) is kept.
+        assert!(soname_belongs_to_key("libcal.so", "libcal"));
+        assert!(soname_belongs_to_key("libOpenCL.so", "cuda_opencl"));
+        // cudnn_jit ships cudnn_* family libraries: credited to the cudnn root.
+        assert!(soname_belongs_to_key("libcudnn_graph.so", "cudnn_jit"));
+        assert!(soname_belongs_to_key(
+            "libcudnn_engines_runtime_compiled.so",
+            "cudnn_jit"
+        ));
+        // A bundled unrelated driver stub is NOT credited to an auto key.
+        assert!(!soname_belongs_to_key("libcuda.so", "libcal"));
+        assert!(!soname_belongs_to_key("libcuda.so", "cuda_opencl"));
+        assert!(!soname_belongs_to_key("libOpenCL.so", "libcal"));
+        // A near-miss first token (`cuda` vs `cudnn`) is rejected: a `libcuda.so`
+        // stub bundled in a cudnn_jit archive must not be credited.
+        assert!(!soname_belongs_to_key("libcuda.so", "cudnn_jit"));
+        // Non-library stems never belong.
+        assert!(!soname_belongs_to_key("cuobjdump", "cuda_cuobjdump"));
     }
 }

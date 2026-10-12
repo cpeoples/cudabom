@@ -2,7 +2,7 @@
 //! reviewed component profiles.
 //!
 //! The CSAF product → component mapping is *derived*, not hand-maintained. Its
-//! substring rules come from two sources, combined deterministically:
+//! substring rules come from three sources, combined deterministically:
 //!
 //! 1. [`MANUAL_RULES`]: a small, reviewed seed of mappings that have **no**
 //!    fingerprint component profile: toolkit/driver umbrellas (`cuda-toolkit`,
@@ -14,11 +14,23 @@
 //!    contributes its advisory vocabulary automatically. Adding a component in
 //!    `derive.rs` therefore updates fingerprint attribution *and* advisory
 //!    matching from one edit.
+//! 3. **Auto-derived (Model B) components in the shards**: components that were
+//!    minted dynamically from an archive's `.so`/`.dll` (e.g. `nvtx`,
+//!    `sanitizer_api`) have no reviewed profile and so contribute nothing via
+//!    source 2, which would leave them *fingerprinted but un-advisable* (a
+//!    scan identifies them, but no CVE/CSAF ever resolves to them). To close
+//!    that gap, the generator reads the committed shard tree and emits a
+//!    `{ contains: <name>, component: <name> }` rule for each shard component
+//!    not already covered, using the component's own name as its advisory term
+//!    (exactly [`cudabom_identify::AutoIdentity::advisory_term`]). This keeps
+//!    advisory coverage dynamic: a newly auto-derived component becomes
+//!    advisable in the same refresh PR that first fingerprints it.
 //!
-//! The two sources are merged with the manual seed first (so umbrella rules like
-//! `cuda toolkit` stay ahead of narrower ones), then profile-derived rules, with
-//! duplicate `contains` substrings dropped (first occurrence wins). The result
-//! is rendered as stable, pretty JSON matching the committed file byte-for-byte.
+//! The sources are merged with the manual seed first (so umbrella rules like
+//! `cuda toolkit` stay ahead of narrower ones), then profile-derived rules,
+//! then auto-derived shard rules, with duplicate `contains` substrings dropped
+//! (first occurrence wins). The result is rendered as stable, pretty JSON
+//! matching the committed file byte-for-byte.
 //!
 //! Modes:
 //!   - `--check` (default): regenerate in memory and compare to the committed
@@ -39,6 +51,14 @@ use crate::{flag, has_flag};
 
 /// Default output path for the generated product map.
 const DEFAULT_OUT: &str = "advisories/product-map.json";
+
+/// Root directory holding the committed fingerprint shards (per-product
+/// subdirectories). Auto-derived components (Model B) exist only in the shards,
+/// not in the reviewed [`cudabom_identify::component_profiles`] table, so the
+/// generator reads this tree to contribute their advisory vocabulary. Kept
+/// relative to the repo root (xtask runs from `<root>/xtask` under cargo but
+/// the CLI/CI run from `<root>`); resolved via [`shard_root`].
+const DEFAULT_SHARD_ROOT: &str = "fingerprints";
 
 /// The product-map schema version this generator emits. Single-sourced from the
 /// loader's constant so the generator and reader can never disagree.
@@ -63,14 +83,15 @@ const MANUAL_RULES: &[(&str, &str)] = &[
     ("cuda driver", "cuda-driver"),
 ];
 
-/// `product-map [--check | --write] [--out <file>]`
+/// `product-map [--check | --write] [--out <file>] [--shards <dir>]`
 pub(crate) fn run(args: &[String]) -> Result<()> {
     let out = PathBuf::from(flag(args, "--out").unwrap_or_else(|| DEFAULT_OUT.to_string()));
+    let shard_root = shard_root(flag(args, "--shards"));
     let write = has_flag(args, "--write");
     // --check is the safe default so a bare invocation never mutates the tree.
     let check = has_flag(args, "--check") || !write;
 
-    let generated = render();
+    let generated = render(&shard_root);
 
     if write {
         if let Some(parent) = out.parent() {
@@ -99,7 +120,8 @@ pub(crate) fn run(args: &[String]) -> Result<()> {
             "{} is out of sync with the component profiles.\n\
              Run `cargo xtask product-map --write` and commit the result.\n\
              (The map is generated from advisory_terms in \
-             crates/cudabom-identify/src/derive.rs plus the MANUAL_RULES seed.)",
+             crates/cudabom-identify/src/derive.rs, the MANUAL_RULES seed, \
+             and auto-derived components in the fingerprints/ shards.)",
             out.display()
         );
     }
@@ -108,7 +130,8 @@ pub(crate) fn run(args: &[String]) -> Result<()> {
 }
 
 /// Build the ordered, de-duplicated rule list: manual seed first, then
-/// profile-derived terms, dropping any `contains` substring already seen.
+/// profile-derived terms, then auto-derived shard-component terms, dropping any
+/// `contains` substring already seen.
 ///
 /// After collection, rules are reordered so that whenever one rule's `contains`
 /// is a substring of another's, the longer (more specific) rule comes first.
@@ -116,7 +139,7 @@ pub(crate) fn run(args: &[String]) -> Result<()> {
 /// would shadow a more specific one (`nvjpeg2000`) and misattribute its
 /// advisories. The reordering is a stable partial sort: rules not in a
 /// substring relationship keep their original (profile/seed) order.
-fn ordered_rules() -> Vec<(String, String)> {
+fn ordered_rules(shard_root: &std::path::Path) -> Vec<(String, String)> {
     let mut seen = std::collections::BTreeSet::new();
     let mut rules = Vec::new();
     let push = |rules: &mut Vec<(String, String)>,
@@ -134,8 +157,62 @@ fn ordered_rules() -> Vec<(String, String)> {
     for (contains, component) in cudabom_identify::advisory_terms() {
         push(&mut rules, &mut seen, contains, component);
     }
+    // Auto-derived (Model B) components: contribute `{ name -> name }` for each
+    // shard component with no reviewed profile. `push`'s dedup drops any whose
+    // normalized name a manual/profile rule already covers, so a profiled
+    // component is never double-listed and `nvpl-blas` (covered by the `nvpl
+    // blas` profile term, different normalization) is not re-emitted here.
+    for (contains, component) in auto_component_rules(shard_root) {
+        push(&mut rules, &mut seen, &contains, &component);
+    }
     sort_by_specificity(&mut rules);
     rules
+}
+
+/// Resolve the shard tree root: an explicit `--shards <dir>`, else the repo's
+/// committed [`DEFAULT_SHARD_ROOT`]. The generator (CLI/CI) runs from the repo
+/// root, so the default relative path is correct there; the unit tests pass an
+/// explicit temp dir.
+fn shard_root(flag: Option<String>) -> PathBuf {
+    flag.map_or_else(|| PathBuf::from(DEFAULT_SHARD_ROOT), PathBuf::from)
+}
+
+/// Advisory rules for auto-derived (Model B) components found in the shards.
+///
+/// Loads the merged shard DB under `shard_root` and returns a
+/// `(contains, component)` pair for every component whose name is NOT a
+/// reviewed profile component (those already contribute via `advisory_terms`).
+/// The pair is `(name, name)`: the component's own name is its advisory term,
+/// matching [`cudabom_identify::AutoIdentity::advisory_term`]. Sorted by name
+/// for deterministic output; a missing/empty shard tree yields no rules (so the
+/// generator still works on a tree with no shards yet).
+///
+/// REVIEWER NOTE: the term is a *substring* rule (first-wins), so a very short
+/// auto name (e.g. `cal` from `libcal`) is a broad match that could catch an
+/// unrelated CSAF product string. This is intentionally left to the nightly
+/// refresh PR's human review (the same PR that first introduces the component),
+/// rather than silently dropped or widened, keeping the mapping an explicit,
+/// reviewable fact. `sort_by_specificity` still orders any substring-related
+/// terms longest-first so a short term never shadows a more specific one.
+fn auto_component_rules(shard_root: &std::path::Path) -> Vec<(String, String)> {
+    let profiled: std::collections::BTreeSet<String> = cudabom_identify::advisory_terms()
+        .into_iter()
+        .map(|(_, component)| component.to_string())
+        .collect();
+
+    let Ok((db, _report)) = cudabom_identify::FingerprintDb::from_dir(shard_root) else {
+        return Vec::new(); // unreadable tree: contribute nothing
+    };
+
+    let mut names: Vec<String> = db
+        .components
+        .into_iter()
+        .map(|c| c.name)
+        .filter(|name| !profiled.contains(name))
+        .collect();
+    names.sort();
+    names.dedup();
+    names.into_iter().map(|name| (name.clone(), name)).collect()
 }
 
 /// Stable-reorder rules so a rule whose `contains` is a substring of another's
@@ -189,8 +266,8 @@ fn sort_by_specificity(rules: &mut Vec<(String, String)>) {
 /// Hand-rolled rather than via `serde_json::to_string_pretty` so the exact
 /// formatting (2-space indent, one rule per line, trailing newline) is pinned
 /// and reviewable, independent of serde's pretty-printer defaults.
-fn render() -> String {
-    let rules = ordered_rules();
+fn render(shard_root: &std::path::Path) -> String {
+    let rules = ordered_rules(shard_root);
     let mut s = String::new();
     s.push_str("{\n");
     let _ = writeln!(s, "  \"schema_version\": {SCHEMA_VERSION},");
@@ -242,9 +319,19 @@ fn normalize(s: &str) -> String {
 mod tests {
     use super::*;
 
+    /// The repo-root `fingerprints/` shard tree, resolved relative to this
+    /// crate (`xtask` lives at `<root>/xtask`). The real committed shards are
+    /// the generator's third input, so tests that assert the committed map or
+    /// profile-term presence must use the same tree the CLI/CI use.
+    fn repo_shard_root() -> PathBuf {
+        std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("..")
+            .join(DEFAULT_SHARD_ROOT)
+    }
+
     #[test]
     fn manual_rules_come_before_profile_rules() {
-        let rules = ordered_rules();
+        let rules = ordered_rules(&repo_shard_root());
         let toolkit = rules.iter().position(|(c, _)| c == "cuda toolkit");
         let cudart = rules.iter().position(|(c, _)| c == "cuda runtime");
         assert!(toolkit.is_some(), "manual umbrella rule present");
@@ -259,7 +346,7 @@ mod tests {
     fn more_specific_substring_rules_come_first() {
         // `nvjpeg2000` must precede `nvjpeg` so an "nvJPEG2000" advisory is not
         // shadowed by the shorter `nvjpeg` rule (first-wins substring matching).
-        let rules = ordered_rules();
+        let rules = ordered_rules(&repo_shard_root());
         let pos = |needle: &str| rules.iter().position(|(c, _)| c == needle);
         let nvjpeg = pos("nvjpeg").expect("nvjpeg rule present");
         let nvjpeg2000 = pos("nvjpeg2000").expect("nvjpeg2000 rule present");
@@ -286,7 +373,7 @@ mod tests {
 
     #[test]
     fn rules_are_deduplicated_by_normalized_contains() {
-        let rules = ordered_rules();
+        let rules = ordered_rules(&repo_shard_root());
         let mut seen = std::collections::BTreeSet::new();
         for (contains, _) in &rules {
             assert!(
@@ -298,7 +385,7 @@ mod tests {
 
     #[test]
     fn every_profiled_component_term_is_present() {
-        let rules = ordered_rules();
+        let rules = ordered_rules(&repo_shard_root());
         for (term, _component) in cudabom_identify::advisory_terms() {
             assert!(
                 rules.iter().any(|(c, _)| normalize(c) == normalize(term)),
@@ -309,13 +396,13 @@ mod tests {
 
     #[test]
     fn rendered_json_parses_and_round_trips_stably() {
-        let a = render();
+        let a = render(&repo_shard_root());
         // Must be valid JSON.
         let value: serde_json::Value = serde_json::from_str(&a).unwrap();
         assert_eq!(value["schema_version"], SCHEMA_VERSION);
         assert!(value["rules"].as_array().unwrap().len() >= MANUAL_RULES.len());
         // Deterministic: rendering twice yields identical bytes.
-        assert_eq!(a, render());
+        assert_eq!(a, render(&repo_shard_root()));
         // Ends with a single trailing newline.
         assert!(a.ends_with("}\n"));
     }
@@ -325,6 +412,79 @@ mod tests {
         assert_eq!(json_string(r#"a"b"#), r#""a\"b""#);
         assert_eq!(json_string(r"a\b"), r#""a\\b""#);
         assert_eq!(json_string("cublas"), r#""cublas""#);
+    }
+
+    /// An auto-derived (Model B) shard component (one with no reviewed profile)
+    /// contributes a `{ name -> name }` advisory rule, so it is advisable even
+    /// though it is not in the component-profile table. Driven by a synthetic
+    /// shard tree so the assertion holds regardless of what the committed
+    /// shards currently contain.
+    #[test]
+    fn auto_derived_shard_component_becomes_an_advisory_rule() {
+        let dir = std::env::temp_dir().join(format!(
+            "cudabom-pmap-auto-{}",
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .map_or(0, |d| d.as_nanos())
+        ));
+        std::fs::create_dir_all(&dir).unwrap();
+        // A minimal valid shard carrying one auto-derived component (`nvtx`,
+        // not in the profile table) and one profiled one (`cudart`).
+        let shard = format!(
+            r#"{{
+                "schema_version": {},
+                "components": [
+                    {{ "name": "nvtx", "soname_stems": ["libnvtx3interop.so"] }},
+                    {{ "name": "cudart", "soname_stems": ["libcudart.so"] }}
+                ]
+            }}"#,
+            cudabom_identify::FingerprintDb::CURRENT_SCHEMA
+        );
+        std::fs::write(dir.join("redistrib_test.json"), shard).unwrap();
+
+        let auto = auto_component_rules(&dir);
+        // The auto component contributes exactly `(nvtx, nvtx)`.
+        assert!(
+            auto.iter().any(|(c, comp)| c == "nvtx" && comp == "nvtx"),
+            "auto-derived nvtx must contribute a {{ nvtx -> nvtx }} rule: {auto:?}"
+        );
+        // The PROFILED cudart must NOT be re-emitted here (it comes from
+        // advisory_terms); only unprofiled components are auto rules.
+        assert!(
+            !auto.iter().any(|(_, comp)| comp == "cudart"),
+            "a profiled component (cudart) must not be an auto rule: {auto:?}"
+        );
+
+        // End to end: the full rule list resolves an `nvtx` product.
+        let rules = ordered_rules(&dir);
+        assert!(
+            rules.iter().any(|(c, comp)| c == "nvtx" && comp == "nvtx"),
+            "nvtx must appear in the final ordered rules"
+        );
+
+        // Closed loop through the REAL advisory matcher: render the map with
+        // this shard tree, load it as a `cudabom_advisory::ProductMap`, and
+        // confirm a CSAF-style product naming "NVTX" resolves to the auto
+        // component. This is the actual CVE/CSAF path a scan would take.
+        let json = render(&dir);
+        let map = cudabom_advisory::ProductMap::from_json(json.as_bytes())
+            .expect("generated product map is valid");
+        assert_eq!(
+            map.resolve("NVIDIA NVTX 1.2"),
+            Some("nvtx"),
+            "an auto-derived component must be resolvable from a CSAF product name"
+        );
+
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    /// A missing/empty shard tree is not an error: the generator still produces
+    /// the manual + profile rules and no auto rules.
+    #[test]
+    fn absent_shard_tree_yields_no_auto_rules() {
+        let dir = std::env::temp_dir().join("cudabom-pmap-does-not-exist-xyz");
+        let _ = std::fs::remove_dir_all(&dir); // ensure absent
+        assert_eq!(auto_component_rules(&dir).len(), 0);
     }
 
     /// The committed `advisories/product-map.json` must equal the generator's
@@ -341,7 +501,7 @@ mod tests {
             .unwrap_or_else(|e| panic!("reading {}: {e}", path.display()));
         assert_eq!(
             committed,
-            render(),
+            render(&repo_shard_root()),
             "advisories/product-map.json is out of sync; run `cargo xtask product-map --write`"
         );
     }

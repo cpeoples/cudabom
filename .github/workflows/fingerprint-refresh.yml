@@ -34,6 +34,11 @@ on:
         required: false
         default: "4"
         type: string
+      heal:
+        description: "How many committed shards to re-derive against the current logic this run (self-heal backlog)"
+        required: false
+        default: "6"
+        type: string
 
 concurrency:
   # Key on the trigger so a manual workflow_dispatch and the nightly schedule
@@ -321,8 +326,41 @@ jobs:
             rm -rf "${CORPUS_DIR:?}"/*
           done
 
+      - name: Self-heal stale committed shards (backlog)
+        id: heal
+        if: ${{ (inputs.heal || '6') != '0' }}
+        continue-on-error: true # a heal hiccup must never block the new-release PR
+        env:
+          HEAL: ${{ inputs.heal || '6' }}
+          JOBS: ${{ inputs.jobs || '4' }}
+        run: |
+          set -euo pipefail
+          # Independently of newly discovered releases, re-derive a bounded
+          # batch of ALREADY-COMMITTED shards that are stale against the current
+          # derivation logic. A shard is stale when its source manifest offers a
+          # non-excluded Linux archive whose sha256 is absent from the shard's
+          # recorded provenance: a derivable archive it never incorporated (the
+          # Model B auto-derivation backlog -- `nvtx`, `opencl`, `sanitizer_api`,
+          # folded cuDNN JIT, cuBLASMp `cal`, ... -- or any component added to a
+          # release's manifest after the shard was last derived).
+          #
+          # `backfill` regenerates each release's lock from its manifest with the
+          # current all-keys locker (so the missing archives are pinned), fetches
+          # ONLY that release across every Linux platform, re-derives ONLY that
+          # shard, then reclaims the corpus before the next -- so peak disk stays
+          # at one release, exactly like the new-release loop above. The check is
+          # content-based and self-terminating: once a shard incorporates the
+          # archive, its sha256 lands in provenance and it drops out of the set,
+          # so the backlog drains to empty over successive nightly runs and this
+          # step becomes a no-op.
+          cargo run --locked --quiet -p xtask -- fingerprints backfill \
+            --limit "$HEAL" --jobs "$JOBS" --corpus "$CORPUS_DIR"
+          # Belt-and-suspenders: backfill reclaims between shards, but ensure the
+          # (gitignored) corpus is gone before the diff/PR steps regardless.
+          rm -rf "${CORPUS_DIR:?}"/* 2>/dev/null || true
+
       - name: Regenerate product map from component profiles
-        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true' || steps.cuda_repos.outputs.changed == 'true'
+        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true' || steps.cuda_repos.outputs.changed == 'true' || steps.heal.outcome == 'success'
         # The CSAF product -> component map is generated from the reviewed
         # component profiles (advisory_terms in
         # crates/cudabom-identify/src/derive.rs). Regenerate so that if a newly
@@ -340,7 +378,7 @@ jobs:
 
       - name: Detect changes
         id: diff
-        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true' || steps.cuda_repos.outputs.changed == 'true'
+        if: steps.discover.outputs.new_count != '0' || steps.jetson.outputs.changed == 'true' || steps.cuda_repos.outputs.changed == 'true' || steps.heal.outcome == 'success'
         run: |
           set -euo pipefail
           # Stage new/changed shards and manifests; ignore the gitignored corpus.
@@ -378,9 +416,43 @@ jobs:
             fi
             echo EOF
           } >> "$GITHUB_OUTPUT"
-          # Distinct product trees touched, for the title.
-          products="$(printf '%s\n' "${added[@]}" | awk 'NF{print $1}' | sort -u | paste -sd', ' -)"
+
+          # Self-heal re-derives EXISTING shards, so they appear as MODIFIED
+          # (not added). Count/list those separately so the PR title and body
+          # reflect the backlog drain distinctly from new releases.
+          mapfile -t healed < <(git diff --cached --name-only --diff-filter=M -- "$SHARD_DIR" \
+            | grep -E '/redistrib_.*\.json$' \
+            | sed -E 's#^fingerprints/([^/]+)/redistrib_(.*)\.json$#\1 \2#' \
+            | sort -u)
+          # Drop any stray empty element (see the `added` block above).
+          tmp=(); for r in "${healed[@]}"; do [ -n "$r" ] && tmp+=("$r"); done
+          healed=("${tmp[@]}")
+          healed_count="${#healed[@]}"
+          echo "healed_count=$healed_count" >> "$GITHUB_OUTPUT"
+          {
+            echo 'healed<<EOF'
+            if [ "$healed_count" -eq 0 ]; then
+              echo "(no re-derived shards this run)"
+            else
+              printf '%s\n' "${healed[@]}" | awk '{print "- `"$1"` "$2}'
+            fi
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
+          # Distinct product trees touched (added + healed), for the title.
+          products="$( { printf '%s\n' "${added[@]}"; printf '%s\n' "${healed[@]}"; } \
+            | awk 'NF{print $1}' | sort -u | paste -sd', ' -)"
           echo "products=${products:-maintenance}" >> "$GITHUB_OUTPUT"
+
+          # A compact human summary for the PR title: "add N / re-derive M".
+          summary=""
+          [ "$added_count" -gt 0 ] && summary="add ${added_count} release(s)"
+          if [ "$healed_count" -gt 0 ]; then
+            [ -n "$summary" ] && summary="${summary}, "
+            summary="${summary}re-derive ${healed_count} shard(s)"
+          fi
+          [ -z "$summary" ] && summary="maintenance"
+          echo "summary=$summary" >> "$GITHUB_OUTPUT"
 
       - name: Open pull request
         if: steps.diff.outputs.changed == 'true'
@@ -389,8 +461,8 @@ jobs:
           token: ${{ secrets.REFRESH_PAT }}
           branch: fingerprint-refresh
           base: main
-          commit-message: "chore(fingerprints): add ${{ steps.diff.outputs.added_count }} release(s) (${{ steps.diff.outputs.products }})"
-          title: "chore(fingerprints): add ${{ steps.diff.outputs.added_count }} release(s) (${{ steps.diff.outputs.products }})"
+          commit-message: "chore(fingerprints): ${{ steps.diff.outputs.summary }} (${{ steps.diff.outputs.products }})"
+          title: "chore(fingerprints): ${{ steps.diff.outputs.summary }} (${{ steps.diff.outputs.products }})"
           add-paths: |
             ${{ env.SHARD_DIR }}
             ${{ env.FIXTURES_DIR }}
@@ -414,6 +486,19 @@ jobs:
             **Added this run (${{ steps.diff.outputs.added_count }} release(s)):**
 
             ${{ steps.diff.outputs.added }}
+
+            **Re-derived this run (${{ steps.diff.outputs.healed_count }} shard(s)):**
+
+            Existing committed shards re-derived against the current derivation
+            logic (the self-heal backlog). Each had a derivable Linux archive its
+            provenance never recorded: typically a Model B auto-derived library
+            (`nvtx`, `opencl`, `sanitizer_api`, folded cuDNN JIT, cuBLASMp
+            `cal`, ...) or a component added to the release's manifest after the
+            shard was last built. The check is content-based and
+            self-terminating, so the backlog drains to empty over successive
+            nightly runs.
+
+            ${{ steps.diff.outputs.healed }}
 
             Each nightly adds a bounded batch, so this PR is a slice of the
             remaining backlog, not every discovered release. The full discovery

@@ -34,8 +34,9 @@ pub use db::{
     VersionMarker,
 };
 pub use derive::{
-    advisory_terms, canonicalize_declared_name, derive, resolve_component, soname_stems_for,
-    Derived,
+    advisory_terms, auto_identity, canonicalize_declared_name, component_owning_soname, derive,
+    license_is_excluded, normalize_manifest_key_name, resolve_component, soname_belongs_to_key,
+    soname_stem_core, soname_stems_for, Derived,
 };
 pub use matcher::{coverage_gaps, identify_file};
 pub use redist::{HashScope, RedistArchive, RedistComponent, RedistError, RedistManifest};

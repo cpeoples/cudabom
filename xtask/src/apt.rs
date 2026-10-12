@@ -9,8 +9,6 @@
 
 use std::collections::BTreeMap;
 
-use cudabom_identify::resolve_component;
-
 /// One runtime CUDA library package parsed from an APT `Packages` stanza.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct DebPackage {
@@ -34,6 +32,57 @@ pub(crate) struct DebPackage {
 pub(crate) fn manifest_key_for(source: &str) -> String {
     source.replace('-', "_")
 }
+
+/// Is a package `source` one of NVIDIA's driver / datacenter / IDE families
+/// that must NOT auto-derive a CUDA runtime component, even though it ships a
+/// `.so`?
+///
+/// This is the APT/RPM parity backstop for the redist
+/// [`cudabom_identify::license_is_excluded`] gate. Model B keeps every
+/// `.so`-bearing package (dropping the old "must already be a profiled source"
+/// rule), so without an equivalent exclusion a driver or datacenter management
+/// package that happens to ship a shared library would mint a bogus component.
+/// The redist manifest classifies these via NVIDIA's `license` field, but APT
+/// `Packages` / RPM `primary.xml` carry no such tag; the package **source
+/// name** is the first-party signal those channels do expose, and NVIDIA names
+/// these families unmistakably.
+///
+/// Matched families (prefix on the normalized, lowercased source):
+/// - `nvidia-graphics-drivers*` / `nvidia-driver*` / `nvidia-compute-*`: the
+///   GPU driver (ships `libcuda.so`, `libnvidia-*.so`), not a CUDA library.
+/// - `datacenter-gpu-manager` / `dcgm*`: DCGM telemetry.
+/// - `fabricmanager`, `nvidia-fabricmanager*`, `libnvidia-nscq*`, `nvsdm*`,
+///   `nvlsm`, `imex*`, `mft*`, `collectx*`: NVSwitch/InfiniBand fabric &
+///   datacenter management.
+///
+/// The match is on the source name only, so a CUDA library is never excluded:
+/// `libcublas`, `cuda-cudart`, `libcuvs`, etc. share no prefix with any family
+/// here. Mirrors the redist gate's conservatism: exclude a known non-CUDA
+/// family, never guess.
+pub(crate) fn source_is_excluded(source: &str) -> bool {
+    let s = source.trim().to_ascii_lowercase();
+    EXCLUDED_SOURCE_PREFIXES
+        .iter()
+        .any(|prefix| s.starts_with(prefix))
+}
+
+/// Driver / datacenter / IDE source-name prefixes excluded by
+/// [`source_is_excluded`].
+const EXCLUDED_SOURCE_PREFIXES: &[&str] = &[
+    "nvidia-graphics-drivers", // GPU driver
+    "nvidia-driver",           // GPU driver (alt spelling)
+    "nvidia-compute",          // driver compute runtime (libnvidia-compute-*)
+    "datacenter-gpu-manager",  // DCGM
+    "dcgm",                    // DCGM
+    "fabricmanager",           // NVSwitch fabric manager
+    "nvidia-fabricmanager",    // NVSwitch fabric manager (alt)
+    "libnvidia-nscq",          // NVSwitch NSCQ
+    "nvsdm",                   // NVSwitch diagnostics
+    "nvlsm",                   // NVLink subnet manager
+    "imex",                    // internode memory exchange
+    "mft",                     // Mellanox firmware tools
+    "collectx",                // telemetry
+];
 
 /// Strip the Debian package revision from a version (`12.6.1.4-1` ->
 /// `12.6.1.4`). The upstream version is everything before the last `-`.
@@ -76,6 +125,11 @@ pub(crate) fn parse_cuda_library_packages(index_text: &str) -> Vec<DebPackage> {
         let Some(provides) = fields.get("Provides") else {
             continue;
         };
+        // The Model B gate: a package is kept iff it declares a versioned `.so`
+        // in `Provides` (a runtime shared library), whether or not its `Source`
+        // has a reviewed component profile. Packages the profile table does not
+        // yet name are still fetched and auto-derived (identity read from the
+        // real library at build time); a `-dev`/no-`.so` package is skipped.
         if !provides.contains(".so") {
             continue;
         }
@@ -83,9 +137,10 @@ pub(crate) fn parse_cuda_library_packages(index_text: &str) -> Vec<DebPackage> {
         let Some(source) = fields.get("Source") else {
             continue;
         };
-        // Keep only sources that resolve to a reviewed component, so we never
-        // synthesize an entry cudabom cannot attribute.
-        if resolve_component(&manifest_key_for(source)).is_none() {
+        // APT/RPM parity backstop for the redist license gate: a driver /
+        // datacenter / IDE family ships a `.so` but is not a CUDA library, and
+        // these channels carry no `license` tag, so exclude by source name.
+        if source_is_excluded(source) {
             continue;
         }
 
@@ -134,18 +189,64 @@ Source: cuda-cudart\n\
 Version: 12.6.68-1\n\
 Provides: libcudart.so.12 (= 12.6.68)\n\
 Filename: pool/main/c/cuda-cudart/cuda-cudart-12-6_12.6.68-1_arm64.deb\n\
-SHA256: 123456\n";
+SHA256: 123456\n\
+\n\
+Package: nvidia-compute-utils-550\n\
+Source: nvidia-graphics-drivers-550\n\
+Version: 550.54.15-0ubuntu1\n\
+Provides: libcuda.so.1, libnvidia-ml.so.1\n\
+Filename: pool/non-free/n/nvidia-graphics-drivers-550/nvidia-compute-550_550.54.15_arm64.deb\n\
+SHA256: dddddd\n";
 
     #[test]
     fn keeps_runtime_libs_drops_dev() {
         let pkgs = parse_cuda_library_packages(SAMPLE);
         let sources: Vec<&str> = pkgs.iter().map(|p| p.source.as_str()).collect();
         // libcublas-12-6 and cuda-cudart-12-6 are kept; the -dev package is
-        // dropped (headers only), and the versions have the revision stripped.
+        // dropped (headers only); the driver source is dropped by the exclusion
+        // backstop even though it ships `.so`s; versions have the revision
+        // stripped.
         assert_eq!(sources, vec!["cuda-cudart", "libcublas"]);
         assert_eq!(pkgs[0].version, "12.6.68");
         assert_eq!(pkgs[0].sha256, "123456");
         assert_eq!(pkgs[1].size, Some(12345));
+    }
+
+    #[test]
+    fn driver_and_datacenter_sources_are_excluded_but_cuda_libs_are_not() {
+        // Driver / datacenter / IDE families: excluded despite shipping a `.so`.
+        for src in [
+            "nvidia-graphics-drivers-550",
+            "nvidia-driver",
+            "nvidia-compute-utils",
+            "datacenter-gpu-manager",
+            "dcgm-exporter",
+            "fabricmanager",
+            "nvidia-fabricmanager-550",
+            "libnvidia-nscq-550",
+            "nvsdm",
+            "nvlsm",
+            "imex",
+            "mft",
+            "collectx-bringup",
+        ] {
+            assert!(
+                source_is_excluded(src),
+                "must exclude driver/dc source {src}"
+            );
+        }
+        // CUDA libraries: never excluded (no shared prefix with any family).
+        for src in [
+            "libcublas",
+            "cuda-cudart",
+            "cuda-nvrtc",
+            "libcuvs",
+            "libcufft",
+            "libnpp",
+            "libnvjpeg",
+        ] {
+            assert!(!source_is_excluded(src), "must NOT exclude CUDA lib {src}");
+        }
     }
 
     #[test]

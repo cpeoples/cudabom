@@ -16,10 +16,9 @@
 use std::io::Read;
 
 use anyhow::{Context, Result};
-use cudabom_identify::resolve_component;
 use flate2::read::GzDecoder;
 
-use crate::apt::{manifest_key_for, DebPackage};
+use crate::apt::DebPackage;
 
 /// Find the `primary.xml[.gz]` location in a `repomd.xml` body.
 ///
@@ -84,12 +83,22 @@ fn parse_one(block: &str) -> Option<DebPackage> {
     if name.contains("-devel-") || name.ends_with("-devel") {
         return None;
     }
-    // A runtime library publishes a versioned `.so` in rpm:provides.
+    // A runtime library publishes a versioned `.so` in rpm:provides. This is
+    // the Model B gate: a `.so`-bearing package is kept whether or not it has a
+    // reviewed component profile, so NVIDIA packages the profile table does not
+    // yet name are still fetched and auto-derived (identity read from the real
+    // library at build time). A package with no `.so` is skipped.
     if !block.contains(".so") {
         return None;
     }
     let source = source_stem(&name);
-    resolve_component(&manifest_key_for(&source))?;
+    // APT/RPM parity backstop for the redist license gate (see
+    // [`crate::apt::source_is_excluded`]): a driver/datacenter/IDE family ships
+    // a `.so` but is not a CUDA library, and these channels carry no `license`
+    // tag, so exclude by source name.
+    if crate::apt::source_is_excluded(&source) {
+        return None;
+    }
 
     let ver = attr(block, "<version ", "ver")?;
     let filename = attr(block, "<location ", "href")?;
@@ -203,6 +212,18 @@ mod tests {
   <location href="nsight-compute-2024.1.x86_64.rpm"/>
   <format></format>
 </package>
+<package type="rpm">
+  <name>nvidia-driver-cuda-550</name>
+  <version epoch="0" ver="550.54.15" rel="1"/>
+  <checksum type="sha256">888</checksum>
+  <location href="nvidia-driver-cuda-550-550.54.15-1.x86_64.rpm"/>
+  <format>
+    <rpm:provides>
+      <rpm:entry name="libcuda.so.1()(64bit)"/>
+      <rpm:entry name="libnvidia-ml.so.1()(64bit)"/>
+    </rpm:provides>
+  </format>
+</package>
 </metadata>"#;
 
     #[test]
@@ -223,7 +244,9 @@ mod tests {
     #[test]
     fn parses_only_runtime_cuda_libraries() {
         let pkgs = parse_cuda_library_packages(PRIMARY);
-        // libcublas-13-4 kept; -devel dropped; nsight (no .so, no profile) dropped.
+        // libcublas-13-4 kept; -devel dropped; nsight (no .so, no profile)
+        // dropped; the nvidia-driver source dropped by the exclusion backstop
+        // even though it ships `.so`s.
         let sources: Vec<&str> = pkgs.iter().map(|p| p.source.as_str()).collect();
         assert_eq!(sources, vec!["libcublas"]);
         assert_eq!(pkgs[0].version, "13.7.0.27");

@@ -171,12 +171,17 @@ fn platform_matches(want: &str, have: &str) -> bool {
         .is_some_and(|digits| !digits.is_empty() && digits.chars().all(|c| c.is_ascii_digit()))
 }
 
-/// Build corpus entries from a redist manifest, for the given platforms and the
-/// components that have a reviewed profile (so we only fetch what we can
-/// attribute). `resolve_component` maps a manifest key to a canonical component
-/// name, returning `None` for keys without a profile. The archive URL joins
-/// `base_url` with each archive's `relative_path`; entries are sorted for a
-/// deterministic lockfile.
+/// Build corpus entries from a redist manifest, for the given platforms.
+///
+/// Every manifest key that ships an archive for a requested platform is
+/// locked, so the fetched corpus can feed both the reviewed-profile binary
+/// layer and Model B auto-derivation (which credits any `.so`-bearing key).
+/// Profiled keys are keyed by their canonical component name (via
+/// `resolve_component`); unprofiled keys are keyed by the manifest key verbatim,
+/// matching the corpus layout the auto-derivation reader expects. Locking an
+/// archive that turns out to ship no `.so` is harmless: it simply yields no
+/// fingerprint at build time. The archive URL joins `base_url` with each
+/// archive's `relative_path`; entries are sorted for a deterministic lockfile.
 #[must_use]
 pub fn lock_from_manifest(
     manifest: &RedistManifest,
@@ -188,9 +193,10 @@ pub fn lock_from_manifest(
     let mut entries = Vec::new();
 
     for (key, component) in &manifest.components {
-        let Some(canonical) = resolve_component(key) else {
-            continue;
-        };
+        // Profiled -> canonical name; unprofiled -> manifest key verbatim, so an
+        // unprofiled `.so`-bearing key (Model B) is fetched under the directory
+        // the auto-derivation reader looks in.
+        let dir_name = resolve_component(key).unwrap_or_else(|| key.clone());
         for (platform, archive) in &component.archives {
             // Match the requested platform against the archive's platform key.
             // Flat trees key archives as `linux-x86_64`; CUDA-variant-nested
@@ -202,7 +208,7 @@ pub fn lock_from_manifest(
                 continue;
             }
             entries.push(CorpusEntry {
-                component: canonical.clone(),
+                component: dir_name.clone(),
                 version: component.version.clone(),
                 platform: platform.clone(),
                 url: format!("{base}/{}", archive.relative_path),
@@ -258,7 +264,7 @@ mod tests {
     }
 
     #[test]
-    fn builds_entries_for_selected_platforms_and_profiled_components() {
+    fn builds_entries_for_all_keys_including_unprofiled() {
         let m = RedistManifest::from_json(SAMPLE.as_bytes()).unwrap();
         let lock = lock_from_manifest(
             &m,
@@ -267,20 +273,33 @@ mod tests {
             resolver,
         );
 
-        // Only cudart linux-x86_64: nvcc is unprofiled, windows filtered out.
-        assert_eq!(lock.entries.len(), 1);
-        let e = &lock.entries[0];
-        assert_eq!(e.component, "cudart");
-        assert_eq!(e.version, "11.4.108");
-        assert_eq!(e.platform, "linux-x86_64");
+        // Model B: every key with a linux-x86_64 archive is locked, so a
+        // `.so`-bearing unprofiled key can be fetched and auto-derived. cudart
+        // is keyed by its canonical name; the unprofiled cuda_nvcc is keyed by
+        // the manifest key verbatim. Windows is filtered out.
+        assert_eq!(lock.entries.len(), 2);
+        let cudart = lock
+            .entries
+            .iter()
+            .find(|e| e.component == "cudart")
+            .expect("cudart locked under its canonical name");
+        assert_eq!(cudart.version, "11.4.108");
+        assert_eq!(cudart.platform, "linux-x86_64");
         assert_eq!(
-            e.url,
+            cudart.url,
             "https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/linux-x86_64/cuda_cudart-linux-x86_64-11.4.108-archive.tar.xz"
         );
         assert_eq!(
-            e.sha256,
+            cudart.sha256,
             "d08a1b731e5175aa3ae06a6d1c6b3059dd9ea13836d947018ea5e3ec2ca3d62b"
         );
+        // The unprofiled key is locked under the manifest key verbatim.
+        let nvcc = lock
+            .entries
+            .iter()
+            .find(|e| e.component == "cuda_nvcc")
+            .expect("unprofiled key locked under the manifest key verbatim");
+        assert_eq!(nvcc.version, "11.4.152");
     }
 
     #[test]
