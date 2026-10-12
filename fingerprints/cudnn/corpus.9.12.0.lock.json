@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "component": "cudnn",
+      "version": "9.12.0.46",
+      "platform": "linux-aarch64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-aarch64/cudnn-linux-aarch64-9.12.0.46_cuda12-archive.tar.xz",
+      "sha256": "b4a8bbc760f44985f7f4c16784e61432147fc8d7d6135b1fc737aa45d3adaa31"
+    },
+    {
+      "component": "cudnn",
+      "version": "9.12.0.46",
+      "platform": "linux-aarch64-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-aarch64/cudnn-linux-aarch64-9.12.0.46_cuda13-archive.tar.xz",
+      "sha256": "a3c2267bb6e9d9a0b3c2c4d79838436283725366f77a26e5bbeb5067a632b4b2"
+    },
+    {
+      "component": "cudnn",
+      "version": "9.12.0.46",
+      "platform": "linux-sbsa-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-sbsa/cudnn-linux-sbsa-9.12.0.46_cuda12-archive.tar.xz",
+      "sha256": "af8c670f221bd0837c27452c1a88d31384b459e9dd0947818a06fbafdbef7f69"
+    },
+    {
+      "component": "cudnn",
+      "version": "9.12.0.46",
+      "platform": "linux-sbsa-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-sbsa/cudnn-linux-sbsa-9.12.0.46_cuda13-archive.tar.xz",
+      "sha256": "27d9e9c70a5f464ddbacd4fdd433f4e736d6f4b32387c111d77d33b583c46f26"
+    },
+    {
+      "component": "cudnn",
+      "version": "9.12.0.46",
+      "platform": "linux-x86_64-cuda12",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-9.12.0.46_cuda12-archive.tar.xz",
+      "sha256": "21fad1b3a8a3db018868184b2082bd492633ae5101752432d655782bd108b19e"
+    },
+    {
+      "component": "cudnn",
+      "version": "9.12.0.46",
+      "platform": "linux-x86_64-cuda13",
+      "url": "https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-9.12.0.46_cuda13-archive.tar.xz",
+      "sha256": "ce92b4058d95c85959b822baa56389126a31678f5068b486523d1aa7f6490fcb"
+    }
+  ]
+}
