@@ -8,11 +8,47 @@
     "manifest_sha256": "3805b369890e1378d33d7e089c41948e070e150b8db16213b45be6eb9ee0e953",
     "corpus_sha256": [
       "0dbc7e91789ea3428bada7527c0012f6d5ae5c418779bb678365c2f20b2010a5",
+      "291a665f48e9bc56718b9af75ca5354265476681a7d62cd4ee6601573ee1901e",
+      "41919928433a9e174aafb364671a6adc4de28f3917924d387c7ef1b62baea3c3",
       "dba785a0301d2af320c8a3d9598874f270a02a77a14bfe59e94345669cacb6b6"
     ],
     "tool_version": "0.1.0"
   },
   "components": [
+    {
+      "name": "cal",
+      "soname_stems": [
+        "libcal.so"
+      ],
+      "file_hashes": {
+        "1d2e2d0cc4f47cbf238b09eb863c104b4788481183355f984be5c5fca18fb54b": [
+          "0.4.4.50"
+        ],
+        "291a665f48e9bc56718b9af75ca5354265476681a7d62cd4ee6601573ee1901e": [
+          "0.4.4.50"
+        ],
+        "41919928433a9e174aafb364671a6adc4de28f3917924d387c7ef1b62baea3c3": [
+          "0.4.4.50"
+        ],
+        "5a758b151f02913290c8c4c462d90a8d058b2a41d00abecfface36ae291fb322": [
+          "0.4.4.50"
+        ]
+      },
+      "build_ids": {
+        "03e975a870632b6542915b46282455fadbe7cc65": [
+          "0.4.4.50"
+        ],
+        "49f64434698e1f99f6f339c31fad4c8bb18b9277": [
+          "0.4.4.50"
+        ]
+      },
+      "version_markers": [],
+      "release_versions": {
+        "0.4.4.50": [
+          "0.4.0"
+        ]
+      }
+    },
     {
       "name": "cublasmp",
       "description": "NVIDIA cuBLASMp library",

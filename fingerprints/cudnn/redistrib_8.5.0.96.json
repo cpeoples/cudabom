@@ -9,7 +9,11 @@
     "corpus_sha256": [
       "00373c3d5e0b536a5557d0d0eb50706777f213a222b4030e1b71b1bec43d205f",
       "5454a6fd94f008728caae9adad993c4e85ef36302e26bce43bea7d458a5e7b6d",
-      "86780abbecd4634e7363fad1d000ae23b7905a5f8383bddbf7332c6934791dde"
+      "86780abbecd4634e7363fad1d000ae23b7905a5f8383bddbf7332c6934791dde",
+      "b6310d69708ca52435b10ce960c2f327f3d01a42e2f906def1c4e8d1db958d26",
+      "be0aef97ecdd94e9a701989e74b74a57886928943fc9a0183041fcfa95acaaac",
+      "bf277ed350addb8f97e0ab6a20b6fad869abe49ea24277d38ca79f5f23fbec6b",
+      "fbceac5e05d05394b8ae15925a9d4b6985fd9311d387efbfc0b560fc670d84d9"
     ],
     "tool_version": "0.1.0"
   },
@@ -37,10 +41,28 @@
         "1c7be39eda616edc79848ffa6ff8c4a2dd3c3e241fb78aa874c4378b03cfef19": [
           "8.5.0.96"
         ],
+        "25fc7c190593e93021ac18726cb4b1dd881f0c9bb1cceebb20c7a45d69fdac64": [
+          "8.5.0.96"
+        ],
+        "270cd821752bb66af5b5d30008024dffe850fdfb9b185f03677f24005e129ae3": [
+          "8.5.0.96"
+        ],
+        "38b53ecb1e72b605907c65044671578eb07161c484ff55178112ad91d7dc5990": [
+          "8.5.0.96"
+        ],
+        "3f48d5fa89afde8b86745727c5d71c5a486959648bfc7eb128ec4df6be90172e": [
+          "8.5.0.96"
+        ],
         "5454a6fd94f008728caae9adad993c4e85ef36302e26bce43bea7d458a5e7b6d": [
           "8.5.0.96"
         ],
         "61a538722cb776be56f7a0274fa6f742f954060555c81b06ea16ade8e97c4fa6": [
+          "8.5.0.96"
+        ],
+        "7a9086de0ac15d013fd65e3b146f0ba48c67498791775f5b784edf77c2ad3992": [
+          "8.5.0.96"
+        ],
+        "7ee3235008fbe1418176f927c7e8d1d3505f6eee730d6e30c404e7ee3c39b498": [
           "8.5.0.96"
         ],
         "7f49523e9d98e62d5338f413fdbb7d33b1be6425d7cfbed3f421223a0ee40a8c": [
@@ -50,6 +72,9 @@
           "8.5.0.96"
         ],
         "bf277ed350addb8f97e0ab6a20b6fad869abe49ea24277d38ca79f5f23fbec6b": [
+          "8.5.0.96"
+        ],
+        "cfd0b914f42646e580f4d467e9ed444b97d0ad5c819bf71f8ccba08d25457ac4": [
           "8.5.0.96"
         ]
       },
