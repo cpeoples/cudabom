@@ -7,12 +7,19 @@
   "provenance": {
     "manifest_sha256": "13d6a68bf4069a51fe653a769c41f9b0e3003e7f93ccf0f6cb89f642d10e2ccf",
     "corpus_sha256": [
+      "09c429bff7b69419e596efbd8193ba8430b808c8cfaab58050e2a16ea9184ad7",
       "114cdfd8173bc49449a4b570323e4a9a9bc2ad2766abc4cd3d63f5cd208e3804",
       "258590df03a98c3f812d7d32e41bba52919765ba730de8693036c711b265d930",
+      "26ec076eb618bc8ffdad564c294ecfaaf8055dfcc275087a41d8c41fad22161b",
+      "2e61bd0400821c7b68436e7d4af1af2504b5eb1dff15d3f0adb2ee070155b40c",
+      "37ae34f2eb671129cd66bd9301a556871ab1290c91882587c26d84f8283a856a",
       "56249ac2777b61ee70bb56b01e9b9eaf53fdc9be50fc2540d9a290df2dc4cd53",
+      "6cb29896dd0d322300b44695d5162b4ac97ad043993c4ccd258348fa76c18623",
       "78c2dba16fba391ae975c23590a6b632731939b5eaba0568c8b64ae8a050fa88",
+      "c3c8238f17e7ee39662d680f3e8f1a494d8b76ed5ae5c117d41ec7c3ed27f1d2",
       "f8355d1291fc69c9dcabe98f65def0ca59ff664e628c0da4a5164eba626db2a8",
-      "f922c5d77939a0a2db9d0e3440749c532830b7a03e2657947ae75291165e6dee"
+      "f922c5d77939a0a2db9d0e3440749c532830b7a03e2657947ae75291165e6dee",
+      "fe564a730640a3db48922c770995f1f4eaac46a252b267c8665662adb4a31869"
     ],
     "tool_version": "0.1.0"
   },
@@ -34,6 +41,15 @@
         "libcudnn_ops.so"
       ],
       "file_hashes": {
+        "00174444fc1b9e15c001d4e0c32404c986e0a96e0ad0795b48dca7a7ec770f1e": [
+          "9.13.1.26"
+        ],
+        "026f631821daa3c76caac9bc7b8e5a488b8efec7f606a7fdd0d9314aec720e10": [
+          "9.13.1.26"
+        ],
+        "0447c7d04fef1bc4f3d724d84333de45c79201aceb7020013b57b600dd73398a": [
+          "9.13.1.26"
+        ],
         "09c429bff7b69419e596efbd8193ba8430b808c8cfaab58050e2a16ea9184ad7": [
           "9.13.1.26"
         ],
@@ -61,6 +77,9 @@
         "25dc9f73018f69c9281c47cf896643ba78c07dc74005cabb281ae94d26c555b0": [
           "9.13.1.26"
         ],
+        "2628428d6f7e71f67acd51d00f22a38fda8be41964694e0318de1fd0c0c36b84": [
+          "9.13.1.26"
+        ],
         "26ec076eb618bc8ffdad564c294ecfaaf8055dfcc275087a41d8c41fad22161b": [
           "9.13.1.26"
         ],
@@ -71,6 +90,9 @@
           "9.13.1.26"
         ],
         "2c38dd779bdd967666f50848168ee648a420a7280f9d3715964abcf08d0a01ce": [
+          "9.13.1.26"
+        ],
+        "2e61bd0400821c7b68436e7d4af1af2504b5eb1dff15d3f0adb2ee070155b40c": [
           "9.13.1.26"
         ],
         "31ec08f9a28b8ea2e349b38b5f82e6bbc59df7cfd440c0b866fb1d66d8274ee8": [
@@ -85,16 +107,25 @@
         "34930debbb7c011d49e0eacc76f69427abe40938537836376dea3ccc16cf9b9d": [
           "9.13.1.26"
         ],
+        "37ae34f2eb671129cd66bd9301a556871ab1290c91882587c26d84f8283a856a": [
+          "9.13.1.26"
+        ],
         "3ae50eb830c931732a559fdfeac45354af1d99ea4d4795a759dd73d3826eccfb": [
           "9.13.1.26"
         ],
         "41b508cd657fa5908ad02fb36dae61bd07d676af5a60269437cdaccf5672591e": [
           "9.13.1.26"
         ],
+        "441062260ae4a52bca90f7ca29e89603137570f5ade4acf820231f5b93cecc18": [
+          "9.13.1.26"
+        ],
         "4727b1e6fbbffb9097428174d2dc21c9146dabc74a0bd2600e9c82ead258c5ad": [
           "9.13.1.26"
         ],
         "4810b87be1f6ca8a341532219ed2bad38caf66c34bfe20cbbfd3a0082e5d77ad": [
+          "9.13.1.26"
+        ],
+        "529af94ea4af904e8dd0b094fdb4bdb54e563a0b17d0eabee5a00ede866925d1": [
           "9.13.1.26"
         ],
         "56249ac2777b61ee70bb56b01e9b9eaf53fdc9be50fc2540d9a290df2dc4cd53": [
@@ -106,6 +137,9 @@
         "6236031ad4bd639ee5d42d7c5c9b7402c918bcc076e4dfb0200fa0ebf9409cfd": [
           "9.13.1.26"
         ],
+        "66d8e31feb2caf1c8f100e2a5b888bf40c28a6e208f9caf889e712a8579a8a21": [
+          "9.13.1.26"
+        ],
         "679c52880c6644780bafe00ab0867c72c424c0636683c3e65bc4c154cbb32ed5": [
           "9.13.1.26"
         ],
@@ -115,7 +149,13 @@
         "6b99bf5537fe247c791d25139f9f96f6bbd54a406bf847b54fc4b83261418ea9": [
           "9.13.1.26"
         ],
+        "6cb29896dd0d322300b44695d5162b4ac97ad043993c4ccd258348fa76c18623": [
+          "9.13.1.26"
+        ],
         "6f732fb8ce05ecfd3fc025fdd3128c05f9a09df9418187e43c8ae5fbbd175f30": [
+          "9.13.1.26"
+        ],
+        "70ab62ff4d98f9cab7bf8bfc1738feb4e2bb8924cd3b047723c92dfc29a61387": [
           "9.13.1.26"
         ],
         "70b7401b5123f7e35bc6d8a0b54b5fba54e3b73310105453705286826465393b": [
@@ -130,7 +170,16 @@
         "857075f231725d42bee247acf82caf8e0ba84a0be1ccf601efb2857c581af7b1": [
           "9.13.1.26"
         ],
+        "85b55793ed660a3c7e1bd24c53d6897ab568f551b64ce4f504e3888bb8ac9641": [
+          "9.13.1.26"
+        ],
         "887dd4ecf23e0e465062770f5a95acd81bbd146092d6b043cf89e40a392f4119": [
+          "9.13.1.26"
+        ],
+        "8b8af044a567969b755fbc0a283a350a6dab56d6a6278a8604a277dbe82a0c9e": [
+          "9.13.1.26"
+        ],
+        "8d5f7f5006c60f7e4d2b1d058f04769758d79170d6de90b9e0516328c7a52428": [
           "9.13.1.26"
         ],
         "8f3de9be296b36aa4dfcc6c2646a6c0ed4927174d93ae87bed4534d9d5b7bbf8": [
@@ -148,7 +197,16 @@
         "977cdbc5b956fedc79d3bd3469cdd56748787f5db08e3bd9330378d8b6611854": [
           "9.13.1.26"
         ],
+        "97cc3832a473b9ce0c8eaefde2803256d48955e315954fae1a7e4792a1d34fe9": [
+          "9.13.1.26"
+        ],
+        "9ca299279578a2a63e648a4f1753d7b4952b17f250898be2c5d9d4d80e7fb88f": [
+          "9.13.1.26"
+        ],
         "a6a09da0e28b0598fd828d95b77ff831a7c0c8d65e9b7ae43cbc8444e55c19ab": [
+          "9.13.1.26"
+        ],
+        "ad791a4e3f7f88c73b5f0cb9b61c58da3f770c0996c327073aac9f9cbd89fa1b": [
           "9.13.1.26"
         ],
         "b7d6b38e9f3337b2f7a701d3bc3293d7ea8cdbe7add4318087536e21a725fd91": [
@@ -158,6 +216,9 @@
           "9.13.1.26"
         ],
         "bb592b5b9aea0a607ba958c9d87d776d34fa9f131dab5d30775045c5e1d95549": [
+          "9.13.1.26"
+        ],
+        "c3c8238f17e7ee39662d680f3e8f1a494d8b76ed5ae5c117d41ec7c3ed27f1d2": [
           "9.13.1.26"
         ],
         "cb1340309489cb43816f058b6964d361c72ca057308eb707145734afc451cb50": [
@@ -172,6 +233,9 @@
         "e19ea50d52f03134948b0d622aa0669d8ea63888fc3226bd20de36677e5cc541": [
           "9.13.1.26"
         ],
+        "eac725fc6f9090b77fa62c36523caabbe160fd058908a27336affd46feb1b8e6": [
+          "9.13.1.26"
+        ],
         "ec5be7a9e5de8b6e218ded0c1dda5e9a966673f7c7a8bbcd990c44c33874540a": [
           "9.13.1.26"
         ],
@@ -182,6 +246,9 @@
           "9.13.1.26"
         ],
         "fb8dbf7c7d5b27ce4ccb5867d5e775f4458564632be94d2aad17730bd58b9023": [
+          "9.13.1.26"
+        ],
+        "fe9086b7df74f36584268d19b5fdedba83a43de940e5a20b30d28378ae6c7cf9": [
           "9.13.1.26"
         ]
       },

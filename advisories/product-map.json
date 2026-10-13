@@ -54,6 +54,7 @@
     { "contains": "cufftmp", "component": "cufftmp" },
     { "contains": "cufft", "component": "cufft" },
     { "contains": "cuvs", "component": "cuvs" },
+    { "contains": "nvprof", "component": "nvprof" },
     { "contains": "nvtx", "component": "nvtx" },
     { "contains": "opencl", "component": "opencl" },
     { "contains": "sanitizer_api", "component": "sanitizer_api" }
