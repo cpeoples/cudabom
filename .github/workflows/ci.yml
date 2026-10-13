@@ -117,9 +117,18 @@ jobs:
         # advisories/component-docs.json is generated (and verified live) by
         # `cargo xtask doc-links --write` in the nightly refresh. This offline
         # check fails if the committed file is hand-edited or formatted
-        # differently; it does not touch the network (link rot is caught by the
-        # docs workflow's --check-links). Regenerate with `doc-links --write`.
+        # differently; it does not touch the network. Regenerate with
+        # `doc-links --write`.
         run: cargo run --locked --quiet -p xtask -- doc-links --check
+
+      - name: Component documentation links resolve (live)
+        # Probe every family's documentation URL for HTTP 200 on the PR itself,
+        # so a newly fingerprinted family whose link rotted or was never
+        # derivable (and so is missing from the sidecar) blocks the PR here
+        # rather than surfacing after merge in the docs workflow on main. Fix by
+        # adding a reviewed EXCEPTIONS entry and regenerating with
+        # `doc-links --write`.
+        run: python3 .hugo/scripts/build_docs.py --check-links
 
       - name: Release version pins agree
         # Every internal path-dep version pin in Cargo.toml must equal the

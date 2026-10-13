@@ -37,6 +37,7 @@
     "nvpl-scalapack": "https://docs.nvidia.com/nvpl/_static/scalapack/index.html",
     "nvpl-sparse": "https://docs.nvidia.com/nvpl/_static/sparse/index.html",
     "nvpl-tensor": "https://docs.nvidia.com/nvpl/_static/tensor/index.html",
+    "nvprof": "https://docs.nvidia.com/cuda/profiler-users-guide/",
     "nvrtc": "https://docs.nvidia.com/cuda/nvrtc/",
     "nvshmem": "https://docs.nvidia.com/nvshmem/",
     "nvtiff": "https://docs.nvidia.com/cuda/nvtiff/",

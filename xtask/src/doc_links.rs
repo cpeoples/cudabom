@@ -127,6 +127,12 @@ const EXCEPTIONS: &[Exception] = &[
         reason: "the Orin/L4T forward-compatibility package is documented in the CUDA for Tegra \
                  app note, not a /cuda/compat_orin/ slug the templates or crawl can derive",
     },
+    Exception {
+        component: "nvprof",
+        url: "https://docs.nvidia.com/cuda/profiler-users-guide/",
+        reason: "the legacy command-line profiler is documented in the Profiler User's Guide, \
+                 whose slug shares no token with 'nvprof' so no template or crawl reaches it",
+    },
 ];
 
 /// Known heading aliases: strings (besides the family name itself) that count as
@@ -161,7 +167,18 @@ pub(crate) fn run(args: &[String]) -> Result<()> {
             "xtask: resolving documentation links for {} component families",
             families.len()
         );
-        let resolved = resolve_all(&families);
+        let (resolved, unresolved) = resolve_all(&families);
+        if !unresolved.is_empty() {
+            bail!(
+                "no documentation URL resolved for {} family/families: {}.\n\
+                 Each is a family whose docs live at a slug no template, parent \
+                 crawl, or guide-section anchor can derive. Add a reviewed entry \
+                 to EXCEPTIONS in xtask/src/doc_links.rs (with the proven URL and \
+                 the reason), then re-run.",
+                unresolved.len(),
+                unresolved.join(", ")
+            );
+        }
         let generated = render(&resolved);
         if let Some(parent) = out.parent() {
             std::fs::create_dir_all(parent).ok();
@@ -211,24 +228,22 @@ fn component_families(shard_root: &std::path::Path) -> Result<Vec<String>> {
     Ok(names)
 }
 
-/// Resolve a documentation URL for every family, in order. Families that resolve
-/// to nothing are omitted from the map (so `build_docs.py` falls back to its own
-/// guess and `--check-links` reports the gap) rather than recording a URL we
-/// could not prove.
-fn resolve_all(families: &[String]) -> BTreeMap<String, String> {
+/// Resolve a documentation URL for every family. Returns the proven links plus
+/// the families that resolved to nothing, so the caller can refuse to write a
+/// sidecar that would leave a family to `build_docs.py`'s 404-prone fallback.
+fn resolve_all(families: &[String]) -> (BTreeMap<String, String>, Vec<String>) {
     let mut out = BTreeMap::new();
+    let mut unresolved = Vec::new();
     for name in families {
-        match resolve_one(name) {
-            Some(url) => {
-                detail!("xtask:   {name} -> {url}");
-                out.insert(name.clone(), url);
-            }
-            None => {
-                status!("xtask:   {name}: no documentation URL resolved (left to fallback)");
-            }
+        if let Some(url) = resolve_one(name) {
+            detail!("xtask:   {name} -> {url}");
+            out.insert(name.clone(), url);
+        } else {
+            status!("xtask:   {name}: no documentation URL resolved");
+            unresolved.push(name.clone());
         }
     }
-    out
+    (out, unresolved)
 }
 
 /// Resolve a single family through the staged pipeline: declared exception,
