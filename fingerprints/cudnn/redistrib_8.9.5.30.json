@@ -8,8 +8,12 @@
     "manifest_sha256": "c6db98fb93ac0e379cd8603fb4c35d1fd742edb509bd9d3dee165d53cd1cb495",
     "corpus_sha256": [
       "50e3d38cb70a53bb059da0aefc60e1460729c6988e2697200c43b80d218e556c",
+      "9c0d951788461f6e9e000209cf4b100839effd1fd300371dfa6929552c8b1d4e",
       "bbe10e3c08cd7e4aea1012213781e4fe270e1c908263444f567cafefb2cc6525",
-      "d678f8b2903b95de7eeaef38890c5674705864ea049b2b63e90565f2c0ea682f"
+      "d678f8b2903b95de7eeaef38890c5674705864ea049b2b63e90565f2c0ea682f",
+      "ded84be373031ff843c0b7118e9fdb48b06ec763eae3c76cb9c57e121b47c228",
+      "e42aaa92203cc101a1619656ae50852a0d818a06ca99684c5f51ba95bd7a7cf9",
+      "fa2150dff6f574fb2927bfd2d10b5c2e2e90603f59d3d3371eaa41f2e9528c74"
     ],
     "tool_version": "0.1.0"
   },
@@ -31,13 +35,34 @@
         "libcudnn_ops.so"
       ],
       "file_hashes": {
+        "01ef018fd6fd12fc1083a7bd375893401604dbe7b728b4076de7bd317095580e": [
+          "8.9.5.30"
+        ],
+        "07386a02ca57f5c4fbf96b972f8dd156f1bb3439376b9be0417073756a317391": [
+          "8.9.5.30"
+        ],
         "0b7389fd2587dfcf9bda0f9cda56943411df60a6763f45e3a1a84786ba207bd4": [
+          "8.9.5.30"
+        ],
+        "1e6b1eda661f40f38f531bb0f4473d75b44f101f0e8c291bd035e57afa35fd81": [
           "8.9.5.30"
         ],
         "463fd6d5dd754a874d785b0cea3e06b7a9ddd7576b9c3d9df13aca0af18fb2f4": [
           "8.9.5.30"
         ],
         "50e3d38cb70a53bb059da0aefc60e1460729c6988e2697200c43b80d218e556c": [
+          "8.9.5.30"
+        ],
+        "5c6bed26685c04a06112cb6f9c8ea0acc990fb322e5a22b43f54de5c6edc2e59": [
+          "8.9.5.30"
+        ],
+        "83dfc6e1e4a0e1ec4fa42b666e8b3bc19c91ebfd68c9e831678f1896a9139322": [
+          "8.9.5.30"
+        ],
+        "98af654fa5a9dc07655328d5dcc01635c78b4a21a2ae6e3ff74d78fefa79048a": [
+          "8.9.5.30"
+        ],
+        "9d2a2bcea4f16944a0dbe53c7c757987824ccdda107135fdc8871be40a381380": [
           "8.9.5.30"
         ],
         "bbe10e3c08cd7e4aea1012213781e4fe270e1c908263444f567cafefb2cc6525": [

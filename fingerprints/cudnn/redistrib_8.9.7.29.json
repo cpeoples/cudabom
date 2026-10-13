@@ -8,7 +8,11 @@
     "manifest_sha256": "a0734f26f068522464fa09b2f2c186dfbe6ad7407a88ea0c50dd331f0c3389ec",
     "corpus_sha256": [
       "475333625c7e42a7af3ca0b2f7506a106e30c93b1aa0081cd9c13efb6e21e3bb",
+      "4d84211d62e636ad3728674e55e9ce91e29c78d071fcb78453f8a71902758836",
+      "80664b7a6abed08633e0dc238f47f26aaaa0add5571bf6f4f4e475686a702c8d",
       "8574d291b299f9cc0134304473c9933bd098cc717e8d0876f4aba9f9eebe1b76",
+      "94fc17af8e83a26cc5d231ed23981b28c29c3fc2e87b1844ea3f46486f481df5",
+      "d3a9a4f3f74b04c393bb9152fe3a53ac1514da679ca57858d69f64243debb905",
       "e98b7c80010785e5d5ca01ee4ce9b5b0c8c73587ea6f8648be34d3f8d1d47bd1"
     ],
     "tool_version": "0.1.0"
@@ -31,7 +35,13 @@
         "libcudnn_ops.so"
       ],
       "file_hashes": {
+        "0614743ba88d00173e80273ee661f7c4b8031f583fecb70ef8369491f1f98680": [
+          "8.9.7.29"
+        ],
         "0b7389fd2587dfcf9bda0f9cda56943411df60a6763f45e3a1a84786ba207bd4": [
+          "8.9.7.29"
+        ],
+        "2fefd88a1865daea7c7e72d55b61d90372cff30f7c04b01f4c8a27ca197ff1c2": [
           "8.9.7.29"
         ],
         "463fd6d5dd754a874d785b0cea3e06b7a9ddd7576b9c3d9df13aca0af18fb2f4": [
@@ -40,16 +50,31 @@
         "475333625c7e42a7af3ca0b2f7506a106e30c93b1aa0081cd9c13efb6e21e3bb": [
           "8.9.7.29"
         ],
+        "74dd3f284b8958f6f558cf802642083821d038317d3fc9c424697cfa7a1e9756": [
+          "8.9.7.29"
+        ],
         "8574d291b299f9cc0134304473c9933bd098cc717e8d0876f4aba9f9eebe1b76": [
+          "8.9.7.29"
+        ],
+        "8b9635bc926e3a412a98c3155821b8d1da5b0b9f064835e8329d94d2869951dd": [
           "8.9.7.29"
         ],
         "94fc17af8e83a26cc5d231ed23981b28c29c3fc2e87b1844ea3f46486f481df5": [
           "8.9.7.29"
         ],
+        "da4af5d17bcda0e47005e14591143ab70fe4b4007e6063c6a67281377a1f0839": [
+          "8.9.7.29"
+        ],
         "e98b7c80010785e5d5ca01ee4ce9b5b0c8c73587ea6f8648be34d3f8d1d47bd1": [
           "8.9.7.29"
         ],
+        "ef6803da98a4e84ba4cae3b13b5bff52fddcabe4fe1f18413607a0d2fa4fcb06": [
+          "8.9.7.29"
+        ],
         "f2a6d6dc549b6b477b49c5f5e97569bcfa6cf5694d4e5e0a17ac88e5a5ee236d": [
+          "8.9.7.29"
+        ],
+        "faabb0b73b6c226cf23d04d43d2050144697c58b6bb86a49e38835e80b4b6387": [
           "8.9.7.29"
         ]
       },

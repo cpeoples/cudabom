@@ -39,7 +39,9 @@
     "nvrtc": "https://docs.nvidia.com/cuda/nvrtc/",
     "nvshmem": "https://docs.nvidia.com/nvshmem/",
     "nvtiff": "https://docs.nvidia.com/cuda/nvtiff/",
+    "nvtx": "https://docs.nvidia.com/nsight-compute/NsightCompute/index.html#tool-window-nvtx",
     "nvvm": "https://docs.nvidia.com/cuda/nvvm-ir-spec/",
-    "opencl": "https://developer.nvidia.com/opencl"
+    "opencl": "https://developer.nvidia.com/opencl",
+    "sanitizer_api": "https://docs.nvidia.com/compute-sanitizer/SanitizerApi/table-of-contents.html"
   }
 }

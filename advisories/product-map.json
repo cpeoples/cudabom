@@ -50,9 +50,12 @@
     { "contains": "nvpl sparse", "component": "nvpl-sparse" },
     { "contains": "nvpl tensor", "component": "nvpl-tensor" },
     { "contains": "cal", "component": "cal" },
+    { "contains": "compat_orin", "component": "compat_orin" },
     { "contains": "cufftmp", "component": "cufftmp" },
     { "contains": "cufft", "component": "cufft" },
     { "contains": "cuvs", "component": "cuvs" },
-    { "contains": "opencl", "component": "opencl" }
+    { "contains": "nvtx", "component": "nvtx" },
+    { "contains": "opencl", "component": "opencl" },
+    { "contains": "sanitizer_api", "component": "sanitizer_api" }
   ]
 }
