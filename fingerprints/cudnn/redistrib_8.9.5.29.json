@@ -7,9 +7,13 @@
   "provenance": {
     "manifest_sha256": "5baac22cb122e27185e58040671f92c8cf351c73070fffe20e6441bc01f52c67",
     "corpus_sha256": [
+      "0d3f8c8b0166f92eb512d78351b0bff8aeac84f9ab5164a46285fe49988096d4",
       "16c04c23d1da407fa6e9d823732aaa5b57019af67f581cab97e7c902c251d91f",
+      "25a0aa91b252f2dd769e0145ceda0df9e7c01f977628f30fdc9ad1d7c0fed7c9",
+      "53400abc289ca5b9ef834f4fa27e9b056bea78ecd77e8209aebdc0a57a2264fa",
       "6ee21967556528ca34e47ec5cd1d68e8c790bc39d98fa49678b6d3d54062f88a",
-      "711b387136cb540fde54f383b4f11c3c99df286f6230f15ba5d3210ac499579c"
+      "711b387136cb540fde54f383b4f11c3c99df286f6230f15ba5d3210ac499579c",
+      "93e3409b52351ba0da6c6051eb8038dd31b6e234ba2509ccc4f8653efa4b5d5e"
     ],
     "tool_version": "0.1.0"
   },
@@ -31,22 +35,43 @@
         "libcudnn_ops.so"
       ],
       "file_hashes": {
+        "075afd78187f2d34d58c66ff3c7b2ca1f7ce17dac30414b08107e2073fe7cd95": [
+          "8.9.5.29"
+        ],
         "0b7389fd2587dfcf9bda0f9cda56943411df60a6763f45e3a1a84786ba207bd4": [
           "8.9.5.29"
         ],
         "16c04c23d1da407fa6e9d823732aaa5b57019af67f581cab97e7c902c251d91f": [
           "8.9.5.29"
         ],
+        "1b8a5d1dca759732df68ba538dcc8f3a59f828e788464357828a651b692e16db": [
+          "8.9.5.29"
+        ],
+        "1fe3cd93dca8bfa8a2cb960df959791f09bf0b51dc2bc00d7b2a2dcc94120219": [
+          "8.9.5.29"
+        ],
         "25a0aa91b252f2dd769e0145ceda0df9e7c01f977628f30fdc9ad1d7c0fed7c9": [
+          "8.9.5.29"
+        ],
+        "439a3f63a7e784b87d0996a1215f056f0db9e7e33c126b17556e90b93c089605": [
           "8.9.5.29"
         ],
         "463fd6d5dd754a874d785b0cea3e06b7a9ddd7576b9c3d9df13aca0af18fb2f4": [
           "8.9.5.29"
         ],
+        "4a58d4794ad41eafc7a8dc7214e20f948d0742d7267b368cd7a43563bf8abfcd": [
+          "8.9.5.29"
+        ],
         "6ee21967556528ca34e47ec5cd1d68e8c790bc39d98fa49678b6d3d54062f88a": [
           "8.9.5.29"
         ],
+        "6f09c87669630ca7771dd0c5c4ee421af682340b1bee691ea170b06b5b770c81": [
+          "8.9.5.29"
+        ],
         "711b387136cb540fde54f383b4f11c3c99df286f6230f15ba5d3210ac499579c": [
+          "8.9.5.29"
+        ],
+        "b82d375840a005d2eaa0ba660ed62a217817ec3d46704261080924e604ef5578": [
           "8.9.5.29"
         ],
         "f2a6d6dc549b6b477b49c5f5e97569bcfa6cf5694d4e5e0a17ac88e5a5ee236d": [

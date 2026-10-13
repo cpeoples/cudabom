@@ -7,9 +7,13 @@
   "provenance": {
     "manifest_sha256": "02258dba8384860c9230fe3c78522e7bd8e350e461ccd37a8d932cb64127ba57",
     "corpus_sha256": [
+      "11f634f9cb263d9b08fc9bab9a2b3b61d25ec88b863e4fc4f9c934d6eb518d87",
+      "6358fcf8286d07a2eb90f832105c7edb9fe1ef10cb51de922c36b5c06524166e",
       "82d04906c0d6828561bbddc68f8b18cf0a334ef1162f6eff7bc88dc3313e15d1",
+      "c41650cc73de19b1974b58a1de7750182a2a157d9f1f825481fd7a51522ca36c",
       "cad77909d936789efe44c8d348e3dcab9c8fcc95ac622658f9a903794e292375",
-      "d5bf263f38e89fae62c4eb579bbc953d97b5bf300f91a3e6d6404df43b2641b6"
+      "d5bf263f38e89fae62c4eb579bbc953d97b5bf300f91a3e6d6404df43b2641b6",
+      "e1a8a35b2662082739dabc725a7b712fdca7b8a725c52d320185b86073dd3362"
     ],
     "tool_version": "0.1.0"
   },
@@ -31,13 +35,25 @@
         "libcudnn_ops.so"
       ],
       "file_hashes": {
+        "0ad470f1e8ae9811d7aeff1435a938b256e6948d8ae1936a77bc894117ca68cb": [
+          "8.9.4.25"
+        ],
         "0b7389fd2587dfcf9bda0f9cda56943411df60a6763f45e3a1a84786ba207bd4": [
           "8.9.4.25"
         ],
         "463fd6d5dd754a874d785b0cea3e06b7a9ddd7576b9c3d9df13aca0af18fb2f4": [
           "8.9.4.25"
         ],
+        "46939fcc4a8e8900cc2e262bc60c1d22dfbd69701fe4b36901c48f50f17c784b": [
+          "8.9.4.25"
+        ],
         "82d04906c0d6828561bbddc68f8b18cf0a334ef1162f6eff7bc88dc3313e15d1": [
+          "8.9.4.25"
+        ],
+        "939c8dfa9099a05abe8327633b4ed2742838d96aa596ceef22e82b8a4b7f11f2": [
+          "8.9.4.25"
+        ],
+        "aec3a706643d866404445efee610c16414b91fc880f2c3f68a59aa00d193aabb": [
           "8.9.4.25"
         ],
         "c41650cc73de19b1974b58a1de7750182a2a157d9f1f825481fd7a51522ca36c": [
@@ -47,6 +63,15 @@
           "8.9.4.25"
         ],
         "d5bf263f38e89fae62c4eb579bbc953d97b5bf300f91a3e6d6404df43b2641b6": [
+          "8.9.4.25"
+        ],
+        "d9adc9e89d005227d1e755a324d64f24f626cdf2004e24b838545ea79b5e8a9d": [
+          "8.9.4.25"
+        ],
+        "e62633696e317c43ca4634e665edcbf4f577539bd0810de5f30a68af04a6323b": [
+          "8.9.4.25"
+        ],
+        "e97cdeb60f756074958561ff439f377f717bd97f39a79460acbe487692824b1f": [
           "8.9.4.25"
         ],
         "f2a6d6dc549b6b477b49c5f5e97569bcfa6cf5694d4e5e0a17ac88e5a5ee236d": [

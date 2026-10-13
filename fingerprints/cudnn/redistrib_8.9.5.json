@@ -7,13 +7,22 @@
   "provenance": {
     "manifest_sha256": "52233fd56b3ef49e69c01122d7a1bc5778cc4c34fbbd1dbf53a4120226d952c2",
     "corpus_sha256": [
+      "044c0d4436e1ecff6785a8bacf45cf2b5d504eb1c04bb9617aed86bfea77e45f",
       "0491f7b02f55c22077eb678bf314c1f917524bd507cf5b658239bf98a47233a1",
       "107d3dbec6345e1a3879a151cf3cbf6a2d96162c7b8eeb2ff85b84a67e79e2d1",
+      "275d6a6671c210d4c4a92240de24cba0c5ca17e9007f91656b18bbff81621f81",
       "2a2eb89a2ab51071151c6082f1e816c702167a711a9372f9f73a7b5c4b06e01a",
       "38388ec3c99c6646aaf5c707985cd35e25c67f653d780c4081c2df5557ab665f",
+      "441d262d82888c6ca5a02c8ad0f07c3a876be7b473bc2ec2638d86ea2e80a884",
       "50e3d38cb70a53bb059da0aefc60e1460729c6988e2697200c43b80d218e556c",
+      "9c0d951788461f6e9e000209cf4b100839effd1fd300371dfa6929552c8b1d4e",
+      "af98dec9cf613cb7f67e27f5a5da24fc183996fc25a875aa0a7dc2914c986fe3",
       "bbe10e3c08cd7e4aea1012213781e4fe270e1c908263444f567cafefb2cc6525",
-      "d678f8b2903b95de7eeaef38890c5674705864ea049b2b63e90565f2c0ea682f"
+      "be76d407ce0e609f94688aa45bfd5648fd21a4d9f84a588fad10aa4802ca1301",
+      "d678f8b2903b95de7eeaef38890c5674705864ea049b2b63e90565f2c0ea682f",
+      "ded84be373031ff843c0b7118e9fdb48b06ec763eae3c76cb9c57e121b47c228",
+      "e42aaa92203cc101a1619656ae50852a0d818a06ca99684c5f51ba95bd7a7cf9",
+      "fa2150dff6f574fb2927bfd2d10b5c2e2e90603f59d3d3371eaa41f2e9528c74"
     ],
     "tool_version": "0.1.0"
   },
@@ -35,7 +44,13 @@
         "libcudnn_ops.so"
       ],
       "file_hashes": {
+        "01ef018fd6fd12fc1083a7bd375893401604dbe7b728b4076de7bd317095580e": [
+          "8.9.5.30"
+        ],
         "0491f7b02f55c22077eb678bf314c1f917524bd507cf5b658239bf98a47233a1": [
+          "8.9.5.30"
+        ],
+        "07386a02ca57f5c4fbf96b972f8dd156f1bb3439376b9be0417073756a317391": [
           "8.9.5.30"
         ],
         "0b7389fd2587dfcf9bda0f9cda56943411df60a6763f45e3a1a84786ba207bd4": [
@@ -44,16 +59,49 @@
         "107d3dbec6345e1a3879a151cf3cbf6a2d96162c7b8eeb2ff85b84a67e79e2d1": [
           "8.9.5.30"
         ],
+        "1e6b1eda661f40f38f531bb0f4473d75b44f101f0e8c291bd035e57afa35fd81": [
+          "8.9.5.30"
+        ],
         "2a2eb89a2ab51071151c6082f1e816c702167a711a9372f9f73a7b5c4b06e01a": [
           "8.9.5.30"
         ],
         "38388ec3c99c6646aaf5c707985cd35e25c67f653d780c4081c2df5557ab665f": [
           "8.9.5.30"
         ],
+        "38c7b89c178707cf25580bca5c8079979d9c14f9808544bef3702b6a268d8b0c": [
+          "8.9.5.30"
+        ],
+        "3a005c1db7597593ba080feb7a903e0d03b2d72aa8aa21ca1b801f782a9d8916": [
+          "8.9.5.30"
+        ],
         "463fd6d5dd754a874d785b0cea3e06b7a9ddd7576b9c3d9df13aca0af18fb2f4": [
           "8.9.5.30"
         ],
+        "4871fc842ebade4792205c7cc1dd85d86b6b1af4671a1c73cea7c8772aa2e348": [
+          "8.9.5.30"
+        ],
         "50e3d38cb70a53bb059da0aefc60e1460729c6988e2697200c43b80d218e556c": [
+          "8.9.5.30"
+        ],
+        "5c6bed26685c04a06112cb6f9c8ea0acc990fb322e5a22b43f54de5c6edc2e59": [
+          "8.9.5.30"
+        ],
+        "6f4884c4af355dba2857383665d675fbb8ad39ceb5ca15db6baed60c4b928634": [
+          "8.9.5.30"
+        ],
+        "72c68c1f7a39d514022f5dd1a75d29ae25260524dd752e6688530fb7b9d39c42": [
+          "8.9.5.30"
+        ],
+        "7bfccb835973a4422f4d5cd5da3c263b30f12fb33ee8b441cbd508575b4e954a": [
+          "8.9.5.30"
+        ],
+        "83dfc6e1e4a0e1ec4fa42b666e8b3bc19c91ebfd68c9e831678f1896a9139322": [
+          "8.9.5.30"
+        ],
+        "98af654fa5a9dc07655328d5dcc01635c78b4a21a2ae6e3ff74d78fefa79048a": [
+          "8.9.5.30"
+        ],
+        "9d2a2bcea4f16944a0dbe53c7c757987824ccdda107135fdc8871be40a381380": [
           "8.9.5.30"
         ],
         "a58ffe9c6978ea69e4d249cc01206716c5cde999f1d78b6207641fe93ef28171": [
@@ -66,6 +114,9 @@
           "8.9.5.30"
         ],
         "d678f8b2903b95de7eeaef38890c5674705864ea049b2b63e90565f2c0ea682f": [
+          "8.9.5.30"
+        ],
+        "d90e27bb27dec79722508332381e4af3bca0c05b2d46afb87501d2cb3e4a9dc1": [
           "8.9.5.30"
         ],
         "e42aaa92203cc101a1619656ae50852a0d818a06ca99684c5f51ba95bd7a7cf9": [
