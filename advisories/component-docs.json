@@ -2,6 +2,7 @@
   "schema_version": 1,
   "links": {
     "cal": "https://docs.nvidia.com/cuda/cublasmp/usage/initialization/cal.html",
+    "compat_orin": "https://docs.nvidia.com/cuda/cuda-for-tegra-appnote/",
     "cublas": "https://docs.nvidia.com/cuda/cublas/",
     "cublasmp": "https://docs.nvidia.com/cuda/cublasmp/",
     "cudart": "https://docs.nvidia.com/cuda/cuda-runtime-api/",

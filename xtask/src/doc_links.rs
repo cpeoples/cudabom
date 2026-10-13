@@ -121,6 +121,12 @@ const EXCEPTIONS: &[Exception] = &[
         reason: "the client library is not named in any heading of the Binary Utilities guide, \
                  so the crawl finds no anchor; it falls back to the guide landing",
     },
+    Exception {
+        component: "compat_orin",
+        url: "https://docs.nvidia.com/cuda/cuda-for-tegra-appnote/",
+        reason: "the Orin/L4T forward-compatibility package is documented in the CUDA for Tegra \
+                 app note, not a /cuda/compat_orin/ slug the templates or crawl can derive",
+    },
 ];
 
 /// Known heading aliases: strings (besides the family name itself) that count as
