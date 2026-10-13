@@ -7,11 +7,20 @@
   "provenance": {
     "manifest_sha256": "fe5f9d8598eb32403fc01a7ef5e12bf983875541a7f61e4548cb63ac0c55f4e1",
     "corpus_sha256": [
+      "0ec338bbda18c0df97a6efab6098ed5c852be40f20c14a1400d07e8e59fe5aed",
       "0f09605e282dcf7f66eb3957c394c197e8b8a4d41635a880e217fc8d37342e0f",
+      "16990bbd9592dc4529cbaeea51e8839e149c505a5af8ae917211e2c891c691ed",
       "18778de490550c5b584e96560208e5e37678397037946e10a1c2824174c69725",
+      "2c5adf224f588e4ac7c05fd433835c7c46a8ab5b8efe08f2c52132c0b7402a5c",
       "3cb82c50723f14b41d43523f222cd52cc9d50b3ad67c380f4be51bd1133daa2d",
       "3e50e31833718a9d755c0ae8f126e9f0f62213d9d2b0a545a6bc2dcafda2386f",
+      "40638a1050cb4c2d86e1813106034c6bbca0744e7b3a729e3ea305fbf36a287e",
+      "4770173c73f9eb96499889c7111653907d282440f8603394cde9a2df84e9ede0",
       "477631002be61022b60961cba0a501271507a93f81d6b08384bc320cb8706c98",
+      "6700705e675a6a3f4ab0c6459fe874dae8461087a3401af60eb2df49a26c12e6",
+      "799b455526d87f864fd7e98a8f607c536a385cfab6341413559f4db7cc7a1eaf",
+      "80463a8b0856fba3984e8563706cdccfa40a2298d644ea205320a57b2a7902f8",
+      "a540be4e454d15b6ccb2d240a95d72135ea93ddf0d1f3dfcf30d890ac614bbef",
       "fab70f4fb3b933ff502200a1d954d2c6fc205ff9c9b1d271ea4c41e980a66596",
       "ff239e4cbbf21fa18104b62a887686e2197f820ad58817d62e509c735a331829"
     ],
@@ -35,6 +44,9 @@
         "libcudnn_ops.so"
       ],
       "file_hashes": {
+        "028e613295a549a2d91c44baf19857b811b1e6de95305d4de5fc8c73e69c58fb": [
+          "8.9.0.131"
+        ],
         "0b7389fd2587dfcf9bda0f9cda56943411df60a6763f45e3a1a84786ba207bd4": [
           "8.9.0.131"
         ],
@@ -47,6 +59,12 @@
         "18778de490550c5b584e96560208e5e37678397037946e10a1c2824174c69725": [
           "8.9.0.131"
         ],
+        "2290969db7622e2260e5ae248f920c49f75b61b0631847f74969e598e28460b4": [
+          "8.9.0.131"
+        ],
+        "39553c621be37f6b3be0b133aa5a79145513125d497688582ca7d6a9af6066f5": [
+          "8.9.0.131"
+        ],
         "3cb82c50723f14b41d43523f222cd52cc9d50b3ad67c380f4be51bd1133daa2d": [
           "8.9.0.131"
         ],
@@ -56,16 +74,49 @@
         "477631002be61022b60961cba0a501271507a93f81d6b08384bc320cb8706c98": [
           "8.9.0.131"
         ],
+        "59131c2fdbee7e4d0784514b1f5ccd36cc8a1e24356f274aabce00f934930e3d": [
+          "8.9.0.131"
+        ],
+        "5feac16e4821faba783e740d2192fe835b9969b13f92670dc9b47dd042614ca1": [
+          "8.9.0.131"
+        ],
+        "603e78d5f722b596a3779d55bd16af58b64026c716217314ee25cdc5735621f2": [
+          "8.9.0.131"
+        ],
         "6700705e675a6a3f4ab0c6459fe874dae8461087a3401af60eb2df49a26c12e6": [
+          "8.9.0.131"
+        ],
+        "8fb4e17ca2074521be06e12b7bb6f981aeddbd1d40c9dccf332e99563fa85abe": [
+          "8.9.0.131"
+        ],
+        "a0fd5077106f0b10f94f6c42e64fcc9674776436ada8ee386679cc7b610127a1": [
+          "8.9.0.131"
+        ],
+        "b844252d323d61079d8e1edee3233d49f2127b00fd198ae053dd48ddaca0d64d": [
+          "8.9.0.131"
+        ],
+        "b9f425e3952e5ae22debbc8d2379c503a1ef88abf3713ad2a05aea5d936d4777": [
           "8.9.0.131"
         ],
         "bcbf519f1b62ec574b7fb58b27f31b0a11a7af62a9c3b635a4a1b7eed7346ef5": [
           "8.9.0.131"
         ],
+        "c010d71e0dc778310d0c707761b434bebb079445b1b885758b4df0b9276ad2e5": [
+          "8.9.0.131"
+        ],
+        "c1eced8ef4139e2222d56d3f759f084f55916e9d9c35e271a73e7a59ce919b77": [
+          "8.9.0.131"
+        ],
         "ce8aa8f749e69cff5e83058495fc5595d1e6aa63ff26f27f745521b6e334ecce": [
           "8.9.0.131"
         ],
+        "d14ceeeb16fd02ada11f9f62028bac292ab780b3acc0633404a329a42eb5143f": [
+          "8.9.0.131"
+        ],
         "f2a6d6dc549b6b477b49c5f5e97569bcfa6cf5694d4e5e0a17ac88e5a5ee236d": [
+          "8.9.0.131"
+        ],
+        "f61c42f2236ef1a1703119b64503aa5a441d55c5066d3eac4686a8df9ba3975d": [
           "8.9.0.131"
         ],
         "fab70f4fb3b933ff502200a1d954d2c6fc205ff9c9b1d271ea4c41e980a66596": [
