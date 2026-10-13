@@ -49,10 +49,13 @@ where
             continue;
         }
 
-        // Sanitize the entry's mangled (safe) name when the raw name is not
-        // valid UTF-8, else the raw name. Unsafe names are skipped, not fatal;
-        // see `sanitize_entry_path`. Budget breaches below still abort.
-        let raw_name = entry.name().to_string();
+        // Sanitize the entry's name. A name that is not valid UTF-8 (zip 9's
+        // `name()` returns an error) or that fails `sanitize_entry_path` is
+        // skipped, not fatal; see `sanitize_entry_path`. Budget breaches below
+        // still abort.
+        let Ok(raw_name) = entry.name() else {
+            continue;
+        };
         let Ok(safe) = sanitize_entry_path(&raw_name) else {
             continue;
         };

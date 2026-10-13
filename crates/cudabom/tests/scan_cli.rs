@@ -108,7 +108,7 @@ fn scan_wheel_finds_nested_elf() {
     let mut cursor = std::io::Cursor::new(Vec::new());
     {
         let mut zw = zip::ZipWriter::new(&mut cursor);
-        let opts: zip::write::FileOptions<'_, ()> =
+        let opts: zip::write::FileOptions<'_, '_, ()> =
             zip::write::FileOptions::default().compression_method(zip::CompressionMethod::Stored);
         zw.start_file("pkg/_lib.so", opts).unwrap();
         zw.write_all(&write_elf("wheel_sym")).unwrap();

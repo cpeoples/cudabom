@@ -35,7 +35,7 @@ fn build_zip(entries: &[(&str, &[u8])]) -> Vec<u8> {
     let mut cursor = std::io::Cursor::new(Vec::new());
     {
         let mut zw = zip::ZipWriter::new(&mut cursor);
-        let opts: zip::write::FileOptions<'_, ()> =
+        let opts: zip::write::FileOptions<'_, '_, ()> =
             zip::write::FileOptions::default().compression_method(zip::CompressionMethod::Stored);
         for (name, data) in entries {
             zw.start_file(*name, opts).unwrap();
@@ -52,7 +52,7 @@ fn build_zip_bomb(name: &str, size: usize) -> Vec<u8> {
     let mut cursor = std::io::Cursor::new(Vec::new());
     {
         let mut zw = zip::ZipWriter::new(&mut cursor);
-        let opts: zip::write::FileOptions<'_, ()> =
+        let opts: zip::write::FileOptions<'_, '_, ()> =
             zip::write::FileOptions::default().compression_method(zip::CompressionMethod::Deflated);
         zw.start_file(name, opts).unwrap();
         zw.write_all(&vec![0u8; size]).unwrap();
