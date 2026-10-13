@@ -37,7 +37,7 @@ on:
       heal:
         description: "How many committed shards to re-derive against the current logic this run (self-heal backlog)"
         required: false
-        default: "6"
+        default: "9"
         type: string
 
 concurrency:
@@ -330,10 +330,10 @@ jobs:
 
       - name: Self-heal stale committed shards (backlog)
         id: heal
-        if: ${{ (inputs.heal || '6') != '0' }}
+        if: ${{ (inputs.heal || '9') != '0' }}
         continue-on-error: true # a heal hiccup must never block the new-release PR
         env:
-          HEAL: ${{ inputs.heal || '6' }}
+          HEAL: ${{ inputs.heal || '9' }}
           JOBS: ${{ inputs.jobs || '4' }}
         run: |
           set -euo pipefail
@@ -345,6 +345,12 @@ jobs:
           # Model B auto-derivation backlog -- `nvtx`, `opencl`, `sanitizer_api`,
           # folded cuDNN JIT, cuBLASMp `cal`, ... -- or any component added to a
           # release's manifest after the shard was last derived).
+          #
+          # This step is the single owner of self-heal: a standalone backfill
+          # workflow used to run this same `fingerprints backfill` call against
+          # the same stale_shards() pool, so the two raced and opened
+          # overlapping PRs. The default limit was raised to carry that
+          # workflow's nightly throughput here instead.
           #
           # `backfill` regenerates each release's lock from its manifest with the
           # current all-keys locker (so the missing archives are pinned), fetches

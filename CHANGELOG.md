@@ -206,6 +206,16 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- **Self-heal is consolidated into `fingerprint-refresh`; the standalone
+  `fingerprint-backfill` workflow is retired.** Both ran the identical
+  `fingerprints backfill` call against the same stale-shard pool, so when a
+  refresh run overran the 24-minute schedule offset they healed the same shards
+  and opened overlapping PRs (a backfill PR whose shards were a strict subset of
+  the concurrent refresh PR). The refresh job's self-heal step is now the single
+  owner, with its per-run limit raised from 6 to 9 to absorb the retired
+  workflow's nightly throughput. The `cargo xtask fingerprints backfill`
+  subcommand is unchanged and still available for manual enrichment.
+
 - **Strong-signal matches now surface *every* candidate version instead of
   silently reporting the lowest.** Backfilling the full math-library binary layer
   revealed that NVIDIA ships the byte-identical `.so` (one GNU build-id) across
