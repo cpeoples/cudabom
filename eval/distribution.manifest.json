@@ -1157,6 +1157,194 @@
       "note": "torch: third-party CUDA-bundling wheel (detection-only) 2.12.0, discovered from PyPI (532.1 MB).",
       "sha256": "d47e7dee68ac4cd7a068b26bcd6b989935427709fae1c8f7bd0019978f829e15",
       "url": "https://files.pythonhosted.org/packages/8e/0c/c76b6a087820bab55705b94dfc074e520de9ae91f5ef90da2ecbf2a3ef12/torch-2.12.0-cp310-cp310-manylinux_2_28_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-cupy-cuda12x-13.5.1",
+      "kind": "wheel",
+      "note": "cupy-cuda12x: third-party CUDA-bundling wheel (detection-only) 13.5.1, discovered from PyPI (112.4 MB).",
+      "sha256": "9232662bcd6c412896da39dc542bce17f09890b0cee454660972122729231cbc",
+      "url": "https://files.pythonhosted.org/packages/92/3a/007cbfe3d8049132372ddb65734f7e297031de6f9cd04d5b7c26c3569779/cupy_cuda12x-13.5.1-cp310-cp310-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cutensor",
+          "version": "2.4.1"
+        }
+      ],
+      "id": "wheel-cutensor-cu12-2.4.1",
+      "kind": "wheel",
+      "note": "cutensor-cu12: official NVIDIA wheel 2.4.1, discovered from PyPI (277.4 MB).",
+      "sha256": "6e34a03233639ed4f2dc2cd6cc393fdf514fe3183a2ee1e889f70542a45129b7",
+      "url": "https://files.pythonhosted.org/packages/a9/3f/9aaacce137004c9c621526cc25f375966001a9729136d4818915cdc9165e/cutensor_cu12-2.4.1-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-jax-cuda12-plugin-0.10.0",
+      "kind": "wheel",
+      "note": "jax-cuda12-plugin: third-party CUDA-bundling wheel (detection-only) 0.10.0, discovered from PyPI (6.7 MB).",
+      "sha256": "957317caff1e6b006a13551733770df235a2747064be26b027460fe3a58f58ee",
+      "url": "https://files.pythonhosted.org/packages/05/46/e919cf1ff1e434b11f482c46879c1b87c51c49875c8e0903f65738f6a340/jax_cuda12_plugin-0.10.0-cp311-cp311-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cublas",
+          "version": "12.8.3.14"
+        }
+      ],
+      "id": "wheel-nvidia-cublas-cu12-12.8.3.14",
+      "kind": "wheel",
+      "note": "nvidia-cublas-cu12: official NVIDIA wheel 12.8.3.14, discovered from PyPI (609.6 MB).",
+      "sha256": "3f0e05e7293598cf61933258b73e66a160c27d59c4422670bf0b79348c04be44",
+      "url": "https://files.pythonhosted.org/packages/82/df/4b01f10069e23c641f116c62fc31e31e8dc361a153175d81561d15c8143b/nvidia_cublas_cu12-12.8.3.14-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "nvrtc",
+          "version": "12.6.77"
+        }
+      ],
+      "id": "wheel-nvidia-cuda-nvrtc-cu12-12.6.77",
+      "kind": "wheel",
+      "note": "nvidia-cuda-nvrtc-cu12: official NVIDIA wheel 12.6.77, discovered from PyPI (23.7 MB).",
+      "sha256": "35b0cc6ee3a9636d5409133e79273ce1f3fd087abb0532d2d2e8fff1fe9efc53",
+      "url": "https://files.pythonhosted.org/packages/75/2e/46030320b5a80661e88039f59060d1790298b4718944a65a7f2aeda3d9e9/nvidia_cuda_nvrtc_cu12-12.6.77-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudart",
+          "version": "12.6.68"
+        }
+      ],
+      "id": "wheel-nvidia-cuda-runtime-cu12-12.6.68",
+      "kind": "wheel",
+      "note": "nvidia-cuda-runtime-cu12: official NVIDIA wheel 12.6.68, discovered from PyPI (0.9 MB).",
+      "sha256": "846987485889786d257f6d7bdcf7544a36452936514e20dd710527b896c0fe12",
+      "url": "https://files.pythonhosted.org/packages/14/73/372663ed23fd7aa66bebab25efb8ab6b63d1d16a336c8ffd3e10df16a699/nvidia_cuda_runtime_cu12-12.6.68-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudnn",
+          "version": "9.24.0.43"
+        }
+      ],
+      "id": "wheel-nvidia-cudnn-cu12-9.24.0.43",
+      "kind": "wheel",
+      "note": "nvidia-cudnn-cu12: official NVIDIA wheel 9.24.0.43, discovered from PyPI (799.1 MB).",
+      "sha256": "f424192dd85e7d29f44be18df2dae4c80d32c67a29c0d42f5c283c40cfdf871c",
+      "url": "https://files.pythonhosted.org/packages/10/13/b8887c869cf2471339a24b60d3c28e761facbb534935f572b61423371abb/nvidia_cudnn_cu12-9.24.0.43-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudnn",
+          "version": "9.24.0.43"
+        }
+      ],
+      "id": "wheel-nvidia-cudnn-cu13-9.24.0.43",
+      "kind": "wheel",
+      "note": "nvidia-cudnn-cu13: official NVIDIA wheel 9.24.0.43, discovered from PyPI (553.1 MB).",
+      "sha256": "71f181cd810e90f9b6023b01186fe82d13d65f0ec098581ee201d39fad769e4b",
+      "url": "https://files.pythonhosted.org/packages/5c/ba/791cffd048fe5b044e620df55267e3e95c0e6e07d50b41e377c03dfc910f/nvidia_cudnn_cu13-9.24.0.43-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cufft",
+          "version": "11.2.6.59"
+        }
+      ],
+      "id": "wheel-nvidia-cufft-cu12-11.2.6.59",
+      "kind": "wheel",
+      "note": "nvidia-cufft-cu12: official NVIDIA wheel 11.2.6.59, discovered from PyPI (192.5 MB).",
+      "sha256": "251df5b20b11bb2af6d3964ac01b85a94094222d081c90f27e8df3bf533d3257",
+      "url": "https://files.pythonhosted.org/packages/76/bd/68c5d14d211736c36a3ccf9f1ccd799bf8a572acc57b91a68b5432cfa4d9/nvidia_cufft_cu12-11.2.6.59-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "curand",
+          "version": "10.3.7.37"
+        }
+      ],
+      "id": "wheel-nvidia-curand-cu12-10.3.7.37",
+      "kind": "wheel",
+      "note": "nvidia-curand-cu12: official NVIDIA wheel 10.3.7.37, discovered from PyPI (56.3 MB).",
+      "sha256": "a59d2bef54f4848a0d4a24d9d7dd0a048e936f60d767eec4e0558356f68e8cc9",
+      "url": "https://files.pythonhosted.org/packages/c6/47/0c725c67c140bccb1df03f4647038c118391382e5a95e0bce77ea1254fe6/nvidia_curand_cu12-10.3.7.37-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cusolver",
+          "version": "11.6.4.69"
+        }
+      ],
+      "id": "wheel-nvidia-cusolver-cu12-11.6.4.69",
+      "kind": "wheel",
+      "note": "nvidia-cusolver-cu12: official NVIDIA wheel 11.6.4.69, discovered from PyPI (130.5 MB).",
+      "sha256": "ec0419e653587d25f399736eaf1d26a6562d8bcaeb44b1e3daef87e13b669963",
+      "url": "https://files.pythonhosted.org/packages/47/54/e18b69f26e62620d331931db4b13bb9fee571c0a7427abcf209895bf706e/nvidia_cusolver_cu12-11.6.4.69-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cusparse",
+          "version": "12.5.3.3"
+        }
+      ],
+      "id": "wheel-nvidia-cusparse-cu12-12.5.3.3",
+      "kind": "wheel",
+      "note": "nvidia-cusparse-cu12: official NVIDIA wheel 12.5.3.3, discovered from PyPI (216.5 MB).",
+      "sha256": "76030755020d3a969b40273f43b8c496c4e122ee2a01fd724cf1398421bcadd8",
+      "url": "https://files.pythonhosted.org/packages/3b/ab/aca097056e0b405db7e430eb5863eb8c22e7b40971b0e12e4a078588941a/nvidia_cusparse_cu12-12.5.3.3-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "nccl",
+          "version": "2.29.7"
+        }
+      ],
+      "id": "wheel-nvidia-nccl-cu12-2.29.7",
+      "kind": "wheel",
+      "note": "nvidia-nccl-cu12: official NVIDIA wheel 2.29.7, discovered from PyPI (293.6 MB).",
+      "sha256": "ecd0a012051abc20c1aa87328841efa8cade3ced65803046e38c2f03c0891fea",
+      "url": "https://files.pythonhosted.org/packages/31/1e/9e366f36efc550f07d6737f199e3f6bffafdf28795d007f10a77dd274f5c/nvidia_nccl_cu12-2.29.7-py3-none-manylinux_2_18_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "nccl",
+          "version": "2.29.7"
+        }
+      ],
+      "id": "wheel-nvidia-nccl-cu13-2.29.7",
+      "kind": "wheel",
+      "note": "nvidia-nccl-cu13: official NVIDIA wheel 2.29.7, discovered from PyPI (206.0 MB).",
+      "sha256": "edd81538446786ec3b73972543e53bb43bcaf0bfc8ef76cb679fcc390ffe136d",
+      "url": "https://files.pythonhosted.org/packages/67/f4/58e4e91b6919367c7aafb8e36fce9aad1a3047e536bf7e2fd560927d3a4c/nvidia_nccl_cu13-2.29.7-py3-none-manylinux_2_18_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-tensorflow-2.18.0",
+      "kind": "wheel",
+      "note": "tensorflow: third-party CUDA-bundling wheel (detection-only) 2.18.0, discovered from PyPI (615.3 MB).",
+      "sha256": "1eb77fae50d699442726d1b23c7512c97cd688cc7d857b028683d4535bbf3709",
+      "url": "https://files.pythonhosted.org/packages/d4/80/1567ccc375ccda4d28af28c960cca7f709f7c259463ac1436554697e8868/tensorflow-2.18.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-torch-2.11.0",
+      "kind": "wheel",
+      "note": "torch: third-party CUDA-bundling wheel (detection-only) 2.11.0, discovered from PyPI (530.6 MB).",
+      "sha256": "1b32ceda909818a03b112006709b02be1877240c31750a8d9c6b7bf5f2d8a6e5",
+      "url": "https://files.pythonhosted.org/packages/f9/1e/18a9b10b4bd34f12d4e561c52b0ae7158707b8193c6cfc0aad2b48167090/torch-2.11.0-cp310-cp310-manylinux_2_28_x86_64.whl"
     }
   ],
   "schema_version": 1
