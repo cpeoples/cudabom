@@ -7,12 +7,20 @@
   "provenance": {
     "manifest_sha256": "008865935c44dcdb2a88e5522de841bb3d43e886c5b790f125e56d3e86ed85e0",
     "corpus_sha256": [
+      "18683dbfbd700ae736b139c4a70407afba1970167f51b7566210c88c7ab0fba5",
+      "3872220101da79a4265b2737d92031e7e593cbe7eb6fd953b784628d2db0072d",
+      "4f0105a51ac6ea947154e252c8b220baf3345803f55644b5aad84e22ae4f8986",
       "521c4b6ef579582953e4df2f5fe95a106bfc6d9dc30c6ac26ed6fd92fd0767b9",
       "62046476076d1b455fb13fb78b38d3496bacafbfdbb0494fb3392240a04466ea",
       "a019f2c8a300991d94d718a3524377d978efadaa62349858741f17ef859a9e55",
       "a0792b666caaf593a9dd4130979578fd3a78230f4407645c295700ef8e7aaaf2",
       "cd41ab8b61f5beb54e32c3668ecd311ce926c39006fba256b053dd7d248419d4",
-      "fc668519a8344e9d05335bad4bc5d23a504cdc7579aea41f12d6aa0f3079e709"
+      "dcbc6d1407e678f2abb5b525dbd193de8189d9d443b9db4822345c9673cde2fb",
+      "e362e1fbf6b101ad71aa5314f21d00a4353b90efbe5cdedc5fcfb0f3b68cd791",
+      "e65e11ba7939e08866c2b2532be9c4e8c3210432ee397d97b30a69d7fa61cca2",
+      "fc668519a8344e9d05335bad4bc5d23a504cdc7579aea41f12d6aa0f3079e709",
+      "feeba4210c6ae87d4c799aad0b99dd48015d66af93a2fcc44bd576808c8ab1c8",
+      "ff98cb22c1fe7980cbd0a96e8979d60ca3d330e5ca025dd430d7cd72a7c13302"
     ],
     "tool_version": "0.1.0"
   },
@@ -34,7 +42,25 @@
         "libcudnn_ops.so"
       ],
       "file_hashes": {
+        "04dcda728417feed8872bf404e5dd43f043c4c3422da185096706481193dc4bc": [
+          "8.8.0.121"
+        ],
         "0b7389fd2587dfcf9bda0f9cda56943411df60a6763f45e3a1a84786ba207bd4": [
+          "8.8.0.121"
+        ],
+        "155c76c748b56b253498cdd4bc2624ddf18ab8a4a876d72abd0e79840e41b0b2": [
+          "8.8.0.121"
+        ],
+        "2724e620de9292b025cae89ce459ffb46ebd743c2a8e6f942ffb94356ff9fcd6": [
+          "8.8.0.121"
+        ],
+        "3452d3c05eef13ac8aed95052c5317bba6b6fd25e5eeac7b7c97df8af825dd1c": [
+          "8.8.0.121"
+        ],
+        "3cf3968bddcb13e9bf3714a212b38c4b8ab5f504ba151028b891eb1168944c93": [
+          "8.8.0.121"
+        ],
+        "48308a0b890f53a83652e975425773be363a25f9c61a52155e7a9540c1507ff0": [
           "8.8.0.121"
         ],
         "4f0105a51ac6ea947154e252c8b220baf3345803f55644b5aad84e22ae4f8986": [
@@ -46,10 +72,19 @@
         "62046476076d1b455fb13fb78b38d3496bacafbfdbb0494fb3392240a04466ea": [
           "8.8.0.121"
         ],
+        "734a2b6c3dd8e5fe16f61dcf68891ef6d73b83f359629baacdb33280aa9215fc": [
+          "8.8.0.121"
+        ],
+        "9575890ef71924da8ca07846b88b7993748b077f0d7e929777069246a13bbca4": [
+          "8.8.0.121"
+        ],
         "a019f2c8a300991d94d718a3524377d978efadaa62349858741f17ef859a9e55": [
           "8.8.0.121"
         ],
         "a0792b666caaf593a9dd4130979578fd3a78230f4407645c295700ef8e7aaaf2": [
+          "8.8.0.121"
+        ],
+        "c17d8657d00b1c7ec649892993f2ce87e31a0533a3f63887fc14d4b319b308b5": [
           "8.8.0.121"
         ],
         "cd41ab8b61f5beb54e32c3668ecd311ce926c39006fba256b053dd7d248419d4": [
@@ -58,10 +93,25 @@
         "ce8aa8f749e69cff5e83058495fc5595d1e6aa63ff26f27f745521b6e334ecce": [
           "8.8.0.121"
         ],
+        "d54f892ee435b94e7b362d4dded0b36660b04e1269c06bd92211464b1c73b825": [
+          "8.8.0.121"
+        ],
+        "d86b5e0fc20b7d68afc8b7c61e980bb26e3b2298feccbf716079c6e75fb8c66f": [
+          "8.8.0.121"
+        ],
+        "e139bf1d846f8c186d3a111bb6a91dc6e76583bef770a435e7ddc05ac6afa3dc": [
+          "8.8.0.121"
+        ],
         "e362e1fbf6b101ad71aa5314f21d00a4353b90efbe5cdedc5fcfb0f3b68cd791": [
           "8.8.0.121"
         ],
+        "eaf0809bf3dd518759559f00e20a9f477f4a63e5a866fbe7bf4d84be3ca5b989": [
+          "8.8.0.121"
+        ],
         "f2a6d6dc549b6b477b49c5f5e97569bcfa6cf5694d4e5e0a17ac88e5a5ee236d": [
+          "8.8.0.121"
+        ],
+        "fbdcf242e7e734809af77cdaf8deb720108b375404daef8cb5fc8466cad0393d": [
           "8.8.0.121"
         ],
         "fc668519a8344e9d05335bad4bc5d23a504cdc7579aea41f12d6aa0f3079e709": [

@@ -7,9 +7,13 @@
   "provenance": {
     "manifest_sha256": "a9316e38e916c6f7e0e9046746d78d47658d681076051ccadad793adc6746324",
     "corpus_sha256": [
+      "3872220101da79a4265b2737d92031e7e593cbe7eb6fd953b784628d2db0072d",
+      "4f0105a51ac6ea947154e252c8b220baf3345803f55644b5aad84e22ae4f8986",
       "521c4b6ef579582953e4df2f5fe95a106bfc6d9dc30c6ac26ed6fd92fd0767b9",
       "62046476076d1b455fb13fb78b38d3496bacafbfdbb0494fb3392240a04466ea",
-      "a019f2c8a300991d94d718a3524377d978efadaa62349858741f17ef859a9e55"
+      "a019f2c8a300991d94d718a3524377d978efadaa62349858741f17ef859a9e55",
+      "dcbc6d1407e678f2abb5b525dbd193de8189d9d443b9db4822345c9673cde2fb",
+      "e65e11ba7939e08866c2b2532be9c4e8c3210432ee397d97b30a69d7fa61cca2"
     ],
     "tool_version": "0.1.0"
   },
@@ -31,7 +35,16 @@
         "libcudnn_ops.so"
       ],
       "file_hashes": {
+        "04dcda728417feed8872bf404e5dd43f043c4c3422da185096706481193dc4bc": [
+          "8.8.0.121"
+        ],
         "0b7389fd2587dfcf9bda0f9cda56943411df60a6763f45e3a1a84786ba207bd4": [
+          "8.8.0.121"
+        ],
+        "155c76c748b56b253498cdd4bc2624ddf18ab8a4a876d72abd0e79840e41b0b2": [
+          "8.8.0.121"
+        ],
+        "2724e620de9292b025cae89ce459ffb46ebd743c2a8e6f942ffb94356ff9fcd6": [
           "8.8.0.121"
         ],
         "4f0105a51ac6ea947154e252c8b220baf3345803f55644b5aad84e22ae4f8986": [
@@ -43,10 +56,22 @@
         "62046476076d1b455fb13fb78b38d3496bacafbfdbb0494fb3392240a04466ea": [
           "8.8.0.121"
         ],
+        "734a2b6c3dd8e5fe16f61dcf68891ef6d73b83f359629baacdb33280aa9215fc": [
+          "8.8.0.121"
+        ],
+        "9575890ef71924da8ca07846b88b7993748b077f0d7e929777069246a13bbca4": [
+          "8.8.0.121"
+        ],
         "a019f2c8a300991d94d718a3524377d978efadaa62349858741f17ef859a9e55": [
           "8.8.0.121"
         ],
         "ce8aa8f749e69cff5e83058495fc5595d1e6aa63ff26f27f745521b6e334ecce": [
+          "8.8.0.121"
+        ],
+        "d54f892ee435b94e7b362d4dded0b36660b04e1269c06bd92211464b1c73b825": [
+          "8.8.0.121"
+        ],
+        "eaf0809bf3dd518759559f00e20a9f477f4a63e5a866fbe7bf4d84be3ca5b989": [
           "8.8.0.121"
         ],
         "f2a6d6dc549b6b477b49c5f5e97569bcfa6cf5694d4e5e0a17ac88e5a5ee236d": [

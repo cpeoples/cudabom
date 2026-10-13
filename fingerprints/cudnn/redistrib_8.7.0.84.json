@@ -7,7 +7,9 @@
   "provenance": {
     "manifest_sha256": "28903e467fa23dd70745c944c98b2f5572a02b5a90fc27656befa3761d51eadb",
     "corpus_sha256": [
-      "6d985aa9cf3e19b3d5d8542fbdb6ee7ddf159c4260bdf90809cd8ddff822b518"
+      "3a48eb910a3025ba1ce439d95e12a5c75776fa9f99c50220e08c535e30f9e295",
+      "6d985aa9cf3e19b3d5d8542fbdb6ee7ddf159c4260bdf90809cd8ddff822b518",
+      "ba74343bbdf0a99b3c0ad981e3ad97dea851950123545c232316153c8c8399db"
     ],
     "tool_version": "0.1.0"
   },
@@ -29,13 +31,34 @@
         "libcudnn_ops.so"
       ],
       "file_hashes": {
+        "4ddd68d84c436989c6b9b51343ab9feb9add34053291d384fb03bd9cc3c90ffc": [
+          "8.7.0.84"
+        ],
+        "61e4b8a4b25408e112e98ead35cd0de5bf1a5b402489a356a89972b09684eb86": [
+          "8.7.0.84"
+        ],
         "6d985aa9cf3e19b3d5d8542fbdb6ee7ddf159c4260bdf90809cd8ddff822b518": [
+          "8.7.0.84"
+        ],
+        "98ebc9bb50a3a7cefff8c8d19fcc0682000c0f276f643bd799932f93c978005d": [
           "8.7.0.84"
         ],
         "ba74343bbdf0a99b3c0ad981e3ad97dea851950123545c232316153c8c8399db": [
           "8.7.0.84"
         ],
+        "bfa8e6ccc1ac09dfda371e13c82bde89b3ace61b397426ecd0229da4f241ba76": [
+          "8.7.0.84"
+        ],
+        "d42e2926d28dd59e33d491ff4ff82318c0ba80598abdc2f712e77e848ff0dc4e": [
+          "8.7.0.84"
+        ],
         "e3d4258a280df8bcb45e3f4bf5ececdde5bd82544f14c56872120631c062d088": [
+          "8.7.0.84"
+        ],
+        "e72b819608698769255c8ac937b4da9e0dc996f8ce2a282dda5c403c27089b37": [
+          "8.7.0.84"
+        ],
+        "fad321a88116ed32e8ba84913ebe34f165bc1996313fbcd763eabb2a371c721e": [
           "8.7.0.84"
         ]
       },
