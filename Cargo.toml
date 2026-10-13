@@ -76,7 +76,7 @@ thiserror = "2"
 # `sha2` hashes containing files; `memchr` scans rodata for strings; `walkdir`
 # walks directories without following symlinks.
 object = { version = "0.40", default-features = false, features = ["read", "std", "elf", "pe", "coff", "archive"] }
-zip = { version = "8", default-features = false, features = ["deflate"] }
+zip = { version = "9", default-features = false, features = ["deflate"] }
 flate2 = "1"
 tar = "0.4"
 sha2 = "0.11"
