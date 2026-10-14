@@ -1,0 +1,204 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "6.0.0",
+    "date": "2026-10-13"
+  },
+  "provenance": {
+    "manifest_sha256": "3a89e574014be694b6e2b22a926bb8a4bd480f2d10a4a3ffe8c3dac7cdb9e4f5",
+    "corpus_sha256": [
+      "0c8d03cd9689f8c29e7d3863ffe2acc8c7ebd2cabe4a32f5a13b67c168801491",
+      "4ec203f46630a0333b02b54ef81da1d3904542acd06ce78bb832f2c2ee7c24d1",
+      "f60479156f2bd7423f701f462f8526bd3003e5f1f0cdfa9e67b59e506a39776f",
+      "fc46eb005b1ad4d9ff6ee5b7c5b1892021adbe1b8db0ed12e9ded0df102e3611"
+    ],
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nvcomp",
+      "description": "NVIDIA nvCOMP library",
+      "license": "nvCOMP library",
+      "soname_stems": [
+        "libnvcomp.so",
+        "libnvcomp_cpu.so"
+      ],
+      "file_hashes": {
+        "0c8d03cd9689f8c29e7d3863ffe2acc8c7ebd2cabe4a32f5a13b67c168801491": [
+          "6.0.0.12"
+        ],
+        "2ac99c4b5bc72ba091054bae6bd3a67d03cb723b1d24b47edf6f4fc06806c57a": [
+          "6.0.0.12"
+        ],
+        "3316f24fb016f5fe28ba0b90ef9ed15be0d5f7cb03b09dd3298d357e4e65c4e9": [
+          "6.0.0.12"
+        ],
+        "3868535ed4b0ae8acdf09388ac315a00c8b38f987d2a9a77d3836ae0adb4d4ee": [
+          "6.0.0.12"
+        ],
+        "4ec203f46630a0333b02b54ef81da1d3904542acd06ce78bb832f2c2ee7c24d1": [
+          "6.0.0.12"
+        ],
+        "5070b0c7b2731d1d4fc259e9e00bcbf484694ddb3aac74486a1c8f8ea67e708d": [
+          "6.0.0.12"
+        ],
+        "9887573b47667c1c3daabb4618c3428afc91cd719d8abc0c6f4e9dccd0889ed5": [
+          "6.0.0.12"
+        ],
+        "9d494997ae770b23e8a4bcee076891061c1176876fb25a51e0f912f65f736978": [
+          "6.0.0.12"
+        ],
+        "b89fb4820fdb6f4cd96203500b6722bb31cd7b52463d59cf9549c54cb2e08c18": [
+          "6.0.0.12"
+        ],
+        "c676f522307fb272d9b7ccf3460e5f77abd1f640dacba201533e5d641d162129": [
+          "6.0.0.12"
+        ],
+        "e9845d30c840db5cf7ed70ab4ed99b88db9fe6eeeb770f53cc86e2bb263b8e18": [
+          "6.0.0.12"
+        ],
+        "f60479156f2bd7423f701f462f8526bd3003e5f1f0cdfa9e67b59e506a39776f": [
+          "6.0.0.12"
+        ],
+        "fc46eb005b1ad4d9ff6ee5b7c5b1892021adbe1b8db0ed12e9ded0df102e3611": [
+          "6.0.0.12"
+        ]
+      },
+      "build_ids": {
+        "30da91d4a6f7f64bd08638fa8470e6e66ffcd6b4": [
+          "6.0.0.12"
+        ],
+        "58cfd89d551779ad65ec552a88e2e57824147896": [
+          "6.0.0.12"
+        ],
+        "81514555f5e294b3b3ac5a97b1f71fccd9408cb1": [
+          "6.0.0.12"
+        ],
+        "8da29ad93c99c85626eb1a7b3d410c03cde95ac9": [
+          "6.0.0.12"
+        ],
+        "9505afd2d3c074cec8b7a7e54b4989149fddf9f8": [
+          "6.0.0.12"
+        ],
+        "ba53e753b95512209c3ff09fb8c6f4a8e7fe6465": [
+          "6.0.0.12"
+        ],
+        "c51c1e645c7f317845f7439622774aea2a59d274": [
+          "6.0.0.12"
+        ]
+      },
+      "version_markers": [],
+      "symbol_markers": [
+        "nvcompBatchedANSCompressAsync",
+        "nvcompBatchedANSCompressGetMaxOutputChunkSize",
+        "nvcompBatchedANSCompressGetRequiredAlignments",
+        "nvcompBatchedANSCompressGetTempSize",
+        "nvcompBatchedANSCompressGetTempSizeSync",
+        "nvcompBatchedANSDecompressAsync",
+        "nvcompBatchedANSDecompressAsyncEx",
+        "nvcompBatchedANSDecompressGetRequiredAlignments",
+        "nvcompBatchedANSDecompressGetTempSize",
+        "nvcompBatchedANSDecompressGetTempSizeSync",
+        "nvcompBatchedANSGetDecompressSizeAsync",
+        "nvcompBatchedBitcompCompressAsync",
+        "nvcompBatchedBitcompCompressGetMaxOutputChunkSize",
+        "nvcompBatchedBitcompCompressGetRequiredAlignments",
+        "nvcompBatchedBitcompCompressGetTempSize",
+        "nvcompBatchedBitcompCompressGetTempSizeSync",
+        "nvcompBatchedBitcompDecompressAsync",
+        "nvcompBatchedBitcompDecompressAsyncEx",
+        "nvcompBatchedBitcompDecompressGetRequiredAlignments",
+        "nvcompBatchedBitcompDecompressGetTempSize",
+        "nvcompBatchedBitcompDecompressGetTempSizeSync",
+        "nvcompBatchedBitcompGetDecompressSizeAsync",
+        "nvcompBatchedCRC32Async",
+        "nvcompBatchedCRC32GetHeuristicConf",
+        "nvcompBatchedCRC32SearchConf",
+        "nvcompBatchedCascadedCompressAsync",
+        "nvcompBatchedCascadedCompressGetMaxOutputChunkSize",
+        "nvcompBatchedCascadedCompressGetRequiredAlignments",
+        "nvcompBatchedCascadedCompressGetTempSize",
+        "nvcompBatchedCascadedCompressGetTempSizeSync",
+        "nvcompBatchedCascadedDecompressAsync",
+        "nvcompBatchedCascadedDecompressAsyncEx",
+        "nvcompBatchedCascadedDecompressGetRequiredAlignments",
+        "nvcompBatchedCascadedDecompressGetTempSize",
+        "nvcompBatchedCascadedDecompressGetTempSizeSync",
+        "nvcompBatchedCascadedGetDecompressSizeAsync",
+        "nvcompBatchedDeflateCompressAsync",
+        "nvcompBatchedDeflateCompressGetMaxOutputChunkSize",
+        "nvcompBatchedDeflateCompressGetRequiredAlignments",
+        "nvcompBatchedDeflateCompressGetTempSize",
+        "nvcompBatchedDeflateCompressGetTempSizeSync",
+        "nvcompBatchedDeflateDecompressAsync",
+        "nvcompBatchedDeflateDecompressAsyncEx",
+        "nvcompBatchedDeflateDecompressGetRequiredAlignments",
+        "nvcompBatchedDeflateDecompressGetTempSize",
+        "nvcompBatchedDeflateDecompressGetTempSizeSync",
+        "nvcompBatchedDeflateGetDecompressSizeAsync",
+        "nvcompBatchedGdeflateCompressAsync",
+        "nvcompBatchedGdeflateCompressGetMaxOutputChunkSize",
+        "nvcompBatchedGdeflateCompressGetRequiredAlignments",
+        "nvcompBatchedGdeflateCompressGetTempSize",
+        "nvcompBatchedGdeflateCompressGetTempSizeSync",
+        "nvcompBatchedGdeflateDecompressAsync",
+        "nvcompBatchedGdeflateDecompressAsyncEx",
+        "nvcompBatchedGdeflateDecompressGetRequiredAlignments",
+        "nvcompBatchedGdeflateDecompressGetTempSize",
+        "nvcompBatchedGdeflateDecompressGetTempSizeSync",
+        "nvcompBatchedGdeflateGetDecompressSizeAsync",
+        "nvcompBatchedGzipCompressAsync",
+        "nvcompBatchedGzipCompressGetMaxOutputChunkSize",
+        "nvcompBatchedGzipCompressGetRequiredAlignments",
+        "nvcompBatchedGzipCompressGetTempSize",
+        "nvcompBatchedGzipCompressGetTempSizeSync",
+        "nvcompBatchedGzipDecompressAsync",
+        "nvcompBatchedGzipDecompressAsyncEx",
+        "nvcompBatchedGzipDecompressGetRequiredAlignments",
+        "nvcompBatchedGzipDecompressGetTempSize",
+        "nvcompBatchedGzipDecompressGetTempSizeSync",
+        "nvcompBatchedGzipGetDecompressSizeAsync",
+        "nvcompBatchedLZ4CompressAsync",
+        "nvcompBatchedLZ4CompressGetMaxOutputChunkSize",
+        "nvcompBatchedLZ4CompressGetRequiredAlignments",
+        "nvcompBatchedLZ4CompressGetTempSize",
+        "nvcompBatchedLZ4CompressGetTempSizeSync",
+        "nvcompBatchedLZ4DecompressAsync",
+        "nvcompBatchedLZ4DecompressAsyncEx",
+        "nvcompBatchedLZ4DecompressGetRequiredAlignments",
+        "nvcompBatchedLZ4DecompressGetTempSize",
+        "nvcompBatchedLZ4DecompressGetTempSizeSync",
+        "nvcompBatchedLZ4GetDecompressSizeAsync",
+        "nvcompBatchedSnappyCompressAsync",
+        "nvcompBatchedSnappyCompressGetMaxOutputChunkSize",
+        "nvcompBatchedSnappyCompressGetRequiredAlignments",
+        "nvcompBatchedSnappyCompressGetTempSize",
+        "nvcompBatchedSnappyCompressGetTempSizeSync",
+        "nvcompBatchedSnappyDecompressAsync",
+        "nvcompBatchedSnappyDecompressAsyncEx",
+        "nvcompBatchedSnappyDecompressGetRequiredAlignments",
+        "nvcompBatchedSnappyDecompressGetTempSize",
+        "nvcompBatchedSnappyDecompressGetTempSizeSync",
+        "nvcompBatchedSnappyGetDecompressSizeAsync",
+        "nvcompBatchedZstdCompressAsync",
+        "nvcompBatchedZstdCompressGetMaxOutputChunkSize",
+        "nvcompBatchedZstdCompressGetRequiredAlignments",
+        "nvcompBatchedZstdCompressGetTempSize",
+        "nvcompBatchedZstdCompressGetTempSizeSync",
+        "nvcompBatchedZstdDecompressAsync",
+        "nvcompBatchedZstdDecompressAsyncEx",
+        "nvcompBatchedZstdDecompressGetRequiredAlignments",
+        "nvcompBatchedZstdDecompressGetTempSize",
+        "nvcompBatchedZstdDecompressGetTempSizeSync",
+        "nvcompBatchedZstdGetDecompressSizeAsync",
+        "nvcompGetProperties",
+        "nvcompGetStatusString"
+      ],
+      "release_versions": {
+        "6.0.0.12": [
+          "6.0.0"
+        ]
+      }
+    }
+  ]
+}

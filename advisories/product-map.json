@@ -51,6 +51,7 @@
     { "contains": "nvpl tensor", "component": "nvpl-tensor" },
     { "contains": "cal", "component": "cal" },
     { "contains": "compat_orin", "component": "compat_orin" },
+    { "contains": "compat", "component": "compat" },
     { "contains": "cufftmp", "component": "cufftmp" },
     { "contains": "cufft", "component": "cufft" },
     { "contains": "cuvs", "component": "cuvs" },
