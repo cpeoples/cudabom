@@ -9,7 +9,7 @@
     "cudart": "https://docs.nvidia.com/cuda/cuda-runtime-api/",
     "cudla": "https://docs.nvidia.com/cuda/cudla-api/",
     "cudnn": "https://docs.nvidia.com/deeplearning/cudnn/",
-    "cudss": "https://docs.nvidia.com/cuda/cudss/",
+    "cudss": "https://developer.nvidia.com/cudss",
     "cufft": "https://docs.nvidia.com/cuda/cufft/",
     "cufftmp": "https://docs.nvidia.com/cuda/cufftmp/",
     "cufile": "https://docs.nvidia.com/gpudirect-storage/api-reference-guide/#cufile-api-specification",
