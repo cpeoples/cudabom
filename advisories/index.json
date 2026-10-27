@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_commit": "2c9454053cf5d2942d4f361d455c749b725fe920",
+  "source_commit": "6e340ebe15f405497868dcbdfb326c6d00d62b86",
   "advisories": [
     {
       "id": "CVE-2022-21821",
@@ -1821,6 +1821,32 @@
       ]
     },
     {
+      "id": "CVE-2026-24269",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM contains a vulnerability where an attacker could cause a server-side request forgery. A successful exploit of this vulnerability might lead to information disclosure and data tampering.",
+      "published": "2026-10-27T00:00:00Z",
+      "cvss_score": 7.1,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24269",
+        "https://www.cve.org/CVERecord?id=CVE-2026-24269"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "1.3.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "CVE-2026-24271",
       "severity": "HIGH",
       "description": "NVIDIA TensorRT-LLM contains a vulnerability in the OpenAI-compatible inference API, where an attacker could cause allocation of GPU resources without limits or throttling. A successful exploit of this vulnerability might lead to denial of service.",
@@ -1992,6 +2018,58 @@
           "affected_ranges": [
             {
               "introduced": "0.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-65119",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM for any platform contains a vulnerability in KvCacheAwareRouter tokenizer loading, where an attacker could cause inclusion of functionality from an untrusted control sphere. A successful exploit might lead to code execution, information disclosure, data tampering, and denial of service.",
+      "published": "2026-10-27T00:00:00Z",
+      "cvss_score": 8.4,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-65119",
+        "https://www.cve.org/CVERecord?id=CVE-2026-65119"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "1.3.0"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "1.3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-65120",
+      "severity": "HIGH",
+      "description": "NVIDIA TensorRT-LLM contains a vulnerability where an attacker could cause a server-side request forgery. A successful exploit of this vulnerability might lead to information disclosure.",
+      "published": "2026-10-27T00:00:00Z",
+      "cvss_score": 7.1,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-65120",
+        "https://www.cve.org/CVERecord?id=CVE-2026-65120"
+      ],
+      "affected": [
+        {
+          "component": "tensorrt",
+          "affected_ranges": [
+            {
+              "introduced": "1.3.0"
             }
           ],
           "fixed_ranges": [
