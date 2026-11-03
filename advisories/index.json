@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_commit": "6e340ebe15f405497868dcbdfb326c6d00d62b86",
+  "source_commit": "7ed82859e622eba4afac44e5a578052b44be1be1",
   "advisories": [
     {
       "id": "CVE-2022-21821",
@@ -2101,6 +2101,45 @@
           "fixed_ranges": [
             {
               "fixed": "11.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CVE-2026-65160",
+      "severity": "MEDIUM",
+      "description": "NVIDIA nvJPEG contains a vulnerability where an attacker could cause a divide-by-zero. A successful exploit of this vulnerability might lead to denial of service.",
+      "published": "2026-11-03T00:00:00Z",
+      "cvss_score": 5.5,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-65160",
+        "https://www.cve.org/CVERecord?id=CVE-2026-65160"
+      ],
+      "affected": [
+        {
+          "component": "cuda-toolkit",
+          "affected_ranges": [
+            {
+              "introduced": "13.4.1"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "13.4"
+            }
+          ]
+        },
+        {
+          "component": "nvjpeg",
+          "affected_ranges": [
+            {
+              "introduced": "26.06"
+            }
+          ],
+          "fixed_ranges": [
+            {
+              "fixed": "26.07"
             }
           ]
         }
