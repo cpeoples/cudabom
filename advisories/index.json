@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_commit": "7ed82859e622eba4afac44e5a578052b44be1be1",
+  "source_commit": "98dc5d70d87f6f068c38161930fcda2ae3193bb3",
   "advisories": [
     {
       "id": "CVE-2022-21821",
