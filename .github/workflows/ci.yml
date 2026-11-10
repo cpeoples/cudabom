@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -34,7 +34,7 @@ jobs:
           - name: linux-aarch64
             runner: ubuntu-24.04-arm
           - name: macos-aarch64
-            runner: macos-14
+            runner: macos-latest
 
     steps:
       - name: Harden Runner
