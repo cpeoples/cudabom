@@ -3957,6 +3957,82 @@
       "note": "torch: third-party CUDA-bundling wheel (detection-only) 2.2.1, discovered from PyPI (755.5 MB).",
       "sha256": "8d3bad336dd2c93c6bcb3268e8e9876185bda50ebde325ef211fb565c7d15273",
       "url": "https://files.pythonhosted.org/packages/a7/ad/fbe7d4cffb76da4e478438853b51305361c719cff929ab70a808e7fb75e7/torch-2.2.1-cp310-cp310-manylinux1_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-jax-cuda12-plugin-0.5.3",
+      "kind": "wheel",
+      "note": "jax-cuda12-plugin: third-party CUDA-bundling wheel (detection-only) 0.5.3, discovered from PyPI (16.7 MB).",
+      "sha256": "ba2555967f9b6c381c8b4ef9fb03d05bc55ec25ecfee5cfe45c5ace34f7d4152",
+      "url": "https://files.pythonhosted.org/packages/d4/8b/bc9cd5662e4e1d98957c8e1edae890759471a429d80efa4e885518b207b8/jax_cuda12_plugin-0.5.3-cp310-cp310-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cublas",
+          "version": "12.0.2.224"
+        }
+      ],
+      "id": "wheel-nvidia-cublas-cu12-12.0.2.224",
+      "kind": "wheel",
+      "note": "nvidia-cublas-cu12: official NVIDIA wheel 12.0.2.224, discovered from PyPI (379.5 MB).",
+      "sha256": "4ce57c2d218e7d41f13c4d58f497ea47760a37d904a2bc7dd9a3400a49ff30a5",
+      "url": "https://files.pythonhosted.org/packages/a5/41/8be544a514aa0a1888d61bb6a118263895a194d27d9674d3c9222ff85dc0/nvidia_cublas_cu12-12.0.2.224-py3-none-manylinux1_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudnn",
+          "version": "9.15.0.57"
+        }
+      ],
+      "id": "wheel-nvidia-cudnn-cu12-9.15.0.57",
+      "kind": "wheel",
+      "note": "nvidia-cudnn-cu12: official NVIDIA wheel 9.15.0.57, discovered from PyPI (647.7 MB).",
+      "sha256": "7b45341e138834df304ba4190b6ce31b69f9a688de776c56f789127bef907b50",
+      "url": "https://files.pythonhosted.org/packages/df/bb/5feff1263e47af4c0dfeba320ad314eda3c77d2b816748bfb1de8b971554/nvidia_cudnn_cu12-9.15.0.57-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudnn",
+          "version": "9.15.1.9"
+        }
+      ],
+      "id": "wheel-nvidia-cudnn-cu13-9.15.1.9",
+      "kind": "wheel",
+      "note": "nvidia-cudnn-cu13: official NVIDIA wheel 9.15.1.9, discovered from PyPI (351.3 MB).",
+      "sha256": "ebc9a647918df0d7298d67cfaf41579fd4c78ead9aba246f5ad9414d61b9ec4c",
+      "url": "https://files.pythonhosted.org/packages/0c/d0/90f98fc55c48a7d8f5ad0a03a6321acc1a7024bdd550d96b3547a04ea6b4/nvidia_cudnn_cu13-9.15.1.9-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "nccl",
+          "version": "2.22.3"
+        }
+      ],
+      "id": "wheel-nvidia-nccl-cu12-2.22.3",
+      "kind": "wheel",
+      "note": "nvidia-nccl-cu12: official NVIDIA wheel 2.22.3, discovered from PyPI (190.9 MB).",
+      "sha256": "f9f5e03c00269dee2cd1aa57019f9a024478a74ae6e9b32d5341c849fe6f6302",
+      "url": "https://files.pythonhosted.org/packages/72/3a/1ff98da19ad6d54db45e5b2a1e3fb77bd19e54b75cdb20d89f8161384dbb/nvidia_nccl_cu12-2.22.3-py3-none-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-tensorflow-2.10.0",
+      "kind": "wheel",
+      "note": "tensorflow: third-party CUDA-bundling wheel (detection-only) 2.10.0, discovered from PyPI (578.0 MB).",
+      "sha256": "e129114dc529e63af9c419b5917b3407d0d26a4c8b73e114f601a175a7eb0477",
+      "url": "https://files.pythonhosted.org/packages/04/ea/49fd026ac36fdd79bf072294b139170aefc118e487ccb39af019946797e9/tensorflow-2.10.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-torch-2.2.0",
+      "kind": "wheel",
+      "note": "torch: third-party CUDA-bundling wheel (detection-only) 2.2.0, discovered from PyPI (755.5 MB).",
+      "sha256": "d366158d6503a3447e67f8c0ad1328d54e6c181d88572d688a625fac61b13a97",
+      "url": "https://files.pythonhosted.org/packages/8c/67/fcc9b9e2369a9bae4da492aedc0c2dfa95d563ef0eaa9228b70c98395ec2/torch-2.2.0-cp310-cp310-manylinux1_x86_64.whl"
     }
   ],
   "schema_version": 1
