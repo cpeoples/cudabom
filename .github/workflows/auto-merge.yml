@@ -1,9 +1,9 @@
 name: auto-merge
 
 # Enables GitHub-native auto-merge for a narrow set of automated data-only
-# PRs and for Dependabot patch/minor bumps. Native auto-merge still waits for
-# the main-branch ruleset: all required checks must pass. No force-merge, no
-# bypass.
+# PRs and for Dependabot patch/minor bumps. The refresh bot is a ruleset
+# bypass actor for the review rule only, so the merge still waits for all
+# required status checks. No force-merge.
 #
 # A PR must satisfy EVERY guard: opened by the refresh bot or dependabot[bot],
 # targets main, head branch is a known refresh/dependabot branch, and every
@@ -164,10 +164,16 @@ jobs:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
           PR: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
+          DECISION: ${{ steps.gate.outputs.decision }}
         run: |
           set -euo pipefail
-          # Approving as the app (not the PR author) satisfies the 1-approval
-          # rule with no bypass; --auto then waits for required checks.
-          gh pr review "$PR" --repo "$REPO" --approve
+          # Refresh PRs are authored by the app, which is a ruleset bypass actor
+          # for the review rule, so no approval is needed (and self-approval is
+          # forbidden). Dependabot PRs are authored by dependabot[bot], so the
+          # app approves them to satisfy the review rule. Either way --auto still
+          # waits for required checks.
+          if [ "$DECISION" = "dependabot" ]; then
+            gh pr review "$PR" --repo "$REPO" --approve
+          fi
           gh pr merge "$PR" --repo "$REPO" --squash --auto
           echo "Auto-merge enabled for #$PR; it will merge once required checks pass."
