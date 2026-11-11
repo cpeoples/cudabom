@@ -80,36 +80,38 @@ jobs:
         with:
           egress-policy: audit
 
+      - name: Mint refresh bot token
+        id: app_token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ vars.REFRESH_BOT_APP_ID }}
+          private-key: ${{ secrets.REFRESH_BOT_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          # Persist REFRESH_PAT as the git/actor credential for the WHOLE run.
-          # This is what makes scheduled runs behave like workflow_dispatch:
-          # the fine-grained PAT (not the schedule's integration GITHUB_TOKEN)
-          # is unambiguously the actor that create-pull-request uses for its
-          # server-side signed-commit API calls (createTree/createCommit/
-          # createRef). Without this, schedule runs fail at create-a-reference
-          # with "Resource not accessible by personal access token".
+          # Persist the app token for the whole run so create-pull-request's
+          # signed-commit API calls are made as the bot. Short-lived and
+          # repo-scoped, unlike the old PAT.
           persist-credentials: true
-          token: ${{ secrets.REFRESH_PAT }}
+          token: ${{ steps.app_token.outputs.token }}
 
-      - name: Pre-flight (verify REFRESH_PAT can write to this repo)
-        # Fail fast in seconds if the token is missing/expired/under-scoped,
-        # instead of burning ~37m of derivation and only discovering the
-        # permission problem at the Open-pull-request step. We check that the
-        # PAT can read the repo with write-adjacent permission surfaced in the
-        # response; `permissions.push` must be true to create refs + open PRs.
+      - name: Pre-flight (verify the token can write to this repo)
+        # Fail fast if the token is missing or under-scoped instead of burning
+        # ~37m of derivation first. permissions.push must be true to open PRs.
         env:
-          GH_TOKEN: ${{ secrets.REFRESH_PAT }}
+          GH_TOKEN: ${{ steps.app_token.outputs.token }}
         run: |
           set -euo pipefail
           if [ -z "${GH_TOKEN:-}" ]; then
-            echo "::error::REFRESH_PAT secret is empty or not injected into this run."
+            echo "::error::refresh bot token is empty or not minted for this run."
             exit 1
           fi
           push=$(gh api repos/${{ github.repository }} --jq '.permissions.push' 2>/dev/null || echo "unknown")
-          echo "REFRESH_PAT effective push permission: ${push}"
+          echo "refresh bot effective push permission: ${push}"
           if [ "${push}" != "true" ]; then
-            echo "::error::REFRESH_PAT lacks write (Contents: write + Pull requests: write) on ${{ github.repository }}. Fine-grained PATs must grant these to this repo and be authorized for the resource owner."
+            echo "::error::refresh bot lacks write (Contents: write + Pull requests: write) on ${{ github.repository }}."
             exit 1
           fi
 
@@ -529,7 +531,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@15733dbdfeedb4f7fdb73d13c6f5ac83b710fab8 # v8.1.2
         with:
-          token: ${{ secrets.REFRESH_PAT }}
+          token: ${{ steps.app_token.outputs.token }}
           branch: fingerprint-refresh
           base: main
           commit-message: "${{ steps.diff.outputs.title }}"

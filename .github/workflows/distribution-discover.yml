@@ -55,6 +55,15 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Mint refresh bot token
+        id: app_token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ vars.REFRESH_BOT_APP_ID }}
+          private-key: ${{ secrets.REFRESH_BOT_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
       - name: Install Rust toolchain
         run: rustup toolchain install stable --profile minimal
 
@@ -91,7 +100,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@15733dbdfeedb4f7fdb73d13c6f5ac83b710fab8 # v8.1.2
         with:
-          token: ${{ secrets.REFRESH_PAT }}
+          token: ${{ steps.app_token.outputs.token }}
           branch: distribution-discover
           base: main
           commit-message: "chore(distribution): pin newly discovered CUDA wheels"

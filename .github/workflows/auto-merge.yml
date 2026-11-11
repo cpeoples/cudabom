@@ -1,0 +1,181 @@
+name: auto-merge
+
+# Enables GitHub-native auto-merge for a narrow set of automated data-only
+# PRs and for Dependabot patch/minor bumps. The refresh bot is a ruleset
+# bypass actor for the review rule only, so the merge still waits for all
+# required status checks. No force-merge.
+#
+# A PR must satisfy EVERY guard: opened by the refresh bot or dependabot[bot],
+# targets main, head branch is a known refresh/dependabot branch, and every
+# changed file matches a strict per-branch path allowlist. Anything else
+# (other author, extra file, major bump, fingerprint-refresh) is left for a
+# human.
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+# pull_request_target runs with base-repo secrets, so keep the default token
+# read-only and mint a scoped app token only for the merge calls.
+permissions:
+  contents: read
+
+concurrency:
+  group: auto-merge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  evaluate:
+    name: Evaluate PR for auto-merge
+    runs-on: ubuntu-latest
+    # Draft PRs are never auto-merged.
+    if: ${{ github.event.pull_request.draft == false }}
+    permissions:
+      contents: read
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: audit
+
+      - name: Classify PR against the allowlist
+        id: gate
+        env:
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+          BOT_APP_LOGIN: ${{ vars.REFRESH_BOT_LOGIN }}
+        run: |
+          set -euo pipefail
+
+          # Only ever consider PRs that target the protected default branch.
+          if [ "$BASE_REF" != "main" ]; then
+            echo "decision=skip" >> "$GITHUB_OUTPUT"
+            echo "reason=base is $BASE_REF, not main" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Bot login comes from a repo variable, not a hardcoded name.
+          bot_login="${BOT_APP_LOGIN:-}"
+
+          case "$HEAD_REF" in
+            distribution-discover)
+              allow_author="$bot_login"
+              # Only the single pinned manifest may change.
+              allow_re='^eval/distribution\.manifest\.json$'
+              decision=refresh
+              ;;
+            advisory-refresh)
+              allow_author="$bot_login"
+              # Only the normalized index and its badge may change.
+              allow_re='^advisories/(index\.json|badge-cuda\.json)$'
+              decision=refresh
+              ;;
+            dependabot/*)
+              allow_author="dependabot[bot]"
+              # Dependency manifests/lockfiles and the GitHub Actions pins only.
+              allow_re='^(Cargo\.(toml|lock)|\.github/workflows/.*\.ya?ml)$'
+              decision=dependabot
+              ;;
+            *)
+              echo "decision=skip" >> "$GITHUB_OUTPUT"
+              echo "reason=head branch $HEAD_REF is not auto-merge eligible" >> "$GITHUB_OUTPUT"
+              exit 0
+              ;;
+          esac
+
+          # Refresh PRs must come from a branch in THIS repo, never a fork.
+          if [ "$decision" = "refresh" ] && [ "$SAME_REPO" != "true" ]; then
+            echo "decision=skip" >> "$GITHUB_OUTPUT"
+            echo "reason=refresh PR is not from the base repo" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Author must match exactly.
+          if [ -z "$allow_author" ]; then
+            echo "decision=skip" >> "$GITHUB_OUTPUT"
+            echo "reason=refresh bot login not configured (set REFRESH_BOT_LOGIN variable)" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$AUTHOR" != "$allow_author" ]; then
+            echo "decision=skip" >> "$GITHUB_OUTPUT"
+            echo "reason=author $AUTHOR is not the expected $allow_author" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "decision=$decision" >> "$GITHUB_OUTPUT"
+          echo "allow_re=$allow_re" >> "$GITHUB_OUTPUT"
+          echo "reason=eligible ($decision)" >> "$GITHUB_OUTPUT"
+
+      - name: Mint app token
+        id: app_token
+        if: ${{ steps.gate.outputs.decision == 'refresh' || steps.gate.outputs.decision == 'dependabot' }}
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ vars.REFRESH_BOT_APP_ID }}
+          private-key: ${{ secrets.REFRESH_BOT_PRIVATE_KEY }}
+          # enablePullRequestAutoMerge needs contents write; PR write covers
+          # approve and merge.
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Verify changed files against the allowlist
+        id: files
+        if: ${{ steps.gate.outputs.decision == 'refresh' || steps.gate.outputs.decision == 'dependabot' }}
+        env:
+          GH_TOKEN: ${{ steps.app_token.outputs.token }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          ALLOW_RE: ${{ steps.gate.outputs.allow_re }}
+        run: |
+          set -euo pipefail
+          # Fail closed if any changed path is outside this branch's allowlist.
+          mapfile -t changed < <(gh api --paginate "repos/$REPO/pulls/$PR/files" --jq '.[].filename')
+          if [ "${#changed[@]}" -eq 0 ]; then
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "No files reported for PR #$PR; refusing to auto-merge."
+            exit 0
+          fi
+          bad=0
+          for f in "${changed[@]}"; do
+            if printf '%s' "$f" | grep -Eq "$ALLOW_RE"; then
+              echo "allow  $f"
+            else
+              echo "DENY   $f"
+              bad=1
+            fi
+          done
+          if [ "$bad" -ne 0 ]; then
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "PR #$PR changes a path outside the allowlist; leaving for human review."
+            exit 0
+          fi
+          echo "ok=true" >> "$GITHUB_OUTPUT"
+
+      - name: Guard Dependabot update type (patch/minor only)
+        id: semver
+        if: ${{ steps.gate.outputs.decision == 'dependabot' && steps.files.outputs.ok == 'true' }}
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: ${{ steps.app_token.outputs.token }}
+
+      - name: Approve and enable auto-merge
+        if: steps.files.outputs.ok == 'true' && (steps.gate.outputs.decision == 'refresh' || (steps.gate.outputs.decision == 'dependabot' && (steps.semver.outputs.update-type == 'version-update:semver-patch' || steps.semver.outputs.update-type == 'version-update:semver-minor')))
+        env:
+          GH_TOKEN: ${{ steps.app_token.outputs.token }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          DECISION: ${{ steps.gate.outputs.decision }}
+        run: |
+          set -euo pipefail
+          # Refresh PRs are authored by the app, which is a ruleset bypass actor
+          # for the review rule, so no approval is needed (and self-approval is
+          # forbidden). Dependabot PRs are authored by dependabot[bot], so the
+          # app approves them to satisfy the review rule. Either way --auto still
+          # waits for required checks.
+          if [ "$DECISION" = "dependabot" ]; then
+            gh pr review "$PR" --repo "$REPO" --approve
+          fi
+          gh pr merge "$PR" --repo "$REPO" --squash --auto
+          echo "Auto-merge enabled for #$PR; it will merge once required checks pass."
