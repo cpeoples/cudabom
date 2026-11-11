@@ -1,0 +1,36 @@
+{
+  "schema_version": 3,
+  "release": {
+    "label": "2.32.6-cuda12.9",
+    "date": "2026-11-10"
+  },
+  "provenance": {
+    "manifest_sha256": "80496e5a43e133c3222f4f2b59294f4a659560793e564ff666311215179826f9",
+    "tool_version": "0.1.0"
+  },
+  "components": [
+    {
+      "name": "nccl",
+      "description": "NCCL",
+      "license": "NVIDIA NVTX",
+      "soname_stems": [
+        "libnccl.so"
+      ],
+      "file_hashes": {
+        "32f933a2a8336b56660c9e6351c13c959a5a93c564251c84e767accaf89558e7": [
+          "2.32.6"
+        ],
+        "4b5253ca122d3fc8e8a22544ca7e03d1fcc4421880fe47176ecbf4ca9d7ab114": [
+          "2.32.6"
+        ]
+      },
+      "build_ids": {},
+      "version_markers": [],
+      "release_versions": {
+        "2.32.6": [
+          "2.32.6-cuda12.9"
+        ]
+      }
+    }
+  ]
+}
