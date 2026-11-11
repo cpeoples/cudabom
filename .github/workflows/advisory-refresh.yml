@@ -171,9 +171,8 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@15733dbdfeedb4f7fdb73d13c6f5ac83b710fab8 # v8.1.2
         with:
-          # Authored by the refresh bot (GitHub App) so auto-merge can approve
-          # it without self-approval. The app token also lets the refresh PR
-          # trigger CI, which GITHUB_TOKEN-authored PRs do not.
+          # Authored by the bot so auto-merge can approve without self-approval,
+          # and so the PR triggers CI (GITHUB_TOKEN PRs do not).
           token: ${{ steps.app_token.outputs.token }}
           branch: advisory-refresh
           base: main
