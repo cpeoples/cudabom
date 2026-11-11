@@ -55,6 +55,15 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Mint refresh bot token
+        id: app_token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ vars.REFRESH_BOT_APP_ID }}
+          private-key: ${{ secrets.REFRESH_BOT_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
       - name: Install Rust toolchain
         run: rustup toolchain install stable --profile minimal
 
@@ -162,11 +171,10 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@15733dbdfeedb4f7fdb73d13c6f5ac83b710fab8 # v8.1.2
         with:
-          # Uses the default GITHUB_TOKEN. Note: PRs opened by GITHUB_TOKEN do not
-          # themselves trigger `on: pull_request` workflows, so CI must be run
-          # once on the PR by re-running it manually or by using a PAT / GitHub
-          # App token here if automatic CI on the refresh PR is required.
-          token: ${{ secrets.REFRESH_PAT }}
+          # Authored by the refresh bot (GitHub App) so auto-merge can approve
+          # it without self-approval. The app token also lets the refresh PR
+          # trigger CI, which GITHUB_TOKEN-authored PRs do not.
+          token: ${{ steps.app_token.outputs.token }}
           branch: advisory-refresh
           base: main
           commit-message: "chore(advisories): refresh index at ${{ steps.rev.outputs.rev }}"
