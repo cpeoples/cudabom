@@ -166,12 +166,7 @@ jobs:
           github-token: ${{ steps.app_token.outputs.token }}
 
       - name: Approve and enable auto-merge
-        if: >-
-          ${{ steps.files.outputs.ok == 'true' &&
-              (steps.gate.outputs.decision == 'refresh' ||
-               (steps.gate.outputs.decision == 'dependabot' &&
-                (steps.semver.outputs.update-type == 'version-update:semver-patch' ||
-                 steps.semver.outputs.update-type == 'version-update:semver-minor'))) }}
+        if: steps.files.outputs.ok == 'true' && (steps.gate.outputs.decision == 'refresh' || (steps.gate.outputs.decision == 'dependabot' && (steps.semver.outputs.update-type == 'version-update:semver-patch' || steps.semver.outputs.update-type == 'version-update:semver-minor')))
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
           PR: ${{ github.event.pull_request.number }}
