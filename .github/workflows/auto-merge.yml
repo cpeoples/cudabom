@@ -1,22 +1,21 @@
 name: auto-merge
 
-# Enables GitHub-native auto-merge for a narrow set of automated data-only
-# PRs and for Dependabot patch/minor bumps. The refresh bot is a ruleset
-# bypass actor for the review rule only, so the merge still waits for all
-# required status checks. No force-merge.
+# Enables native auto-merge for allowlisted automated PRs. Merges always wait
+# for the required status checks; this never force-merges.
 #
-# A PR must satisfy EVERY guard: opened by the refresh bot or dependabot[bot],
-# targets main, head branch is a known refresh/dependabot branch, and every
-# changed file matches a strict per-branch path allowlist. Anything else
-# (other author, extra file, major bump, fingerprint-refresh) is left for a
-# human.
+# Tiers: distribution-discover and advisory-refresh merge automatically;
+# dependabot patch/minor merge after the app approves; fingerprint-refresh
+# merges only after a maintainer approval. Every PR must be from the bot (or
+# dependabot), target main, come from this repo, and touch only allowlisted
+# paths. Anything else is left for a human.
 
 on:
   pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review]
+  pull_request_review:
+    types: [submitted]
 
-# pull_request_target runs with base-repo secrets, so keep the default token
-# read-only and mint a scoped app token only for the merge calls.
+# Keep the default token read-only; mint a scoped app token for merge calls.
 permissions:
   contents: read
 
@@ -46,6 +45,11 @@ jobs:
           BASE_REF: ${{ github.event.pull_request.base.ref }}
           SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
           BOT_APP_LOGIN: ${{ vars.REFRESH_BOT_LOGIN }}
+          EVENT_NAME: ${{ github.event_name }}
+          REVIEW_STATE: ${{ github.event.review.state }}
+          REVIEWER: ${{ github.event.review.user.login }}
+          # Who may approve a fingerprint-refresh PR to let it auto-merge.
+          FP_APPROVER: ${{ vars.FINGERPRINT_APPROVER }}
         run: |
           set -euo pipefail
 
@@ -72,6 +76,12 @@ jobs:
               allow_re='^advisories/(index\.json|badge-cuda\.json)$'
               decision=refresh
               ;;
+            fingerprint-refresh)
+              allow_author="$bot_login"
+              # Scan-oracle data; merges only after a maintainer approval below.
+              allow_re='^(fingerprints/|fixtures/redist/|advisories/(product-map|component-docs)\.json$)'
+              decision=fingerprint
+              ;;
             dependabot/*)
               allow_author="dependabot[bot]"
               # Dependency manifests/lockfiles and the GitHub Actions pins only.
@@ -85,10 +95,10 @@ jobs:
               ;;
           esac
 
-          # Refresh PRs must come from a branch in THIS repo, never a fork.
-          if [ "$decision" = "refresh" ] && [ "$SAME_REPO" != "true" ]; then
+          # Refresh/fingerprint PRs must come from a branch in THIS repo.
+          if { [ "$decision" = "refresh" ] || [ "$decision" = "fingerprint" ]; } && [ "$SAME_REPO" != "true" ]; then
             echo "decision=skip" >> "$GITHUB_OUTPUT"
-            echo "reason=refresh PR is not from the base repo" >> "$GITHUB_OUTPUT"
+            echo "reason=PR is not from the base repo" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -104,25 +114,35 @@ jobs:
             exit 0
           fi
 
+          # fingerprint-refresh is eligible only when triggered by an approving
+          # review from the designated maintainer.
+          if [ "$decision" = "fingerprint" ]; then
+            if [ "$EVENT_NAME" != "pull_request_review" ] \
+               || [ "$REVIEW_STATE" != "approved" ] \
+               || [ "$REVIEWER" != "$FP_APPROVER" ]; then
+              echo "decision=skip" >> "$GITHUB_OUTPUT"
+              echo "reason=fingerprint-refresh waits for an approving review by $FP_APPROVER" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          fi
+
           echo "decision=$decision" >> "$GITHUB_OUTPUT"
           echo "allow_re=$allow_re" >> "$GITHUB_OUTPUT"
           echo "reason=eligible ($decision)" >> "$GITHUB_OUTPUT"
 
       - name: Mint app token
         id: app_token
-        if: ${{ steps.gate.outputs.decision == 'refresh' || steps.gate.outputs.decision == 'dependabot' }}
+        if: ${{ steps.gate.outputs.decision == 'refresh' || steps.gate.outputs.decision == 'dependabot' || steps.gate.outputs.decision == 'fingerprint' }}
         uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
           app-id: ${{ vars.REFRESH_BOT_APP_ID }}
           private-key: ${{ secrets.REFRESH_BOT_PRIVATE_KEY }}
-          # enablePullRequestAutoMerge needs contents write; PR write covers
-          # approve and merge.
           permission-contents: write
           permission-pull-requests: write
 
       - name: Verify changed files against the allowlist
         id: files
-        if: ${{ steps.gate.outputs.decision == 'refresh' || steps.gate.outputs.decision == 'dependabot' }}
+        if: ${{ steps.gate.outputs.decision == 'refresh' || steps.gate.outputs.decision == 'dependabot' || steps.gate.outputs.decision == 'fingerprint' }}
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
           PR: ${{ github.event.pull_request.number }}
@@ -161,7 +181,7 @@ jobs:
           github-token: ${{ steps.app_token.outputs.token }}
 
       - name: Approve and enable auto-merge
-        if: steps.files.outputs.ok == 'true' && (steps.gate.outputs.decision == 'refresh' || (steps.gate.outputs.decision == 'dependabot' && (steps.semver.outputs.update-type == 'version-update:semver-patch' || steps.semver.outputs.update-type == 'version-update:semver-minor')))
+        if: steps.files.outputs.ok == 'true' && (steps.gate.outputs.decision == 'refresh' || steps.gate.outputs.decision == 'fingerprint' || (steps.gate.outputs.decision == 'dependabot' && (steps.semver.outputs.update-type == 'version-update:semver-patch' || steps.semver.outputs.update-type == 'version-update:semver-minor')))
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
           PR: ${{ github.event.pull_request.number }}
@@ -169,11 +189,8 @@ jobs:
           DECISION: ${{ steps.gate.outputs.decision }}
         run: |
           set -euo pipefail
-          # Refresh PRs are authored by the app, which is a ruleset bypass actor
-          # for the review rule, so no approval is needed (and self-approval is
-          # forbidden). Dependabot PRs are authored by dependabot[bot], so the
-          # app approves them to satisfy the review rule. Either way --auto still
-          # waits for required checks.
+          # Dependabot needs the app's approval; refresh/fingerprint are already
+          # cleared. --auto waits for required checks either way.
           if [ "$DECISION" = "dependabot" ]; then
             gh pr review "$PR" --repo "$REPO" --approve
           fi
