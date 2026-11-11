@@ -91,19 +91,15 @@ jobs:
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          # Persist the refresh bot token as the git/actor credential for the
-          # WHOLE run so create-pull-request's server-side signed-commit API
-          # calls (createTree/createCommit/createRef) are made as the bot, the
-          # same way REFRESH_PAT was used before. The short-lived app token is
-          # scoped to this repo and expires in an hour, unlike the PAT.
+          # Persist the app token for the whole run so create-pull-request's
+          # signed-commit API calls are made as the bot. Short-lived and
+          # repo-scoped, unlike the old PAT.
           persist-credentials: true
           token: ${{ steps.app_token.outputs.token }}
 
       - name: Pre-flight (verify the token can write to this repo)
-        # Fail fast in seconds if the token is missing/under-scoped, instead of
-        # burning ~37m of derivation and only discovering the permission problem
-        # at the Open-pull-request step. permissions.push must be true to
-        # create refs + open PRs.
+        # Fail fast if the token is missing or under-scoped instead of burning
+        # ~37m of derivation first. permissions.push must be true to open PRs.
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
         run: |

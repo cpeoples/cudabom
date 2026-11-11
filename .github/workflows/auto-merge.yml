@@ -1,27 +1,22 @@
 name: auto-merge
 
-# Enables GitHub-native auto-merge for the narrow set of automated,
-# data-only pull requests that are safe to merge without a human reading the
-# diff, and for Dependabot patch/minor bumps. Native auto-merge means the
-# merge still waits for the main-branch ruleset: all required status checks
-# must pass first. This workflow never force-merges and never bypasses a rule.
+# Enables GitHub-native auto-merge for a narrow set of automated data-only
+# PRs and for Dependabot patch/minor bumps. The refresh bot is a ruleset
+# bypass actor for the review rule only, so the merge still waits for all
+# required status checks. No force-merge.
 #
-# Scope (an allowlisted PR must satisfy EVERY guard):
-#   - opened by the refresh bot (the GitHub App) or dependabot[bot]
-#   - targets main
-#   - head branch is one of the known refresh branches (or a dependabot branch)
-#   - every changed file matches a strict per-branch data-path allowlist
-#
-# Anything outside this (a different author, an extra changed file, a major
-# Dependabot bump, the fingerprint-refresh branch) is left for human review.
+# A PR must satisfy EVERY guard: opened by the refresh bot or dependabot[bot],
+# targets main, head branch is a known refresh/dependabot branch, and every
+# changed file matches a strict per-branch path allowlist. Anything else
+# (other author, extra file, major bump, fingerprint-refresh) is left for a
+# human.
 
 on:
   pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review]
 
-# pull_request_target runs in the context of the base repo with access to
-# secrets, so keep the default token read-only and mint a scoped app token
-# only for the approve/enable-auto-merge calls.
+# pull_request_target runs with base-repo secrets, so keep the default token
+# read-only and mint a scoped app token only for the merge calls.
 permissions:
   contents: read
 
@@ -61,8 +56,7 @@ jobs:
             exit 0
           fi
 
-          # Refresh bot login is configured as a repo variable so there is no
-          # hardcoded account name. Fall back to a sensible default suffix check.
+          # Bot login comes from a repo variable, not a hardcoded name.
           bot_login="${BOT_APP_LOGIN:-}"
 
           case "$HEAD_REF" in
@@ -114,14 +108,16 @@ jobs:
           echo "allow_re=$allow_re" >> "$GITHUB_OUTPUT"
           echo "reason=eligible ($decision)" >> "$GITHUB_OUTPUT"
 
-      - name: Mint app token (read-only contents, PR write)
+      - name: Mint app token
         id: app_token
         if: ${{ steps.gate.outputs.decision == 'refresh' || steps.gate.outputs.decision == 'dependabot' }}
         uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
           app-id: ${{ vars.REFRESH_BOT_APP_ID }}
           private-key: ${{ secrets.REFRESH_BOT_PRIVATE_KEY }}
-          permission-contents: read
+          # enablePullRequestAutoMerge needs contents write; PR write covers
+          # approve and merge.
+          permission-contents: write
           permission-pull-requests: write
 
       - name: Verify changed files against the allowlist
@@ -134,8 +130,7 @@ jobs:
           ALLOW_RE: ${{ steps.gate.outputs.allow_re }}
         run: |
           set -euo pipefail
-          # List every file the PR touches and fail closed if any path is
-          # outside the allowlist for this branch.
+          # Fail closed if any changed path is outside this branch's allowlist.
           mapfile -t changed < <(gh api --paginate "repos/$REPO/pulls/$PR/files" --jq '.[].filename')
           if [ "${#changed[@]}" -eq 0 ]; then
             echo "ok=false" >> "$GITHUB_OUTPUT"
@@ -166,21 +161,21 @@ jobs:
           github-token: ${{ steps.app_token.outputs.token }}
 
       - name: Approve and enable auto-merge
-        if: >-
-          ${{ steps.files.outputs.ok == 'true' &&
-              (steps.gate.outputs.decision == 'refresh' ||
-               (steps.gate.outputs.decision == 'dependabot' &&
-                (steps.semver.outputs.update-type == 'version-update:semver-patch' ||
-                 steps.semver.outputs.update-type == 'version-update:semver-minor'))) }}
+        if: steps.files.outputs.ok == 'true' && (steps.gate.outputs.decision == 'refresh' || (steps.gate.outputs.decision == 'dependabot' && (steps.semver.outputs.update-type == 'version-update:semver-patch' || steps.semver.outputs.update-type == 'version-update:semver-minor')))
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
           PR: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
+          DECISION: ${{ steps.gate.outputs.decision }}
         run: |
           set -euo pipefail
-          # A real review by the app identity (not the PR author) satisfies the
-          # ruleset's 1-approval requirement without any bypass. The merge then
-          # waits for the required status checks via native auto-merge.
-          gh pr review "$PR" --repo "$REPO" --approve
+          # Refresh PRs are authored by the app, which is a ruleset bypass actor
+          # for the review rule, so no approval is needed (and self-approval is
+          # forbidden). Dependabot PRs are authored by dependabot[bot], so the
+          # app approves them to satisfy the review rule. Either way --auto still
+          # waits for required checks.
+          if [ "$DECISION" = "dependabot" ]; then
+            gh pr review "$PR" --repo "$REPO" --approve
+          fi
           gh pr merge "$PR" --repo "$REPO" --squash --auto
           echo "Auto-merge enabled for #$PR; it will merge once required checks pass."
