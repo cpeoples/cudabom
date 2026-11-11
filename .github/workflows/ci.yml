@@ -315,7 +315,9 @@ jobs:
       - name: Install LXD
         id: install_lxd
         # action-build installs lxd via "snap install", which the store can
-        # intermittently refuse. Retry before the build runs.
+        # intermittently refuse. Retry before the build runs. A persistent
+        # outage is classified by the report step, so don't fail the job here.
+        continue-on-error: true
         run: |
           for attempt in 1 2 3 4 5; do
             if sudo snap install lxd; then
