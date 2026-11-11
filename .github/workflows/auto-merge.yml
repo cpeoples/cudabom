@@ -108,14 +108,16 @@ jobs:
           echo "allow_re=$allow_re" >> "$GITHUB_OUTPUT"
           echo "reason=eligible ($decision)" >> "$GITHUB_OUTPUT"
 
-      - name: Mint app token (read-only contents, PR write)
+      - name: Mint app token
         id: app_token
         if: ${{ steps.gate.outputs.decision == 'refresh' || steps.gate.outputs.decision == 'dependabot' }}
         uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
           app-id: ${{ vars.REFRESH_BOT_APP_ID }}
           private-key: ${{ secrets.REFRESH_BOT_PRIVATE_KEY }}
-          permission-contents: read
+          # enablePullRequestAutoMerge needs contents write; PR write covers
+          # approve and merge.
+          permission-contents: write
           permission-pull-requests: write
 
       - name: Verify changed files against the allowlist
