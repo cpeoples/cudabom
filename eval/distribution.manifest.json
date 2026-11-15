@@ -4411,6 +4411,56 @@
       "note": "torch: third-party CUDA-bundling wheel (detection-only) 1.13.1, discovered from PyPI (887.5 MB).",
       "sha256": "fd12043868a34a8da7d490bf6db66991108b00ffbeecb034228bfcbbd4197143",
       "url": "https://files.pythonhosted.org/packages/81/58/431fd405855553af1a98091848cf97741302416b01462bbf9909d3c422b3/torch-1.13.1-cp310-cp310-manylinux1_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-jax-cuda12-plugin-0.4.33",
+      "kind": "wheel",
+      "note": "jax-cuda12-plugin: third-party CUDA-bundling wheel (detection-only) 0.4.33, discovered from PyPI (14.9 MB).",
+      "sha256": "a88cf22061416a97731ef837d56695e73d5ebd26aefc612328eeea510d3ed7e5",
+      "url": "https://files.pythonhosted.org/packages/e4/ad/1d5ca6d4bda8ce94986a33a15865d1481327cfa3a666fc399b209a4fe0ca/jax_cuda12_plugin-0.4.33-cp310-cp310-manylinux2014_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "cudnn",
+          "version": "9.10.2.21"
+        }
+      ],
+      "id": "wheel-nvidia-cudnn-cu12-9.10.2.21",
+      "kind": "wheel",
+      "note": "nvidia-cudnn-cu12: official NVIDIA wheel 9.10.2.21, discovered from PyPI (706.8 MB).",
+      "sha256": "949452be657fa16687d0930933f032835951ef0892b37d2d53824d1a84dc97a8",
+      "url": "https://files.pythonhosted.org/packages/ba/51/e123d997aa098c61d029f76663dedbfb9bc8dcf8c60cbd6adbe42f76d049/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl"
+    },
+    {
+      "expect": [
+        {
+          "component": "nccl",
+          "version": "2.16.5"
+        }
+      ],
+      "id": "wheel-nvidia-nccl-cu12-2.16.5",
+      "kind": "wheel",
+      "note": "nvidia-nccl-cu12: official NVIDIA wheel 2.16.5, discovered from PyPI (188.7 MB).",
+      "sha256": "84695a4248138fb2ca12f5fd3defe986e790e71ccdaad51b2ca34ca4e83ef421",
+      "url": "https://files.pythonhosted.org/packages/da/ca/2894fe71d9773405746268a4e9fddfb57643c4cf2ac3f38d528bfb3e8af0/nvidia_nccl_cu12-2.16.5-py3-none-manylinux1_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-tensorflow-2.8.2",
+      "kind": "wheel",
+      "note": "tensorflow: third-party CUDA-bundling wheel (detection-only) 2.8.2, discovered from PyPI (498.0 MB).",
+      "sha256": "d5a326824748f1511de23de2a8dd52518d6a1ac7a6701d0e47cd8282697f0046",
+      "url": "https://files.pythonhosted.org/packages/bc/2f/584b7fd57e9b3ead57f32d873ef5654092dc846c0bdacbe3a2f855459cde/tensorflow-2.8.2-cp310-cp310-manylinux2010_x86_64.whl"
+    },
+    {
+      "expect": [],
+      "id": "wheel-torch-1.13.0",
+      "kind": "wheel",
+      "note": "torch: third-party CUDA-bundling wheel (detection-only) 1.13.0, discovered from PyPI (890.1 MB).",
+      "sha256": "f68edfea71ade3862039ba66bcedf954190a2db03b0c41a9b79afd72210abd97",
+      "url": "https://files.pythonhosted.org/packages/83/4b/f71a84a44192ff5fc57c2a82b9b015876c3244d3ef478a8910b701515ed0/torch-1.13.0-cp310-cp310-manylinux1_x86_64.whl"
     }
   ],
   "schema_version": 1
