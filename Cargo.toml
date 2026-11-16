@@ -75,7 +75,7 @@ thiserror = "2"
 # code; `zip`/`tar`/`flate2` handle wheels, tarballs, and container layers;
 # `sha2` hashes containing files; `memchr` scans rodata for strings; `walkdir`
 # walks directories without following symlinks.
-object = { version = "0.40", default-features = false, features = ["read", "std", "elf", "pe", "coff", "archive"] }
+object = { version = "0.41", default-features = false, features = ["read", "std", "elf", "pe", "coff", "archive"] }
 zip = { version = "9", default-features = false, features = ["deflate"] }
 flate2 = "1"
 tar = "0.4"
